@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { MessageCircle, Menu, X, ArrowUpRight, PhoneCall } from "lucide-react";
+import { MessageCircle, Menu, X, ArrowUpRight, PhoneCall, ShieldCheck } from "lucide-react";
 import { createWhatsAppLink } from "../lib/whatsapp";
 
 const NAV_LINKS = [
@@ -64,6 +64,16 @@ export default function Header() {
 
         {/* Action Controls */}
         <div className="flex items-center gap-2 sm:gap-3">
+          {/* Admin Vault Temporary Button */}
+          <Link
+            href="/admin/leads"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 border border-marigold/80 bg-selvedge hover:bg-warp text-marigold hover:text-haldi font-mono text-[10px] sm:text-[11px] tracking-wider uppercase rounded-xs transition-all shadow-xs"
+            title="Access Client Leads Vault (D1 SQL + Google Sheet)"
+          >
+            <ShieldCheck className="w-3.5 h-3.5 text-marigold" />
+            <span className="font-semibold">Admin Vault</span>
+          </Link>
+
           <a
             href={waEnquiryUrl}
             target="_blank"
@@ -71,7 +81,7 @@ export default function Header() {
             className="hidden sm:inline-flex items-center gap-2 px-3.5 py-2 border border-kumkum bg-kumkum/10 hover:bg-kumkum/20 text-haldi font-mono text-[11px] tracking-wider uppercase rounded-xs transition-all duration-200 shadow-sm"
           >
             <MessageCircle className="w-3.5 h-3.5 text-marigold" />
-            <span>Direct Agency Desk</span>
+            <span>Direct Desk</span>
           </a>
 
           {/* Mobile Hamburger Toggle */}
@@ -100,6 +110,19 @@ export default function Header() {
                 <ArrowUpRight className="w-4 h-4 text-marigold" />
               </Link>
             ))}
+
+            {/* Mobile Admin Link */}
+            <Link
+              href="/admin/leads"
+              onClick={() => setMobileOpen(false)}
+              className="py-3 px-3 rounded-xs text-marigold bg-selvedge border border-marigold/40 flex items-center justify-between transition-colors font-semibold mt-2"
+            >
+              <div className="flex items-center gap-2">
+                <ShieldCheck className="w-4 h-4 text-marigold" />
+                <span>Admin Leads Vault (D1 DB)</span>
+              </div>
+              <ArrowUpRight className="w-4 h-4 text-marigold" />
+            </Link>
           </nav>
 
           <div className="pt-2 grid grid-cols-1 sm:grid-cols-2 gap-3">
