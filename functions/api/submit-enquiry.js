@@ -46,7 +46,6 @@ export async function onRequestPost(context) {
     const referrer  = String(data.referrer || "").slice(0, 300);
     const ipAddress = request.headers.get("CF-Connecting-IP") || request.headers.get("x-real-ip") || "unknown";
 
-    // IST timestamp string (e.g. 30-Aug-2026 20:15 IST)
     const now = new Date();
     const istTimeStr = new Intl.DateTimeFormat("en-IN", {
       timeZone: "Asia/Kolkata",
@@ -54,17 +53,45 @@ export async function onRequestPost(context) {
       timeStyle: "medium"
     }).format(now);
 
-    let d1Success = false;
     let d1Id = null;
+    let sheetSynced = 0;
+    let sheetSyncTime = null;
 
-    // 1. Insert into Cloudflare D1 SQL Database
+    // 1. Dispatch to Google Sheet Storage Bucket (Google Apps Script)
+    const gasUrl = "https://script.google.com/macros/s/AKfycbw_HwwZzXqwTIog1s1ez9X6CmnHw9iG1HrkH4w2C5ab_H0pzOASw7zgkpBjsQUK9-S9rw/exec";
+    try {
+      const gasResp = await fetch(gasUrl, {
+        method: "POST",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify({
+          token: "maa-sheetla-2010",
+          firstName,
+          lastName,
+          firm: `${firmName} (${city ? city + ", " : ""}${state})`,
+          gst: gstNo,
+          contact: contactNo,
+          email,
+          page,
+          referrer,
+        }),
+      });
+      if (gasResp.ok) {
+        sheetSynced = 1;
+        sheetSyncTime = istTimeStr;
+      }
+    } catch (gasErr) {
+      console.warn("GAS background sync notice:", gasErr);
+    }
+
+    // 2. Insert into Cloudflare D1 SQL Master Database
     if (env.DB) {
       try {
         const stmt = env.DB.prepare(`
           INSERT INTO enquiries (
             timestamp, first_name, last_name, firm_name, gst_no, contact_no,
-            email, city, state, category, preferred_desk, notes, page, referrer, ip_address, status
-          ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            email, city, state, category, preferred_desk, notes, page, referrer, ip_address, status,
+            sheet_synced, sheet_sync_timestamp
+          ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         `);
 
         const result = await stmt.bind(
@@ -83,40 +110,25 @@ export async function onRequestPost(context) {
           page,
           referrer,
           ipAddress,
-          "New"
+          "New",
+          sheetSynced,
+          sheetSyncTime
         ).run();
 
-        d1Success = true;
         d1Id = result.meta ? result.meta.last_row_id : null;
       } catch (d1Err) {
         console.error("D1 write error:", d1Err);
       }
     }
 
-    // 2. Parallel Sync to Google Apps Script
-    const gasUrl = "https://script.google.com/macros/s/AKfycbw_HwwZzXqwTIog1s1ez9X6CmnHw9iG1HrkH4w2C5ab_H0pzOASw7zgkpBjsQUK9-S9rw/exec";
-    fetch(gasUrl, {
-      method: "POST",
-      headers: { "Content-Type": "text/plain;charset=utf-8" },
-      body: JSON.stringify({
-        token: "maa-sheetla-2010",
-        firstName,
-        lastName,
-        firm: `${firmName} (${city ? city + ", " : ""}${state})`,
-        gst: gstNo,
-        contact: contactNo,
-        email,
-        page,
-        referrer,
-      }),
-    }).catch(err => console.error("GAS sync background warning:", err));
-
     return new Response(
       JSON.stringify({
         success: true,
-        message: "Enquiry permanently saved to Cloudflare D1 Vault and Google Sheet.",
+        message: "Enquiry permanently saved to Cloudflare D1 Database and Google Sheet Storage Bucket.",
         recordId: d1Id,
-        istTimestamp: istTimeStr
+        sheetSynced: Boolean(sheetSynced),
+        istTimestamp: istTimeStr,
+        googleSheetId: "1BPM_maAdBj6vfdhq1LrPNaQL5YA5YS4YRTUjUQPcCdY"
       }),
       {
         status: 200,

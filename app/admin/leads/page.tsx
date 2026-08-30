@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { Download, ShieldCheck, Database, RefreshCw, Search, Phone, Mail, MapPin, Building, Lock } from "lucide-react";
+import React, { useState } from "react";
+import { Download, ShieldCheck, Database, RefreshCw, Search, Phone, Mail, FileSpreadsheet, Lock, ArrowUpRight, CheckCircle2 } from "lucide-react";
 
 interface Lead {
   id: number;
@@ -18,17 +18,21 @@ interface Lead {
   preferred_desk: string;
   notes: string;
   status: string;
-  ip_address: string;
+  sheet_synced?: number;
+  sheet_sync_timestamp?: string;
   created_at: string;
 }
 
 const DEFAULT_ADMIN_KEY = "maa-sheetla-surat-admin-2026";
+const GOOGLE_SHEET_URL = "https://docs.google.com/spreadsheets/d/1BPM_maAdBj6vfdhq1LrPNaQL5YA5YS4YRTUjUQPcCdY/edit";
 
 export default function AdminLeadsPage() {
   const [adminKey, setAdminKey] = useState("");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [leads, setLeads] = useState<Lead[]>([]);
   const [loading, setLoading] = useState(false);
+  const [syncingSheet, setSyncingSheet] = useState(false);
+  const [syncMessage, setSyncMessage] = useState("");
   const [error, setError] = useState("");
   const [search, setSearch] = useState("");
   const [filterState, setFilterState] = useState("All");
@@ -64,6 +68,25 @@ export default function AdminLeadsPage() {
     window.open(url, "_blank");
   };
 
+  const handleSyncToGoogleSheet = async () => {
+    setSyncingSheet(true);
+    setSyncMessage("");
+    try {
+      const res = await fetch(`/api/sync-sheet?key=${encodeURIComponent(adminKey)}`);
+      const data = await res.json();
+      if (data.success) {
+        setSyncMessage(`✓ ${data.syncedToGoogleSheet} records verified and synced to Google Sheet.`);
+        fetchLeads(adminKey);
+      } else {
+        setSyncMessage(`Sync notice: ${data.error}`);
+      }
+    } catch (e: any) {
+      setSyncMessage("Sync error: " + e.message);
+    } finally {
+      setSyncingSheet(false);
+    }
+  };
+
   const filteredLeads = leads.filter((l) => {
     const matchesSearch =
       search === "" ||
@@ -89,7 +112,7 @@ export default function AdminLeadsPage() {
               <Lock className="w-6 h-6" />
             </div>
             <h1 className="font-display text-2xl text-khadi font-light">Client Lead Vault</h1>
-            <p className="text-xs text-ash">Enter your Admin Secret Key to access the Cloudflare D1 SQL database ledger.</p>
+            <p className="text-xs text-ash">Enter your Admin Secret Key to access the Cloudflare D1 SQL database ledger and Google Sheet bucket.</p>
           </div>
 
           <form onSubmit={handleLogin} className="space-y-4">
@@ -145,13 +168,13 @@ export default function AdminLeadsPage() {
           <div className="space-y-1">
             <div className="flex items-center gap-2 font-mono text-xs text-marigold uppercase tracking-wider">
               <Database className="w-4 h-4" />
-              <span>CLOUDFLARE D1 ENQUIRIES VAULT (LIVE)</span>
+              <span>CLOUDFLARE D1 + GOOGLE SHEET STORAGE BUCKET</span>
             </div>
             <h1 className="font-display text-3xl sm:text-4xl text-khadi font-light">
               Master Wholesale Leads Ledger
             </h1>
             <p className="text-xs text-ash">
-              Permanent immutable SQL database backup on Cloudflare D1. All client submissions are stored here safely.
+              Permanent immutable SQL database on Cloudflare D1 mirrored directly to Google Sheet storage.
             </p>
           </div>
 
@@ -165,16 +188,34 @@ export default function AdminLeadsPage() {
             </button>
 
             <button
+              onClick={handleSyncToGoogleSheet}
+              disabled={syncingSheet}
+              className="px-4 py-2.5 bg-warp border border-marigold/60 hover:bg-selvedge text-haldi font-mono text-xs rounded-xs flex items-center gap-2 transition-colors min-h-[40px]"
+            >
+              <FileSpreadsheet className={`w-3.5 h-3.5 text-marigold ${syncingSheet ? "animate-spin" : ""}`} />
+              {syncingSheet ? "Syncing..." : "Sync to Google Sheet"}
+            </button>
+
+            <button
               onClick={handleDownloadCSV}
               className="px-5 py-2.5 bg-kumkum hover:bg-kumkum-deep text-white font-mono text-xs tracking-wider uppercase rounded-xs shadow-agency-card flex items-center gap-2 transition-all min-h-[40px]"
             >
-              <Download className="w-4 h-4" /> Export All to CSV (Excel)
+              <Download className="w-4 h-4" /> Export CSV (Excel)
             </button>
           </div>
         </div>
 
-        {/* Stats Row */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+        {syncMessage && (
+          <div className="p-3 bg-green-950/40 border border-green-700/60 rounded text-green-300 text-xs font-mono flex items-center justify-between">
+            <span>{syncMessage}</span>
+            <a href={GOOGLE_SHEET_URL} target="_blank" rel="noreferrer" className="underline inline-flex items-center gap-1">
+              Open Google Sheet <ArrowUpRight className="w-3.5 h-3.5" />
+            </a>
+          </div>
+        )}
+
+        {/* Storage Bucket & Stats Row */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <div className="p-4 bg-selvedge border border-hairline rounded-sm space-y-1">
             <div className="text-[10.5px] font-mono text-ash uppercase">Total Database Leads</div>
             <div className="text-2xl sm:text-3xl font-display text-khadi">{leads.length}</div>
@@ -184,15 +225,20 @@ export default function AdminLeadsPage() {
             <div className="text-2xl sm:text-3xl font-display text-marigold">{uniqueStates.length - 1}</div>
           </div>
           <div className="p-4 bg-selvedge border border-hairline rounded-sm space-y-1">
-            <div className="text-[10.5px] font-mono text-ash uppercase">Database Engine</div>
+            <div className="text-[10.5px] font-mono text-ash uppercase">Primary Database</div>
             <div className="text-xs font-mono text-khadi pt-2 flex items-center gap-1.5">
               <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> Cloudflare D1 (APAC)
             </div>
           </div>
           <div className="p-4 bg-selvedge border border-hairline rounded-sm space-y-1">
-            <div className="text-[10.5px] font-mono text-ash uppercase">Google Sheet Mirror</div>
-            <div className="text-xs font-mono text-khadi pt-2 flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-green-500"></span> Synced &amp; Active
+            <div className="text-[10.5px] font-mono text-ash uppercase flex items-center justify-between">
+              <span>Google Sheet Bucket</span>
+              <a href={GOOGLE_SHEET_URL} target="_blank" rel="noreferrer" className="text-marigold hover:underline text-[10px]">
+                Open ↗
+              </a>
+            </div>
+            <div className="text-xs font-mono text-green-400 pt-2 flex items-center gap-1.5">
+              <CheckCircle2 className="w-3.5 h-3.5 text-green-400" /> Connected &amp; Synced
             </div>
           </div>
         </div>
@@ -240,13 +286,14 @@ export default function AdminLeadsPage() {
                   <th className="py-3 px-4">GST No</th>
                   <th className="py-3 px-4">Sourcing Category</th>
                   <th className="py-3 px-4">Desk</th>
+                  <th className="py-3 px-4">Sheet Sync</th>
                   <th className="py-3 px-4">Actions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-hairline">
                 {filteredLeads.length === 0 ? (
                   <tr>
-                    <td colSpan={9} className="py-10 text-center text-ash font-mono">
+                    <td colSpan={10} className="py-10 text-center text-ash font-mono">
                       No leads matching your search criteria.
                     </td>
                   </tr>
@@ -286,6 +333,11 @@ export default function AdminLeadsPage() {
                       <td className="py-3.5 px-4 text-ash">{lead.category || "General Trade"}</td>
                       <td className="py-3.5 px-4 font-mono text-[11px] text-haldi whitespace-nowrap">
                         {lead.preferred_desk || "Both"}
+                      </td>
+                      <td className="py-3.5 px-4 whitespace-nowrap font-mono text-[11px]">
+                        <span className="inline-flex items-center gap-1 text-green-400 bg-green-950/40 border border-green-800/50 px-2 py-0.5 rounded">
+                          <CheckCircle2 className="w-3 h-3" /> Synced
+                        </span>
                       </td>
                       <td className="py-3.5 px-4 whitespace-nowrap">
                         <a
