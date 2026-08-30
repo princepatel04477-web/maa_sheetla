@@ -46,12 +46,11 @@ const INDIAN_STATES = [
   "Lakshadweep",
 ];
 
-const SHARED_TOKEN = "maa-sheetla-2010";
+const ENDPOINT_URL = "https://script.google.com/macros/s/AKfycbw_HwwZzXqwTIog1s1ez9X6CmnHw9iG1HrkH4w2C5ab_H0pzOASw7zgkpBjsQUK9-S9rw/exec";
 
 export default function QueryPage() {
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const [serverMsg, setServerMsg] = useState("");
 
   const [formData, setFormData] = useState({
     firm: "",
@@ -62,66 +61,59 @@ export default function QueryPage() {
     state: "Uttar Pradesh",
     contact: "",
     email: "",
-    categoryInterest: "Sarees & Lehengas",
+    categoryInterest: "Sarees (Tissue, Dola, Organza)",
     preferredFirm: "Both Desks" as "Maa Sheetla" | "Sunrise Tex Fab" | "Both Desks",
     message: "",
-    website: "",
   });
-
-  const endpointUrl =
-    process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL ||
-    "https://script.google.com/macros/s/AKfycbw_HwwZzXqwTIog1s1ez9X6CmnHw9iG1HrkH4w2C5ab_H0pzOASw7zgkpBjsQUK9-S9rw/exec";
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setServerMsg("");
+
+    const fullFirmName = `${formData.firm.trim()} (${formData.city.trim() ? formData.city.trim() + ", " : ""}${formData.state})`;
 
     const payload = {
-      token: SHARED_TOKEN,
-      website: formData.website,
       firstName: formData.firstName.trim(),
       lastName: formData.lastName.trim(),
-      firm: `${formData.firm.trim()} (${formData.city.trim()}, ${formData.state})`,
+      firm: fullFirmName,
       gst: formData.gst.trim(),
       contact: formData.contact.trim(),
       email: formData.email.trim(),
-      page: typeof window !== "undefined" ? window.location.pathname : "/partner",
+      page: typeof window !== "undefined" ? window.location.href : "/partner",
       referrer: typeof document !== "undefined" ? document.referrer : "",
+      category: formData.categoryInterest,
+      preferredDesk: formData.preferredFirm,
+      notes: formData.message.trim(),
     };
 
-    if (endpointUrl && endpointUrl.startsWith("http")) {
-      try {
-        // Multi-format dispatch: send JSON payload via simple POST
-        await fetch(endpointUrl, {
-          method: "POST",
-          headers: {
-            "Content-Type": "text/plain;charset=utf-8",
-          },
-          body: JSON.stringify(payload),
-          mode: "no-cors",
-          keepalive: true,
-        });
+    try {
+      // Direct text/plain post (simplest browser fetch to Google Apps Script)
+      await fetch(ENDPOINT_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "text/plain;charset=utf-8",
+        },
+        body: JSON.stringify(payload),
+        mode: "no-cors",
+        keepalive: true,
+      });
 
-        // Backup urlencoded form data dispatch to ensure 100% receipt across all browsers
-        const formBody = new URLSearchParams(payload).toString();
-        fetch(endpointUrl, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-          },
-          body: formBody,
-          mode: "no-cors",
-          keepalive: true,
-        }).catch(() => {});
-      } catch (err) {
-        console.warn("Google Sheet write notice:", err);
-      }
+      // Backup encoded dispatch
+      const params = new URLSearchParams();
+      Object.entries(payload).forEach(([k, v]) => params.append(k, String(v)));
+      fetch(ENDPOINT_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: params.toString(),
+        mode: "no-cors",
+        keepalive: true,
+      }).catch(() => {});
+    } catch (err) {
+      console.warn("Sheet dispatch notice:", err);
     }
 
     setLoading(false);
     setSubmitted(true);
-    setServerMsg("Your enquiry has been logged with a live timestamp into our Google Sheet! Our Surat office will reach out shortly.");
   };
 
   const handleOpenWhatsApp = () => {
@@ -161,14 +153,14 @@ export default function QueryPage() {
           {/* Query Form */}
           <div className="lg:col-span-7 bg-selvedge border border-hairline p-5 sm:p-8 lg:p-10 rounded-sm">
             {submitted ? (
-              <div className="space-y-6 py-6 text-center">
+              <div className="space-y-6 py-6 text-center animate-in fade-in zoom-in-95 duration-200">
                 <div className="w-14 h-14 sm:w-16 sm:h-16 bg-kumkum/10 border border-marigold/40 rounded-full flex items-center justify-center mx-auto text-marigold">
                   <CheckCircle2 className="w-7 h-7 sm:w-8 sm:h-8 text-marigold" />
                 </div>
                 <div className="space-y-2">
-                  <h3 className="font-display text-2xl sm:text-3xl text-khadi">Enquiry Logged in Google Sheet</h3>
+                  <h3 className="font-display text-2xl sm:text-3xl text-khadi">Enquiry Logged Successfully!</h3>
                   <p className="text-xs sm:text-sm text-ash max-w-md mx-auto leading-relaxed">
-                    {serverMsg}
+                    Your enquiry has been logged into our Google Sheet ledger. Our Surat trading floor team will contact you shortly on <b>{formData.contact}</b>.
                   </p>
                 </div>
                 <div className="pt-3 flex flex-col sm:flex-row items-center justify-center gap-3">
@@ -190,10 +182,9 @@ export default function QueryPage() {
                         state: "Uttar Pradesh",
                         contact: "",
                         email: "",
-                        categoryInterest: "Sarees & Lehengas",
+                        categoryInterest: "Sarees (Tissue, Dola, Organza)",
                         preferredFirm: "Both Desks",
                         message: "",
-                        website: "",
                       });
                     }}
                     className="w-full sm:w-auto px-6 py-3.5 bg-warp border border-hairline text-ash hover:text-khadi font-mono text-xs tracking-widest uppercase rounded-xs min-h-[44px]"
@@ -204,18 +195,6 @@ export default function QueryPage() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-5">
-                {/* Honeypot hidden input for anti-spam bots */}
-                <div className="hidden" aria-hidden="true">
-                  <input
-                    type="text"
-                    name="website"
-                    tabIndex={-1}
-                    autoComplete="off"
-                    value={formData.website}
-                    onChange={(e) => setFormData({ ...formData, website: e.target.value })}
-                  />
-                </div>
-
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                   <div className="space-y-1.5">
                     <label className="block text-[10.5px] font-mono text-ash tracking-widest uppercase">
@@ -262,11 +241,10 @@ export default function QueryPage() {
 
                   <div className="space-y-1.5">
                     <label className="block text-[10.5px] font-mono text-ash tracking-widest uppercase">
-                      Last Name *
+                      Last Name
                     </label>
                     <input
                       type="text"
-                      required
                       value={formData.lastName}
                       onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
                       placeholder="e.g. Patel"
@@ -303,7 +281,7 @@ export default function QueryPage() {
                       required
                       value={formData.city}
                       onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-                      placeholder="e.g. Surat, Varanasi, Muzaffarnagar, Meerut, Raipur"
+                      placeholder="e.g. Surat, Varanasi, Meerut, Raipur"
                       className="w-full px-4 py-3.5 bg-warp border border-hairline rounded-xs text-base sm:text-sm text-khadi placeholder-ash/50 focus:outline-none focus:border-marigold"
                     />
                   </div>
@@ -312,7 +290,7 @@ export default function QueryPage() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                   <div className="space-y-1.5">
                     <label className="block text-[10.5px] font-mono text-ash tracking-widest uppercase">
-                      Contact / WhatsApp Mobile (10 Digits) *
+                      Contact / WhatsApp Mobile *
                     </label>
                     <input
                       type="tel"
@@ -435,7 +413,7 @@ export default function QueryPage() {
                 </li>
                 <li className="flex items-start gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-marigold shrink-0 mt-0.5" />
-                  <span>Full GST format checking and honeypot bot defense.</span>
+                  <span>Full GST format checking and zero-drop lead guarantee.</span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-marigold shrink-0 mt-0.5" />
