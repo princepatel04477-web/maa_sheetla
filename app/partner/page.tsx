@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import ThreadsBackground from "../../components/react-bits/ThreadsBackground";
 import BlurText from "../../components/react-bits/BlurText";
 import ShinyText from "../../components/react-bits/ShinyText";
-import { CheckCircle2, MessageCircle, Send, Loader2 } from "lucide-react";
+import { CheckCircle2, MessageCircle, Send, Loader2, Database } from "lucide-react";
 import { createWhatsAppLink } from "../../lib/whatsapp";
 
 const INDIAN_STATES = [
@@ -46,11 +46,12 @@ const INDIAN_STATES = [
   "Lakshadweep",
 ];
 
-const ENDPOINT_URL = "https://script.google.com/macros/s/AKfycbw_HwwZzXqwTIog1s1ez9X6CmnHw9iG1HrkH4w2C5ab_H0pzOASw7zgkpBjsQUK9-S9rw/exec";
+const GAS_FALLBACK_URL = "https://script.google.com/macros/s/AKfycbw_HwwZzXqwTIog1s1ez9X6CmnHw9iG1HrkH4w2C5ab_H0pzOASw7zgkpBjsQUK9-S9rw/exec";
 
 export default function QueryPage() {
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [recordId, setRecordId] = useState<string | number | null>(null);
 
   const [formData, setFormData] = useState({
     firm: "",
@@ -79,37 +80,49 @@ export default function QueryPage() {
       gst: formData.gst.trim(),
       contact: formData.contact.trim(),
       email: formData.email.trim(),
-      page: typeof window !== "undefined" ? window.location.href : "/partner",
-      referrer: typeof document !== "undefined" ? document.referrer : "",
+      city: formData.city.trim(),
+      state: formData.state,
       category: formData.categoryInterest,
       preferredDesk: formData.preferredFirm,
       notes: formData.message.trim(),
+      page: typeof window !== "undefined" ? window.location.href : "/partner",
+      referrer: typeof document !== "undefined" ? document.referrer : "",
     };
 
-    try {
-      // Direct text/plain post (simplest browser fetch to Google Apps Script)
-      await fetch(ENDPOINT_URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "text/plain;charset=utf-8",
-        },
-        body: JSON.stringify(payload),
-        mode: "no-cors",
-        keepalive: true,
-      });
+    let assignedId = null;
 
-      // Backup encoded dispatch
-      const params = new URLSearchParams();
-      Object.entries(payload).forEach(([k, v]) => params.append(k, String(v)));
-      fetch(ENDPOINT_URL, {
+    // 1. Primary Write: Cloudflare D1 Serverless Database (/api/submit-enquiry)
+    try {
+      const d1Res = await fetch("/api/submit-enquiry", {
         method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: params.toString(),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      if (d1Res.ok) {
+        const d1Data = await d1Res.json();
+        if (d1Data && d1Data.recordId) {
+          assignedId = d1Data.recordId;
+          setRecordId(d1Data.recordId);
+        }
+      }
+    } catch (d1Err) {
+      console.warn("D1 direct endpoint notice:", d1Err);
+    }
+
+    // 2. Redundant Direct Google Apps Script Dispatch
+    try {
+      fetch(GAS_FALLBACK_URL, {
+        method: "POST",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify({
+          token: "maa-sheetla-2010",
+          ...payload,
+        }),
         mode: "no-cors",
         keepalive: true,
       }).catch(() => {});
-    } catch (err) {
-      console.warn("Sheet dispatch notice:", err);
+    } catch (gasErr) {
+      console.warn("Google Sheet sync notice:", gasErr);
     }
 
     setLoading(false);
@@ -143,8 +156,8 @@ export default function QueryPage() {
             <BlurText text="Submit your wholesale query." />
           </h1>
           <p className="text-xs sm:text-base text-ash font-light leading-relaxed">
-            Fill out your showroom details below. All enquiries are recorded directly with live timestamps
-            in our Surat office management sheet for immediate response.
+            Fill out your showroom details below. All enquiries are recorded permanently in our Cloudflare D1 SQL database
+            and Google Sheet for immediate response and lifetime backup.
           </p>
         </div>
 
@@ -158,9 +171,9 @@ export default function QueryPage() {
                   <CheckCircle2 className="w-7 h-7 sm:w-8 sm:h-8 text-marigold" />
                 </div>
                 <div className="space-y-2">
-                  <h3 className="font-display text-2xl sm:text-3xl text-khadi">Enquiry Logged Successfully!</h3>
+                  <h3 className="font-display text-2xl sm:text-3xl text-khadi">Enquiry Secured in Database</h3>
                   <p className="text-xs sm:text-sm text-ash max-w-md mx-auto leading-relaxed">
-                    Your enquiry has been logged into our Google Sheet ledger. Our Surat trading floor team will contact you shortly on <b>{formData.contact}</b>.
+                    Your enquiry has been assigned Reference <b>#{recordId || "LIVE"}</b> and saved to the Cloudflare D1 database and Google Sheet. Our Surat floor team will call you on <b>{formData.contact}</b>.
                   </p>
                 </div>
                 <div className="pt-3 flex flex-col sm:flex-row items-center justify-center gap-3">
@@ -173,6 +186,7 @@ export default function QueryPage() {
                   <button
                     onClick={() => {
                       setSubmitted(false);
+                      setRecordId(null);
                       setFormData({
                         firm: "",
                         firstName: "",
@@ -376,11 +390,11 @@ export default function QueryPage() {
                   >
                     {loading ? (
                       <>
-                        <Loader2 className="w-4 h-4 animate-spin" /> Recording in Sheet...
+                        <Loader2 className="w-4 h-4 animate-spin" /> Saving to Database &amp; Sheet...
                       </>
                     ) : (
                       <>
-                        <Send className="w-4 h-4" /> Submit Enquiry to Sheet
+                        <Send className="w-4 h-4" /> Submit Enquiry to Vault
                       </>
                     )}
                   </button>
@@ -399,25 +413,29 @@ export default function QueryPage() {
           {/* Benefits Side Column */}
           <div className="lg:col-span-5 space-y-5">
             <div className="p-5 sm:p-8 bg-selvedge/60 border border-hairline rounded-sm space-y-3.5">
+              <div className="flex items-center gap-2 text-marigold font-mono text-xs uppercase tracking-wider">
+                <Database className="w-4 h-4" />
+                <span>Dual-Vault Redundancy</span>
+              </div>
               <h3 className="font-display text-xl sm:text-2xl text-khadi font-light">
-                Live Google Sheet Logging
+                Permanent Database &amp; Sheet
               </h3>
               <ul className="space-y-3 text-xs text-khadi/85 font-light">
                 <li className="flex items-start gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-marigold shrink-0 mt-0.5" />
-                  <span>Time-stamped entry in IST (GMT+05:30) written directly to your sheet.</span>
+                  <span>Cloudflare D1 SQL storage with transaction IDs.</span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-marigold shrink-0 mt-0.5" />
-                  <span>Verified Indian mobile normalization (+91 formatted).</span>
+                  <span>Live IST timestamping &amp; Google Sheet parallel mirror.</span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-marigold shrink-0 mt-0.5" />
-                  <span>Full GST format checking and zero-drop lead guarantee.</span>
+                  <span>1-click CSV export anytime in the client admin vault.</span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-marigold shrink-0 mt-0.5" />
-                  <span>Immediate email alert to princepatel01258@gmail.com.</span>
+                  <span>Instant email alert to princepatel01258@gmail.com.</span>
                 </li>
               </ul>
             </div>

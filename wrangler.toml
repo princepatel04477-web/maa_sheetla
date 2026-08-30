@@ -1,0 +1,8 @@
+name = "maa-sheetla"
+compatibility_date = "2024-08-30"
+pages_build_output_dir = "out"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "maa-sheetla-db"
+database_id = "43312498-2b01-499b-8700-fa9a7c601c5b"
