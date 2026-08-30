@@ -102,29 +102,29 @@ export default function HomePage() {
       <ReachSection />
 
       {/* 4. The 4-Step Agency Workflow */}
-      <section id="operations" className="w-full py-24 sm:py-32 px-6 sm:px-12 bg-selvedge/70 border-t border-hairline relative">
-        <div className="max-w-7xl mx-auto space-y-16">
+      <section id="operations" className="w-full py-16 sm:py-24 lg:py-32 px-4 sm:px-8 lg:px-12 bg-selvedge/70 border-t border-hairline relative">
+        <div className="max-w-7xl mx-auto space-y-12 sm:space-y-16">
           <div className="max-w-3xl space-y-3">
             <p className="eyebrow">03 — THE AGENCY OPERATIONS</p>
-            <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl text-khadi font-light tracking-tight leading-[0.95]">
+            <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl text-khadi font-light tracking-tight leading-[0.95]">
               <SplitText text="How we bridge Surat's looms to your showroom floor." />
             </h2>
-            <p className="text-sm sm:text-base text-ash font-light leading-relaxed">
+            <p className="text-xs sm:text-base text-ash font-light leading-relaxed">
               Buying directly from fragmented textile mills is complex and risky. As your on-ground Surat wholesale agency,
               we manage end-to-end procurement, inspection, and logistics with total transparency.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {AGENCY_SERVICES.map((srv, idx) => (
               <AnimatedContent key={srv.title} delay={idx * 0.1} direction="up">
-                <div className="p-7 bg-warp border border-hairline hover:border-marigold/60 transition-all rounded-sm h-full space-y-4 flex flex-col justify-between">
-                  <div className="space-y-3">
-                    <srv.icon className="w-6 h-6 text-marigold" />
-                    <span className="font-mono text-[10px] text-haldi tracking-widest uppercase block">
+                <div className="p-5 sm:p-7 bg-warp border border-hairline hover:border-marigold/60 transition-all rounded-sm h-full space-y-3.5 flex flex-col justify-between">
+                  <div className="space-y-2.5">
+                    <srv.icon className="w-5 h-5 sm:w-6 sm:h-6 text-marigold" />
+                    <span className="font-mono text-[9.5px] sm:text-[10px] text-haldi tracking-widest uppercase block">
                       {srv.tagline}
                     </span>
-                    <h3 className="font-display text-xl text-khadi font-light">{srv.title}</h3>
+                    <h3 className="font-display text-lg sm:text-xl text-khadi font-light">{srv.title}</h3>
                     <p className="text-xs text-ash font-light leading-relaxed">{srv.desc}</p>
                   </div>
                 </div>
@@ -135,35 +135,35 @@ export default function HomePage() {
       </section>
 
       {/* 5. Agency Sourcing Specialties */}
-      <section className="w-full py-24 sm:py-32 px-6 sm:px-12 bg-warp border-t border-hairline relative">
-        <div className="max-w-7xl mx-auto space-y-16">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-            <div className="space-y-3 max-w-2xl">
+      <section className="w-full py-16 sm:py-24 lg:py-32 px-4 sm:px-8 lg:px-12 bg-warp border-t border-hairline relative">
+        <div className="max-w-7xl mx-auto space-y-12 sm:space-y-16">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6">
+            <div className="space-y-2.5 max-w-2xl">
               <p className="eyebrow">04 — TEXTILE SOURCING DISCIPLINES</p>
-              <h2 className="font-display text-4xl sm:text-6xl text-khadi font-light tracking-tight leading-[0.95]">
+              <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl text-khadi font-light tracking-tight leading-[0.95]">
                 Surat categories managed by <i className="italic text-haldi">our trading floor.</i>
               </h2>
             </div>
             <Link
               href="/partner"
-              className="inline-flex items-center gap-2 font-mono text-xs tracking-widest uppercase text-marigold hover:text-haldi transition-colors"
+              className="inline-flex items-center gap-1.5 font-mono text-xs tracking-widest uppercase text-marigold hover:text-haldi transition-colors py-1"
             >
               Request Trade Sourcing Rates <ArrowUpRight className="w-4 h-4" />
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
             {SOURCING_SPECIALTIES.map((spec, idx) => (
-              <SpotlightCard key={spec.title} className="p-8 border-hairline hover:border-marigold/60 rounded-sm bg-selvedge space-y-4">
+              <SpotlightCard key={spec.title} className="p-6 sm:p-8 border-hairline hover:border-marigold/60 rounded-sm bg-selvedge space-y-3.5">
                 <div className="flex items-center justify-between font-mono text-xs">
                   <span className="text-marigold font-display text-2xl font-light">0{idx + 1}</span>
-                  <span className="text-haldi text-[10px] border border-hairline px-2.5 py-0.5 bg-warp uppercase">
+                  <span className="text-haldi text-[9.5px] sm:text-[10px] border border-hairline px-2.5 py-0.5 bg-warp uppercase">
                     {spec.desk}
                   </span>
                 </div>
                 <div>
-                  <h3 className="font-display text-2xl text-khadi font-light">{spec.title}</h3>
-                  <p className="font-mono text-[11px] text-ash mt-1">{spec.focus}</p>
+                  <h3 className="font-display text-xl sm:text-2xl text-khadi font-light">{spec.title}</h3>
+                  <p className="font-mono text-[10.5px] sm:text-[11px] text-ash mt-1">{spec.focus}</p>
                 </div>
                 <p className="text-xs text-ash font-light leading-relaxed">{spec.desc}</p>
               </SpotlightCard>
@@ -173,29 +173,29 @@ export default function HomePage() {
       </section>
 
       {/* 6. Partner Conversion Banner */}
-      <section className="w-full py-24 sm:py-32 px-6 sm:px-12 bg-gradient-to-b from-selvedge to-warp border-t border-hairline relative">
-        <div className="max-w-5xl mx-auto text-center space-y-8">
+      <section className="w-full py-16 sm:py-24 lg:py-32 px-4 sm:px-8 lg:px-12 bg-gradient-to-b from-selvedge to-warp border-t border-hairline relative">
+        <div className="max-w-5xl mx-auto text-center space-y-6 sm:space-y-8">
           <p className="eyebrow text-marigold">05 — WHOLESALE TRADE QUERY</p>
-          <h2 className="font-display text-4xl sm:text-6xl lg:text-7xl text-khadi font-light tracking-tight leading-[0.92]">
+          <h2 className="font-display text-3xl sm:text-5xl lg:text-7xl text-khadi font-light tracking-tight leading-[0.94]">
             <BlurText text="Open a direct agency account with our Surat floor." />
           </h2>
-          <p className="text-sm sm:text-base text-ash font-light max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xs sm:text-base text-ash font-light max-w-2xl mx-auto leading-relaxed">
             Gain immediate access to verified Surat powerloom rate cards, priority wedding season dispatches,
             and exclusive territorial design protections.
           </p>
 
-          <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-5">
+          <div className="pt-3 flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-5">
             <a
               href={partnerWaUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 bg-kumkum hover:bg-kumkum-deep text-white font-mono text-xs tracking-[0.2em] uppercase rounded-xs transition-all shadow-agency-card"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 bg-kumkum hover:bg-kumkum-deep text-white font-mono text-xs tracking-[0.18em] uppercase rounded-xs transition-all shadow-agency-card min-h-[44px]"
             >
               WhatsApp Agency Desk <ArrowUpRight className="w-4 h-4" />
             </a>
             <Link
               href="/partner"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 bg-warp hover:bg-selvedge border border-hairline text-khadi hover:text-haldi font-mono text-xs tracking-[0.2em] uppercase rounded-xs transition-all"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 bg-warp hover:bg-selvedge border border-hairline text-khadi hover:text-haldi font-mono text-xs tracking-[0.18em] uppercase rounded-xs transition-all min-h-[44px]"
             >
               Trade Query Form →
             </Link>
