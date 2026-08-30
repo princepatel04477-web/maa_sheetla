@@ -1,0 +1,1 @@
+const h=document.querySelector('header');addEventListener('scroll',()=>h?.classList.toggle('scrolled',scrollY>80));const b=document.querySelector('.menub'),m=document.querySelector('.navlinks');b?.addEventListener('click',()=>m?.classList.toggle('open'));document.addEventListener('keydown',e=>{if(e.key==='Escape')m?.classList.remove('open')});

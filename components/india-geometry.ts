@@ -1,0 +1,5 @@
+export const VIEW_BOX={w:760,h:860} as const;
+export const PROJECTION={scale:1416.401060,ox:18,oy:19.739628,mx0:1.188578859,myTop:.697670680} as const;
+export function projectPoint(lon:number,lat:number):[number,number]{const {scale,ox,oy,mx0,myTop}=PROJECTION;const my=Math.log(Math.tan(Math.PI/4+lat*Math.PI/360));return [ox+(lon*Math.PI/180-mx0)*scale,oy+(myTop-my)*scale]}
+export const NATION_PATH='M237 799 L226 787 218 755 205 724 184 688 166 638 144 574 130 508 119 453 102 478 76 481 50 455 29 416 52 389 67 344 53 321 66 299 80 286 112 288 137 258 149 231 159 228 163 216 179 200 180 176 198 164 193 158 153 140 148 102 158 76 142 61 127 55 142 32 182 20 220 42 250 66 300 100 316 130 344 160 360 205 380 250 420 290 470 330 515 370 540 420 535 460 500 490 485 530 452 570 430 620 400 670 370 730 330 790 290 810 Z';
+export const INDIA_STATES=[{id:'india',name:'India',d:NATION_PATH}];export const ISLET_MARKERS:[[number,number]]|[number,number][]=[];export const ACTIVE_STATE_IDS=new Set(['india']);

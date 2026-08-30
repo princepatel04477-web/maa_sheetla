@@ -1,0 +1,2 @@
+import type { MetadataRoute } from 'next';
+export default function sitemap(): MetadataRoute.Sitemap { const base='https://maasheetla.com'; const paths=['','catalogue','catalogue/sarees','catalogue/lehengas','catalogue/suits','catalogue/garments','firms/maa-sheetla','firms/sunrise-tex-fab','reach','partner','contact']; return paths.map(path=>({url:`${base}/${path}`,lastModified:new Date('2026-08-30'),changeFrequency:'monthly',priority:path===''?1:.8})); }

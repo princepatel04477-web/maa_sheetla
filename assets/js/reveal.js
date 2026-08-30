@@ -1,0 +1,1 @@
+const els=document.querySelectorAll('[data-reveal]');if(matchMedia('(prefers-reduced-motion: reduce)').matches)els.forEach(e=>e.classList.add('is-visible'));else{const o=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible');o.unobserve(e.target)}}),{threshold:.15});els.forEach(e=>o.observe(e))}
