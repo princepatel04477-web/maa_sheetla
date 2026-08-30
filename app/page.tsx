@@ -1,10 +1,207 @@
-'use client';
-import IndiaReachMap from '../components/IndiaReachMap';
-import { useState } from 'react';
-import { ArrowUpRight, ChevronRight, MapPin, Menu, X, MessageCircle } from 'lucide-react';
+"use client";
 
-const cities=[{id:'delhi',name:'Delhi',region:'Delhi NCR',count:145,x:405,y:125},{id:'lucknow',name:'Lucknow',region:'Uttar Pradesh',count:120,x:475,y:225},{id:'kanpur',name:'Kanpur',region:'Uttar Pradesh',count:105,x:438,y:245},{id:'bhopal',name:'Bhopal',region:'Madhya Pradesh',count:85,x:355,y:355}];
-const imgs={left:'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1400&q=85',right:'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&w=1400&q=85'};
-function Reach(){const [active,setActive]=useState('lucknow');return <section className="reach" id="reach"><div className="section-intro"><p className="eyebrow">02 — THE REACH</p><h2>Threads that travel<br/><i>farther.</i></h2><p className="intro-copy">From our floor in Surat, a trusted textile network stretches north and central. Every dot is a boutique, every route a relationship.</p><a className="text-link" href="#partner">Explore the full network <ArrowUpRight size={15}/></a></div><div className="map-wrap"><IndiaReachMap /></div><div className="city-ledger">{cities.map(c=><button key={c.id} className={active===c.id?'active':''} onMouseEnter={()=>setActive(c.id)} onFocus={()=>setActive(c.id)} onClick={()=>setActive(c.id)}><span><b>0{cities.indexOf(c)+1}</b>{c.name}</span><small>{c.region}<br/><strong>{c.count}</strong> boutiques · since 201{cities.indexOf(c)+1}</small><ChevronRight size={16}/></button>)}<div className="ledger-total"><span>NETWORK TOTAL</span><b>500+</b></div></div></section>}
-function App(){const [menu,setMenu]=useState(false);return <main><header><div className="rail"><span>Wholesale enquiries · <b>+91 98251 44001</b></span><span>Visit the Surat showroom <i>↗</i></span><span>Download catalogue <i>↗</i></span></div><nav><a className="logo" href="#">MAA <em>SHEETLA</em><small>AGENCY · SURAT</small></a><div className={`navlinks ${menu?'open':''}`}><a href="#catalogue">Catalogues</a><a href="#reach">Reach</a><a href="#craft">Our craft</a><a href="#partner">Partner with us</a></div><button className="menub" onClick={()=>setMenu(!menu)}>{menu?<X/>:<Menu/>}</button><a className="nav-cta" href="#partner">Start a conversation <ArrowUpRight size={15}/></a></nav></header><section className="hero"><div className="hero-panel maa"><div className="panel-top"><span>✳</span><span>01 / 02</span></div><div className="hero-copy"><p className="eyebrow">MAA SHEETLA · ESTABLISHED 2010</p><h1>Maa<br/><i>Sheetla</i></h1><p>The named counter. Sarees, lehengas, suits and garments for boutiques that sell by label.</p><a className="hero-link" href="#catalogue">See the catalogue <ArrowUpRight size={16}/></a></div></div><div className="hero-panel sunrise"><div className="panel-top"><span>✳</span><span>02 / 02</span></div><div className="hero-copy"><p className="eyebrow">SUNRISE TEX FAB · ESTABLISHED 2010</p><h1>Sunrise<br/><i>Tex Fab</i></h1><p>The volume counter. The same four catalogues, priced and packed for the floor.</p><a className="hero-link" href="#catalogue">See the catalogue <ArrowUpRight size={16}/></a></div></div><div className="hero-tag">TWO FIRMS, ONE FLOOR <span>·</span> MAA SHEETLA AGENCY</div></section><section className="stats"><div><b>2010</b><span>ESTABLISHED</span></div><div><b>500<span>+</span></b><span>BOUTIQUES</span></div><div><b>04</b><span>CATALOGUES</span></div><div><b>4</b><span>STATES AND COUNTING</span></div></section><Reach/><section className="catalogue" id="catalogue"><div><p className="eyebrow">03 — THE CATALOGUE</p><h2>Made for the<br/><i>counter.</i></h2></div><div className="cat-grid">{['Sarees','Lehengas','Suits','Garments'].map((x,i)=><a href="#partner" key={x} className={`cat cat${i}`}><span>0{i+1} / 04</span><h3>{x}</h3><small>View collection <ArrowUpRight size={14}/></small></a>)}</div></section><section className="partner" id="partner"><p className="eyebrow">04 — FOR THE RIGHT STOCKIST</p><h2>Let’s put the<br/><i>right pieces</i><br/>on your floor.</h2><a className="button" href="https://wa.me/919825144001?text=Hello%20Maa%20Sheetla%20Agency%20%E2%80%94%20I'm%20enquiring%20about%20your%20catalogue.">Enquire on WhatsApp <ArrowUpRight size={16}/></a></section><footer><div className="logo">MAA <em>SHEETLA</em><small>AGENCY · SURAT</small></div><p>Two firms. One floor.<br/>A network built on trust.</p><span>© 2025 Maa Sheetla Agency</span></footer><a className="whatsapp" href="#partner"><MessageCircle size={19}/> WhatsApp</a></main>}
-export default App;
+import React from "react";
+import Link from "next/link";
+import { ArrowUpRight, Factory, ShieldCheck, Truck, Scale } from "lucide-react";
+import SplitHero from "../components/SplitHero";
+import AhmedabadCountdown from "../components/AhmedabadCountdown";
+import LedgerBand from "../components/LedgerBand";
+import ReachSection from "../components/ReachSection";
+import SpotlightCard from "../components/react-bits/SpotlightCard";
+import ThreadsBackground from "../components/react-bits/ThreadsBackground";
+import BlurText from "../components/react-bits/BlurText";
+import SplitText from "../components/react-bits/SplitText";
+import Marquee from "../components/react-bits/Marquee";
+import AnimatedContent from "../components/react-bits/AnimatedContent";
+import { createWhatsAppLink } from "../lib/whatsapp";
+
+const AGENCY_SERVICES = [
+  {
+    icon: Factory,
+    title: "1. Loom Sourcing & Mill Allocation",
+    tagline: "120+ Verified Surat Mills",
+    desc: "We match your showroom's target aesthetic directly with specialized Surat jacquard looms, powerloom units, and master dyehouses, securing authentic mill-floor cost structures.",
+  },
+  {
+    icon: Scale,
+    title: "2. Bulk Price & Commission Brokerage",
+    tagline: "Zero Multi-Tier Markup",
+    desc: "As your authorized trade proxy, we negotiate volume discounts and credit brokerage directly with weavers, eliminating multiple layers of commission middlemen.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "3. Piece-by-Piece Floor Inspection",
+    tagline: "Rigorous Flaw Screening",
+    desc: "Every carton passing through our Surat trading floor undergoes warp tension testing, colorfastness rub audits, and embroidery needlework inspection before shipment.",
+  },
+  {
+    icon: Truck,
+    title: "4. Consolidated 48hr Freight Dispatch",
+    tagline: "13 Regional Hub Corridors",
+    desc: "We consolidate assorted boutique lots into moisture-shielded cartons, scheduling direct 48-hour express rail and road cargo to all primary North and Central India hubs.",
+  },
+];
+
+const SOURCING_SPECIALTIES = [
+  {
+    title: "Bridal & Heritage Silks",
+    focus: "Kanjivaram Tissue · Banarasi Khaddi · Pure Mulberry Silk",
+    desk: "Maa Sheetla (Label Desk)",
+    desc: "Exclusive seasonal runs and high-margin bridal designs with strict territorial protection for multi-brand boutique counters.",
+  },
+  {
+    title: "High-Volume Festive Sarees",
+    focus: "Dola Silk · Blooming Georgette · Organza Prints",
+    desk: "Sunrise Tex Fab (Volume Desk)",
+    desc: "Carton-packed wholesale assortments structured for fast weekend inventory turns and aggressive commercial retail markups.",
+  },
+  {
+    title: "Embroidered Suits & Kurtis",
+    focus: "Pure Chanderi · 60/60 Cambric · Kashmiri Tilla",
+    desk: "Both Agency Desks",
+    desc: "Daily-wear and festive unstitched & semi-stitched sets with mill-guaranteed colorfastness and batch repeat consistency.",
+  },
+  {
+    title: "Ready-to-Wear Indo-Western",
+    focus: "Sharara Sets · Designer Co-ords · Festive Gowns",
+    desk: "Both Agency Desks",
+    desc: "Ready garment assortments with designer finishing, graded boutique sizing, and direct showroom-ready packaging.",
+  },
+];
+
+const TICKER_ITEMS = [
+  "Direct Surat Mill Rates",
+  "13 Major Trade Hubs",
+  "Piece-by-Piece Floor Inspection",
+  "570+ Verified Boutique Counters",
+  "Exclusive Territorial Protections",
+  "48-Hour Freight Dispatch",
+  "Two Specialist Desks Under One Roof",
+];
+
+export default function HomePage() {
+  const partnerWaUrl = createWhatsAppLink("opening a wholesale retail counter agency account");
+
+  return (
+    <div className="w-full relative bg-warp text-khadi overflow-hidden">
+      <ThreadsBackground />
+
+      {/* 1. Split Hero (Signature Two-Firm Entrance) */}
+      <SplitHero />
+
+      {/* 30-Day Ahmedabad Office Launch Countdown */}
+      <AhmedabadCountdown />
+
+      {/* Infinite Running Trade Ticker */}
+      <Marquee items={TICKER_ITEMS} />
+
+      {/* 2. The Ledger Band */}
+      <LedgerBand />
+
+      {/* 3. The Reach Map (Signature Map Section) */}
+      <ReachSection />
+
+      {/* 4. The 4-Step Agency Workflow */}
+      <section id="operations" className="w-full py-24 sm:py-32 px-6 sm:px-12 bg-selvedge/70 border-t border-hairline relative">
+        <div className="max-w-7xl mx-auto space-y-16">
+          <div className="max-w-3xl space-y-3">
+            <p className="eyebrow">03 — THE AGENCY OPERATIONS</p>
+            <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl text-khadi font-light tracking-tight leading-[0.95]">
+              <SplitText text="How we bridge Surat's looms to your showroom floor." />
+            </h2>
+            <p className="text-sm sm:text-base text-ash font-light leading-relaxed">
+              Buying directly from fragmented textile mills is complex and risky. As your on-ground Surat wholesale agency,
+              we manage end-to-end procurement, inspection, and logistics with total transparency.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {AGENCY_SERVICES.map((srv, idx) => (
+              <AnimatedContent key={srv.title} delay={idx * 0.1} direction="up">
+                <div className="p-7 bg-warp border border-hairline hover:border-marigold/60 transition-all rounded-sm h-full space-y-4 flex flex-col justify-between">
+                  <div className="space-y-3">
+                    <srv.icon className="w-6 h-6 text-marigold" />
+                    <span className="font-mono text-[10px] text-haldi tracking-widest uppercase block">
+                      {srv.tagline}
+                    </span>
+                    <h3 className="font-display text-xl text-khadi font-light">{srv.title}</h3>
+                    <p className="text-xs text-ash font-light leading-relaxed">{srv.desc}</p>
+                  </div>
+                </div>
+              </AnimatedContent>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 5. Agency Sourcing Specialties */}
+      <section className="w-full py-24 sm:py-32 px-6 sm:px-12 bg-warp border-t border-hairline relative">
+        <div className="max-w-7xl mx-auto space-y-16">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div className="space-y-3 max-w-2xl">
+              <p className="eyebrow">04 — TEXTILE SOURCING DISCIPLINES</p>
+              <h2 className="font-display text-4xl sm:text-6xl text-khadi font-light tracking-tight leading-[0.95]">
+                Surat categories managed by <i className="italic text-haldi">our trading floor.</i>
+              </h2>
+            </div>
+            <Link
+              href="/partner"
+              className="inline-flex items-center gap-2 font-mono text-xs tracking-widest uppercase text-marigold hover:text-haldi transition-colors"
+            >
+              Request Trade Sourcing Rates <ArrowUpRight className="w-4 h-4" />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {SOURCING_SPECIALTIES.map((spec, idx) => (
+              <SpotlightCard key={spec.title} className="p-8 border-hairline hover:border-marigold/60 rounded-sm bg-selvedge space-y-4">
+                <div className="flex items-center justify-between font-mono text-xs">
+                  <span className="text-marigold font-display text-2xl font-light">0{idx + 1}</span>
+                  <span className="text-haldi text-[10px] border border-hairline px-2.5 py-0.5 bg-warp uppercase">
+                    {spec.desk}
+                  </span>
+                </div>
+                <div>
+                  <h3 className="font-display text-2xl text-khadi font-light">{spec.title}</h3>
+                  <p className="font-mono text-[11px] text-ash mt-1">{spec.focus}</p>
+                </div>
+                <p className="text-xs text-ash font-light leading-relaxed">{spec.desc}</p>
+              </SpotlightCard>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 6. Partner Conversion Banner */}
+      <section className="w-full py-24 sm:py-32 px-6 sm:px-12 bg-gradient-to-b from-selvedge to-warp border-t border-hairline relative">
+        <div className="max-w-5xl mx-auto text-center space-y-8">
+          <p className="eyebrow text-marigold">05 — WHOLESALE TRADE QUERY</p>
+          <h2 className="font-display text-4xl sm:text-6xl lg:text-7xl text-khadi font-light tracking-tight leading-[0.92]">
+            <BlurText text="Open a direct agency account with our Surat floor." />
+          </h2>
+          <p className="text-sm sm:text-base text-ash font-light max-w-2xl mx-auto leading-relaxed">
+            Gain immediate access to verified Surat powerloom rate cards, priority wedding season dispatches,
+            and exclusive territorial design protections.
+          </p>
+
+          <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-5">
+            <a
+              href={partnerWaUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 bg-kumkum hover:bg-kumkum-deep text-white font-mono text-xs tracking-[0.2em] uppercase rounded-xs transition-all shadow-agency-card"
+            >
+              WhatsApp Agency Desk <ArrowUpRight className="w-4 h-4" />
+            </a>
+            <Link
+              href="/partner"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 bg-warp hover:bg-selvedge border border-hairline text-khadi hover:text-haldi font-mono text-xs tracking-[0.2em] uppercase rounded-xs transition-all"
+            >
+              Trade Query Form →
+            </Link>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}

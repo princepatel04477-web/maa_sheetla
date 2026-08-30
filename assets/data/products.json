@@ -1,1 +1,23 @@
-{"products":[]}
+{
+  "agency": "Maa Sheetla Agency",
+  "founded": 2010,
+  "location": "Surat, Gujarat",
+  "firms": ["Maa Sheetla", "Sunrise Tex Fab"],
+  "catalogues": ["Sarees", "Lehengas", "Suits", "Garments"],
+  "countersTotal": 570,
+  "cities": [
+    { "name": "Delhi", "counters": 85, "since": 2013, "region": "Delhi NCR" },
+    { "name": "Varanasi", "counters": 55, "since": 2012, "region": "Uttar Pradesh" },
+    { "name": "Patna", "counters": 50, "since": 2015, "region": "Bihar" },
+    { "name": "Jaipur", "counters": 45, "since": 2014, "region": "Rajasthan" },
+    { "name": "Indore", "counters": 45, "since": 2013, "region": "Madhya Pradesh" },
+    { "name": "Ludhiana", "counters": 40, "since": 2016, "region": "Punjab" },
+    { "name": "Bhopal", "counters": 40, "since": 2014, "region": "Madhya Pradesh" },
+    { "name": "Raipur", "counters": 35, "since": 2017, "region": "Chhattisgarh" },
+    { "name": "Ranchi", "counters": 35, "since": 2016, "region": "Jharkhand" },
+    { "name": "Meerut", "counters": 30, "since": 2013, "region": "Uttar Pradesh" },
+    { "name": "Muzaffarnagar", "counters": 25, "since": 2015, "region": "Uttar Pradesh" },
+    { "name": "Dhanbad", "counters": 25, "since": 2018, "region": "Jharkhand" },
+    { "name": "Surat", "counters": 60, "since": 2010, "region": "Gujarat" }
+  ]
+}
