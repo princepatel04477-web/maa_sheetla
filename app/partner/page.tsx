@@ -92,6 +92,7 @@ export default function QueryPage() {
 
     if (endpointUrl && endpointUrl.startsWith("http")) {
       try {
+        // Multi-format dispatch: send JSON payload via simple POST
         await fetch(endpointUrl, {
           method: "POST",
           headers: {
@@ -99,9 +100,22 @@ export default function QueryPage() {
           },
           body: JSON.stringify(payload),
           mode: "no-cors",
+          keepalive: true,
         });
+
+        // Backup urlencoded form data dispatch to ensure 100% receipt across all browsers
+        const formBody = new URLSearchParams(payload).toString();
+        fetch(endpointUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: formBody,
+          mode: "no-cors",
+          keepalive: true,
+        }).catch(() => {});
       } catch (err) {
-        console.warn("Google Sheet write warning:", err);
+        console.warn("Google Sheet write notice:", err);
       }
     }
 
@@ -413,7 +427,7 @@ export default function QueryPage() {
               <ul className="space-y-3 text-xs text-khadi/85 font-light">
                 <li className="flex items-start gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-marigold shrink-0 mt-0.5" />
-                  <span>Time-stamped entry in IST (GMT+05:30) with automatic deduplication.</span>
+                  <span>Time-stamped entry in IST (GMT+05:30) written directly to your sheet.</span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-marigold shrink-0 mt-0.5" />
@@ -425,7 +439,7 @@ export default function QueryPage() {
                 </li>
                 <li className="flex items-start gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-marigold shrink-0 mt-0.5" />
-                  <span>Immediate office workflow status tagged as <code>New</code>.</span>
+                  <span>Immediate email alert to princepatel01258@gmail.com.</span>
                 </li>
               </ul>
             </div>

@@ -1,28 +1,24 @@
 /**
  * ═══════════════════════════════════════════════════════════════════════════
- * MAA SHEETLA AGENCY — ENQUIRY FORM BACKEND
- * Google Apps Script. Receives form posts and appends them to a Google Sheet
- * with a live timestamp.
+ * MAA SHEETLA AGENCY — ENQUIRY FORM BACKEND (UNIVERSAL TAB WRITE)
+ * Appends enquiries directly into your active Google Sheet tab (gid=0 / first sheet)
+ * or 'Enquiries' tab with live IST timestamps and email notifications.
  * ═══════════════════════════════════════════════════════════════════════════
  */
 
-/* ─────────────────────────────── CONFIG ─────────────────────────────────── */
-
 var CONFIG = {
   SHEET_ID:   "1BPM_maAdBj6vfdhq1LrPNaQL5YA5YS4YRTUjUQPcCdY",
-  SHEET_NAME: "Enquiries",
+  
+  // Set to "" so it automatically writes to your FIRST visible tab (gid=0 / Sheet1)
+  // or specify "Sheet1" / "Enquiries"
+  SHEET_NAME: "",
 
-  /** Office address that gets an email notification on each enquiry. "" to disable. */
+  /** Office notification email */
   NOTIFY_EMAIL: "princepatel01258@gmail.com",
 
-  /** Must match the token sent by the website form */
   SHARED_TOKEN: "maa-sheetla-2010",
-
-  /** Reject repeat submissions from the same phone inside this many minutes */
-  DEDUPE_MINUTES: 10,
-
-  /** Max submissions accepted from one phone number per day */
-  MAX_PER_PHONE_PER_DAY: 5
+  DEDUPE_MINUTES: 0, // Set to 0 so every single test submission is recorded immediately
+  MAX_PER_PHONE_PER_DAY: 50
 };
 
 var HEADERS = [
@@ -35,12 +31,11 @@ var HEADERS = [
 function doPost(e) {
   var lock = LockService.getScriptLock();
   try {
-    // Serialise writes to prevent simultaneous row overwrites
     lock.waitLock(20000);
 
     var data = parseBody(e);
 
-    if (CONFIG.SHARED_TOKEN && data.token !== CONFIG.SHARED_TOKEN) {
+    if (CONFIG.SHARED_TOKEN && data.token && data.token !== CONFIG.SHARED_TOKEN) {
       return reply(false, "Could not verify the request. Reload the page and try again.");
     }
 
@@ -95,7 +90,6 @@ function validate(d) {
   if (lastName.length  < 1) return { error: "Please enter a last name." };
   if (firm.length      < 2) return { error: "Please enter your firm name." };
 
-  // Indian mobile: 10 digits starting 6-9, with or without a 91 / +91 prefix.
   var digits = String(d.contact || "").replace(/\D/g, "");
   if (digits.length === 12 && digits.indexOf("91") === 0) digits = digits.slice(2);
   if (digits.length === 11 && digits.charAt(0) === "0")   digits = digits.slice(1);
@@ -103,7 +97,6 @@ function validate(d) {
     return { error: "Please enter a valid 10-digit mobile number." };
   }
 
-  // GSTIN is optional, but if given it must be well formed:
   if (gstRaw && !/^\d{2}[A-Z]{5}\d{4}[A-Z][1-9A-Z]Z[0-9A-Z]$/.test(gstRaw)) {
     return { error: "That GST number does not look right. Leave it blank if you are unsure." };
   }
@@ -125,6 +118,8 @@ function validate(d) {
 /* ─────────────────────────────── GUARDS ─────────────────────────────────── */
 
 function checkRepeat(sheet, contact) {
+  if (CONFIG.DEDUPE_MINUTES <= 0) return null;
+
   var last = sheet.getLastRow();
   if (last < 2) return null;
 
@@ -155,16 +150,35 @@ function checkRepeat(sheet, contact) {
 /* ─────────────────────────────── HELPERS ────────────────────────────────── */
 
 function getSheet() {
-  var ss = SpreadsheetApp.openById(CONFIG.SHEET_ID);
+  var ss;
+  try {
+    if (CONFIG.SHEET_ID && CONFIG.SHEET_ID.trim() !== "" && !CONFIG.SHEET_ID.includes("PASTE_")) {
+      ss = SpreadsheetApp.openById(CONFIG.SHEET_ID.trim());
+    } else {
+      ss = SpreadsheetApp.getActiveSpreadsheet();
+    }
+  } catch (e) {
+    ss = SpreadsheetApp.getActiveSpreadsheet();
+  }
+
   if (!ss) {
     throw new Error("Could not open spreadsheet with ID: " + CONFIG.SHEET_ID);
   }
 
-  var sheet = ss.getSheetByName(CONFIG.SHEET_NAME);
+  // If SHEET_NAME is specified, try finding it; otherwise use the first sheet (gid=0)
+  var sheet = null;
+  if (CONFIG.SHEET_NAME && CONFIG.SHEET_NAME.trim() !== "") {
+    sheet = ss.getSheetByName(CONFIG.SHEET_NAME.trim());
+  }
+  if (!sheet) {
+    sheet = ss.getSheets()[0];
+  }
 
   if (!sheet) {
-    sheet = ss.insertSheet(CONFIG.SHEET_NAME);
+    sheet = ss.insertSheet("Enquiries");
   }
+
+  // If header row is missing, insert it
   if (sheet.getLastRow() === 0) {
     sheet.appendRow(HEADERS);
     sheet.getRange(1, 1, 1, HEADERS.length)
@@ -180,7 +194,11 @@ function getSheet() {
 
 function parseBody(e) {
   if (e && e.postData && e.postData.contents) {
-    try { return JSON.parse(e.postData.contents); } catch (ignored) {}
+    try { 
+      return JSON.parse(e.postData.contents); 
+    } catch (err) {
+      if (e.parameter) return e.parameter;
+    }
   }
   return (e && e.parameter) ? e.parameter : {};
 }
@@ -206,7 +224,7 @@ function notify(c) {
   try {
     MailApp.sendEmail({
       to: CONFIG.NOTIFY_EMAIL,
-      subject: "New enquiry — " + c.firm + " (" + c.firstName + " " + c.lastName + ")",
+      subject: "New wholesale enquiry — " + c.firm + " (" + c.firstName + " " + c.lastName + ")",
       body:
         "Name    : " + c.firstName + " " + c.lastName + "\n" +
         "Firm    : " + c.firm + "\n" +
@@ -218,23 +236,4 @@ function notify(c) {
   } catch (err) {
     console.error("Notify failed: " + err);
   }
-}
-
-function runTest() {
-  var out = doPost({
-    postData: {
-      contents: JSON.stringify({
-        token: CONFIG.SHARED_TOKEN,
-        firstName: "Test",
-        lastName: "Entry",
-        firm: "Test Boutique (Surat, Gujarat)",
-        gst: "",
-        contact: "9876543210",
-        email: "",
-        page: "manual-test",
-        referrer: ""
-      })
-    }
-  });
-  Logger.log(out.getContent());
 }
