@@ -29,7 +29,7 @@ export default function Header() {
           <div className="h-10 sm:h-12 w-auto flex items-center justify-center">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/logos/maa_sheetla_gold.png"
+              src="/logos/maa_sheetla_black.png"
               alt="Maa Sheetla Agency"
               className="h-9 sm:h-11 w-auto object-contain filter drop-shadow-xs group-hover:scale-105 transition-transform duration-300"
             />
