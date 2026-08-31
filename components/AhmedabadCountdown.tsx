@@ -134,7 +134,7 @@ export default function AhmedabadCountdown() {
             </a>
             <div className="flex items-center justify-center gap-1 text-[9px] sm:text-[9.5px] font-mono text-ash/80">
               <MapPin className="w-3 h-3 text-marigold" />
-              <span>Sindhu Bhavan Rd / Relief Rd Market</span>
+              <span>300, 1st Floor, New Cloth Market, Sarangpur</span>
             </div>
           </div>
         </div>

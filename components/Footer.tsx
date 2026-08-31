@@ -12,25 +12,40 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12">
           {/* Col 1: Identity & Firm Heritage */}
           <div className="lg:col-span-5 space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="w-9 h-9 border border-marigold/60 bg-selvedge flex items-center justify-center font-display text-sm text-haldi rounded-xs shadow-inner">
-                MS
+            <div className="flex items-center gap-4">
+              <div className="h-10 sm:h-12 w-auto border border-marigold/40 bg-selvedge/90 p-1.5 rounded-xs flex items-center shadow-xs">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/logos/maa_sheetla_gold.png"
+                  alt="Maa Sheetla Agency"
+                  className="h-full w-auto object-contain"
+                />
               </div>
-              <div>
-                <span className="font-display text-xl text-khadi tracking-tight block leading-tight">
-                  Maa Sheetla Agency
-                </span>
-                <span className="text-[10px] font-mono tracking-widest uppercase text-ash">
-                  Sunrise Tex Fab · Surat Floor
-                </span>
+              <div className="h-10 sm:h-12 w-auto border border-marigold/40 bg-selvedge/90 p-1.5 rounded-xs flex items-center shadow-xs">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/logos/sunrise_fab_tex_colored.png"
+                  alt="Sunrise Fab Tex Pvt Ltd"
+                  className="h-full w-auto object-contain"
+                />
               </div>
             </div>
+
+            <div>
+              <span className="font-display text-xl text-khadi tracking-tight block leading-tight">
+                Maa Sheetla Agency &amp; Sunrise Fab Tex
+              </span>
+              <span className="text-[10px] font-mono tracking-widest uppercase text-ash">
+                Two Desks · Surat HQ · Kanpur · Ahmedabad
+              </span>
+            </div>
+
             <p className="text-xs text-ash leading-relaxed max-w-md font-light">
               Commission brokerage, trade agency, and production quality representation operating continuously on the Surat textile trading floor since 2010. Connecting regional wholesalers with verified Surat mills.
             </p>
             <div className="pt-2 flex flex-wrap gap-2 text-[10.5px] font-mono uppercase text-marigold">
               <span className="px-2.5 py-1 bg-selvedge border border-hairline rounded-xs">EST. 2010</span>
-              <span className="px-2.5 py-1 bg-selvedge border border-hairline rounded-xs">STM RING ROAD</span>
+              <span className="px-2.5 py-1 bg-selvedge border border-hairline rounded-xs">SURAT · KANPUR · AHMEDABAD</span>
               <span className="px-2.5 py-1 bg-selvedge border border-hairline rounded-xs">13 REGIONAL HUBS</span>
             </div>
           </div>
@@ -83,24 +98,34 @@ export default function Footer() {
           {/* Col 3: Direct Contact */}
           <div className="lg:col-span-4 space-y-3.5">
             <h4 className="font-mono text-[10.5px] tracking-[0.2em] uppercase text-khadi">
-              Surat Office &amp; Floor
+              Surat Office &amp; Trading Floor (HQ)
             </h4>
             <div className="space-y-2.5 text-xs font-light">
               <div className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-marigold shrink-0 mt-0.5" />
-                <span>1st Floor, Surat Textile Market, Ring Road, Surat, Gujarat 395002</span>
+                <span>H-32 India Market, Salabatpura, Ring Road, Surat, Gujarat</span>
               </div>
               <div className="flex items-center gap-2.5 font-mono">
                 <Phone className="w-4 h-4 text-marigold shrink-0" />
-                <a href="tel:+919825144001" className="hover:text-haldi transition-colors">
-                  +91 98251 44001 / +91 93745 33002
+                <a href="tel:+919151003198" className="hover:text-haldi transition-colors">
+                  +91 91510 03198 / +91 96164 15615
                 </a>
               </div>
-              <div className="flex items-center gap-2.5 font-mono">
-                <Mail className="w-4 h-4 text-marigold shrink-0" />
-                <a href="mailto:trade@maasheetla.in" className="hover:text-haldi transition-colors">
-                  trade@maasheetla.in
-                </a>
+              <div className="flex flex-col gap-1 font-mono text-[11px]">
+                <div className="flex items-center gap-2">
+                  <Mail className="w-3.5 h-3.5 text-marigold shrink-0" />
+                  <a href="mailto:surat@sunrisefabtex.com" className="hover:text-haldi transition-colors">
+                    surat@sunrisefabtex.com
+                  </a>
+                </div>
+                <div className="flex items-center gap-2 pl-5.5 text-ash">
+                  <a href="mailto:maasheetlaagencyaccinfo@gmail.com" className="hover:text-haldi transition-colors truncate">
+                    maasheetlaagencyaccinfo@gmail.com
+                  </a>
+                </div>
+              </div>
+              <div className="text-[10.5px] font-mono text-ash pt-1">
+                Regional Desks: Kanpur (Shiv Market) · Ahmedabad (New Cloth Market)
               </div>
             </div>
 

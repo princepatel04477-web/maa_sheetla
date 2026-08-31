@@ -57,33 +57,55 @@ export default function RootLayout({
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'Maa Sheetla Agency',
-    alternateName: 'Sunrise Tex Fab',
+    alternateName: ['Sunrise Fab Tex Pvt Ltd', 'Sunrise Tex Fab'],
     url: 'https://maasheetla.com',
     foundingDate: '2010',
+    founder: {
+      '@type': 'Person',
+      name: 'Manish Kanodia',
+      jobTitle: 'Founder & CEO',
+      telephone: '+91-96164-15615'
+    },
     address: {
       '@type': 'PostalAddress',
-      streetAddress: '1st Floor, Surat Textile Market, Ring Road',
+      streetAddress: 'H-32 India Market, Salabatpura, Ring Road',
       addressLocality: 'Surat',
       addressRegion: 'Gujarat',
       postalCode: '395002',
       addressCountry: 'IN',
     },
-    contactPoint: {
-      '@type': 'ContactPoint',
-      telephone: '+91-98251-44001',
-      contactType: 'sales',
-      areaServed: 'IN',
-      availableLanguage: ['en', 'hi', 'gu'],
-    },
+    contactPoint: [
+      {
+        '@type': 'ContactPoint',
+        telephone: '+91-91510-03198',
+        contactType: 'sales & trading floor',
+        areaServed: 'IN',
+        availableLanguage: ['en', 'hi', 'gu'],
+      },
+      {
+        '@type': 'ContactPoint',
+        telephone: '+91-91510-60273',
+        contactType: 'kanpur office',
+        areaServed: 'IN',
+        availableLanguage: ['en', 'hi'],
+      },
+      {
+        '@type': 'ContactPoint',
+        telephone: '+91-95596-50752',
+        contactType: 'ahmedabad office & sales',
+        areaServed: 'IN',
+        availableLanguage: ['en', 'hi', 'gu'],
+      }
+    ],
     subOrganization: [
       {
         '@type': 'Organization',
-        name: 'Maa Sheetla',
+        name: 'Maa Sheetla Agency',
         description: 'The designer label desk. Curated bridal lehengas, pure silk weaves, and hand-embroidered suits for boutique counters.',
       },
       {
         '@type': 'Organization',
-        name: 'Sunrise Tex Fab',
+        name: 'Sunrise Fab Tex Pvt Ltd',
         description: 'The volume commercial desk. High-velocity wholesale cartons priced and packed for retail turnover.',
       }
     ]
@@ -95,7 +117,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
-          href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,300;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,300;1,400&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500&display=swap"
+          href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300..600;1,9..40,300..400&family=Fraunces:ital,opsz,wght@0,9..144,300..500;1,9..144,300..400&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500&display=swap"
           rel="stylesheet"
         />
         <script

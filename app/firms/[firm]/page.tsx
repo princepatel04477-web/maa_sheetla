@@ -11,6 +11,7 @@ import { createWhatsAppLink } from "../../../lib/whatsapp";
 
 const FIRM_CONFIGS: Record<string, {
   name: "Maa Sheetla" | "Sunrise Tex Fab";
+  logoUrl: string;
   eyebrow: string;
   tagline: string;
   description: string;
@@ -20,6 +21,7 @@ const FIRM_CONFIGS: Record<string, {
 }> = {
   "maa-sheetla": {
     name: "Maa Sheetla",
+    logoUrl: "/logos/maa_sheetla_gold.png",
     eyebrow: "AGENCY DESK 01 · CURATED DESIGNER BOUTIQUES",
     tagline: "For boutique counters that sell by craft & exclusivity.",
     description: "Curated wholesale brokerage of high-craft bridal lehengas, tissue silk sarees, and hand-embroidered suits for premium multi-designer counters.",
@@ -29,6 +31,7 @@ const FIRM_CONFIGS: Record<string, {
   },
   "sunrise-tex-fab": {
     name: "Sunrise Tex Fab",
+    logoUrl: "/logos/sunrise_fab_tex_colored.png",
     eyebrow: "AGENCY DESK 02 · HIGH-VELOCITY COMMERCIAL WHOLESALE",
     tagline: "Priced and packed for daily retail turnover.",
     description: "High-velocity wholesale brokerage of the identical four catalogues, streamlined for rapid inventory turns and competitive commercial retail margins.",
@@ -64,8 +67,17 @@ export default function FirmProfilePage({ params }: { params: { firm: string } }
 
       <div className="max-w-7xl mx-auto space-y-16 relative z-10">
         {/* Header Hero */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 border-b border-hairline pb-12">
-          <div className="lg:col-span-8 space-y-4">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 border-b border-hairline pb-12 items-start">
+          <div className="lg:col-span-8 space-y-5">
+            <div className="h-16 sm:h-24 w-auto flex items-center">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={config.logoUrl}
+                alt={`${config.name} Official Logo`}
+                className="h-full w-auto object-contain filter drop-shadow-md"
+              />
+            </div>
+
             <div className="flex items-center gap-2 font-mono text-[10px] tracking-[0.24em] text-marigold uppercase">
               <span>{config.eyebrow}</span>
               <span>·</span>

@@ -50,12 +50,23 @@ export default function SplitHero() {
 
         {/* Panel Core Content */}
         <div className="relative z-10 my-auto py-6 sm:py-10 space-y-3.5 sm:space-y-5">
-          <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-light text-khadi tracking-tight leading-[0.94]">
-            Maa Sheetla
-          </h2>
-          <p className="font-display text-lg sm:text-2xl text-haldi font-light italic">
-            For boutiques that sell by label.
-          </p>
+          <div className="h-14 sm:h-20 w-auto flex items-center">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/logos/maa_sheetla_gold.png"
+              alt="Maa Sheetla Agency Official Logo"
+              className="h-full w-auto object-contain filter drop-shadow-md"
+            />
+          </div>
+
+          <div>
+            <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-light text-khadi tracking-tight leading-[0.94]">
+              Maa Sheetla
+            </h2>
+            <p className="font-display text-lg sm:text-2xl text-haldi font-light italic mt-1">
+              For boutiques that sell by label.
+            </p>
+          </div>
           <p className="text-xs sm:text-sm text-ash font-light max-w-lg leading-relaxed">
             Curated sourcing of high-craft bridal lehengas, pure tissue Kanjivarams, and hand-embroidered
             silks. Structured for premium multi-designer counters demanding strict territorial exclusivity.
@@ -126,12 +137,23 @@ export default function SplitHero() {
 
         {/* Panel Core Content */}
         <div className="relative z-10 my-auto py-6 sm:py-10 space-y-3.5 sm:space-y-5">
-          <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-light text-khadi tracking-tight leading-[0.94]">
-            Sunrise Tex Fab
-          </h2>
-          <p className="font-display text-lg sm:text-2xl text-haldi font-light italic">
-            Priced and packed for the retail floor.
-          </p>
+          <div className="h-14 sm:h-20 w-auto flex items-center">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/logos/sunrise_fab_tex_colored.png"
+              alt="Sunrise Fab Tex Pvt Ltd Official Logo"
+              className="h-full w-auto object-contain filter drop-shadow-md"
+            />
+          </div>
+
+          <div>
+            <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-light text-khadi tracking-tight leading-[0.94]">
+              Sunrise Fab Tex
+            </h2>
+            <p className="font-display text-lg sm:text-2xl text-haldi font-light italic mt-1">
+              Priced and packed for the retail floor.
+            </p>
+          </div>
           <p className="text-xs sm:text-sm text-ash font-light max-w-lg leading-relaxed">
             High-velocity wholesale brokerage for commercial retail showrooms. Dependable carton lots,
             mill-consistent dye lots, and rapid re-order turnarounds built for high weekly volume turns.

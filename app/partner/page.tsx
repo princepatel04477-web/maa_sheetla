@@ -442,8 +442,9 @@ export default function QueryPage() {
 
             <div className="p-5 bg-warp border border-hairline rounded-sm font-mono text-xs space-y-2 text-ash">
               <div className="text-haldi uppercase tracking-wider">Direct Desk Assistance:</div>
-              <div>Phone: +91 98251 44001 (10 AM – 8 PM IST)</div>
-              <div>Surat Floor: 1st Floor, Surat Textile Market, Ring Road</div>
+              <div>Phone: +91 91510 03198 / +91 96164 15615</div>
+              <div>Surat HQ: H-32 India Market, Salabatpura, Ring Road, Surat</div>
+              <div className="text-[11px] text-ash/80">Branches: Kanpur (Shiv Market) · Ahmedabad (New Cloth Market)</div>
             </div>
           </div>
         </div>

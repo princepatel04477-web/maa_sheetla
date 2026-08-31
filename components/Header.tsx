@@ -24,9 +24,14 @@ export default function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 h-16 sm:h-20 bg-warp/95 backdrop-blur-md border-b border-hairline shadow-md shadow-black/50">
       <div className="max-w-7xl mx-auto h-full px-4 sm:px-8 lg:px-12 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2.5 sm:gap-3 group">
-          <div className="w-8 h-8 sm:w-9 sm:h-9 border border-marigold/60 bg-selvedge flex items-center justify-center font-display text-xs sm:text-sm text-haldi group-hover:border-marigold transition-colors rounded-xs shadow-inner shrink-0">
-            MS
+        <Link href="/" className="flex items-center gap-2.5 sm:gap-3.5 group">
+          <div className="h-9 sm:h-11 w-9 sm:w-11 border border-marigold/50 bg-selvedge/90 flex items-center justify-center p-1 rounded-xs shadow-inner shrink-0 group-hover:border-marigold transition-all">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/logos/maa_sheetla_gold.png"
+              alt="Maa Sheetla Agency Logo"
+              className="w-full h-full object-contain filter drop-shadow-xs"
+            />
           </div>
           <div>
             <div className="font-display text-base sm:text-lg tracking-tight text-khadi flex items-center gap-1.5 sm:gap-2 leading-snug">
@@ -36,7 +41,7 @@ export default function Header() {
               </span>
             </div>
             <div className="text-[8.5px] sm:text-[9.5px] font-mono tracking-[0.18em] sm:tracking-[0.22em] uppercase text-ash group-hover:text-haldi transition-colors">
-              Wholesale Textile Agency · Est. 2010
+              Sunrise Fab Tex · Est. 2010
             </div>
           </div>
         </Link>
