@@ -53,7 +53,7 @@ export default function SplitHero() {
           <div className="h-14 sm:h-20 w-auto flex items-center">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/logos/maa_sheetla_black.png"
+              src="/logos/maa_sheetla_maroon.png"
               alt="Maa Sheetla Agency Official Logo"
               className="h-full w-auto object-contain filter drop-shadow-xs"
             />

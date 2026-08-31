@@ -21,7 +21,7 @@ const FIRM_CONFIGS: Record<string, {
 }> = {
   "maa-sheetla": {
     name: "Maa Sheetla",
-    logoUrl: "/logos/maa_sheetla_black.png",
+    logoUrl: "/logos/maa_sheetla_maroon.png",
     eyebrow: "AGENCY DESK 01 · CURATED DESIGNER COLLECTIONS",
     tagline: "For showroom counters that sell by craft & exclusivity.",
     description: "Curated wholesale brokerage of high-craft bridal lehengas, tissue silk sarees, and hand-embroidered suits for premium multi-designer counters.",

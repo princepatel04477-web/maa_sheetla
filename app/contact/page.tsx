@@ -43,7 +43,7 @@ export default function ContactPage() {
             <div className="h-10 sm:h-14 w-auto border border-marigold/30 bg-selvedge p-1.5 rounded-xs flex items-center shadow-2xs">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/logos/maa_sheetla_black.png"
+                src="/logos/maa_sheetla_maroon.png"
                 alt="Maa Sheetla Agency"
                 className="h-full w-auto object-contain"
               />
