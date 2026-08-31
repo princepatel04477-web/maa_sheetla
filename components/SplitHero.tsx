@@ -50,7 +50,7 @@ export default function SplitHero() {
 
         {/* Panel Core Content */}
         <div className="relative z-10 my-auto py-6 sm:py-10 space-y-3.5 sm:space-y-5">
-          <div className="h-14 sm:h-20 w-auto flex items-center">
+          <div className="h-18 sm:h-24 md:h-28 w-auto flex items-center">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/logos/maa_sheetla_maroon.png"
@@ -137,7 +137,7 @@ export default function SplitHero() {
 
         {/* Panel Core Content */}
         <div className="relative z-10 my-auto py-6 sm:py-10 space-y-3.5 sm:space-y-5">
-          <div className="h-14 sm:h-20 w-auto flex items-center">
+          <div className="h-18 sm:h-24 md:h-28 w-auto flex items-center">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/logos/sunrise_fab_tex_colored.png"

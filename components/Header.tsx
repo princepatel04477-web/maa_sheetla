@@ -22,16 +22,16 @@ export default function Header() {
   const waEnquiryUrl = createWhatsAppLink("general wholesale agency trade query");
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 h-16 sm:h-20 bg-warp/90 backdrop-blur-md border-b border-hairline shadow-xs">
+    <header className="fixed top-0 left-0 right-0 z-50 h-20 sm:h-24 bg-warp/95 backdrop-blur-md border-b border-hairline shadow-xs transition-all">
       <div className="max-w-7xl mx-auto h-full px-4 sm:px-8 lg:px-12 flex items-center justify-between">
-        {/* Logo Only */}
-        <Link href="/" className="flex items-center group shrink-0" aria-label="Maa Sheetla Agency Home">
-          <div className="h-10 sm:h-12 w-auto flex items-center justify-center">
+        {/* Logo Only (Enlarged) */}
+        <Link href="/" className="flex items-center group shrink-0 py-1" aria-label="Maa Sheetla Agency Home">
+          <div className="h-14 sm:h-18 w-auto flex items-center justify-center">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/logos/maa_sheetla_maroon.png"
               alt="Maa Sheetla Agency"
-              className="h-9 sm:h-11 w-auto object-contain filter drop-shadow-xs group-hover:scale-105 transition-transform duration-300"
+              className="h-13 sm:h-16 md:h-17 w-auto object-contain filter drop-shadow-xs group-hover:scale-105 transition-transform duration-300"
             />
           </div>
         </Link>
