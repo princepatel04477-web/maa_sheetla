@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import ThreadsBackground from "../../components/react-bits/ThreadsBackground";
 import BlurText from "../../components/react-bits/BlurText";
 import ShinyText from "../../components/react-bits/ShinyText";
-import { CheckCircle2, MessageCircle, Send, Loader2, Database } from "lucide-react";
+import { CheckCircle2, MessageCircle, Send, Loader2, ShieldCheck } from "lucide-react";
 import { createWhatsAppLink } from "../../lib/whatsapp";
 
 const INDIAN_STATES = [
@@ -386,22 +386,22 @@ export default function QueryPage() {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="flex-1 py-4 bg-kumkum hover:bg-kumkum-deep text-white font-mono text-xs tracking-[0.18em] uppercase rounded-xs transition-all flex items-center justify-center gap-2 shadow-agency-card disabled:opacity-50 min-h-[48px]"
+                    className="flex-1 py-4 bg-kumkum hover:bg-kumkum-deep text-white font-mono text-xs tracking-[0.18em] uppercase rounded-xs transition-all flex items-center justify-center gap-2 shadow-sm disabled:opacity-50 min-h-[48px]"
                   >
                     {loading ? (
                       <>
-                        <Loader2 className="w-4 h-4 animate-spin" /> Saving to Database &amp; Sheet...
+                        <Loader2 className="w-4 h-4 animate-spin" /> Transmitting Trade Enquiry...
                       </>
                     ) : (
                       <>
-                        <Send className="w-4 h-4" /> Submit Enquiry to Vault
+                        <Send className="w-4 h-4" /> Submit Wholesale Trade Enquiry
                       </>
                     )}
                   </button>
                   <button
                     type="button"
                     onClick={handleOpenWhatsApp}
-                    className="px-6 py-4 bg-warp hover:bg-selvedge border border-marigold/60 text-haldi font-mono text-xs tracking-wider uppercase rounded-xs transition-all flex items-center justify-center gap-2 min-h-[48px]"
+                    className="px-6 py-4 bg-selvedge hover:bg-selvedge-light border border-marigold/60 text-marigold font-mono text-xs tracking-wider uppercase rounded-xs transition-all flex items-center justify-center gap-2 min-h-[48px]"
                   >
                     <MessageCircle className="w-4 h-4 text-marigold" /> WhatsApp Desk
                   </button>
@@ -410,41 +410,41 @@ export default function QueryPage() {
             )}
           </div>
 
-          {/* Benefits Side Column */}
+          {/* Agency Benefits Side Column */}
           <div className="lg:col-span-5 space-y-5">
-            <div className="p-5 sm:p-8 bg-selvedge/60 border border-hairline rounded-sm space-y-3.5">
+            <div className="p-5 sm:p-8 bg-selvedge border border-hairline rounded-sm space-y-4 shadow-sm">
               <div className="flex items-center gap-2 text-marigold font-mono text-xs uppercase tracking-wider">
-                <Database className="w-4 h-4" />
-                <span>Dual-Vault Redundancy</span>
+                <ShieldCheck className="w-4 h-4" />
+                <span>Agency Account Benefits</span>
               </div>
               <h3 className="font-display text-xl sm:text-2xl text-khadi font-light">
-                Permanent Database &amp; Sheet
+                Direct Surat Mill Representation
               </h3>
-              <ul className="space-y-3 text-xs text-khadi/85 font-light">
+              <ul className="space-y-3 text-xs text-ash font-light">
                 <li className="flex items-start gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-marigold shrink-0 mt-0.5" />
-                  <span>Cloudflare D1 SQL storage with transaction IDs.</span>
+                  <span className="text-khadi/90"><strong className="font-medium text-khadi">Direct Mill Pricing:</strong> Zero intermediate broker layer markups on pure mill-floor rates.</span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-marigold shrink-0 mt-0.5" />
-                  <span>Live IST timestamping &amp; Google Sheet parallel mirror.</span>
+                  <span className="text-khadi/90"><strong className="font-medium text-khadi">Quality Guarantee:</strong> Piece-by-piece QC check on backlit tables before boxing.</span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-marigold shrink-0 mt-0.5" />
-                  <span>1-click CSV export anytime in the client admin vault.</span>
+                  <span className="text-khadi/90"><strong className="font-medium text-khadi">48-Hr Freight Dispatch:</strong> Consolidated rail and road cargo to 13 trade hubs.</span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-marigold shrink-0 mt-0.5" />
-                  <span>Instant email alert to princepatel01258@gmail.com.</span>
+                  <span className="text-khadi/90"><strong className="font-medium text-khadi">Territorial Protection:</strong> Exclusive design assortments for regional showroom counters.</span>
                 </li>
               </ul>
             </div>
 
-            <div className="p-5 bg-warp border border-hairline rounded-sm font-mono text-xs space-y-2 text-ash">
-              <div className="text-haldi uppercase tracking-wider">Direct Desk Assistance:</div>
-              <div>Phone: +91 91510 03198 / +91 96164 15615</div>
+            <div className="p-5 bg-selvedge-light border border-hairline rounded-sm font-mono text-xs space-y-2 text-ash">
+              <div className="text-marigold uppercase tracking-wider font-medium">Direct Desk Assistance:</div>
+              <div className="text-khadi/90">Phone: +91 91510 03198 / +91 96164 15615</div>
               <div>Surat HQ: H-32 India Market, Salabatpura, Ring Road, Surat</div>
-              <div className="text-[11px] text-ash/80">Branches: Kanpur (Shiv Market) · Ahmedabad (New Cloth Market)</div>
+              <div className="text-[11px] text-ash">Branches: Kanpur (Shiv Market) · Ahmedabad (New Cloth Market)</div>
             </div>
           </div>
         </div>

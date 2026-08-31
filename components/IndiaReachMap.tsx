@@ -173,12 +173,12 @@ export default function IndiaReachMap({
       >
         <defs>
           <linearGradient id={`${uid}-weft`} x1="0" y1="1" x2="1" y2="0">
-            <stop offset="0%" stopColor="#E4611A" />
-            <stop offset="60%" stopColor="#F2A03D" />
-            <stop offset="100%" stopColor="#FFD9A0" />
+            <stop offset="0%" stopColor="#8B2628" />
+            <stop offset="60%" stopColor="#A67C26" />
+            <stop offset="100%" stopColor="#C2953B" />
           </linearGradient>
           <filter id={`${uid}-glow`} x="-40%" y="-40%" width="180%" height="180%">
-            <feGaussianBlur stdDeviation="2.4" result="b" />
+            <feGaussianBlur stdDeviation="1.8" result="b" />
             <feMerge>
               <feMergeNode in="b" />
               <feMergeNode in="SourceGraphic" />
@@ -195,15 +195,15 @@ export default function IndiaReachMap({
               <path
                 key={s.id}
                 d={s.d}
-                fill={lit ? "#3A2317" : supplied ? "#241A19" : "#161219"}
+                fill={lit ? "#FCEAD2" : supplied ? "#EAE0D0" : "#F4EDE2"}
                 stroke={
                   lit
-                    ? "rgba(242,160,61,.65)"
+                    ? "#A67C26"
                     : supplied
-                    ? "rgba(242,160,61,.28)"
-                    : "rgba(243,235,224,.085)"
+                    ? "rgba(166,124,38,.45)"
+                    : "rgba(28,25,23,.12)"
                 }
-                strokeWidth={0.6}
+                strokeWidth={lit ? 1.2 : 0.6}
                 vectorEffect="non-scaling-stroke"
                 style={{ transition: "fill .3s ease, stroke .3s ease" }}
               >
@@ -216,7 +216,7 @@ export default function IndiaReachMap({
         {/* Small Island Markers */}
         <g>
           {ISLET_MARKERS.map(([x, y], i) => (
-            <circle key={i} cx={x} cy={y} r={1.6} fill="rgba(243,235,224,.22)" />
+            <circle key={i} cx={x} cy={y} r={1.6} fill="rgba(28,25,23,.25)" />
           ))}
         </g>
 
@@ -225,7 +225,7 @@ export default function IndiaReachMap({
           ref={nationRef}
           d={NATION_PATH}
           fill="none"
-          stroke="rgba(243,235,224,.30)"
+          stroke="rgba(28,25,23,.35)"
           strokeWidth={1.1}
           strokeLinejoin="round"
           vectorEffect="non-scaling-stroke"
@@ -237,7 +237,7 @@ export default function IndiaReachMap({
             const on = active === r.node.id;
             return (
               <g key={r.node.id}>
-                <path d={r.d} fill="none" stroke="rgba(243,235,224,.08)" strokeWidth={0.75} strokeDasharray="2 5" />
+                <path d={r.d} fill="none" stroke="rgba(166,124,38,.18)" strokeWidth={0.75} strokeDasharray="2 5" />
                 <path
                   id={`${uid}-thread-${r.node.id}`}
                   ref={(el) => {
@@ -246,14 +246,14 @@ export default function IndiaReachMap({
                   d={r.d}
                   fill="none"
                   stroke={`url(#${uid}-weft)`}
-                  strokeWidth={on ? 3 : 1.35}
+                  strokeWidth={on ? 3 : 1.5}
                   strokeLinecap="round"
                   opacity={on ? 1 : 0.75}
                   filter={`url(#${uid}-glow)`}
                   style={{ transition: "stroke-width .25s ease, opacity .25s ease" }}
                 />
                 {!reduced && visible && (
-                  <circle r={2.2} fill="#FFD9A0" opacity={0}>
+                  <circle r={2.2} fill="#8B2628" opacity={0}>
                     <animateMotion
                       dur={`${3.2 + (i % 4) * 0.4}s`}
                       begin={`${1.8 + i * 0.18}s`}
@@ -344,7 +344,7 @@ function NodeMark({
       {isOrigin &&
         animate &&
         [0, 1].map((k) => (
-          <circle key={k} cx={x} cy={y} r={5} fill="none" stroke="#E4611A" strokeWidth={1}>
+          <circle key={k} cx={x} cy={y} r={5} fill="none" stroke="#8B2628" strokeWidth={1}>
             <animate attributeName="r" values="5;24" dur="3s" begin={`${k * 1.5}s`} repeatCount="indefinite" />
             <animate attributeName="opacity" values=".75;0" dur="3s" begin={`${k * 1.5}s`} repeatCount="indefinite" />
           </circle>
@@ -356,8 +356,8 @@ function NodeMark({
           y1={y}
           x2={x + dx}
           y2={y + dy}
-          stroke="rgba(242,160,61,.4)"
-          strokeWidth={0.7}
+          stroke="rgba(166,124,38,.5)"
+          strokeWidth={0.8}
         />
       )}
 
@@ -367,7 +367,7 @@ function NodeMark({
         cy={y}
         r={10}
         fill="none"
-        stroke="#F2A03D"
+        stroke="#A67C26"
         strokeWidth={1}
         opacity={active ? 0.75 : 0}
         style={{ transition: "opacity .25s ease" }}
@@ -376,7 +376,7 @@ function NodeMark({
         cx={x}
         cy={y}
         r={isOrigin ? 5.5 : 3.8}
-        fill={isOrigin ? "#E4611A" : active ? "#FFD9A0" : "#F2A03D"}
+        fill={isOrigin ? "#8B2628" : active ? "#8B2628" : "#A67C26"}
         style={{ transition: "fill .25s ease" }}
       />
 
@@ -384,10 +384,11 @@ function NodeMark({
         x={x + dx}
         y={y + dy + 4}
         textAnchor={anchor}
-        fill={active || isOrigin ? "#FFD9A0" : "#F3EBE0"}
+        fill={active || isOrigin ? "#8B2628" : "#1C1917"}
         style={{
           fontFamily: mono,
           fontSize: 10.5,
+          fontWeight: active || isOrigin ? 600 : 500,
           letterSpacing: "0.14em",
           textTransform: "uppercase",
           pointerEvents: "none",
@@ -400,8 +401,8 @@ function NodeMark({
         x={x + dx}
         y={y + dy + 15}
         textAnchor={anchor}
-        fill="#8E8079"
-        style={{ fontFamily: mono, fontSize: 8.5, letterSpacing: "0.08em", pointerEvents: "none" }}
+        fill="#665E59"
+        style={{ fontFamily: mono, fontSize: 8.5, letterSpacing: "0.08em", pointerEvents: "none", fontWeight: 400 }}
       >
         {isOrigin ? "HEAD OFFICE" : node.region.split("·")[0].trim()}
       </text>

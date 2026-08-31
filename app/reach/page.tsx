@@ -90,10 +90,10 @@ export default function ReachPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {HUBS.map((hub, idx) => (
-              <SpotlightCard key={hub.city} className="p-5 sm:p-6 bg-selvedge border-hairline rounded-sm space-y-3">
+              <SpotlightCard key={hub.city} className="p-5 sm:p-6 bg-selvedge border-hairline rounded-sm space-y-3 shadow-2xs hover:shadow-xs">
                 <div className="flex items-center justify-between font-mono text-xs">
                   <span className="text-marigold font-display text-xl font-light">0{idx + 1}</span>
-                  <span className="text-haldi text-[9.5px] border border-hairline px-2 py-0.5 bg-warp uppercase">
+                  <span className="text-marigold text-[9.5px] border border-hairline px-2 py-0.5 bg-selvedge-light uppercase font-medium">
                     {hub.state}
                   </span>
                 </div>
@@ -101,7 +101,7 @@ export default function ReachPage() {
                   <h3 className="font-display text-lg sm:text-xl text-khadi font-light">{hub.city}</h3>
                   <p className="text-xs text-ash font-light mt-1">{hub.role}</p>
                 </div>
-                <div className="pt-2 border-t border-hairline flex items-center gap-2 font-mono text-[10.5px] text-marigold">
+                <div className="pt-2 border-t border-hairline flex items-center gap-2 font-mono text-[10.5px] text-marigold font-medium">
                   <Clock className="w-3.5 h-3.5" />
                   <span>{hub.transit}</span>
                 </div>
@@ -111,9 +111,9 @@ export default function ReachPage() {
         </div>
 
         {/* CTA */}
-        <div className="p-6 sm:p-10 bg-selvedge border border-hairline rounded-sm flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div className="p-6 sm:p-10 bg-selvedge border border-hairline rounded-sm flex flex-col sm:flex-row items-center justify-between gap-6 shadow-2xs">
           <div className="space-y-2 text-center sm:text-left">
-            <h3 className="font-display text-2xl text-khadi">Ready to source in your city?</h3>
+            <h3 className="font-display text-2xl text-khadi font-light">Ready to source in your city?</h3>
             <p className="text-xs sm:text-sm text-ash font-light">
               Connect directly with our Surat dispatch desk to lock exclusive territorial slots.
             </p>
@@ -123,13 +123,13 @@ export default function ReachPage() {
               href={waUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-kumkum text-white font-mono text-xs tracking-widest uppercase rounded-xs transition-all shadow-agency-card min-h-[44px]"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-kumkum hover:bg-kumkum-deep text-white font-mono text-xs tracking-widest uppercase rounded-xs transition-all shadow-xs min-h-[44px]"
             >
               <MessageCircle className="w-4 h-4" /> Message Desk
             </a>
             <Link
               href="/partner"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-warp border border-hairline text-khadi hover:text-haldi font-mono text-xs tracking-widest uppercase rounded-xs min-h-[44px]"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-selvedge-light hover:bg-selvedge border border-hairline text-khadi hover:text-marigold font-mono text-xs tracking-widest uppercase rounded-xs min-h-[44px] shadow-2xs font-medium"
             >
               Submit Query Form <ArrowUpRight className="w-4 h-4 text-marigold" />
             </Link>

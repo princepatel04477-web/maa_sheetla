@@ -17,33 +17,33 @@ export default function SplitHero() {
       <div
         onMouseEnter={() => setHoveredPanel("maa")}
         onMouseLeave={() => setHoveredPanel(null)}
-        className={`relative flex-1 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] flex flex-col justify-between p-6 sm:p-10 lg:p-16 border-b md:border-b-0 md:border-r border-hairline group overflow-hidden ${
+        className={`relative flex-1 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] flex flex-col justify-between p-6 sm:p-10 lg:p-16 border-b md:border-b-0 md:border-r border-hairline group overflow-hidden bg-selvedge ${
           hoveredPanel === "maa"
-            ? "md:flex-[1.25] bg-selvedge/95"
+            ? "md:flex-[1.25] shadow-md z-10"
             : hoveredPanel === "sunrise"
-            ? "md:flex-[0.8] opacity-80"
-            : "bg-selvedge/60"
+            ? "md:flex-[0.8] opacity-90"
+            : ""
         }`}
       >
         {/* Atmosphere Background */}
         <div
-          className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 ease-out group-hover:scale-105 opacity-20"
+          className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 ease-out group-hover:scale-105 opacity-15"
           style={{
             backgroundImage:
               'url("/img/firms/desk-maa-sheetla-1400.jpg")',
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-warp via-warp/85 to-transparent" />
-        <div className="absolute inset-0 bg-kumkum/10 mix-blend-color-dodge pointer-events-none opacity-30 group-hover:opacity-50 transition-opacity" />
+        <div className="absolute inset-0 bg-gradient-to-t from-warp/95 via-warp/80 to-warp/30" />
+        <div className="absolute inset-0 bg-kumkum/5 pointer-events-none opacity-40 group-hover:opacity-60 transition-opacity" />
 
         {/* Panel Header Eyebrow */}
         <div className="relative z-10 space-y-1.5 pt-1">
           <div className="flex items-center gap-2">
-            <span className="font-mono text-[9px] sm:text-[9.5px] tracking-[0.24em] text-marigold uppercase bg-warp/90 px-2.5 py-1 border border-kumkum/40 rounded-xs">
+            <span className="font-mono text-[9px] sm:text-[9.5px] tracking-[0.24em] text-kumkum uppercase bg-selvedge/90 px-2.5 py-1 border border-kumkum/30 rounded-xs shadow-2xs font-medium">
               THE NAMED COUNTER · EST. 2010
             </span>
           </div>
-          <div className="font-mono text-[10px] sm:text-[10.5px] text-ash tracking-widest uppercase pl-0.5">
+          <div className="font-mono text-[10px] sm:text-[10.5px] text-ash tracking-widest uppercase pl-0.5 font-medium">
             FIRM 01 · SURAT TEXTILE MARKET
           </div>
         </div>
@@ -55,7 +55,7 @@ export default function SplitHero() {
             <img
               src="/logos/maa_sheetla_gold.png"
               alt="Maa Sheetla Agency Official Logo"
-              className="h-full w-auto object-contain filter drop-shadow-md"
+              className="h-full w-auto object-contain filter drop-shadow-xs"
             />
           </div>
 
@@ -63,7 +63,7 @@ export default function SplitHero() {
             <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-light text-khadi tracking-tight leading-[0.94]">
               Maa Sheetla
             </h2>
-            <p className="font-display text-lg sm:text-2xl text-haldi font-light italic mt-1">
+            <p className="font-display text-lg sm:text-2xl text-marigold font-light italic mt-1">
               For boutiques that sell by label.
             </p>
           </div>
@@ -73,9 +73,9 @@ export default function SplitHero() {
           </p>
 
           <div className="pt-1 flex flex-wrap gap-1.5 sm:gap-2 text-[9.5px] sm:text-[10.5px] font-mono text-ash">
-            <span className="bg-warp/90 px-2.5 py-1 border border-hairline rounded-xs">MOQ: 2–6 pcs/set</span>
-            <span className="bg-warp/90 px-2.5 py-1 border border-hairline rounded-xs">Territorial Lock</span>
-            <span className="bg-warp/90 px-2.5 py-1 border border-hairline rounded-xs">Pure Silk Jacquards</span>
+            <span className="bg-selvedge px-2.5 py-1 border border-hairline rounded-xs shadow-2xs">MOQ: 2–6 pcs/set</span>
+            <span className="bg-selvedge px-2.5 py-1 border border-hairline rounded-xs shadow-2xs">Territorial Lock</span>
+            <span className="bg-selvedge px-2.5 py-1 border border-hairline rounded-xs shadow-2xs">Pure Silk Jacquards</span>
           </div>
         </div>
 
@@ -83,7 +83,7 @@ export default function SplitHero() {
         <div className="relative z-10 pt-5 border-t border-hairline flex flex-col sm:flex-row sm:items-center justify-between gap-3.5">
           <Link
             href="/firms/maa-sheetla"
-            className="inline-flex items-center gap-2 font-mono text-xs tracking-[0.18em] uppercase text-khadi group-hover:text-haldi transition-colors py-1"
+            className="inline-flex items-center gap-2 font-mono text-xs tracking-[0.18em] uppercase text-khadi group-hover:text-marigold transition-colors py-1 font-medium"
           >
             <span>Explore Maa Sheetla Desk</span>
             <ArrowUpRight className="w-4 h-4 text-marigold group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -92,7 +92,7 @@ export default function SplitHero() {
             href={maaWaUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 font-mono text-xs text-marigold hover:text-haldi tracking-wider uppercase transition-colors py-1"
+            className="inline-flex items-center gap-1.5 font-mono text-xs text-kumkum hover:text-kumkum-deep tracking-wider uppercase transition-colors py-1 font-medium"
           >
             <MessageCircle className="w-3.5 h-3.5" />
             <span>Direct WhatsApp Desk →</span>
@@ -104,33 +104,33 @@ export default function SplitHero() {
       <div
         onMouseEnter={() => setHoveredPanel("sunrise")}
         onMouseLeave={() => setHoveredPanel(null)}
-        className={`relative flex-1 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] flex flex-col justify-between p-6 sm:p-10 lg:p-16 group overflow-hidden ${
+        className={`relative flex-1 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] flex flex-col justify-between p-6 sm:p-10 lg:p-16 group overflow-hidden bg-selvedge ${
           hoveredPanel === "sunrise"
-            ? "md:flex-[1.25] bg-selvedge/95"
+            ? "md:flex-[1.25] shadow-md z-10"
             : hoveredPanel === "maa"
-            ? "md:flex-[0.8] opacity-80"
-            : "bg-selvedge/60"
+            ? "md:flex-[0.8] opacity-90"
+            : ""
         }`}
       >
         {/* Atmosphere Background */}
         <div
-          className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 ease-out group-hover:scale-105 opacity-20"
+          className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 ease-out group-hover:scale-105 opacity-15"
           style={{
             backgroundImage:
               'url("/img/firms/desk-sunrise-fab-tex-1400.jpg")',
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-warp via-warp/85 to-transparent" />
-        <div className="absolute inset-0 bg-marigold/10 mix-blend-color-dodge pointer-events-none opacity-30 group-hover:opacity-50 transition-opacity" />
+        <div className="absolute inset-0 bg-gradient-to-t from-warp/95 via-warp/80 to-warp/30" />
+        <div className="absolute inset-0 bg-marigold/5 pointer-events-none opacity-40 group-hover:opacity-60 transition-opacity" />
 
         {/* Panel Header Eyebrow */}
         <div className="relative z-10 space-y-1.5 pt-1">
           <div className="flex items-center gap-2">
-            <span className="font-mono text-[9px] sm:text-[9.5px] tracking-[0.24em] text-marigold uppercase bg-warp/90 px-2.5 py-1 border border-marigold/40 rounded-xs">
+            <span className="font-mono text-[9px] sm:text-[9.5px] tracking-[0.24em] text-marigold uppercase bg-selvedge/90 px-2.5 py-1 border border-marigold/30 rounded-xs shadow-2xs font-medium">
               THE VOLUME COUNTER · EST. 2010
             </span>
           </div>
-          <div className="font-mono text-[10px] sm:text-[10.5px] text-ash tracking-widest uppercase pl-0.5">
+          <div className="font-mono text-[10px] sm:text-[10.5px] text-ash tracking-widest uppercase pl-0.5 font-medium">
             FIRM 02 · SURAT TEXTILE MARKET
           </div>
         </div>
@@ -142,7 +142,7 @@ export default function SplitHero() {
             <img
               src="/logos/sunrise_fab_tex_colored.png"
               alt="Sunrise Fab Tex Pvt Ltd Official Logo"
-              className="h-full w-auto object-contain filter drop-shadow-md"
+              className="h-full w-auto object-contain filter drop-shadow-xs"
             />
           </div>
 
@@ -150,7 +150,7 @@ export default function SplitHero() {
             <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-light text-khadi tracking-tight leading-[0.94]">
               Sunrise Fab Tex
             </h2>
-            <p className="font-display text-lg sm:text-2xl text-haldi font-light italic mt-1">
+            <p className="font-display text-lg sm:text-2xl text-marigold font-light italic mt-1">
               Priced and packed for the retail floor.
             </p>
           </div>
@@ -160,9 +160,9 @@ export default function SplitHero() {
           </p>
 
           <div className="pt-1 flex flex-wrap gap-1.5 sm:gap-2 text-[9.5px] sm:text-[10.5px] font-mono text-ash">
-            <span className="bg-warp/90 px-2.5 py-1 border border-hairline rounded-xs">MOQ: 8–12 pcs carton</span>
-            <span className="bg-warp/90 px-2.5 py-1 border border-hairline rounded-xs">Immediate Mill Dispatch</span>
-            <span className="bg-warp/90 px-2.5 py-1 border border-hairline rounded-xs">Commercial Margins</span>
+            <span className="bg-selvedge px-2.5 py-1 border border-hairline rounded-xs shadow-2xs">MOQ: 8–12 pcs carton</span>
+            <span className="bg-selvedge px-2.5 py-1 border border-hairline rounded-xs shadow-2xs">Immediate Mill Dispatch</span>
+            <span className="bg-selvedge px-2.5 py-1 border border-hairline rounded-xs shadow-2xs">Commercial Margins</span>
           </div>
         </div>
 
@@ -170,7 +170,7 @@ export default function SplitHero() {
         <div className="relative z-10 pt-5 border-t border-hairline flex flex-col sm:flex-row sm:items-center justify-between gap-3.5">
           <Link
             href="/firms/sunrise-tex-fab"
-            className="inline-flex items-center gap-2 font-mono text-xs tracking-[0.18em] uppercase text-khadi group-hover:text-haldi transition-colors py-1"
+            className="inline-flex items-center gap-2 font-mono text-xs tracking-[0.18em] uppercase text-khadi group-hover:text-marigold transition-colors py-1 font-medium"
           >
             <span>Explore Sunrise Desk</span>
             <ArrowUpRight className="w-4 h-4 text-marigold group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -179,7 +179,7 @@ export default function SplitHero() {
             href={sunriseWaUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 font-mono text-xs text-marigold hover:text-haldi tracking-wider uppercase transition-colors py-1"
+            className="inline-flex items-center gap-1.5 font-mono text-xs text-marigold hover:text-haldi tracking-wider uppercase transition-colors py-1 font-medium"
           >
             <MessageCircle className="w-3.5 h-3.5" />
             <span>Direct WhatsApp Desk →</span>

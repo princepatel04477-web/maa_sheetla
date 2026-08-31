@@ -80,7 +80,7 @@ export default function CraftPage() {
         {/* 4 QC Steps */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
           {QC_STEPS.map((step) => (
-            <SpotlightCard key={step.step} className="p-6 sm:p-8 bg-selvedge border-hairline rounded-sm space-y-4 flex flex-col justify-between">
+            <SpotlightCard key={step.step} className="p-6 sm:p-8 bg-selvedge border-hairline rounded-sm space-y-4 flex flex-col justify-between shadow-2xs hover:shadow-xs">
               <div className="space-y-3.5">
                 <div className="card-media card-media--qc w-full rounded-xs overflow-hidden mb-3">
                   <Picture
@@ -91,8 +91,8 @@ export default function CraftPage() {
                   />
                 </div>
                 <div className="flex items-center justify-between font-mono text-xs">
-                  <span className="text-marigold font-display text-3xl font-light">{step.step}</span>
-                  <span className="text-haldi text-[9.5px] border border-hairline px-2.5 py-0.5 bg-warp uppercase">
+                  <span className="text-marigold font-display text-3xl font-light">0{step.step}</span>
+                  <span className="text-marigold text-[9.5px] border border-hairline px-2.5 py-0.5 bg-selvedge-light uppercase font-medium">
                     Verified Inspection
                   </span>
                 </div>
@@ -104,9 +104,9 @@ export default function CraftPage() {
         </div>
 
         {/* CTA */}
-        <div className="p-6 sm:p-10 bg-selvedge border border-hairline rounded-sm flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div className="p-6 sm:p-10 bg-selvedge border border-hairline rounded-sm flex flex-col sm:flex-row items-center justify-between gap-6 shadow-2xs">
           <div className="space-y-2 text-center sm:text-left">
-            <h3 className="font-display text-2xl text-khadi">Inspect our sample lots</h3>
+            <h3 className="font-display text-2xl text-khadi font-light">Inspect our sample lots</h3>
             <p className="text-xs sm:text-sm text-ash font-light">
               Visit our Surat trading floor or request certified loom swatches through WhatsApp.
             </p>
@@ -116,13 +116,13 @@ export default function CraftPage() {
               href={waUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-kumkum text-white font-mono text-xs tracking-widest uppercase rounded-xs transition-all shadow-agency-card min-h-[44px]"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-kumkum hover:bg-kumkum-deep text-white font-mono text-xs tracking-widest uppercase rounded-xs transition-all shadow-xs min-h-[44px]"
             >
               <MessageCircle className="w-4 h-4" /> Message QC Desk
             </a>
             <Link
               href="/partner"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-warp border border-hairline text-khadi hover:text-haldi font-mono text-xs tracking-widest uppercase rounded-xs min-h-[44px]"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-selvedge-light hover:bg-selvedge border border-hairline text-khadi hover:text-marigold font-mono text-xs tracking-widest uppercase rounded-xs min-h-[44px] shadow-2xs font-medium"
             >
               Submit Query Form <ArrowUpRight className="w-4 h-4 text-marigold" />
             </Link>

@@ -74,11 +74,11 @@ export default function FirmProfilePage({ params }: { params: { firm: string } }
               <img
                 src={config.logoUrl}
                 alt={`${config.name} Official Logo`}
-                className="h-full w-auto object-contain filter drop-shadow-md"
+                className="h-full w-auto object-contain filter drop-shadow-xs"
               />
             </div>
 
-            <div className="flex items-center gap-2 font-mono text-[10px] tracking-[0.24em] text-marigold uppercase">
+            <div className="flex items-center gap-2 font-mono text-[10px] tracking-[0.24em] text-kumkum uppercase font-medium">
               <span>{config.eyebrow}</span>
               <span>·</span>
               <ShinyText text="SURAT HQ" />
@@ -86,7 +86,7 @@ export default function FirmProfilePage({ params }: { params: { firm: string } }
             <h1 className="font-display text-4xl sm:text-6xl text-khadi font-light tracking-tight leading-[0.95]">
               <BlurText text={`${config.name} — ${config.tagline}`} />
             </h1>
-            <p className="text-base text-khadi/80 font-light leading-relaxed max-w-2xl">
+            <p className="text-base text-ash font-light leading-relaxed max-w-2xl">
               {config.roleDescription}
             </p>
           </div>
@@ -96,22 +96,23 @@ export default function FirmProfilePage({ params }: { params: { firm: string } }
               href={waUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-kumkum/15 hover:bg-kumkum/25 text-haldi border border-kumkum font-mono text-xs tracking-[0.18em] uppercase rounded-xs transition-all"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-kumkum hover:bg-kumkum-deep text-white font-mono text-xs tracking-[0.18em] uppercase rounded-xs transition-all shadow-xs font-medium min-h-[44px]"
             >
-              Connect with {config.name} Desk <ArrowUpRight className="w-4 h-4 text-marigold" />
+              <span>Connect with {config.name} Desk</span>
+              <ArrowUpRight className="w-4 h-4" />
             </a>
           </div>
         </div>
 
         {/* Operating Terms Spec Box */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 p-6 bg-selvedge border border-hairline rounded-sm text-xs font-mono">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 p-6 bg-selvedge border border-hairline rounded-sm text-xs font-mono shadow-2xs">
           <div className="space-y-1.5">
-            <span className="text-ash tracking-widest uppercase text-[10px]">MOQ &amp; Packing Structure:</span>
-            <p className="text-khadi font-light">{config.moqRule}</p>
+            <span className="text-marigold tracking-widest uppercase text-[10px] font-medium">MOQ &amp; Packing Structure:</span>
+            <p className="text-khadi font-normal">{config.moqRule}</p>
           </div>
           <div className="space-y-1.5">
-            <span className="text-ash tracking-widest uppercase text-[10px]">Ideal Showroom Profile:</span>
-            <p className="text-khadi font-light">{config.targetBoutique}</p>
+            <span className="text-marigold tracking-widest uppercase text-[10px] font-medium">Ideal Showroom Profile:</span>
+            <p className="text-khadi font-normal">{config.targetBoutique}</p>
           </div>
         </div>
 

@@ -107,10 +107,10 @@ export default function HomePage() {
       <ReachSection />
 
       {/* 4. The 4-Step Agency Workflow */}
-      <section id="operations" className="w-full py-16 sm:py-24 lg:py-32 px-4 sm:px-8 lg:px-12 bg-selvedge/70 border-t border-hairline relative">
+      <section id="operations" className="w-full py-16 sm:py-24 lg:py-32 px-4 sm:px-8 lg:px-12 bg-selvedge-light border-t border-hairline relative">
         <div className="max-w-7xl mx-auto space-y-12 sm:space-y-16">
           <div className="max-w-3xl space-y-3">
-            <p className="eyebrow">03 — THE AGENCY OPERATIONS</p>
+            <p className="eyebrow text-kumkum">03 — THE AGENCY OPERATIONS</p>
             <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl text-khadi font-light tracking-tight leading-[0.95]">
               <SplitText text="How we bridge Surat's looms to your showroom floor." />
             </h2>
@@ -123,10 +123,10 @@ export default function HomePage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {AGENCY_SERVICES.map((srv, idx) => (
               <AnimatedContent key={srv.title} delay={idx * 0.1} direction="up">
-                <div className="p-5 sm:p-7 bg-warp border border-hairline hover:border-marigold/60 transition-all rounded-sm h-full space-y-3.5 flex flex-col justify-between">
+                <div className="p-5 sm:p-7 bg-selvedge border border-hairline hover:border-marigold/60 transition-all rounded-sm h-full space-y-3.5 flex flex-col justify-between shadow-2xs hover:shadow-xs">
                   <div className="space-y-2.5">
                     <srv.icon className="w-5 h-5 sm:w-6 sm:h-6 text-marigold" />
-                    <span className="font-mono text-[9.5px] sm:text-[10px] text-haldi tracking-widest uppercase block">
+                    <span className="font-mono text-[9.5px] sm:text-[10px] text-marigold tracking-widest uppercase block font-medium">
                       {srv.tagline}
                     </span>
                     <h3 className="font-display text-lg sm:text-xl text-khadi font-light">{srv.title}</h3>
@@ -144,14 +144,14 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto space-y-12 sm:space-y-16">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6">
             <div className="space-y-2.5 max-w-2xl">
-              <p className="eyebrow">04 — TEXTILE SOURCING DISCIPLINES</p>
+              <p className="eyebrow text-kumkum">04 — TEXTILE SOURCING DISCIPLINES</p>
               <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl text-khadi font-light tracking-tight leading-[0.95]">
-                Surat categories managed by <i className="italic text-haldi">our trading floor.</i>
+                Surat categories managed by <i className="italic text-marigold">our trading floor.</i>
               </h2>
             </div>
             <Link
               href="/partner"
-              className="inline-flex items-center gap-1.5 font-mono text-xs tracking-widest uppercase text-marigold hover:text-haldi transition-colors py-1"
+              className="inline-flex items-center gap-1.5 font-mono text-xs tracking-widest uppercase text-marigold hover:text-kumkum transition-colors py-1 font-medium"
             >
               Request Trade Sourcing Rates <ArrowUpRight className="w-4 h-4" />
             </Link>
@@ -159,7 +159,7 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
             {SOURCING_SPECIALTIES.map((spec, idx) => (
-              <SpotlightCard key={spec.title} className="p-6 sm:p-8 border-hairline hover:border-marigold/60 rounded-sm bg-selvedge space-y-4 flex flex-col justify-between">
+              <SpotlightCard key={spec.title} className="p-6 sm:p-8 border-hairline hover:border-marigold/60 rounded-sm bg-selvedge space-y-4 flex flex-col justify-between shadow-2xs hover:shadow-xs">
                 <div className="space-y-3.5">
                   <div className="card-media card-media--category w-full rounded-xs overflow-hidden mb-3">
                     <Picture
@@ -171,13 +171,13 @@ export default function HomePage() {
                   </div>
                   <div className="flex items-center justify-between font-mono text-xs">
                     <span className="text-marigold font-display text-2xl font-light">0{idx + 1}</span>
-                    <span className="text-haldi text-[9.5px] sm:text-[10px] border border-hairline px-2.5 py-0.5 bg-warp uppercase">
+                    <span className="text-marigold text-[9.5px] sm:text-[10px] border border-hairline px-2.5 py-0.5 bg-selvedge-light uppercase font-medium">
                       {spec.desk}
                     </span>
                   </div>
                   <div>
                     <h3 className="font-display text-xl sm:text-2xl text-khadi font-light">{spec.title}</h3>
-                    <p className="font-mono text-[10.5px] sm:text-[11px] text-ash mt-1">{spec.focus}</p>
+                    <p className="font-mono text-[10.5px] sm:text-[11px] text-ash mt-1 font-medium">{spec.focus}</p>
                   </div>
                   <p className="text-xs text-ash font-light leading-relaxed">{spec.desc}</p>
                 </div>
@@ -188,9 +188,9 @@ export default function HomePage() {
       </section>
 
       {/* 6. Partner Conversion Banner */}
-      <section className="w-full py-16 sm:py-24 lg:py-32 px-4 sm:px-8 lg:px-12 bg-gradient-to-b from-selvedge to-warp border-t border-hairline relative">
+      <section className="w-full py-16 sm:py-24 lg:py-32 px-4 sm:px-8 lg:px-12 bg-gradient-to-b from-selvedge to-selvedge-light border-t border-hairline relative">
         <div className="max-w-5xl mx-auto text-center space-y-6 sm:space-y-8">
-          <p className="eyebrow text-marigold">05 — WHOLESALE TRADE QUERY</p>
+          <p className="eyebrow text-kumkum">05 — WHOLESALE TRADE QUERY</p>
           <h2 className="font-display text-3xl sm:text-5xl lg:text-7xl text-khadi font-light tracking-tight leading-[0.94]">
             <BlurText text="Open a direct agency account with our Surat floor." />
           </h2>
@@ -204,13 +204,13 @@ export default function HomePage() {
               href={partnerWaUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 bg-kumkum hover:bg-kumkum-deep text-white font-mono text-xs tracking-[0.18em] uppercase rounded-xs transition-all shadow-agency-card min-h-[44px]"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 bg-kumkum hover:bg-kumkum-deep text-white font-mono text-xs tracking-[0.18em] uppercase rounded-xs transition-all shadow-xs min-h-[44px]"
             >
               WhatsApp Agency Desk <ArrowUpRight className="w-4 h-4" />
             </a>
             <Link
               href="/partner"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 bg-warp hover:bg-selvedge border border-hairline text-khadi hover:text-haldi font-mono text-xs tracking-[0.18em] uppercase rounded-xs transition-all min-h-[44px]"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 bg-selvedge hover:bg-selvedge-light border border-hairline text-khadi hover:text-marigold font-mono text-xs tracking-[0.18em] uppercase rounded-xs transition-all min-h-[44px] shadow-2xs"
             >
               Trade Query Form →
             </Link>

@@ -44,7 +44,7 @@ export default function ReachSection() {
         </div>
 
         {/* Interactive Layout: Map on left (60%), Ledger on right (40%) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start bg-selvedge/50 border border-hairline p-6 sm:p-10 rounded-sm">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start bg-selvedge border border-hairline p-6 sm:p-10 rounded-sm shadow-sm">
           {/* Map Container */}
           <div className="lg:col-span-7 flex justify-center items-center py-2 sticky top-28">
             <IndiaReachMap
@@ -72,8 +72,8 @@ export default function ReachSection() {
                     onFocus={() => setActiveCityId(city.id)}
                     className={`w-full text-left p-3 border transition-all duration-200 flex items-center justify-between group rounded-sm ${
                       isActive
-                        ? "bg-selvedge border-marigold shadow-md shadow-marigold/5"
-                        : "bg-transparent border-hairline/40 hover:border-hairline hover:bg-selvedge/40"
+                        ? "bg-selvedge-light border-marigold shadow-xs"
+                        : "bg-transparent border-hairline/40 hover:border-hairline hover:bg-selvedge-light/60"
                     }`}
                   >
                     <div className="space-y-0.5 pr-2">
@@ -83,7 +83,7 @@ export default function ReachSection() {
                         </span>
                         <span
                           className={`font-display text-lg transition-colors ${
-                            isActive ? "text-haldi font-normal" : "text-khadi group-hover:text-haldi font-light"
+                            isActive ? "text-kumkum font-normal" : "text-khadi group-hover:text-marigold font-light"
                           }`}
                         >
                           {city.name}
@@ -119,7 +119,7 @@ export default function ReachSection() {
               <span className="text-ash tracking-[0.2em] uppercase text-[10px]">
                 Total Network Volume
               </span>
-              <span className="font-display text-2xl text-haldi font-light">
+              <span className="font-display text-2xl text-marigold font-light">
                 570+ <i className="text-xs font-mono text-ash not-italic font-normal">Counters</i>
               </span>
             </div>
@@ -127,9 +127,10 @@ export default function ReachSection() {
             <div className="pt-1">
               <Link
                 href="/reach"
-                className="inline-flex items-center gap-2 text-[11px] font-mono tracking-[0.2em] uppercase text-marigold hover:text-haldi transition-colors"
+                className="inline-flex items-center gap-2 text-[11px] font-mono tracking-[0.2em] uppercase text-marigold hover:text-kumkum transition-colors font-medium"
               >
-                View Full 13-City Logistics Schedule <ArrowUpRight className="w-3.5 h-3.5" />
+                <span>Full Transit Logistics &amp; Timelines</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
               </Link>
             </div>
           </div>

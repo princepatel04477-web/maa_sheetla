@@ -3,17 +3,17 @@
 @tailwind utilities;
 
 :root {
-  --warp: #0C0A0E;
-  --selvedge: #161318;
-  --selvedge-light: #211C24;
-  --kumkum: #B84A12;
-  --kumkum-deep: #8F360B;
-  --marigold: #C88432;
-  --haldi: #E8CAA0;
-  --khadi: #F3EBE0;
-  --ash: #968A82;
-  --hairline: rgba(243, 235, 224, 0.08);
-  --hairline-strong: rgba(243, 235, 224, 0.18);
+  --warp: #FCFBF7;
+  --selvedge: #FFFFFF;
+  --selvedge-light: #F6F2EC;
+  --kumkum: #8B2628;
+  --kumkum-deep: #6D1B1D;
+  --marigold: #A67C26;
+  --haldi: #8A6715;
+  --khadi: #1C1917;
+  --ash: #665E59;
+  --hairline: rgba(28, 25, 23, 0.08);
+  --hairline-strong: rgba(28, 25, 23, 0.18);
   --font-display: 'Fraunces', 'Instrument Serif', Georgia, serif;
   --font-mono: 'JetBrains Mono', 'DM Mono', monospace;
   --font-body: 'DM Sans', system-ui, sans-serif;
@@ -25,14 +25,14 @@
 
 html {
   scroll-behavior: smooth;
-  background-color: #0C0A0E;
-  color: #F3EBE0;
+  background-color: #FCFBF7;
+  color: #1C1917;
 }
 
 body {
   margin: 0;
-  background-color: #0C0A0E;
-  color: #F3EBE0;
+  background-color: #FCFBF7;
+  color: #1C1917;
   font-family: var(--font-body);
   font-weight: 300;
   overflow-x: hidden;
@@ -44,14 +44,14 @@ body {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #0C0A0E;
+  background: #FCFBF7;
 }
 ::-webkit-scrollbar-thumb {
-  background: #241D26;
+  background: #E5DFC8;
   border-radius: 2px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #C88432;
+  background: #A67C26;
 }
 
 .font-display {
@@ -67,7 +67,7 @@ body {
   font-size: 10.5px;
   letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: #C88432;
+  color: #A67C26;
 }
 
 .eyebrow-ash {
@@ -75,12 +75,12 @@ body {
   font-size: 10.5px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: #968A82;
+  color: #665E59;
 }
 
 /* Shimmer Effect */
 .shimmer-text {
-  background: linear-gradient(110deg, #F3EBE0 15%, #E8CAA0 45%, #C88432 55%, #F3EBE0 85%);
+  background: linear-gradient(110deg, #1C1917 15%, #A67C26 45%, #8B2628 55%, #1C1917 85%);
   background-size: 250% 100%;
   color: transparent;
   -webkit-background-clip: text;

@@ -28,7 +28,7 @@ export default function ProductCard({ product, priority = false }: ProductCardPr
   };
 
   return (
-    <div className="group bg-selvedge border border-hairline hover:border-marigold/60 transition-all duration-300 rounded-sm overflow-hidden flex flex-col justify-between">
+    <div className="group bg-selvedge border border-hairline hover:border-marigold/70 hover:shadow-md transition-all duration-300 rounded-sm overflow-hidden flex flex-col justify-between">
       {/* Image Frame */}
       <div className="card-media card-media--catalogue relative overflow-hidden bg-warp">
         <Picture
@@ -39,15 +39,15 @@ export default function ProductCard({ product, priority = false }: ProductCardPr
           imgClassName="group-hover:scale-105 transition-transform duration-700 ease-out"
           customAlt={product.title}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-selvedge via-transparent to-transparent opacity-80 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-85 pointer-events-none" />
 
         {/* Firm Tag Badge */}
         <div className="absolute top-3 left-3 flex items-center gap-1.5">
           <span
-            className={`font-mono text-[9.5px] px-2 py-0.5 uppercase tracking-wider border ${
+            className={`font-mono text-[9.5px] px-2 py-0.5 uppercase tracking-wider border shadow-2xs font-medium ${
               product.firm === "Maa Sheetla"
-                ? "bg-warp/90 text-haldi border-kumkum/70"
-                : "bg-warp/90 text-haldi border-marigold/70"
+                ? "bg-selvedge/95 text-kumkum border-kumkum/40"
+                : "bg-selvedge/95 text-marigold border-marigold/40"
             }`}
           >
             {product.firm}
@@ -58,7 +58,7 @@ export default function ProductCard({ product, priority = false }: ProductCardPr
         <button
           onClick={handleCopyCode}
           title="Click to copy Design Code"
-          className="absolute top-3 right-3 bg-warp/90 px-2 py-0.5 border border-hairline font-mono text-[10px] text-ash hover:text-haldi flex items-center gap-1 transition-colors"
+          className="absolute top-3 right-3 bg-selvedge/95 px-2 py-0.5 border border-hairline font-mono text-[10px] text-ash hover:text-marigold flex items-center gap-1 transition-colors shadow-2xs"
         >
           {copied ? <Check className="w-3 h-3 text-marigold" /> : <span>CODE:</span>}
           <DecryptedText text={product.designCode} speed={40} className="text-khadi font-medium" />
@@ -66,10 +66,10 @@ export default function ProductCard({ product, priority = false }: ProductCardPr
 
         {/* Bottom Image Overlay Title */}
         <div className="absolute bottom-3 left-3 right-3">
-          <h3 className="font-display text-xl text-khadi group-hover:text-haldi transition-colors font-light line-clamp-1">
+          <h3 className="font-display text-xl text-white group-hover:text-amber-200 transition-colors font-light line-clamp-1 drop-shadow-xs">
             {product.title}
           </h3>
-          <p className="font-mono text-[10px] text-marigold tracking-wider mt-0.5 uppercase">
+          <p className="font-mono text-[10px] text-amber-300 tracking-wider mt-0.5 uppercase drop-shadow-xs">
             {product.fabric}
           </p>
         </div>
@@ -81,11 +81,11 @@ export default function ProductCard({ product, priority = false }: ProductCardPr
           {product.work}
         </p>
 
-        <div className="pt-2 border-t border-hairline/60 flex items-center justify-between text-[11px] font-mono">
+        <div className="pt-2 border-t border-hairline flex items-center justify-between text-[11px] font-mono">
           <span className="text-ash">
-            Agency MOQ: <strong className="text-khadi font-normal">{product.moq}</strong>
+            Agency MOQ: <strong className="text-khadi font-medium">{product.moq}</strong>
           </span>
-          <span className="text-haldi uppercase tracking-wider text-[10px]">
+          <span className="text-marigold uppercase tracking-wider text-[10px] font-medium">
             {product.type}
           </span>
         </div>
@@ -96,9 +96,9 @@ export default function ProductCard({ product, priority = false }: ProductCardPr
             href={waUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full py-2.5 px-3 bg-warp hover:bg-selvedge-light border border-hairline hover:border-marigold text-khadi hover:text-haldi font-mono text-[11px] tracking-wider uppercase rounded-xs transition-all flex items-center justify-center gap-1.5"
+            className="w-full py-2.5 px-3 bg-warp hover:bg-selvedge-light border border-hairline hover:border-marigold text-khadi hover:text-marigold font-mono text-[11px] tracking-wider uppercase rounded-xs transition-all flex items-center justify-center gap-1.5 font-medium shadow-2xs"
           >
-            <span>Inquire Wholesale Rates</span>
+            <span>Book Wholesale Lot</span>
             <ArrowUpRight className="w-3.5 h-3.5 text-marigold" />
           </a>
         </div>

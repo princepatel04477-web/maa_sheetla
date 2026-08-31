@@ -35,12 +35,12 @@ export default function ContactPage() {
       <div className="max-w-7xl mx-auto space-y-12 sm:space-y-16 relative z-10">
         {/* Sacred Invocation & Header */}
         <div className="space-y-5 max-w-4xl">
-          <div className="inline-block p-2.5 bg-selvedge/80 border border-marigold/30 rounded-xs font-mono text-[9px] sm:text-[11px] text-marigold tracking-widest leading-relaxed">
+          <div className="inline-block p-2.5 bg-selvedge border border-marigold/30 rounded-xs font-mono text-[9px] sm:text-[11px] text-marigold tracking-widest leading-relaxed shadow-2xs">
             ॐ Hare Krishna Hare Krishna Krishna Krishna Hare Hare · Hare Ram Hare Ram Ram Ram Hare Hare ॐ
           </div>
 
           <div className="flex items-center gap-4 sm:gap-6 pt-1">
-            <div className="h-10 sm:h-14 w-auto border border-marigold/40 bg-selvedge/90 p-1.5 rounded-xs flex items-center shadow-xs">
+            <div className="h-10 sm:h-14 w-auto border border-marigold/30 bg-selvedge p-1.5 rounded-xs flex items-center shadow-2xs">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/logos/maa_sheetla_gold.png"
@@ -49,7 +49,7 @@ export default function ContactPage() {
               />
             </div>
             <div className="h-8 w-px bg-hairline" />
-            <div className="h-10 sm:h-14 w-auto border border-marigold/40 bg-selvedge/90 p-1.5 rounded-xs flex items-center shadow-xs">
+            <div className="h-10 sm:h-14 w-auto border border-marigold/30 bg-selvedge p-1.5 rounded-xs flex items-center shadow-2xs">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/logos/sunrise_fab_tex_colored.png"
@@ -59,7 +59,7 @@ export default function ContactPage() {
             </div>
           </div>
 
-          <div className="flex items-center gap-2 font-mono text-[9px] sm:text-[10px] tracking-[0.22em] text-marigold uppercase">
+          <div className="flex items-center gap-2 font-mono text-[9px] sm:text-[10px] tracking-[0.22em] text-kumkum uppercase">
             <span>OFFICIAL DIRECTORY</span>
             <span>·</span>
             <ShinyText text="SURAT HQ · KANPUR · AHMEDABAD" />
@@ -83,14 +83,14 @@ export default function ContactPage() {
             <h2 className="font-display text-xl sm:text-2xl text-khadi font-light">
               Office Locations &amp; Trading Desks
             </h2>
-            <span className="font-mono text-[10px] text-marigold uppercase tracking-wider">
+            <span className="font-mono text-[10px] text-marigold uppercase tracking-wider font-medium">
               3 Active Centers
             </span>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {/* 1. Surat Head Office */}
-            <SpotlightCard className="p-6 sm:p-7 bg-selvedge border-hairline rounded-sm space-y-6 flex flex-col justify-between">
+            <SpotlightCard className="p-6 sm:p-7 bg-selvedge border-hairline rounded-sm space-y-6 flex flex-col justify-between shadow-2xs hover:shadow-xs">
               <div className="space-y-4">
                 <div className="card-media card-media--office w-full rounded-xs overflow-hidden mb-2">
                   <Picture
@@ -102,7 +102,7 @@ export default function ContactPage() {
                 </div>
                 <div className="flex items-center justify-between font-mono text-xs">
                   <span className="text-marigold font-display text-2xl font-light">SURAT</span>
-                  <span className="text-haldi text-[10px] border border-marigold/40 px-2 py-0.5 bg-warp uppercase">
+                  <span className="text-marigold text-[10px] border border-marigold/30 px-2 py-0.5 bg-selvedge-light uppercase font-medium">
                     Head Office &amp; QC Floor
                   </span>
                 </div>
@@ -123,26 +123,23 @@ export default function ContactPage() {
                   </div>
                   <div className="flex items-center gap-2.5">
                     <Clock className="w-4 h-4 text-marigold shrink-0" />
-                    <span>Mon – Sat: 10:00 AM – 8:30 PM IST</span>
+                    <span>Mon – Sat: 9:30 AM – 8:30 PM IST</span>
                   </div>
                   <div className="flex items-center gap-2.5">
                     <Phone className="w-4 h-4 text-marigold shrink-0" />
-                    <a href="tel:+919151003198" className="hover:text-haldi underline">
+                    <a href="tel:+919151003198" className="hover:text-marigold underline">
                       +91 91510 03198
                     </a>
+                    <span className="text-ash">/</span>
+                    <a href="tel:+919616415615" className="hover:text-marigold underline">
+                      +91 96164 15615
+                    </a>
                   </div>
-                  <div className="flex flex-col gap-1 text-[11px] text-ash">
-                    <div className="flex items-center gap-2">
-                      <Mail className="w-3.5 h-3.5 text-marigold shrink-0" />
-                      <a href="mailto:surat@sunrisefabtex.com" className="hover:text-haldi">
-                        surat@sunrisefabtex.com
-                      </a>
-                    </div>
-                    <div className="flex items-center gap-2 pl-5.5">
-                      <a href="mailto:maasheetlaagencyaccinfo@gmail.com" className="hover:text-haldi truncate">
-                        maasheetlaagencyaccinfo@gmail.com
-                      </a>
-                    </div>
+                  <div className="flex items-center gap-2 text-[11px] text-ash">
+                    <Mail className="w-3.5 h-3.5 text-marigold shrink-0" />
+                    <a href="mailto:surat@sunrisefabtex.com" className="hover:text-marigold">
+                      surat@sunrisefabtex.com
+                    </a>
                   </div>
                 </div>
               </div>
@@ -152,13 +149,13 @@ export default function ContactPage() {
                   href={suratWa}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 inline-flex items-center justify-center gap-2 px-3.5 py-3 bg-kumkum hover:bg-kumkum-deep text-white font-mono text-[11px] tracking-widest uppercase rounded-xs transition-all shadow-agency-card min-h-[42px]"
+                  className="flex-1 inline-flex items-center justify-center gap-2 px-3.5 py-3 bg-kumkum hover:bg-kumkum-deep text-white font-mono text-[11px] tracking-widest uppercase rounded-xs transition-all shadow-xs min-h-[42px]"
                 >
                   <MessageCircle className="w-3.5 h-3.5" /> Surat Desk
                 </a>
                 <a
                   href="tel:+919151003198"
-                  className="px-4 py-3 bg-warp border border-hairline hover:border-marigold text-khadi font-mono text-[11px] tracking-widest uppercase rounded-xs text-center min-h-[42px] flex items-center justify-center"
+                  className="px-4 py-3 bg-selvedge-light border border-hairline hover:border-marigold text-khadi font-mono text-[11px] tracking-widest uppercase rounded-xs text-center min-h-[42px] flex items-center justify-center font-medium"
                 >
                   Call Direct
                 </a>
@@ -166,7 +163,7 @@ export default function ContactPage() {
             </SpotlightCard>
 
             {/* 2. Kanpur Office */}
-            <SpotlightCard className="p-6 sm:p-7 bg-selvedge border-hairline rounded-sm space-y-6 flex flex-col justify-between">
+            <SpotlightCard className="p-6 sm:p-7 bg-selvedge border-hairline rounded-sm space-y-6 flex flex-col justify-between shadow-2xs hover:shadow-xs">
               <div className="space-y-4">
                 <div className="card-media card-media--office w-full rounded-xs overflow-hidden mb-2">
                   <Picture
@@ -178,8 +175,8 @@ export default function ContactPage() {
                 </div>
                 <div className="flex items-center justify-between font-mono text-xs">
                   <span className="text-marigold font-display text-2xl font-light">KANPUR</span>
-                  <span className="text-haldi text-[10px] border border-marigold/40 px-2 py-0.5 bg-warp uppercase">
-                    UP Regional Desk
+                  <span className="text-marigold text-[10px] border border-marigold/30 px-2 py-0.5 bg-selvedge-light uppercase font-medium">
+                    Regional Office
                   </span>
                 </div>
 
@@ -188,28 +185,30 @@ export default function ContactPage() {
                     Kanpur Office
                   </h3>
                   <p className="text-xs text-ash font-light leading-relaxed">
-                    Dedicated North India counter for boutique client servicing, sample review, and Uttar Pradesh order settlement.
+                    Regional trade coordination, bridal showroom allocations, and UP/Bihar logistics nodal center.
                   </p>
                 </div>
 
                 <div className="space-y-2.5 text-xs font-mono text-khadi/90 pt-3 border-t border-hairline">
                   <div className="flex items-start gap-2.5">
                     <MapPin className="w-4 h-4 text-marigold shrink-0 mt-0.5" />
-                    <span>50/274, 1st Floor, Shiv Market, Naughara, Kanpur - 208001, UP</span>
+                    <span>50/274, 1st Floor, Shiv Market, Naughara, Kanpur - 208001</span>
                   </div>
                   <div className="flex items-center gap-2.5">
                     <Clock className="w-4 h-4 text-marigold shrink-0" />
-                    <span>Mon – Sat: 10:30 AM – 8:00 PM IST</span>
+                    <span>Mon – Sat: 10:00 AM – 8:00 PM IST</span>
                   </div>
                   <div className="flex items-center gap-2.5">
                     <Phone className="w-4 h-4 text-marigold shrink-0" />
-                    <a href="tel:+919151060273" className="hover:text-haldi underline">
+                    <a href="tel:+919151060273" className="hover:text-marigold underline">
                       +91 91510 60273
                     </a>
                   </div>
                   <div className="flex items-center gap-2 text-[11px] text-ash">
-                    <Building2 className="w-3.5 h-3.5 text-marigold shrink-0" />
-                    <span>Direct UP Wholesale Liaison</span>
+                    <Mail className="w-3.5 h-3.5 text-marigold shrink-0" />
+                    <a href="mailto:kanpur@sunrisefabtex.com" className="hover:text-marigold">
+                      kanpur@sunrisefabtex.com
+                    </a>
                   </div>
                 </div>
               </div>
@@ -219,13 +218,13 @@ export default function ContactPage() {
                   href={kanpurWa}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 inline-flex items-center justify-center gap-2 px-3.5 py-3 bg-kumkum hover:bg-kumkum-deep text-white font-mono text-[11px] tracking-widest uppercase rounded-xs transition-all shadow-agency-card min-h-[42px]"
+                  className="flex-1 inline-flex items-center justify-center gap-2 px-3.5 py-3 bg-kumkum hover:bg-kumkum-deep text-white font-mono text-[11px] tracking-widest uppercase rounded-xs transition-all shadow-xs min-h-[42px]"
                 >
                   <MessageCircle className="w-3.5 h-3.5" /> Kanpur Desk
                 </a>
                 <a
                   href="tel:+919151060273"
-                  className="px-4 py-3 bg-warp border border-hairline hover:border-marigold text-khadi font-mono text-[11px] tracking-widest uppercase rounded-xs text-center min-h-[42px] flex items-center justify-center"
+                  className="px-4 py-3 bg-selvedge-light border border-hairline hover:border-marigold text-khadi font-mono text-[11px] tracking-widest uppercase rounded-xs text-center min-h-[42px] flex items-center justify-center font-medium"
                 >
                   Call Direct
                 </a>
@@ -233,7 +232,7 @@ export default function ContactPage() {
             </SpotlightCard>
 
             {/* 3. Ahmedabad Office */}
-            <SpotlightCard className="p-6 sm:p-7 bg-selvedge border-hairline rounded-sm space-y-6 flex flex-col justify-between">
+            <SpotlightCard className="p-6 sm:p-7 bg-selvedge border-hairline rounded-sm space-y-6 flex flex-col justify-between shadow-2xs hover:shadow-xs">
               <div className="space-y-4">
                 <div className="card-media card-media--office w-full rounded-xs overflow-hidden mb-2">
                   <Picture
@@ -245,7 +244,7 @@ export default function ContactPage() {
                 </div>
                 <div className="flex items-center justify-between font-mono text-xs">
                   <span className="text-marigold font-display text-2xl font-light">AHMEDABAD</span>
-                  <span className="text-haldi text-[10px] border border-marigold/40 px-2 py-0.5 bg-warp uppercase">
+                  <span className="text-marigold text-[10px] border border-marigold/30 px-2 py-0.5 bg-selvedge-light uppercase font-medium">
                     New Cloth Market
                   </span>
                 </div>
@@ -270,13 +269,13 @@ export default function ContactPage() {
                   </div>
                   <div className="flex items-center gap-2.5">
                     <Phone className="w-4 h-4 text-marigold shrink-0" />
-                    <a href="tel:+919559650752" className="hover:text-haldi underline">
+                    <a href="tel:+919559650752" className="hover:text-marigold underline">
                       +91 95596 50752
                     </a>
                   </div>
                   <div className="flex items-center gap-2 text-[11px] text-ash">
                     <Mail className="w-3.5 h-3.5 text-marigold shrink-0" />
-                    <a href="mailto:ahmedabad@sunrisefabtex.com" className="hover:text-haldi">
+                    <a href="mailto:ahmedabad@sunrisefabtex.com" className="hover:text-marigold">
                       ahmedabad@sunrisefabtex.com
                     </a>
                   </div>
@@ -288,13 +287,13 @@ export default function ContactPage() {
                   href={ahmedabadWa}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 inline-flex items-center justify-center gap-2 px-3.5 py-3 bg-kumkum hover:bg-kumkum-deep text-white font-mono text-[11px] tracking-widest uppercase rounded-xs transition-all shadow-agency-card min-h-[42px]"
+                  className="flex-1 inline-flex items-center justify-center gap-2 px-3.5 py-3 bg-kumkum hover:bg-kumkum-deep text-white font-mono text-[11px] tracking-widest uppercase rounded-xs transition-all shadow-xs min-h-[42px]"
                 >
                   <MessageCircle className="w-3.5 h-3.5" /> Ahmedabad Desk
                 </a>
                 <a
                   href="tel:+919559650752"
-                  className="px-4 py-3 bg-warp border border-hairline hover:border-marigold text-khadi font-mono text-[11px] tracking-widest uppercase rounded-xs text-center min-h-[42px] flex items-center justify-center"
+                  className="px-4 py-3 bg-selvedge-light border border-hairline hover:border-marigold text-khadi font-mono text-[11px] tracking-widest uppercase rounded-xs text-center min-h-[42px] flex items-center justify-center font-medium"
                 >
                   Call Direct
                 </a>
@@ -304,10 +303,10 @@ export default function ContactPage() {
         </div>
 
         {/* Leadership & Executive Direct Contacts */}
-        <div className="p-6 sm:p-8 bg-selvedge border border-hairline rounded-sm space-y-6">
+        <div className="p-6 sm:p-8 bg-selvedge border border-hairline rounded-sm space-y-6 shadow-2xs">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-hairline pb-4">
             <div>
-              <div className="font-mono text-[10px] text-marigold uppercase tracking-widest">
+              <div className="font-mono text-[10px] text-marigold uppercase tracking-widest font-medium">
                 LEADERSHIP &amp; PROPRIETORS
               </div>
               <h2 className="font-display text-2xl sm:text-3xl text-khadi font-light">
@@ -321,24 +320,24 @@ export default function ContactPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Manish Kanodia */}
-            <div className="p-5 bg-warp border border-hairline/80 rounded-xs space-y-4">
+            <div className="p-5 bg-selvedge-light border border-hairline rounded-xs space-y-4 shadow-2xs">
               <div className="flex items-center justify-between">
                 <div>
                   <h3 className="font-display text-xl sm:text-2xl text-khadi font-light">
                     Manish Kanodia
                   </h3>
-                  <div className="font-mono text-[11px] text-haldi uppercase tracking-wider">
+                  <div className="font-mono text-[11px] text-marigold uppercase tracking-wider font-medium">
                     Founder, CEO
                   </div>
                 </div>
-                <div className="w-10 h-10 border border-marigold/40 bg-selvedge flex items-center justify-center rounded-xs text-marigold">
+                <div className="w-10 h-10 border border-marigold/30 bg-selvedge flex items-center justify-center rounded-xs text-marigold shadow-2xs">
                   <UserCheck className="w-5 h-5" />
                 </div>
               </div>
 
-              <div className="flex items-center gap-2.5 font-mono text-xs text-khadi pt-2 border-t border-hairline/60">
+              <div className="flex items-center gap-2.5 font-mono text-xs text-khadi pt-2 border-t border-hairline">
                 <Phone className="w-4 h-4 text-marigold shrink-0" />
-                <a href="tel:+919616415615" className="hover:text-haldi transition-colors font-medium">
+                <a href="tel:+919616415615" className="hover:text-marigold transition-colors font-medium">
                   +91 96164 15615
                 </a>
               </div>
@@ -348,13 +347,13 @@ export default function ContactPage() {
                   href={founderWa}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 inline-flex items-center justify-center gap-2 px-3 py-2.5 bg-selvedge border border-marigold/50 hover:border-marigold text-haldi font-mono text-[10.5px] uppercase tracking-wider rounded-xs transition-colors"
+                  className="flex-1 inline-flex items-center justify-center gap-2 px-3 py-2.5 bg-selvedge border border-marigold/40 hover:border-marigold text-marigold font-mono text-[10.5px] uppercase tracking-wider rounded-xs transition-colors font-medium shadow-2xs"
                 >
                   <MessageCircle className="w-3.5 h-3.5 text-marigold" /> Connect on WhatsApp
                 </a>
                 <a
                   href="tel:+919616415615"
-                  className="px-3.5 py-2.5 bg-selvedge border border-hairline text-khadi font-mono text-[10.5px] uppercase tracking-wider rounded-xs hover:border-marigold"
+                  className="px-3.5 py-2.5 bg-selvedge border border-hairline text-khadi font-mono text-[10.5px] uppercase tracking-wider rounded-xs hover:border-marigold font-medium shadow-2xs"
                 >
                   Call
                 </a>
@@ -362,24 +361,24 @@ export default function ContactPage() {
             </div>
 
             {/* Amit Agarwal */}
-            <div className="p-5 bg-warp border border-hairline/80 rounded-xs space-y-4">
+            <div className="p-5 bg-selvedge-light border border-hairline rounded-xs space-y-4 shadow-2xs">
               <div className="flex items-center justify-between">
                 <div>
                   <h3 className="font-display text-xl sm:text-2xl text-khadi font-light">
                     Amit Agarwal
                   </h3>
-                  <div className="font-mono text-[11px] text-haldi uppercase tracking-wider">
+                  <div className="font-mono text-[11px] text-marigold uppercase tracking-wider font-medium">
                     Executive Trade &amp; Sales Desk
                   </div>
                 </div>
-                <div className="w-10 h-10 border border-marigold/40 bg-selvedge flex items-center justify-center rounded-xs text-marigold">
+                <div className="w-10 h-10 border border-marigold/30 bg-selvedge flex items-center justify-center rounded-xs text-marigold shadow-2xs">
                   <UserCheck className="w-5 h-5" />
                 </div>
               </div>
 
-              <div className="flex items-center gap-2.5 font-mono text-xs text-khadi pt-2 border-t border-hairline/60">
+              <div className="flex items-center gap-2.5 font-mono text-xs text-khadi pt-2 border-t border-hairline">
                 <Phone className="w-4 h-4 text-marigold shrink-0" />
-                <a href="tel:+919559650752" className="hover:text-haldi transition-colors font-medium">
+                <a href="tel:+919559650752" className="hover:text-marigold transition-colors font-medium">
                   +91 95596 50752
                 </a>
               </div>
@@ -389,13 +388,13 @@ export default function ContactPage() {
                   href={salesWa}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 inline-flex items-center justify-center gap-2 px-3 py-2.5 bg-selvedge border border-marigold/50 hover:border-marigold text-haldi font-mono text-[10.5px] uppercase tracking-wider rounded-xs transition-colors"
+                  className="flex-1 inline-flex items-center justify-center gap-2 px-3 py-2.5 bg-selvedge border border-marigold/40 hover:border-marigold text-marigold font-mono text-[10.5px] uppercase tracking-wider rounded-xs transition-colors font-medium shadow-2xs"
                 >
                   <MessageCircle className="w-3.5 h-3.5 text-marigold" /> Connect on WhatsApp
                 </a>
                 <a
                   href="tel:+919559650752"
-                  className="px-3.5 py-2.5 bg-selvedge border border-hairline text-khadi font-mono text-[10.5px] uppercase tracking-wider rounded-xs hover:border-marigold"
+                  className="px-3.5 py-2.5 bg-selvedge border border-hairline text-khadi font-mono text-[10.5px] uppercase tracking-wider rounded-xs hover:border-marigold font-medium shadow-2xs"
                 >
                   Call
                 </a>
@@ -405,7 +404,7 @@ export default function ContactPage() {
         </div>
 
         {/* Partnership Query Redirect */}
-        <div className="p-6 sm:p-8 bg-warp border border-hairline rounded-sm flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div className="p-6 sm:p-8 bg-selvedge border border-hairline rounded-sm flex flex-col sm:flex-row items-center justify-between gap-6 shadow-2xs">
           <div className="space-y-1 text-center sm:text-left">
             <h3 className="font-display text-xl sm:text-2xl text-khadi font-light">
               Are you a showroom owner or fabric boutique?
@@ -416,7 +415,7 @@ export default function ContactPage() {
           </div>
           <Link
             href="/partner"
-            className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-selvedge border border-marigold/70 hover:border-marigold text-haldi font-mono text-xs uppercase tracking-widest rounded-xs transition-all whitespace-nowrap"
+            className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-selvedge-light border border-marigold/50 hover:border-marigold text-marigold font-mono text-xs uppercase tracking-widest rounded-xs transition-all whitespace-nowrap font-medium shadow-2xs"
           >
             <span>Open Query Form</span>
             <ArrowUpRight className="w-4 h-4 text-marigold" />

@@ -8,15 +8,17 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        warp: '#0C0A0E',
-        selvedge: '#171319',
-        kumkum: '#E4611A',
-        marigold: '#F2A03D',
-        haldi: '#FFD9A0',
-        khadi: '#F3EBE0',
-        ash: '#8E8079',
-        hairline: 'rgba(243,235,224,0.10)',
-        'hairline-strong': 'rgba(243,235,224,0.22)',
+        warp: '#FCFBF7',
+        selvedge: '#FFFFFF',
+        'selvedge-light': '#F6F2EC',
+        kumkum: '#8B2628',
+        'kumkum-deep': '#6D1B1D',
+        marigold: '#A67C26',
+        haldi: '#8A6715',
+        khadi: '#1C1917',
+        ash: '#665E59',
+        hairline: 'rgba(28, 25, 23, 0.08)',
+        'hairline-strong': 'rgba(28, 25, 23, 0.18)',
       },
       fontFamily: {
         display: ['var(--font-display)', 'Fraunces', 'Instrument Serif', 'Georgia', 'serif'],
@@ -24,9 +26,9 @@ module.exports = {
         body: ['var(--font-body)', 'DM Sans', 'Inter', 'sans-serif'],
       },
       boxShadow: {
-        'kumkum-glow': '0 0 30px rgba(228,97,26,0.25)',
-        'marigold-glow': '0 0 30px rgba(242,160,61,0.25)',
-        'selvedge-card': '0 10px 30px rgba(0,0,0,0.5)',
+        'kumkum-glow': '0 0 30px rgba(139,38,40,0.18)',
+        'marigold-glow': '0 0 30px rgba(166,124,38,0.18)',
+        'selvedge-card': '0 4px 20px -2px rgba(28,25,23,0.06), 0 2px 6px -1px rgba(28,25,23,0.04)',
       },
       animation: {
         'shimmer': 'shimmer 2.5s linear infinite',
