@@ -15,14 +15,14 @@ export const metadata: Metadata = {
     default: 'Maa Sheetla Agency · Wholesale Textile Agency Surat',
     template: '%s | Maa Sheetla Agency',
   },
-  description: 'Maa Sheetla Agency & Sunrise Tex Fab. B2B Wholesale Textile Brokerage & Commission Agency connecting Surat powerlooms with 570+ boutique counters across India.',
+  description: 'Maa Sheetla Agency & Sunrise Tex Fab. B2B Wholesale Textile Brokerage & Commission Agency connecting 700+ suppliers around India with 500+ buyers.',
   metadataBase: new URL('https://maasheetla.com'),
   keywords: [
     'wholesale textile agency Surat',
     'saree wholesale broker Surat',
     'lehenga manufacturer agent Surat',
     'wholesale textile commission Surat',
-    'saree supplier for boutiques Lucknow',
+    'saree wholesale supplier Lucknow',
     'saree supplier Kanpur',
     'wholesale textile agency Bhopal',
     'wholesale suits Delhi NCR',
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   authors: [{ name: 'Maa Sheetla Agency' }],
   openGraph: {
     title: 'Maa Sheetla Agency · B2B Wholesale Textile Agency',
-    description: 'Wholesale textile commission agency established 2010 in Surat, supplying verified boutique counters across 13 primary trade hubs.',
+    description: 'Wholesale textile commission agency established 2010 in Surat, connecting 700+ suppliers with 500+ buyers across India.',
     url: 'https://maasheetla.com',
     siteName: 'Maa Sheetla Agency',
     locale: 'en_IN',
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Maa Sheetla Agency · Surat Textile Agency',
-    description: 'B2B Wholesale textile brokerage in Surat connecting mills with verified boutiques.',
+    description: 'B2B Wholesale textile brokerage in Surat connecting 700+ suppliers with 500+ buyers across India.',
     images: ['https://maasheetla.com/img/social/og-default.jpg'],
   },
   alternates: {
@@ -110,7 +110,7 @@ export default function RootLayout({
       {
         '@type': 'Organization',
         name: 'Maa Sheetla Agency',
-        description: 'The designer label desk. Curated bridal lehengas, pure silk weaves, and hand-embroidered suits for boutique counters.',
+        description: 'The designer label desk. Curated bridal lehengas, pure silk weaves, and hand-embroidered suits for retail showroom counters.',
       },
       {
         '@type': 'Organization',

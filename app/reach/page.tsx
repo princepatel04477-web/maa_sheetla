@@ -11,7 +11,7 @@ import { Picture } from "../../components/Picture";
 
 export const metadata = {
   title: "70+ City Wholesale Trade Network · Maa Sheetla Agency",
-  description: "Direct Surat powerloom dispatch network across 10 states and 70+ trade cities and boutique hubs.",
+  description: "Direct powerloom dispatch network connecting 700+ suppliers around India with 500+ buyers across 70+ trade cities.",
 };
 
 const PRIMARY_REGIONS = [
@@ -78,8 +78,8 @@ export default function ReachPage() {
               <BlurText text="The 70+ City Wholesale Trade Network." />
             </h1>
             <p className="text-xs sm:text-base text-ash font-light leading-relaxed">
-              Consolidated 24-to-48 hour dispatches from our Surat looms and brokerage floors to over
-              570 verified boutique and showroom counters across North, Central, and Eastern India.
+              Consolidated 24-to-48 hour dispatches connecting 700+ suppliers around India with over
+              500+ verified buyers and showroom counters across North, Central, and Eastern India.
             </p>
           </div>
         </div>

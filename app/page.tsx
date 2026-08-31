@@ -39,7 +39,7 @@ const AGENCY_SERVICES = [
     icon: Truck,
     title: "4. Consolidated 48hr Direct Dispatch",
     tagline: "13 Regional Hub Corridors",
-    desc: "We consolidate assorted boutique lots into moisture-shielded cartons, scheduling direct 48-hour express rail and road cargo to all primary North and Central India hubs.",
+    desc: "We consolidate assorted buyer lots into moisture-shielded cartons, scheduling direct 48-hour express rail and road cargo to all primary North and Central India hubs.",
   },
 ];
 
@@ -49,7 +49,7 @@ const SOURCING_SPECIALTIES = [
     title: "Bridal & Heritage Silks",
     focus: "Kanjivaram Tissue · Banarasi Khaddi · Pure Mulberry Silk",
     desk: "Maa Sheetla (Label Desk)",
-    desc: "Exclusive seasonal runs and high-margin bridal designs with strict territorial protection for multi-brand boutique counters.",
+    desc: "Exclusive seasonal runs and high-margin bridal designs with strict territorial protection for multi-brand retail showrooms.",
   },
   {
     imageKey: "CAT-02",
@@ -70,15 +70,15 @@ const SOURCING_SPECIALTIES = [
     title: "Ready-to-Wear Indo-Western",
     focus: "Sharara Sets · Designer Co-ords · Festive Gowns",
     desk: "Both Agency Desks",
-    desc: "Ready garment assortments with designer finishing, graded boutique sizing, and direct showroom-ready packaging.",
+    desc: "Ready garment assortments with designer finishing, graded sizing, and direct showroom-ready packaging.",
   },
 ];
 
 const TICKER_ITEMS = [
   "Direct Surat Mill Rates",
-  "13 Major Trade Hubs",
+  "700+ Suppliers Around India",
+  "500+ Verified Buyers",
   "Piece-by-Piece Floor Inspection",
-  "570+ Verified Boutique Counters",
   "Exclusive Territorial Protections",
   "48-Hour Direct Dispatch",
   "Two Specialist Desks Under One Roof",

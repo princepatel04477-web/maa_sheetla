@@ -17,17 +17,17 @@ const FIRM_CONFIGS: Record<string, {
   description: string;
   roleDescription: string;
   moqRule: string;
-  targetBoutique: string;
+  targetProfile: string;
 }> = {
   "maa-sheetla": {
     name: "Maa Sheetla",
     logoUrl: "/logos/maa_sheetla_black.png",
-    eyebrow: "AGENCY DESK 01 · CURATED DESIGNER BOUTIQUES",
-    tagline: "For boutique counters that sell by craft & exclusivity.",
+    eyebrow: "AGENCY DESK 01 · CURATED DESIGNER COLLECTIONS",
+    tagline: "For showroom counters that sell by craft & exclusivity.",
     description: "Curated wholesale brokerage of high-craft bridal lehengas, tissue silk sarees, and hand-embroidered suits for premium multi-designer counters.",
-    roleDescription: "Maa Sheetla operates as the dedicated agency desk for discerning boutique owners who demand distinctive silhouettes, intricate hand needlework, and strict territorial exclusivity.",
-    moqRule: "Flexible boutique minimums (2 to 6 pcs per design) with complete colorway sets.",
-    targetBoutique: "Designer boutiques & heritage bridal showrooms in Hazratganj, South Delhi, Johari Bazaar & Civil Lines.",
+    roleDescription: "Maa Sheetla operates as the dedicated agency desk for discerning showroom owners and buyers who demand distinctive silhouettes, intricate hand needlework, and strict territorial exclusivity.",
+    moqRule: "Flexible order minimums (2 to 6 pcs per design) with complete colorway sets.",
+    targetProfile: "Designer bridal showrooms & luxury counters in Hazratganj, South Delhi, Johari Bazaar & Civil Lines.",
   },
   "sunrise-tex-fab": {
     name: "Sunrise Tex Fab",
@@ -35,9 +35,9 @@ const FIRM_CONFIGS: Record<string, {
     eyebrow: "AGENCY DESK 02 · HIGH-VELOCITY COMMERCIAL WHOLESALE",
     tagline: "Priced and packed for daily retail turnover.",
     description: "High-velocity wholesale brokerage of the identical four catalogues, streamlined for rapid inventory turns and competitive commercial retail margins.",
-    roleDescription: "Sunrise Tex Fab is designed for volume retail counters that require dependable weekly supply, mill-consistent dye lots, and attractive retail markup margins.",
+    roleDescription: "Sunrise Tex Fab is designed for volume retail counters and wholesale buyers that require dependable weekly supply, mill-consistent dye lots, and attractive retail markup margins.",
     moqRule: "Volume carton packaging (8 to 12 pcs per box) with immediate mill dispatch guarantees.",
-    targetBoutique: "High-footfall textile counters & commercial retail showrooms across UP, MP, Bihar, Punjab & NCR.",
+    targetProfile: "High-footfall textile counters & commercial retail showrooms across UP, MP, Bihar, Punjab & NCR.",
   }
 };
 
@@ -112,7 +112,7 @@ export default function FirmProfilePage({ params }: { params: { firm: string } }
           </div>
           <div className="space-y-1.5">
             <span className="text-marigold tracking-widest uppercase text-[10px] font-medium">Ideal Showroom Profile:</span>
-            <p className="text-khadi font-normal">{config.targetBoutique}</p>
+            <p className="text-khadi font-normal">{config.targetProfile}</p>
           </div>
         </div>
 

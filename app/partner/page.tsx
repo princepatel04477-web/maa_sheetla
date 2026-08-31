@@ -212,7 +212,7 @@ export default function QueryPage() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                   <div className="space-y-1.5">
                     <label className="block text-[10.5px] font-mono text-ash tracking-widest uppercase">
-                      Firm / Boutique Name *
+                      Firm / Business Name *
                     </label>
                     <input
                       type="text"

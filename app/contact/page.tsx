@@ -415,7 +415,7 @@ export default function ContactPage() {
         <div className="p-6 sm:p-8 bg-selvedge border border-hairline rounded-sm flex flex-col sm:flex-row items-center justify-between gap-6 shadow-2xs">
           <div className="space-y-1 text-center sm:text-left">
             <h3 className="font-display text-xl sm:text-2xl text-khadi font-light">
-              Are you a showroom owner or fabric boutique?
+              Are you a showroom owner or wholesale buyer?
             </h3>
             <p className="text-xs text-ash font-light">
               Submit your GST details and counter requirements through our verified stockist form.

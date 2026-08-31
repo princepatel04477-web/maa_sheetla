@@ -64,7 +64,7 @@ export default function SplitHero() {
               Maa Sheetla
             </h2>
             <p className="font-display text-lg sm:text-2xl text-marigold font-light italic mt-1">
-              For boutiques that sell by label.
+              For showrooms and buyers that sell by label.
             </p>
           </div>
           <p className="text-xs sm:text-sm text-khadi/90 font-normal max-w-lg leading-relaxed bg-selvedge/60 backdrop-blur-2xs p-3 rounded-xs border border-hairline/40">

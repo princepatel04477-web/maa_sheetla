@@ -36,7 +36,7 @@ const QC_STEPS = [
     step: "04",
     imageKey: "QC-04",
     title: "Moisture-Shield Carton Packing",
-    desc: "Assorted boutique sets are packed in heavy-duty corrugated cartons with moisture-barrier film for zero damage during monsoon and rail transit.",
+    desc: "Assorted wholesale sets are packed in heavy-duty corrugated cartons with moisture-barrier film for zero damage during monsoon and rail transit.",
   },
 ];
 

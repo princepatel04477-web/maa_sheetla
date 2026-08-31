@@ -4,7 +4,8 @@
   "location": "Surat, Gujarat",
   "firms": ["Maa Sheetla", "Sunrise Tex Fab"],
   "catalogues": ["Sarees", "Lehengas", "Suits", "Garments"],
-  "countersTotal": 570,
+  "buyersTotal": 500,
+  "suppliersTotal": 700,
   "cities": [
     { "name": "Delhi", "counters": 85, "since": 2013, "region": "Delhi NCR" },
     { "name": "Varanasi", "counters": 55, "since": 2012, "region": "Uttar Pradesh" },
