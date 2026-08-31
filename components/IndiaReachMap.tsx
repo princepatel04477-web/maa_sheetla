@@ -485,7 +485,7 @@ function NodeMark({
 
       <text
         x={x + dx}
-        y={y + dy + 4}
+        y={y + dy + 3}
         textAnchor={anchor}
         fill={active || isOrigin ? "#8B2628" : "#1C1917"}
         style={{
@@ -499,15 +499,6 @@ function NodeMark({
         }}
       >
         {node.name}
-      </text>
-      <text
-        x={x + dx}
-        y={y + dy + 14}
-        textAnchor={anchor}
-        fill="#665E59"
-        style={{ fontFamily: mono, fontSize: 8, letterSpacing: "0.08em", pointerEvents: "none", fontWeight: 400 }}
-      >
-        {isOrigin ? "HEAD OFFICE" : node.region.split("·")[0].trim()}
       </text>
     </g>
   );
@@ -524,10 +515,10 @@ function ActiveNodeCallout({
 }) {
   const [x, y] = pt;
   const mono = "var(--font-mono, ui-monospace, monospace)";
-  const cardW = 160;
-  const cardH = 46;
+  const cardW = 150;
+  const cardH = 38;
   const cardX = Math.min(Math.max(x - cardW / 2, 20), VIEW_BOX.w - cardW - 20);
-  const cardY = y - cardH - 12;
+  const cardY = y - cardH - 10;
 
   return (
     <g style={{ pointerEvents: "none" }}>
@@ -540,8 +531,8 @@ function ActiveNodeCallout({
         strokeWidth={1}
         strokeDasharray="2 2"
       />
-      <circle cx={x} cy={y} r={7} fill="none" stroke="#8B2628" strokeWidth={1.5} />
-      <circle cx={x} cy={y} r={3.5} fill="#8B2628" />
+      <circle cx={x} cy={y} r={6} fill="none" stroke="#8B2628" strokeWidth={1.5} />
+      <circle cx={x} cy={y} r={3} fill="#8B2628" />
 
       <rect
         x={cardX}
@@ -566,17 +557,9 @@ function ActiveNodeCallout({
         x={cardX + 10}
         y={cardY + 28}
         fill="#8B2628"
-        style={{ fontFamily: mono, fontSize: 8.5, fontWeight: 500 }}
+        style={{ fontFamily: mono, fontSize: 8, fontWeight: 500 }}
       >
-        {node.region} · {node.since ? `Since ${node.since}` : "Direct Dispatch"}
-      </text>
-      <text
-        x={cardX + 10}
-        y={cardY + 39}
-        fill="#665E59"
-        style={{ fontFamily: mono, fontSize: 7.5, fontWeight: 400 }}
-      >
-        {node.hub.length > 28 ? node.hub.slice(0, 28) + "..." : node.hub}
+        {node.hub.length > 25 ? node.hub.slice(0, 25) + "..." : node.hub}
       </text>
     </g>
   );
