@@ -22,7 +22,7 @@ export default function Header() {
   const waEnquiryUrl = createWhatsAppLink("general wholesale agency trade query");
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 h-20 sm:h-24 bg-warp/95 backdrop-blur-md border-b border-hairline shadow-xs transition-colors gpu-layer">
+    <header className="fixed top-0 left-0 right-0 z-50 h-20 sm:h-24 bg-[#FCFBF7] border-b border-hairline shadow-xs transition-colors gpu-layer">
       <div className="max-w-7xl mx-auto h-full px-4 sm:px-8 lg:px-12 flex items-center justify-between">
         {/* Dual Brand Logos (Maa Sheetla & Sunrise Fab Tex) */}
         <Link
@@ -97,7 +97,7 @@ export default function Header() {
 
       {/* Mobile Drawer Menu */}
       {mobileOpen && (
-        <div className="lg:hidden bg-warp/98 backdrop-blur-xl border-b border-hairline px-5 py-6 space-y-5 shadow-xl animate-in fade-in slide-in-from-top-4 duration-200">
+        <div className="lg:hidden bg-[#FCFBF7] border-b border-hairline-strong px-5 py-6 space-y-5 shadow-2xl animate-in fade-in slide-in-from-top-4 duration-200">
           <nav className="flex flex-col space-y-1 font-mono text-xs tracking-widest uppercase">
             {NAV_LINKS.map((link) => (
               <Link

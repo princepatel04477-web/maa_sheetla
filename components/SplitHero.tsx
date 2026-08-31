@@ -12,7 +12,7 @@ export default function SplitHero() {
   const sunriseWaUrl = createWhatsAppLink("connecting with the Sunrise Tex Fab counter in Surat");
 
   return (
-    <section id="firms" className="relative w-full min-h-[calc(100vh-4rem)] sm:min-h-[calc(100vh-5rem)] mt-16 sm:mt-20 flex flex-col md:flex-row border-b border-hairline overflow-hidden">
+    <section id="firms" className="relative w-full min-h-[calc(100vh-5rem)] sm:min-h-[calc(100vh-6rem)] mt-20 sm:mt-24 flex flex-col md:flex-row border-b border-hairline overflow-hidden">
       {/* LEFT PANEL: Maa Sheetla (The Named Counter) */}
       <div
         onMouseEnter={() => setHoveredPanel("maa")}
