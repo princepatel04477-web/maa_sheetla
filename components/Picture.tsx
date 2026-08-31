@@ -31,7 +31,7 @@ export const Picture: React.FC<PictureProps> = ({
   const altText = customAlt || item.alt;
 
   return (
-    <picture className={`ms-pic block relative overflow-hidden ${className}`}>
+    <picture className={`ms-pic block relative w-full h-full overflow-hidden ${className}`}>
       <source type="image/avif" srcSet={avifSrcset} sizes={sizes} />
       <source type="image/webp" srcSet={webpSrcset} sizes={sizes} />
       <img
@@ -42,9 +42,8 @@ export const Picture: React.FC<PictureProps> = ({
         loading={priority ? 'eager' : 'lazy'}
         decoding="async"
         fetchPriority={priority ? 'high' : 'auto'}
-        style={{ aspectRatio: item.aspect || 'auto' }}
         data-image-status={item.status}
-        className={`w-full h-full object-cover transition-opacity duration-300 ${imgClassName}`}
+        className={`w-full h-full object-cover object-center transition-opacity duration-300 ${imgClassName}`}
       />
     </picture>
   );

@@ -117,20 +117,12 @@ body {
   transition: opacity .4s ease;
 }
 
-/* Seat images into the dark UI: gold hairline + inner falloff */
+/* Clean image frame */
 .card-media {
   position: relative;
-  border: 1px solid var(--hairline, #1F1F22);
+  border: 1px solid var(--hairline, rgba(28, 25, 23, 0.08));
   border-radius: 2px;
   overflow: hidden;
-}
-.card-media::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  box-shadow: inset 0 -80px 90px -40px var(--warp, #0C0A0E);
-  border-top: 1px solid rgb(201 169 97 / .14);
 }
 
 /* Ratio locks — prevent CLS */

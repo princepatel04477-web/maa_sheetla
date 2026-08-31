@@ -140,21 +140,19 @@ def main():
     ensure_dir(qc_dir)
 
     q1 = Image.open(os.path.join(SRC_DIR, "ms8801_kanjivaram_1788158863275.jpg")).convert("RGB")
-    q1_crop = q1.crop((200, 600, 1200, 1600))
-    crop_and_resize(q1_crop, 1200, 1200).save(os.path.join(qc_dir, "qc-01-warp-weft-density.png"), "PNG")
+    crop_and_resize(q1, 1200, 1200, anchor="center").save(os.path.join(qc_dir, "qc-01-warp-weft-density.png"), "PNG")
     print("Saved: qc/qc-01-warp-weft-density.png")
 
     q2 = Image.open(os.path.join(SRC_DIR, "st4420_banarasi_1788159062049.jpg")).convert("RGB")
-    q2_crop = q2.crop((100, 300, 1100, 1300))
-    crop_and_resize(q2_crop, 1200, 1200).save(os.path.join(qc_dir, "qc-02-dye-lot-colorfastness.png"), "PNG")
+    crop_and_resize(q2, 1200, 1200, anchor="center").save(os.path.join(qc_dir, "qc-02-dye-lot-colorfastness.png"), "PNG")
     print("Saved: qc/qc-02-dye-lot-colorfastness.png")
 
     q3 = Image.open(os.path.join(SRC_DIR, "ms8815_organza_1788158875043.jpg")).convert("RGB")
-    crop_and_resize(q3, 1200, 1200).save(os.path.join(qc_dir, "qc-03-backlit-flaw-screening.png"), "PNG")
+    crop_and_resize(q3, 1200, 1200, anchor="center").save(os.path.join(qc_dir, "qc-03-backlit-flaw-screening.png"), "PNG")
     print("Saved: qc/qc-03-backlit-flaw-screening.png")
 
     q4 = Image.open(os.path.join(SRC_DIR, "st3305_cambric_1788159108048.jpg")).convert("RGB")
-    crop_and_resize(q4, 1200, 1200).save(os.path.join(qc_dir, "qc-04-moisture-shield-carton.png"), "PNG")
+    crop_and_resize(q4, 1200, 1200, anchor="center").save(os.path.join(qc_dir, "qc-04-moisture-shield-carton.png"), "PNG")
     print("Saved: qc/qc-04-moisture-shield-carton.png")
 
     print("\n=== 6. Processing Office Cards Masters (1600x1000, 16:10) ===")
