@@ -46,7 +46,7 @@ export default function Footer() {
             <div className="pt-2 flex flex-wrap gap-2 text-[10.5px] font-mono uppercase text-marigold font-medium">
               <span className="px-2.5 py-1 bg-selvedge border border-hairline rounded-xs shadow-2xs">EST. 2010</span>
               <span className="px-2.5 py-1 bg-selvedge border border-hairline rounded-xs shadow-2xs">SURAT · KANPUR · AHMEDABAD</span>
-              <span className="px-2.5 py-1 bg-selvedge border border-hairline rounded-xs shadow-2xs">13 REGIONAL HUBS</span>
+              <span className="px-2.5 py-1 bg-selvedge border border-hairline rounded-xs shadow-2xs">70+ TRADE CITIES</span>
             </div>
           </div>
 
@@ -76,7 +76,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/reach" className="hover:text-marigold transition-colors inline-flex items-center gap-1.5 text-ash">
-                  <span>13-City Logistics Network</span>
+                  <span>70+ City Logistics Network</span>
                   <ArrowUpRight className="w-3 h-3 text-ash" />
                 </Link>
               </li>

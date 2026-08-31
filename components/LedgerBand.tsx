@@ -40,10 +40,10 @@ export default function LedgerBand() {
         {/* Stat 4 */}
         <div className="space-y-1.5 md:border-l md:border-hairline pt-4 md:pt-0 md:pl-6">
           <div className="font-display text-3xl sm:text-5xl lg:text-6xl text-marigold font-light tracking-tight leading-none">
-            <CountUp to={70} duration={1.2} suffix="+" /> <span className="text-xs font-mono text-ash font-normal">CITIES</span>
+            <CountUp to={70} duration={1.2} suffix="+" />
           </div>
           <p className="font-mono text-[9.5px] sm:text-[10.5px] tracking-[0.2em] sm:tracking-[0.24em] text-ash uppercase">
-            Across 10 States
+            Cities Across 10 States
           </p>
         </div>
       </div>

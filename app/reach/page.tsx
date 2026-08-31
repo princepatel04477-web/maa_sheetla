@@ -23,13 +23,13 @@ const PRIMARY_REGIONS = [
   },
   {
     state: "Bihar",
-    corridor: "Eastern Trade Corridor (8 Key Hubs)",
+    corridor: "Eastern Trade Corridor (8 Key Cities)",
     transit: "36–48 hrs Parcel Express",
     cities: "Patna, Muzaffarpur, Arrah, Aurangabad, Bagaha, Bihar Sharif, Kishanganj, Lakhisarai",
   },
   {
     state: "Jharkhand",
-    corridor: "Chhota Nagpur & Coalfield Belt (5 Hubs)",
+    corridor: "Chhota Nagpur & Coalfield Belt (5 Cities)",
     transit: "48 hrs Consolidated Cargo",
     cities: "Ranchi, Dhanbad, Daltonganj, Garhwa, Deoghar, Kirkend Bazar",
   },

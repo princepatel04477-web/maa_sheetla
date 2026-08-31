@@ -38,8 +38,8 @@ const AGENCY_SERVICES = [
   {
     icon: Truck,
     title: "4. Consolidated 48hr Direct Dispatch",
-    tagline: "13 Regional Hub Corridors",
-    desc: "We consolidate assorted buyer lots into moisture-shielded cartons, scheduling direct 48-hour express rail and road cargo to all primary North and Central India hubs.",
+    tagline: "70+ Connected City Corridors",
+    desc: "We consolidate assorted buyer lots into moisture-shielded cartons, scheduling direct 48-hour express rail and road cargo across 70+ cities in North and Central India.",
   },
 ];
 
@@ -78,6 +78,7 @@ const TICKER_ITEMS = [
   "Direct Surat Mill Rates",
   "700+ Suppliers Around India",
   "500+ Verified Buyers",
+  "70+ Trade Cities Across India",
   "Piece-by-Piece Floor Inspection",
   "Exclusive Territorial Protections",
   "48-Hour Direct Dispatch",
