@@ -27,23 +27,23 @@ export default function SplitHero() {
       >
         {/* Atmosphere Background */}
         <div
-          className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 ease-out group-hover:scale-105 opacity-15"
+          className="absolute inset-0 bg-cover bg-center transition-all duration-1000 ease-out group-hover:scale-105 opacity-50 group-hover:opacity-70"
           style={{
             backgroundImage:
               'url("/img/firms/desk-maa-sheetla-1400.jpg")',
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-warp/95 via-warp/80 to-warp/30" />
-        <div className="absolute inset-0 bg-kumkum/5 pointer-events-none opacity-40 group-hover:opacity-60 transition-opacity" />
+        <div className="absolute inset-0 bg-gradient-to-t from-warp/95 via-warp/65 to-warp/20 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-r from-warp/80 via-transparent to-transparent pointer-events-none" />
 
         {/* Panel Header Eyebrow */}
         <div className="relative z-10 space-y-1.5 pt-1">
           <div className="flex items-center gap-2">
-            <span className="font-mono text-[9px] sm:text-[9.5px] tracking-[0.24em] text-kumkum uppercase bg-selvedge/90 px-2.5 py-1 border border-kumkum/30 rounded-xs shadow-2xs font-medium">
+            <span className="font-mono text-[9px] sm:text-[9.5px] tracking-[0.24em] text-kumkum uppercase bg-selvedge/95 px-2.5 py-1 border border-kumkum/30 rounded-xs shadow-2xs font-medium backdrop-blur-xs">
               THE NAMED COUNTER · EST. 2010
             </span>
           </div>
-          <div className="font-mono text-[10px] sm:text-[10.5px] text-ash tracking-widest uppercase pl-0.5 font-medium">
+          <div className="font-mono text-[10px] sm:text-[10.5px] text-khadi tracking-widest uppercase pl-0.5 font-medium">
             FIRM 01 · SURAT TEXTILE MARKET
           </div>
         </div>
@@ -60,27 +60,27 @@ export default function SplitHero() {
           </div>
 
           <div>
-            <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-light text-khadi tracking-tight leading-[0.94]">
+            <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-light text-khadi tracking-tight leading-[0.94] drop-shadow-2xs">
               Maa Sheetla
             </h2>
             <p className="font-display text-lg sm:text-2xl text-marigold font-light italic mt-1">
               For boutiques that sell by label.
             </p>
           </div>
-          <p className="text-xs sm:text-sm text-ash font-light max-w-lg leading-relaxed">
+          <p className="text-xs sm:text-sm text-khadi/90 font-normal max-w-lg leading-relaxed bg-selvedge/60 backdrop-blur-2xs p-3 rounded-xs border border-hairline/40">
             Curated sourcing of high-craft bridal lehengas, pure tissue Kanjivarams, and hand-embroidered
             silks. Structured for premium multi-designer counters demanding strict territorial exclusivity.
           </p>
 
-          <div className="pt-1 flex flex-wrap gap-1.5 sm:gap-2 text-[9.5px] sm:text-[10.5px] font-mono text-ash">
-            <span className="bg-selvedge px-2.5 py-1 border border-hairline rounded-xs shadow-2xs">MOQ: 2–6 pcs/set</span>
-            <span className="bg-selvedge px-2.5 py-1 border border-hairline rounded-xs shadow-2xs">Territorial Lock</span>
-            <span className="bg-selvedge px-2.5 py-1 border border-hairline rounded-xs shadow-2xs">Pure Silk Jacquards</span>
+          <div className="pt-1 flex flex-wrap gap-1.5 sm:gap-2 text-[9.5px] sm:text-[10.5px] font-mono text-khadi">
+            <span className="bg-selvedge/95 px-2.5 py-1 border border-hairline rounded-xs shadow-2xs font-medium backdrop-blur-xs">MOQ: 2–6 pcs/set</span>
+            <span className="bg-selvedge/95 px-2.5 py-1 border border-hairline rounded-xs shadow-2xs font-medium backdrop-blur-xs">Territorial Lock</span>
+            <span className="bg-selvedge/95 px-2.5 py-1 border border-hairline rounded-xs shadow-2xs font-medium backdrop-blur-xs">Pure Silk Jacquards</span>
           </div>
         </div>
 
         {/* Panel Footer Actions */}
-        <div className="relative z-10 pt-5 border-t border-hairline flex flex-col sm:flex-row sm:items-center justify-between gap-3.5">
+        <div className="relative z-10 pt-5 border-t border-hairline flex flex-col sm:flex-row sm:items-center justify-between gap-3.5 bg-selvedge/80 backdrop-blur-xs -mx-2 px-2 py-2 rounded-xs">
           <Link
             href="/firms/maa-sheetla"
             className="inline-flex items-center gap-2 font-mono text-xs tracking-[0.18em] uppercase text-khadi group-hover:text-marigold transition-colors py-1 font-medium"
@@ -114,23 +114,23 @@ export default function SplitHero() {
       >
         {/* Atmosphere Background */}
         <div
-          className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 ease-out group-hover:scale-105 opacity-15"
+          className="absolute inset-0 bg-cover bg-center transition-all duration-1000 ease-out group-hover:scale-105 opacity-50 group-hover:opacity-70"
           style={{
             backgroundImage:
               'url("/img/firms/desk-sunrise-fab-tex-1400.jpg")',
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-warp/95 via-warp/80 to-warp/30" />
-        <div className="absolute inset-0 bg-marigold/5 pointer-events-none opacity-40 group-hover:opacity-60 transition-opacity" />
+        <div className="absolute inset-0 bg-gradient-to-t from-warp/95 via-warp/65 to-warp/20 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-r from-warp/80 via-transparent to-transparent pointer-events-none" />
 
         {/* Panel Header Eyebrow */}
         <div className="relative z-10 space-y-1.5 pt-1">
           <div className="flex items-center gap-2">
-            <span className="font-mono text-[9px] sm:text-[9.5px] tracking-[0.24em] text-marigold uppercase bg-selvedge/90 px-2.5 py-1 border border-marigold/30 rounded-xs shadow-2xs font-medium">
+            <span className="font-mono text-[9px] sm:text-[9.5px] tracking-[0.24em] text-marigold uppercase bg-selvedge/95 px-2.5 py-1 border border-marigold/30 rounded-xs shadow-2xs font-medium backdrop-blur-xs">
               THE VOLUME COUNTER · EST. 2010
             </span>
           </div>
-          <div className="font-mono text-[10px] sm:text-[10.5px] text-ash tracking-widest uppercase pl-0.5 font-medium">
+          <div className="font-mono text-[10px] sm:text-[10.5px] text-khadi tracking-widest uppercase pl-0.5 font-medium">
             FIRM 02 · SURAT TEXTILE MARKET
           </div>
         </div>
@@ -147,27 +147,27 @@ export default function SplitHero() {
           </div>
 
           <div>
-            <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-light text-khadi tracking-tight leading-[0.94]">
+            <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-light text-khadi tracking-tight leading-[0.94] drop-shadow-2xs">
               Sunrise Fab Tex
             </h2>
             <p className="font-display text-lg sm:text-2xl text-marigold font-light italic mt-1">
               Priced and packed for the retail floor.
             </p>
           </div>
-          <p className="text-xs sm:text-sm text-ash font-light max-w-lg leading-relaxed">
+          <p className="text-xs sm:text-sm text-khadi/90 font-normal max-w-lg leading-relaxed bg-selvedge/60 backdrop-blur-2xs p-3 rounded-xs border border-hairline/40">
             High-velocity wholesale brokerage for commercial retail showrooms. Dependable carton lots,
             mill-consistent dye lots, and rapid re-order turnarounds built for high weekly volume turns.
           </p>
 
-          <div className="pt-1 flex flex-wrap gap-1.5 sm:gap-2 text-[9.5px] sm:text-[10.5px] font-mono text-ash">
-            <span className="bg-selvedge px-2.5 py-1 border border-hairline rounded-xs shadow-2xs">MOQ: 8–12 pcs carton</span>
-            <span className="bg-selvedge px-2.5 py-1 border border-hairline rounded-xs shadow-2xs">Immediate Mill Dispatch</span>
-            <span className="bg-selvedge px-2.5 py-1 border border-hairline rounded-xs shadow-2xs">Commercial Margins</span>
+          <div className="pt-1 flex flex-wrap gap-1.5 sm:gap-2 text-[9.5px] sm:text-[10.5px] font-mono text-khadi">
+            <span className="bg-selvedge/95 px-2.5 py-1 border border-hairline rounded-xs shadow-2xs font-medium backdrop-blur-xs">MOQ: 8–12 pcs carton</span>
+            <span className="bg-selvedge/95 px-2.5 py-1 border border-hairline rounded-xs shadow-2xs font-medium backdrop-blur-xs">Immediate Mill Dispatch</span>
+            <span className="bg-selvedge/95 px-2.5 py-1 border border-hairline rounded-xs shadow-2xs font-medium backdrop-blur-xs">Commercial Margins</span>
           </div>
         </div>
 
         {/* Panel Footer Actions */}
-        <div className="relative z-10 pt-5 border-t border-hairline flex flex-col sm:flex-row sm:items-center justify-between gap-3.5">
+        <div className="relative z-10 pt-5 border-t border-hairline flex flex-col sm:flex-row sm:items-center justify-between gap-3.5 bg-selvedge/80 backdrop-blur-xs -mx-2 px-2 py-2 rounded-xs">
           <Link
             href="/firms/sunrise-tex-fab"
             className="inline-flex items-center gap-2 font-mono text-xs tracking-[0.18em] uppercase text-khadi group-hover:text-marigold transition-colors py-1 font-medium"

@@ -50,7 +50,7 @@ export default function CraftPage() {
       <div className="max-w-7xl mx-auto space-y-12 sm:space-y-16 relative z-10">
         {/* Header with Hero-Craft Atmosphere */}
         <div className="relative overflow-hidden rounded-sm border border-hairline p-6 sm:p-12 lg:p-16 space-y-5 bg-selvedge">
-          <div className="absolute inset-0 opacity-20 pointer-events-none">
+          <div className="absolute inset-0 opacity-40 pointer-events-none">
             <Picture
               imageKey="HERO-CRAFT"
               priority={true}
@@ -58,7 +58,7 @@ export default function CraftPage() {
               className="w-full h-full"
               imgClassName="object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-selvedge via-selvedge/80 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-selvedge via-selvedge/60 to-transparent" />
           </div>
 
           <div className="relative z-10 space-y-3.5 max-w-3xl">
