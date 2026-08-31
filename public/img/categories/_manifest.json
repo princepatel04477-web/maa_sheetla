@@ -1,0 +1,38 @@
+{
+  "cat-01-bridal-heritage-silks": {
+    "widths": [
+      600,
+      900,
+      1200
+    ],
+    "aspect": "1200 / 1600",
+    "lqip": "data:image/webp;base64,UklGRlwAAABXRUJQVlA4IFAAAACQBACdASoUABsAPyl6s1OuJ6Sit/qoAcAlCUAYdYPSrbh9IeAMQyYYFuRqKIAA/qm6H2/4LgCZRUKVDD6dP3doaqtTww9CMFys7RQrSQVwAA=="
+  },
+  "cat-02-festive-sarees": {
+    "widths": [
+      600,
+      900,
+      1200
+    ],
+    "aspect": "1200 / 1600",
+    "lqip": "data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAAAQBQCdASoUABsAPzGCtVOuqKUit/VYAdAmCWUAAClaY2AtJ+HLCfWutMWZGxuExnsAAP5rM4Zxep/Ouc/TRQtyFv2w5OBT1Z+ngv85AC9p9n+7LcJgx/gUAEAAAA=="
+  },
+  "cat-03-embroidered-suits-kurtis": {
+    "widths": [
+      600,
+      900,
+      1200
+    ],
+    "aspect": "1200 / 1600",
+    "lqip": "data:image/webp;base64,UklGRl4AAABXRUJQVlA4IFIAAACQBACdASoUABsAPzWAt1OvKCUit/VYAeAmiWUAzuwQ76r6RZD3boK0zb65RqAA/ujFSSnbDsWJytD7A4bLCCA7ksrOPMpgjQpXZQ9G2QKQAAAA"
+  },
+  "cat-04-indo-western-garments": {
+    "widths": [
+      600,
+      900,
+      1200
+    ],
+    "aspect": "1200 / 1600",
+    "lqip": "data:image/webp;base64,UklGRnIAAABXRUJQVlA4IGYAAADwBACdASoUABsAPzmGt1SvKKUjMBgMAeAnCUAYZoHf6mECqXEPoPzi1HRQOXj45AAA/gc9eJ35z44sJQIrsDnN3HgxFhBM5jAUJijNxvLbm3x4DQlLi0wWfb8T38yxKokNRDqAAAA="
+  }
+}

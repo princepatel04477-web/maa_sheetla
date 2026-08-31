@@ -9,6 +9,7 @@ import SpotlightCard from "../../components/react-bits/SpotlightCard";
 import AhmedabadCountdown from "../../components/AhmedabadCountdown";
 import { MapPin, Phone, MessageCircle, Clock, Mail, Building2, ArrowUpRight, UserCheck } from "lucide-react";
 import { createWhatsAppLink, OFFICE_NUMBERS } from "../../lib/whatsapp";
+import { Picture } from "../../components/Picture";
 
 export default function ContactPage() {
   const suratWa = createWhatsAppLink("inquiring with Surat Head Office desk", {
@@ -91,6 +92,14 @@ export default function ContactPage() {
             {/* 1. Surat Head Office */}
             <SpotlightCard className="p-6 sm:p-7 bg-selvedge border-hairline rounded-sm space-y-6 flex flex-col justify-between">
               <div className="space-y-4">
+                <div className="card-media card-media--office w-full rounded-xs overflow-hidden mb-2">
+                  <Picture
+                    imageKey="OFFICE-SURAT"
+                    sizes="(max-width: 640px) 92vw, (max-width: 1024px) 45vw, 30vw"
+                    className="w-full h-full"
+                    imgClassName="hover:scale-105 transition-transform duration-700 ease-out"
+                  />
+                </div>
                 <div className="flex items-center justify-between font-mono text-xs">
                   <span className="text-marigold font-display text-2xl font-light">SURAT</span>
                   <span className="text-haldi text-[10px] border border-marigold/40 px-2 py-0.5 bg-warp uppercase">
@@ -159,6 +168,14 @@ export default function ContactPage() {
             {/* 2. Kanpur Office */}
             <SpotlightCard className="p-6 sm:p-7 bg-selvedge border-hairline rounded-sm space-y-6 flex flex-col justify-between">
               <div className="space-y-4">
+                <div className="card-media card-media--office w-full rounded-xs overflow-hidden mb-2">
+                  <Picture
+                    imageKey="OFFICE-KANPUR"
+                    sizes="(max-width: 640px) 92vw, (max-width: 1024px) 45vw, 30vw"
+                    className="w-full h-full"
+                    imgClassName="hover:scale-105 transition-transform duration-700 ease-out"
+                  />
+                </div>
                 <div className="flex items-center justify-between font-mono text-xs">
                   <span className="text-marigold font-display text-2xl font-light">KANPUR</span>
                   <span className="text-haldi text-[10px] border border-marigold/40 px-2 py-0.5 bg-warp uppercase">
@@ -218,6 +235,14 @@ export default function ContactPage() {
             {/* 3. Ahmedabad Office */}
             <SpotlightCard className="p-6 sm:p-7 bg-selvedge border-hairline rounded-sm space-y-6 flex flex-col justify-between">
               <div className="space-y-4">
+                <div className="card-media card-media--office w-full rounded-xs overflow-hidden mb-2">
+                  <Picture
+                    imageKey="OFFICE-AHMEDABAD"
+                    sizes="(max-width: 640px) 92vw, (max-width: 1024px) 45vw, 30vw"
+                    className="w-full h-full"
+                    imgClassName="hover:scale-105 transition-transform duration-700 ease-out"
+                  />
+                </div>
                 <div className="flex items-center justify-between font-mono text-xs">
                   <span className="text-marigold font-display text-2xl font-light">AHMEDABAD</span>
                   <span className="text-haldi text-[10px] border border-marigold/40 px-2 py-0.5 bg-warp uppercase">

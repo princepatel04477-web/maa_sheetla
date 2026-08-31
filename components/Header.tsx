@@ -24,23 +24,23 @@ export default function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 h-16 sm:h-20 bg-warp/95 backdrop-blur-md border-b border-hairline shadow-md shadow-black/50">
       <div className="max-w-7xl mx-auto h-full px-4 sm:px-8 lg:px-12 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2.5 sm:gap-3.5 group">
-          <div className="h-9 sm:h-11 w-9 sm:w-11 border border-marigold/50 bg-selvedge/90 flex items-center justify-center p-1 rounded-xs shadow-inner shrink-0 group-hover:border-marigold transition-all">
+        <Link href="/" className="flex items-center gap-2.5 sm:gap-3.5 group shrink-0">
+          <div className="h-10 sm:h-11 w-auto flex items-center justify-center shrink-0">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/logos/maa_sheetla_gold.png"
               alt="Maa Sheetla Agency Logo"
-              className="w-full h-full object-contain filter drop-shadow-xs"
+              className="h-9 sm:h-10 w-auto object-contain filter drop-shadow-xs group-hover:scale-105 transition-transform"
             />
           </div>
-          <div>
-            <div className="font-display text-base sm:text-lg tracking-tight text-khadi flex items-center gap-1.5 sm:gap-2 leading-snug">
+          <div className="flex flex-col justify-center">
+            <div className="font-display text-base sm:text-lg tracking-tight text-khadi flex items-center gap-1.5 sm:gap-2 leading-snug whitespace-nowrap">
               <span>Maa Sheetla Agency</span>
               <span className="text-[9px] sm:text-[9.5px] font-mono text-marigold font-normal tracking-widest hidden xs:inline-block">
                 · SURAT
               </span>
             </div>
-            <div className="text-[8.5px] sm:text-[9.5px] font-mono tracking-[0.18em] sm:tracking-[0.22em] uppercase text-ash group-hover:text-haldi transition-colors">
+            <div className="text-[8.5px] sm:text-[9.5px] font-mono tracking-[0.12em] uppercase text-ash group-hover:text-haldi transition-colors whitespace-nowrap">
               Sunrise Fab Tex · Est. 2010
             </div>
           </div>

@@ -13,6 +13,7 @@ import BlurText from "../components/react-bits/BlurText";
 import SplitText from "../components/react-bits/SplitText";
 import Marquee from "../components/react-bits/Marquee";
 import AnimatedContent from "../components/react-bits/AnimatedContent";
+import { Picture } from "../components/Picture";
 import { createWhatsAppLink } from "../lib/whatsapp";
 
 const AGENCY_SERVICES = [
@@ -44,24 +45,28 @@ const AGENCY_SERVICES = [
 
 const SOURCING_SPECIALTIES = [
   {
+    imageKey: "CAT-01",
     title: "Bridal & Heritage Silks",
     focus: "Kanjivaram Tissue · Banarasi Khaddi · Pure Mulberry Silk",
     desk: "Maa Sheetla (Label Desk)",
     desc: "Exclusive seasonal runs and high-margin bridal designs with strict territorial protection for multi-brand boutique counters.",
   },
   {
+    imageKey: "CAT-02",
     title: "High-Volume Festive Sarees",
     focus: "Dola Silk · Blooming Georgette · Organza Prints",
     desk: "Sunrise Tex Fab (Volume Desk)",
     desc: "Carton-packed wholesale assortments structured for fast weekend inventory turns and aggressive commercial retail markups.",
   },
   {
+    imageKey: "CAT-03",
     title: "Embroidered Suits & Kurtis",
     focus: "Pure Chanderi · 60/60 Cambric · Kashmiri Tilla",
     desk: "Both Agency Desks",
     desc: "Daily-wear and festive unstitched & semi-stitched sets with mill-guaranteed colorfastness and batch repeat consistency.",
   },
   {
+    imageKey: "CAT-04",
     title: "Ready-to-Wear Indo-Western",
     focus: "Sharara Sets · Designer Co-ords · Festive Gowns",
     desk: "Both Agency Desks",
@@ -154,18 +159,28 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
             {SOURCING_SPECIALTIES.map((spec, idx) => (
-              <SpotlightCard key={spec.title} className="p-6 sm:p-8 border-hairline hover:border-marigold/60 rounded-sm bg-selvedge space-y-3.5">
-                <div className="flex items-center justify-between font-mono text-xs">
-                  <span className="text-marigold font-display text-2xl font-light">0{idx + 1}</span>
-                  <span className="text-haldi text-[9.5px] sm:text-[10px] border border-hairline px-2.5 py-0.5 bg-warp uppercase">
-                    {spec.desk}
-                  </span>
+              <SpotlightCard key={spec.title} className="p-6 sm:p-8 border-hairline hover:border-marigold/60 rounded-sm bg-selvedge space-y-4 flex flex-col justify-between">
+                <div className="space-y-3.5">
+                  <div className="card-media card-media--category w-full rounded-xs overflow-hidden mb-3">
+                    <Picture
+                      imageKey={spec.imageKey}
+                      sizes="(max-width: 768px) 92vw, 45vw"
+                      className="w-full h-full"
+                      imgClassName="hover:scale-105 transition-transform duration-700 ease-out"
+                    />
+                  </div>
+                  <div className="flex items-center justify-between font-mono text-xs">
+                    <span className="text-marigold font-display text-2xl font-light">0{idx + 1}</span>
+                    <span className="text-haldi text-[9.5px] sm:text-[10px] border border-hairline px-2.5 py-0.5 bg-warp uppercase">
+                      {spec.desk}
+                    </span>
+                  </div>
+                  <div>
+                    <h3 className="font-display text-xl sm:text-2xl text-khadi font-light">{spec.title}</h3>
+                    <p className="font-mono text-[10.5px] sm:text-[11px] text-ash mt-1">{spec.focus}</p>
+                  </div>
+                  <p className="text-xs text-ash font-light leading-relaxed">{spec.desc}</p>
                 </div>
-                <div>
-                  <h3 className="font-display text-xl sm:text-2xl text-khadi font-light">{spec.title}</h3>
-                  <p className="font-mono text-[10.5px] sm:text-[11px] text-ash mt-1">{spec.focus}</p>
-                </div>
-                <p className="text-xs text-ash font-light leading-relaxed">{spec.desc}</p>
               </SpotlightCard>
             ))}
           </div>

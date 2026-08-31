@@ -30,7 +30,7 @@ export default function SplitHero() {
           className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 ease-out group-hover:scale-105 opacity-20"
           style={{
             backgroundImage:
-              'url("https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1600&q=85")',
+              'url("/img/firms/desk-maa-sheetla-1400.jpg")',
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-warp via-warp/85 to-transparent" />
@@ -117,7 +117,7 @@ export default function SplitHero() {
           className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 ease-out group-hover:scale-105 opacity-20"
           style={{
             backgroundImage:
-              'url("https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1600&q=85")',
+              'url("/img/firms/desk-sunrise-fab-tex-1400.jpg")',
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-warp via-warp/85 to-transparent" />

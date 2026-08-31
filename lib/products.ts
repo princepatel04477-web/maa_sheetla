@@ -24,7 +24,7 @@ export const PRODUCTS: Product[] = [
     work: "Heavy Antique Zari Jacquard Weave with Meenakari Pallu",
     moq: "6 Pcs / Set",
     description: "Architectural temple border weave designed for high-end boutique bridal counters.",
-    image: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1000&q=85",
+    image: "/img/catalogue/ms-8801-kanjivaram-tissue-silk-saree-1200.jpg",
     featured: true,
   },
   {
@@ -37,7 +37,7 @@ export const PRODUCTS: Product[] = [
     work: "Kadwa Cutwork Floral Jaal with Contrast Border",
     moq: "10 Pcs / Assorted",
     description: "Floor-ready weight and drape, packaged for swift volume turn on retail counters.",
-    image: "https://images.unsplash.com/photo-1583391733956-6c78276477e2?auto=format&fit=crop&w=1000&q=85",
+    image: "/img/catalogue/st-4420-banarasi-khaddi-georgette-saree-1200.jpg",
     featured: true,
   },
   {
@@ -50,7 +50,7 @@ export const PRODUCTS: Product[] = [
     work: "Scalloped Cutdana & Pearl Border with Sequin Butis",
     moq: "4 Pcs / Set",
     description: "Delicate pastel hues finished with artisanal needlework for luxury evening collections.",
-    image: "https://images.unsplash.com/photo-1609357605129-26f69add5d6e?auto=format&fit=crop&w=1000&q=85",
+    image: "/img/catalogue/ms-8815-organza-hand-embroidered-saree-1200.jpg",
   },
   {
     id: "st-sar-04",
@@ -62,7 +62,7 @@ export const PRODUCTS: Product[] = [
     work: "Metallic Foil Discharge Print with Zari Border",
     moq: "12 Pcs / Box",
     description: "High-margin festive volume seller featuring wrinkle-resistant mill finish.",
-    image: "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&w=1000&q=85",
+    image: "/img/catalogue/st-4455-dola-silk-foil-print-saree-1200.jpg",
   },
 
   // LEHENGAS
@@ -76,7 +76,7 @@ export const PRODUCTS: Product[] = [
     work: "Handcrafted Dabka, Zardozi & Moti Embellishment (16 Kali Flare)",
     moq: "2 Pcs / Design",
     description: "Grand bridal masterpiece with double dupatta styling for marquee showroom windows.",
-    image: "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?auto=format&fit=crop&w=1000&q=85",
+    image: "/img/catalogue/ms-9904-crimson-bridal-velvet-lehenga-1200.jpg",
     featured: true,
   },
   {
@@ -89,7 +89,7 @@ export const PRODUCTS: Product[] = [
     work: "Sequins Belt with Cancan-Infused 4.5m Flare",
     moq: "6 Pcs / Set",
     description: "Lightweight, bridesmaid-ready sangeet lehenga in seasonal summer pastels.",
-    image: "https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?auto=format&fit=crop&w=1000&q=85",
+    image: "/img/catalogue/st-5510-organza-floral-sangeet-lehenga-1200.jpg",
   },
   {
     id: "ms-leh-03",
@@ -101,7 +101,7 @@ export const PRODUCTS: Product[] = [
     work: "Original Glass Mirror & Resham Threadwork",
     moq: "3 Pcs / Set",
     description: "Premium party-wear silhouette with handcrafted tassel latkans and heavy border.",
-    image: "https://images.unsplash.com/photo-1610030469854-c9c0f9ea0465?auto=format&fit=crop&w=1000&q=85",
+    image: "/img/catalogue/ms-9922-mirrorwork-georgette-lehenga-1200.jpg",
   },
 
   // SUITS
@@ -115,7 +115,7 @@ export const PRODUCTS: Product[] = [
     work: "Gota Patti & Kashmiri Tilla Neckline",
     moq: "4 Pcs / Set",
     description: "Graceful boutique ensemble with block-printed dupatta and matching silk churidar.",
-    image: "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1000&q=85",
+    image: "/img/catalogue/ms-7701-chanderi-silk-anarkali-suit-1200.jpg",
     featured: true,
   },
   {
@@ -128,7 +128,7 @@ export const PRODUCTS: Product[] = [
     work: "Machine Chikankari Embroidery with Malmal Dupatta",
     moq: "8 Pcs / Bundle",
     description: "High-frequency daily wear catalog with breathable summer-tested cotton yarns.",
-    image: "https://images.unsplash.com/photo-1563178406-4cdc2923acbc?auto=format&fit=crop&w=1000&q=85",
+    image: "/img/catalogue/st-3305-cambric-chikankari-kurta-set-1200.jpg",
   },
   {
     id: "ms-sut-03",
@@ -140,7 +140,7 @@ export const PRODUCTS: Product[] = [
     work: "Intricate Antique Gold Wire Cord Embroidery",
     moq: "4 Pcs / Set",
     description: "Luxury seasonal winter line tailored for premium North Indian wedding attendees.",
-    image: "https://images.unsplash.com/photo-1596783049581-995155f9a65f?auto=format&fit=crop&w=1000&q=85",
+    image: "/img/catalogue/ms-7718-velvet-pakistani-cut-suit-1200.jpg",
   },
 
   // GARMENTS
@@ -154,7 +154,7 @@ export const PRODUCTS: Product[] = [
     work: "Cutdana Beadwork with Scalloped Embroidery",
     moq: "4 Pcs / Assorted Sizes (M-XXL)",
     description: "Contemporary fusion outfit for high-ticket boutique racks and cocktail events.",
-    image: "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?auto=format&fit=crop&w=1000&q=85",
+    image: "/img/catalogue/ms-6601-cape-indo-western-sharara-1200.jpg",
     featured: true,
   },
   {
@@ -167,7 +167,7 @@ export const PRODUCTS: Product[] = [
     work: "Minimalist Button Detailing with Foil Accents",
     moq: "12 Pcs / Size Assortment",
     description: "Floor-tested fast fashion ready garment designed for direct boutique turnover.",
-    image: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1000&q=85",
+    image: "/img/catalogue/st-2208-viscose-coord-set-1200.jpg",
   }
 ];
 

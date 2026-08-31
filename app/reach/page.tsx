@@ -7,6 +7,7 @@ import SpotlightCard from "../../components/react-bits/SpotlightCard";
 import IndiaReachMap from "../../components/IndiaReachMap";
 import { ArrowUpRight, MessageCircle, MapPin, Clock, Truck } from "lucide-react";
 import { createWhatsAppLink } from "../../lib/whatsapp";
+import { Picture } from "../../components/Picture";
 
 export const metadata = {
   title: "13-City Wholesale Network · Maa Sheetla Agency",
@@ -37,20 +38,33 @@ export default function ReachPage() {
       <ThreadsBackground />
 
       <div className="max-w-7xl mx-auto space-y-12 sm:space-y-16 relative z-10">
-        {/* Header */}
-        <div className="space-y-3.5 max-w-3xl">
-          <div className="flex items-center gap-2 font-mono text-[9px] sm:text-[10px] tracking-[0.22em] text-marigold uppercase">
-            <span>DISPATCH LOGISTICS &amp; TRANSIT TIMES</span>
-            <span>·</span>
-            <ShinyText text="9 STATES · 13 HUBS" />
+        {/* Header with Hero-Reach Atmosphere */}
+        <div className="relative overflow-hidden rounded-sm border border-hairline p-6 sm:p-12 lg:p-16 space-y-5 bg-selvedge">
+          <div className="absolute inset-0 opacity-20 pointer-events-none">
+            <Picture
+              imageKey="HERO-REACH"
+              priority={true}
+              sizes="100vw"
+              className="w-full h-full"
+              imgClassName="object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-selvedge via-selvedge/80 to-transparent" />
           </div>
-          <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl text-khadi font-light tracking-tight leading-[0.95]">
-            <BlurText text="The 13-City Wholesale Trade Corridor." />
-          </h1>
-          <p className="text-xs sm:text-base text-ash font-light leading-relaxed">
-            Consolidated 48-hour freight dispatches from our Surat trading floor to over 570 verified
-            boutique and showroom counters across North &amp; Central India.
-          </p>
+
+          <div className="relative z-10 space-y-3.5 max-w-3xl">
+            <div className="flex items-center gap-2 font-mono text-[9px] sm:text-[10px] tracking-[0.22em] text-marigold uppercase">
+              <span>DISPATCH LOGISTICS &amp; TRANSIT TIMES</span>
+              <span>·</span>
+              <ShinyText text="9 STATES · 13 HUBS" />
+            </div>
+            <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl text-khadi font-light tracking-tight leading-[0.95]">
+              <BlurText text="The 13-City Wholesale Trade Corridor." />
+            </h1>
+            <p className="text-xs sm:text-base text-ash font-light leading-relaxed">
+              Consolidated 48-hour freight dispatches from our Surat trading floor to over 570 verified
+              boutique and showroom counters across North &amp; Central India.
+            </p>
+          </div>
         </div>
 
         {/* Map View */}

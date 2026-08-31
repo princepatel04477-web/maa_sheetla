@@ -58,7 +58,7 @@ export default function ReachSection() {
           <div className="lg:col-span-5 space-y-4 lg:border-l lg:border-hairline lg:pl-8">
             <div className="border-b border-hairline pb-3 flex items-center justify-between text-ash font-mono text-[10px] tracking-[0.2em] uppercase">
               <span>All 13 Trade Hubs</span>
-              <span>Counters / Since</span>
+              <span>Network / Since</span>
             </div>
 
             <div className="space-y-1.5 max-h-[460px] overflow-y-auto pr-1">
@@ -97,13 +97,15 @@ export default function ReachSection() {
                     <div className="text-right flex items-center gap-2.5 shrink-0">
                       <div>
                         <div className="font-mono text-xs text-marigold font-medium">
-                          {city.counters} <span className="text-[8.5px] text-ash font-normal">PCS</span>
+                          Since {city.since}
                         </div>
-                        <div className="font-mono text-[8.5px] text-ash">EST. {city.since}</div>
+                        <div className="font-mono text-[9px] text-ash tracking-widest uppercase">
+                          Active Hub
+                        </div>
                       </div>
                       <ChevronRight
-                        className={`w-3.5 h-3.5 transition-transform ${
-                          isActive ? "text-haldi translate-x-0.5" : "text-ash/60"
+                        className={`w-4 h-4 transition-transform ${
+                          isActive ? "text-marigold translate-x-0.5" : "text-ash/50 group-hover:text-ash"
                         }`}
                       />
                     </div>

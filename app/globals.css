@@ -101,4 +101,43 @@ body {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+  .ms-pic img { transition: none !important; }
 }
+
+/* Image System Styles */
+.ms-pic { display: block; position: relative; overflow: hidden; }
+
+.ms-pic img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background-size: cover;
+  background-position: center;
+  transition: opacity .4s ease;
+}
+
+/* Seat images into the dark UI: gold hairline + inner falloff */
+.card-media {
+  position: relative;
+  border: 1px solid var(--hairline, #1F1F22);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.card-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  box-shadow: inset 0 -80px 90px -40px var(--warp, #0C0A0E);
+  border-top: 1px solid rgb(201 169 97 / .14);
+}
+
+/* Ratio locks — prevent CLS */
+.card-media--catalogue { aspect-ratio: 4 / 5; }
+.card-media--category  { aspect-ratio: 3 / 4; }
+.card-media--firm      { aspect-ratio: 1 / 1; }
+.card-media--qc        { aspect-ratio: 1 / 1; }
+.card-media--office    { aspect-ratio: 16 / 10; }
+.hero-media            { aspect-ratio: 21 / 9; }
+

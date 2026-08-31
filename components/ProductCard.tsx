@@ -5,12 +5,14 @@ import { Product } from "../lib/products";
 import { createWhatsAppLink } from "../lib/whatsapp";
 import { ArrowUpRight, Check, Eye } from "lucide-react";
 import DecryptedText from "./react-bits/DecryptedText";
+import { Picture } from "./Picture";
 
 interface ProductCardProps {
   product: Product;
+  priority?: boolean;
 }
 
-export default function ProductCard({ product }: ProductCardProps) {
+export default function ProductCard({ product, priority = false }: ProductCardProps) {
   const [copied, setCopied] = useState(false);
 
   const waUrl = createWhatsAppLink(`booking wholesale rate card & batch samples for design code ${product.designCode}`, {
@@ -28,13 +30,16 @@ export default function ProductCard({ product }: ProductCardProps) {
   return (
     <div className="group bg-selvedge border border-hairline hover:border-marigold/60 transition-all duration-300 rounded-sm overflow-hidden flex flex-col justify-between">
       {/* Image Frame */}
-      <div className="relative aspect-[3/4] overflow-hidden bg-warp">
-        <img
-          src={product.image}
-          alt={product.title}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+      <div className="card-media card-media--catalogue relative overflow-hidden bg-warp">
+        <Picture
+          imageKey={product.designCode}
+          priority={priority}
+          sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 30vw"
+          className="w-full h-full"
+          imgClassName="group-hover:scale-105 transition-transform duration-700 ease-out"
+          customAlt={product.title}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-selvedge via-transparent to-transparent opacity-80" />
+        <div className="absolute inset-0 bg-gradient-to-t from-selvedge via-transparent to-transparent opacity-80 pointer-events-none" />
 
         {/* Firm Tag Badge */}
         <div className="absolute top-3 left-3 flex items-center gap-1.5">

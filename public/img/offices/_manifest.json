@@ -1,0 +1,29 @@
+{
+  "office-ahmedabad": {
+    "widths": [
+      800,
+      1200,
+      1600
+    ],
+    "aspect": "1600 / 1000",
+    "lqip": "data:image/webp;base64,UklGRlYAAABXRUJQVlA4IEoAAACwAwCdASoUAA0APzmKulOvKaWisAgB4CcJZwAAW5u7Y/yuRiZaAAD+o2+FND17g0ZdldZ7EcEsSnbjUjLtoyHci4R6Ght9CgAAAA=="
+  },
+  "office-kanpur": {
+    "widths": [
+      800,
+      1200,
+      1600
+    ],
+    "aspect": "1600 / 1000",
+    "lqip": "data:image/webp;base64,UklGRlgAAABXRUJQVlA4IEwAAADQAwCdASoUAA0APzmGulOvKSWisAgB4CcJZgCdMoACXIniV1gg3yAA/tAd2SyTM8JsB1CXnjA1lyMq42CE3bjral7W51m5M8SDwAAA"
+  },
+  "office-surat-hq": {
+    "widths": [
+      800,
+      1200,
+      1600
+    ],
+    "aspect": "1600 / 1000",
+    "lqip": "data:image/webp;base64,UklGRkwAAABXRUJQVlA4IEAAAACwAwCdASoUAA0APzmGulOvKSWisAgB4CcJYwAASojK1Rcpda2GgAD+4wM1cAQ/BABe/sZ0c5pI6qwX4+dfaAAA"
+  }
+}

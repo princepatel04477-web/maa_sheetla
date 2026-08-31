@@ -1,0 +1,29 @@
+{
+  "craft-inspection-floor": {
+    "widths": [
+      1280,
+      1920,
+      2560
+    ],
+    "aspect": "2560 / 1100",
+    "lqip": "data:image/webp;base64,UklGRkQAAABXRUJQVlA4IDgAAABQAwCdASoUAAkAPzmGulQvKSWjMAgB4CcJZwDImC0Hpu04AAD+7lSM+eqTX03rVa7LJ4SWOuJAAA=="
+  },
+  "home-loom-hall": {
+    "widths": [
+      1280,
+      1920,
+      2560
+    ],
+    "aspect": "2560 / 1100",
+    "lqip": "data:image/webp;base64,UklGRkgAAABXRUJQVlA4IDwAAADwAwCdASoUAAkAPzmIvlSvKSajMAgB4CcJYwAASorhULfAOdlQc4AAAP7jOapYkLF0eVtuoVwVKVJ26AA="
+  },
+  "reach-freight-dock": {
+    "widths": [
+      1280,
+      1920,
+      2560
+    ],
+    "aspect": "2560 / 1100",
+    "lqip": "data:image/webp;base64,UklGRj4AAABXRUJQVlA4IDIAAADwAgCdASoUAAkAPzmGulQvKSWjMAgB4CcJZwC+SC0kAAD+65vzmM1eNlsfg+zr+A1YAA=="
+  }
+}

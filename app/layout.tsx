@@ -32,16 +32,25 @@ export const metadata: Metadata = {
   authors: [{ name: 'Maa Sheetla Agency' }],
   openGraph: {
     title: 'Maa Sheetla Agency · B2B Wholesale Textile Agency',
-    description: 'Wholesale textile commission agency established 2010 in Surat, supplying 570+ boutique counters across 13 primary trade hubs.',
+    description: 'Wholesale textile commission agency established 2010 in Surat, supplying verified boutique counters across 13 primary trade hubs.',
     url: 'https://maasheetla.com',
     siteName: 'Maa Sheetla Agency',
     locale: 'en_IN',
     type: 'website',
+    images: [
+      {
+        url: 'https://maasheetla.com/img/social/og-default.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Maa Sheetla Agency & Sunrise Fab Tex — Two Desks, One Floor, Surat HQ',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Maa Sheetla Agency · Surat Textile Agency',
-    description: 'B2B Wholesale textile brokerage in Surat connecting mills with 570+ boutiques.',
+    description: 'B2B Wholesale textile brokerage in Surat connecting mills with verified boutiques.',
+    images: ['https://maasheetla.com/img/social/og-default.jpg'],
   },
   alternates: {
     canonical: 'https://maasheetla.com',

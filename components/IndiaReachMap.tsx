@@ -334,7 +334,7 @@ function NodeMark({
     <g
       tabIndex={0}
       role="button"
-      aria-label={`${node.name}, ${node.region}${node.counters ? `, ${node.counters} counters` : ""}`}
+      aria-label={`${node.name}, ${node.region}`}
       onMouseEnter={onEnter}
       onMouseLeave={onLeave}
       onFocus={onEnter}
@@ -403,7 +403,7 @@ function NodeMark({
         fill="#8E8079"
         style={{ fontFamily: mono, fontSize: 8.5, letterSpacing: "0.08em", pointerEvents: "none" }}
       >
-        {isOrigin ? "HEAD OFFICE" : `${node.counters ?? ""} COUNTERS`}
+        {isOrigin ? "HEAD OFFICE" : node.region.split("·")[0].trim()}
       </text>
     </g>
   );

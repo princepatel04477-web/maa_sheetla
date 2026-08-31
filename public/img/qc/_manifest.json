@@ -1,0 +1,38 @@
+{
+  "qc-01-warp-weft-density": {
+    "widths": [
+      600,
+      900,
+      1200
+    ],
+    "aspect": "1200 / 1200",
+    "lqip": "data:image/webp;base64,UklGRkgAAABXRUJQVlA4IDwAAAAwAwCdASoUABQAPzmWwlmvKqcjqAgB4CcJZwAAKVcKUKAAAP6GOcN7+CMvTZPSb22JNodVCx/KF6OAAAA="
+  },
+  "qc-02-dye-lot-colorfastness": {
+    "widths": [
+      600,
+      900,
+      1200
+    ],
+    "aspect": "1200 / 1200",
+    "lqip": "data:image/webp;base64,UklGRloAAABXRUJQVlA4IE4AAACQAwCdASoUABQAPzmKuFOvKiUisBgMAeAnCWYAAC5aLrS9mMIAAP6DEQdSoO6U7R+QVbrN9Vh+eYPwfsvMUILY8jOxDrwzMepbTYwAAAA="
+  },
+  "qc-03-backlit-flaw-screening": {
+    "widths": [
+      600,
+      900,
+      1200
+    ],
+    "aspect": "1200 / 1200",
+    "lqip": "data:image/webp;base64,UklGRm4AAABXRUJQVlA4IGIAAACwBACdASoUABQAPzmKu1UvKSYjKA1R4CcJYwDGBA3f/y77dhpm1TridKZDPhhgAPa7TcxzR4EH3zt8GICf/aM9jFlOcZUktAqBwEYxfEhLF9ZqDWKh0Vlb95ubqf2zBP6AAA=="
+  },
+  "qc-04-moisture-shield-carton": {
+    "widths": [
+      600,
+      900,
+      1200
+    ],
+    "aspect": "1200 / 1200",
+    "lqip": "data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAACQBACdASoUABQAPzmUwFmvKialKAgB4CcJZwC2FA9rdW1DkpTy6fg37VqzGqAA/svNxCTcuP60IAJydK0QniV0H+teWpzQw1oyITsafbdHRCFay57OFiB9IAAAAA=="
+  }
+}
