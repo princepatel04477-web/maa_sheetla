@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useRef, useEffect } from "react";
 
 interface SpotlightCardProps extends React.HTMLAttributes<HTMLDivElement> {
   spotlightColor?: string;
@@ -15,17 +15,50 @@ export default function SpotlightCard({
   ...props
 }: SpotlightCardProps) {
   const divRef = useRef<HTMLDivElement>(null);
-  const [position, setPosition] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
-  const [opacity, setOpacity] = useState(0);
+  const spotlightRef = useRef<HTMLDivElement>(null);
+  const rafId = useRef<number | null>(null);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!divRef.current) return;
-    const rect = divRef.current.getBoundingClientRect();
-    setPosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+    if (!divRef.current || !spotlightRef.current) return;
+    const clientX = e.clientX;
+    const clientY = e.clientY;
+
+    if (rafId.current !== null) return;
+
+    rafId.current = requestAnimationFrame(() => {
+      if (divRef.current && spotlightRef.current) {
+        const rect = divRef.current.getBoundingClientRect();
+        const x = clientX - rect.left;
+        const y = clientY - rect.top;
+        spotlightRef.current.style.background = `radial-gradient(450px circle at ${x}px ${y}px, ${spotlightColor}, transparent 80%)`;
+      }
+      rafId.current = null;
+    });
   };
 
-  const handleMouseEnter = () => setOpacity(1);
-  const handleMouseLeave = () => setOpacity(0);
+  const handleMouseEnter = () => {
+    if (spotlightRef.current) {
+      spotlightRef.current.style.opacity = "1";
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (spotlightRef.current) {
+      spotlightRef.current.style.opacity = "0";
+    }
+    if (rafId.current !== null) {
+      cancelAnimationFrame(rafId.current);
+      rafId.current = null;
+    }
+  };
+
+  useEffect(() => {
+    return () => {
+      if (rafId.current !== null) {
+        cancelAnimationFrame(rafId.current);
+      }
+    };
+  }, []);
 
   return (
     <div
@@ -34,13 +67,14 @@ export default function SpotlightCard({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       className={`relative overflow-hidden rounded-sm border border-hairline bg-selvedge transition-all duration-300 ${className}`}
+      style={{ contain: "paint", ...props.style }}
       {...props}
     >
       <div
-        className="pointer-events-none absolute -inset-px transition-opacity duration-300"
+        ref={spotlightRef}
+        className="pointer-events-none absolute -inset-px transition-opacity duration-300 opacity-0"
         style={{
-          opacity,
-          background: `radial-gradient(450px circle at ${position.x}px ${position.y}px, ${spotlightColor}, transparent 80%)`,
+          background: `radial-gradient(450px circle at 0px 0px, ${spotlightColor}, transparent 80%)`,
         }}
       />
       <div className="relative z-10">{children}</div>

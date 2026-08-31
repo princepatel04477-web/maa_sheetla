@@ -104,8 +104,34 @@ body {
   .ms-pic img { transition: none !important; }
 }
 
+/* 60 FPS Performance Optimizations */
+.gpu-layer {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.content-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
+}
+
+/* Hardware accelerated marquee track */
+.marquee-track {
+  display: flex;
+  flex-shrink: 0;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
 /* Image System Styles */
-.ms-pic { display: block; position: relative; overflow: hidden; }
+.ms-pic { 
+  display: block; 
+  position: relative; 
+  overflow: hidden; 
+  contain: paint;
+}
 
 .ms-pic img {
   display: block;
@@ -114,7 +140,9 @@ body {
   object-fit: cover;
   background-size: cover;
   background-position: center;
-  transition: opacity .4s ease;
+  transition: opacity .4s ease, transform .6s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 /* Clean image frame */
@@ -123,6 +151,7 @@ body {
   border: 1px solid var(--hairline, rgba(28, 25, 23, 0.08));
   border-radius: 2px;
   overflow: hidden;
+  contain: paint;
 }
 
 /* Ratio locks — prevent CLS */
@@ -132,4 +161,5 @@ body {
 .card-media--qc        { aspect-ratio: 1 / 1; }
 .card-media--office    { aspect-ratio: 16 / 10; }
 .hero-media            { aspect-ratio: 21 / 9; }
+
 

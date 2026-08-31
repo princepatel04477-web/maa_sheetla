@@ -15,7 +15,7 @@ interface BlurTextProps {
 
 export default function BlurText({
   text = "",
-  delay = 0.04,
+  delay = 0.03,
   className = "",
   animateBy = "words",
   direction = "top",
@@ -27,32 +27,31 @@ export default function BlurText({
   const ref = useRef<HTMLParagraphElement>(null);
 
   useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setInView(true);
-          observer.unobserve(ref.current!);
+          observer.disconnect();
         }
       },
       { threshold, rootMargin }
     );
 
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
+    observer.observe(el);
     return () => observer.disconnect();
   }, [threshold, rootMargin]);
 
   const defaultFrom =
     direction === "top"
-      ? { filter: "blur(8px)", opacity: 0, transform: "translate3d(0,-20px,0)" }
-      : { filter: "blur(8px)", opacity: 0, transform: "translate3d(0,20px,0)" };
+      ? { opacity: 0, y: -16 }
+      : { opacity: 0, y: 16 };
 
   const defaultTo = {
-    filter: "blur(0px)",
     opacity: 1,
-    transform: "translate3d(0,0,0)",
+    y: 0,
   };
 
   return (
@@ -63,11 +62,12 @@ export default function BlurText({
           initial={defaultFrom}
           animate={inView ? defaultTo : defaultFrom}
           transition={{
-            duration: 0.6,
+            duration: 0.5,
             delay: index * delay,
-            ease: [0.25, 0.1, 0.25, 1],
+            ease: [0.22, 1, 0.36, 1],
           }}
-          className="inline-block whitespace-pre mr-[0.28em] will-change-transform will-change-filter"
+          className="inline-block whitespace-pre mr-[0.28em]"
+          style={{ transform: "translateZ(0)" }}
         >
           {element === " " ? "\u00A0" : element}
         </motion.span>

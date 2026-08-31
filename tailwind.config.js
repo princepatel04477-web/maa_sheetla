@@ -34,6 +34,8 @@ module.exports = {
         'shimmer': 'shimmer 2.5s linear infinite',
         'pulse-subtle': 'pulseSubtle 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         'float': 'float 6s ease-in-out infinite',
+        'marquee': 'marquee 35s linear infinite',
+        'marquee-reverse': 'marqueeReverse 35s linear infinite',
       },
       keyframes: {
         shimmer: {
@@ -47,7 +49,15 @@ module.exports = {
         float: {
           '0%, 100%': { transform: 'translateY(0)' },
           '50%': { transform: 'translateY(-6px)' },
-        }
+        },
+        marquee: {
+          '0%': { transform: 'translate3d(0%, 0, 0)' },
+          '100%': { transform: 'translate3d(-100%, 0, 0)' },
+        },
+        marqueeReverse: {
+          '0%': { transform: 'translate3d(-100%, 0, 0)' },
+          '100%': { transform: 'translate3d(0%, 0, 0)' },
+        },
       }
     },
   },

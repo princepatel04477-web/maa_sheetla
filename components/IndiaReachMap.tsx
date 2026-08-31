@@ -221,11 +221,14 @@ export default function IndiaReachMap({
   const uid = "reach";
 
   return (
-    <div className={`relative overflow-hidden ${className}`}>
+    <div
+      className={`relative overflow-hidden ${className}`}
+      style={{ contain: "layout style paint", transform: "translateZ(0)" }}
+    >
       <svg
         ref={rootRef}
         viewBox={`0 0 ${VIEW_BOX.w} ${VIEW_BOX.h}`}
-        className="block h-auto w-full"
+        className="block h-auto w-full gpu-layer"
         role="img"
         aria-label="Interactive India Trade Route Network"
       >

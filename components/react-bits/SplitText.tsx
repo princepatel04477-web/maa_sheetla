@@ -13,8 +13,8 @@ interface SplitTextProps {
 export default function SplitText({
   text,
   className = "",
-  delay = 0.03,
-  duration = 0.5,
+  delay = 0.025,
+  duration = 0.45,
   tag = "div",
 }: SplitTextProps) {
   const words = text.split(" ");
@@ -23,7 +23,7 @@ export default function SplitText({
     hidden: { opacity: 0 },
     visible: (i = 1) => ({
       opacity: 1,
-      transition: { staggerChildren: delay, delayChildren: i * 0.06 },
+      transition: { staggerChildren: delay, delayChildren: i * 0.04 },
     }),
   };
 
@@ -31,20 +31,14 @@ export default function SplitText({
     visible: {
       opacity: 1,
       y: 0,
-      rotateX: 0,
-      filter: "blur(0px)",
       transition: {
-        type: "spring",
-        damping: 18,
-        stiffness: 140,
         duration: duration,
+        ease: [0.22, 1, 0.36, 1],
       },
     },
     hidden: {
       opacity: 0,
-      y: 18,
-      rotateX: 15,
-      filter: "blur(3px)",
+      y: 14,
     },
   };
 
@@ -56,12 +50,13 @@ export default function SplitText({
       variants={container}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.25 }}
+      viewport={{ once: true, amount: 0.2 }}
     >
       {words.map((word, index) => (
         <motion.span
           key={index}
-          className="inline-block mr-[0.26em] whitespace-nowrap will-change-transform"
+          className="inline-block mr-[0.26em] whitespace-nowrap"
+          style={{ transform: "translateZ(0)" }}
           variants={child}
         >
           {word}

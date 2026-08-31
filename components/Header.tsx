@@ -22,7 +22,7 @@ export default function Header() {
   const waEnquiryUrl = createWhatsAppLink("general wholesale agency trade query");
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 h-20 sm:h-24 bg-warp/95 backdrop-blur-md border-b border-hairline shadow-xs transition-all">
+    <header className="fixed top-0 left-0 right-0 z-50 h-20 sm:h-24 bg-warp/95 backdrop-blur-md border-b border-hairline shadow-xs transition-colors gpu-layer">
       <div className="max-w-7xl mx-auto h-full px-4 sm:px-8 lg:px-12 flex items-center justify-between">
         {/* Dual Brand Logos (Maa Sheetla & Sunrise Fab Tex) */}
         <Link

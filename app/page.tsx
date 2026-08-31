@@ -108,7 +108,7 @@ export default function HomePage() {
       <ReachSection />
 
       {/* 4. The 4-Step Agency Workflow */}
-      <section id="operations" className="w-full py-16 sm:py-24 lg:py-32 px-4 sm:px-8 lg:px-12 bg-selvedge-light border-t border-hairline relative">
+      <section id="operations" className="w-full py-16 sm:py-24 lg:py-32 px-4 sm:px-8 lg:px-12 bg-selvedge-light border-t border-hairline relative content-auto">
         <div className="max-w-7xl mx-auto space-y-12 sm:space-y-16">
           <div className="max-w-3xl space-y-3">
             <p className="eyebrow text-kumkum">03 — THE AGENCY OPERATIONS</p>
@@ -141,7 +141,7 @@ export default function HomePage() {
       </section>
 
       {/* 5. Agency Sourcing Specialties */}
-      <section className="w-full py-16 sm:py-24 lg:py-32 px-4 sm:px-8 lg:px-12 bg-warp border-t border-hairline relative">
+      <section className="w-full py-16 sm:py-24 lg:py-32 px-4 sm:px-8 lg:px-12 bg-warp border-t border-hairline relative content-auto">
         <div className="max-w-7xl mx-auto space-y-12 sm:space-y-16">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6">
             <div className="space-y-2.5 max-w-2xl">
@@ -189,7 +189,7 @@ export default function HomePage() {
       </section>
 
       {/* 6. Partner Conversion Banner */}
-      <section className="w-full py-16 sm:py-24 lg:py-32 px-4 sm:px-8 lg:px-12 bg-gradient-to-b from-selvedge to-selvedge-light border-t border-hairline relative">
+      <section className="w-full py-16 sm:py-24 lg:py-32 px-4 sm:px-8 lg:px-12 bg-gradient-to-b from-selvedge to-selvedge-light border-t border-hairline relative content-auto">
         <div className="max-w-5xl mx-auto text-center space-y-6 sm:space-y-8">
           <p className="eyebrow text-kumkum">05 — WHOLESALE TRADE QUERY</p>
           <h2 className="font-display text-3xl sm:text-5xl lg:text-7xl text-khadi font-light tracking-tight leading-[0.94]">

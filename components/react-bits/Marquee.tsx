@@ -14,8 +14,15 @@ export default function Marquee({
   className = "",
 }: MarqueeProps) {
   return (
-    <div className={`w-full overflow-hidden whitespace-nowrap flex border-y border-hairline py-3 bg-selvedge/30 font-mono text-[11px] tracking-[0.22em] text-ash uppercase select-none ${className}`}>
-      <div className={`flex shrink-0 items-center gap-8 ${reverse ? "animate-marquee-reverse" : "animate-marquee"}`}>
+    <div
+      className={`w-full overflow-hidden whitespace-nowrap flex border-y border-hairline py-3 bg-selvedge/30 font-mono text-[11px] tracking-[0.22em] text-ash uppercase select-none ${className}`}
+      style={{ contain: "content" }}
+    >
+      <div
+        className={`marquee-track items-center gap-8 ${
+          reverse ? "animate-marquee-reverse" : "animate-marquee"
+        }`}
+      >
         {items.concat(items).map((item, idx) => (
           <div key={idx} className="flex items-center gap-8">
             <span className="hover:text-haldi transition-colors">{item}</span>
@@ -23,7 +30,12 @@ export default function Marquee({
           </div>
         ))}
       </div>
-      <div className={`flex shrink-0 items-center gap-8 ${reverse ? "animate-marquee-reverse" : "animate-marquee"}`}>
+      <div
+        className={`marquee-track items-center gap-8 ${
+          reverse ? "animate-marquee-reverse" : "animate-marquee"
+        }`}
+        aria-hidden="true"
+      >
         {items.concat(items).map((item, idx) => (
           <div key={`dup-${idx}`} className="flex items-center gap-8">
             <span className="hover:text-haldi transition-colors">{item}</span>

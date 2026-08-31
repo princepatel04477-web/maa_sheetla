@@ -17,20 +17,23 @@ export default function SplitHero() {
       <div
         onMouseEnter={() => setHoveredPanel("maa")}
         onMouseLeave={() => setHoveredPanel(null)}
-        className={`relative flex-1 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] flex flex-col justify-between p-6 sm:p-10 lg:p-16 border-b md:border-b-0 md:border-r border-hairline group overflow-hidden bg-selvedge ${
+        style={{ contain: "paint" }}
+        className={`relative flex-1 transition-[flex,opacity,box-shadow,border-color] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] flex flex-col justify-between p-6 sm:p-10 lg:p-16 border-b md:border-b-0 md:border-r border-hairline group overflow-hidden bg-selvedge ${
           hoveredPanel === "maa"
-            ? "md:flex-[1.25] shadow-md z-10"
+            ? "md:flex-[1.18] shadow-md z-10"
             : hoveredPanel === "sunrise"
-            ? "md:flex-[0.8] opacity-90"
+            ? "md:flex-[0.82] opacity-90"
             : ""
         }`}
       >
         {/* Atmosphere Background */}
         <div
-          className="absolute inset-0 bg-cover bg-center transition-all duration-1000 ease-out group-hover:scale-105 opacity-50 group-hover:opacity-70"
+          className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105 opacity-50 group-hover:opacity-70"
           style={{
             backgroundImage:
               'url("/img/firms/desk-maa-sheetla-1400.jpg")',
+            transform: "translateZ(0)",
+            willChange: "transform",
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-warp/95 via-warp/65 to-warp/20 pointer-events-none" />
@@ -104,20 +107,23 @@ export default function SplitHero() {
       <div
         onMouseEnter={() => setHoveredPanel("sunrise")}
         onMouseLeave={() => setHoveredPanel(null)}
-        className={`relative flex-1 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] flex flex-col justify-between p-6 sm:p-10 lg:p-16 group overflow-hidden bg-selvedge ${
+        style={{ contain: "paint" }}
+        className={`relative flex-1 transition-[flex,opacity,box-shadow,border-color] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] flex flex-col justify-between p-6 sm:p-10 lg:p-16 group overflow-hidden bg-selvedge ${
           hoveredPanel === "sunrise"
-            ? "md:flex-[1.25] shadow-md z-10"
+            ? "md:flex-[1.18] shadow-md z-10"
             : hoveredPanel === "maa"
-            ? "md:flex-[0.8] opacity-90"
+            ? "md:flex-[0.82] opacity-90"
             : ""
         }`}
       >
         {/* Atmosphere Background */}
         <div
-          className="absolute inset-0 bg-cover bg-center transition-all duration-1000 ease-out group-hover:scale-105 opacity-50 group-hover:opacity-70"
+          className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105 opacity-50 group-hover:opacity-70"
           style={{
             backgroundImage:
               'url("/img/firms/desk-sunrise-fab-tex-1400.jpg")',
+            transform: "translateZ(0)",
+            willChange: "transform",
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-warp/95 via-warp/65 to-warp/20 pointer-events-none" />

@@ -51,7 +51,7 @@ export default function ReachSection() {
   }, [activeTab, searchQuery]);
 
   return (
-    <section id="reach" className="w-full py-24 sm:py-32 px-6 sm:px-12 bg-warp relative">
+    <section id="reach" className="w-full py-24 sm:py-32 px-6 sm:px-12 bg-warp relative content-auto">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-14 items-end">

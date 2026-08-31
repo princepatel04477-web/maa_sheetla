@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 interface CountUpProps {
   to: number;
@@ -19,13 +19,21 @@ export default function CountUp({
   suffix = "",
   className = "",
 }: CountUpProps) {
-  const [count, setCount] = useState(from);
   const ref = useRef<HTMLSpanElement>(null);
   const started = useRef(false);
+
+  const formatNumber = (num: number) => {
+    return separator
+      ? num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, separator)
+      : num.toString();
+  };
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+
+    // Initialize content
+    el.textContent = `${formatNumber(from)}${suffix}`;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -37,14 +45,18 @@ export default function CountUp({
           const update = (currentTime: number) => {
             const elapsed = currentTime - startTime;
             const progress = Math.min(elapsed / durationMs, 1);
+            // Cubic ease-out
             const easeOut = 1 - Math.pow(1 - progress, 3);
             const currentVal = Math.floor(from + (to - from) * easeOut);
-            setCount(currentVal);
+
+            if (el) {
+              el.textContent = `${formatNumber(currentVal)}${suffix}`;
+            }
 
             if (progress < 1) {
               requestAnimationFrame(update);
-            } else {
-              setCount(to);
+            } else if (el) {
+              el.textContent = `${formatNumber(to)}${suffix}`;
             }
           };
 
@@ -57,15 +69,11 @@ export default function CountUp({
 
     observer.observe(el);
     return () => observer.disconnect();
-  }, [to, from, duration]);
-
-  const formatted = separator
-    ? count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, separator)
-    : count.toString();
+  }, [to, from, duration, separator, suffix]);
 
   return (
     <span ref={ref} className={className}>
-      {formatted}{suffix}
+      {formatNumber(from)}{suffix}
     </span>
   );
 }

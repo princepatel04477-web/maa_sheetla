@@ -55,7 +55,10 @@ export default function AhmedabadCountdown() {
   );
 
   return (
-    <div className="w-full bg-gradient-to-r from-warp via-selvedge to-warp border-b border-hairline relative overflow-hidden py-7 px-4 sm:px-8 lg:px-12">
+    <div
+      className="w-full bg-gradient-to-r from-warp via-selvedge to-warp border-b border-hairline relative overflow-hidden py-7 px-4 sm:px-8 lg:px-12"
+      style={{ contain: "content" }}
+    >
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-48 bg-marigold/10 blur-[100px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-5 sm:gap-6 relative z-10">
