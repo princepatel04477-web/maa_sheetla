@@ -9,7 +9,7 @@ import { createWhatsAppLink } from "../lib/whatsapp";
 const NAV_LINKS = [
   { href: "/#firms", label: "Two Desks" },
   { href: "/#operations", label: "Operations" },
-  { href: "/reach", label: "13-City Network" },
+  { href: "/reach", label: "Trade Network" },
   { href: "/craft", label: "Mill & QC Floor" },
   { href: "/partner", label: "Query Form" },
   { href: "/contact", label: "Surat Office" },
