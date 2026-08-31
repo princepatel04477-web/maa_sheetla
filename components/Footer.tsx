@@ -114,6 +114,11 @@ export default function Footer() {
               <div className="flex flex-col gap-1 font-mono text-[11px]">
                 <div className="flex items-center gap-2">
                   <Mail className="w-3.5 h-3.5 text-marigold shrink-0" />
+                  <a href="mailto:manish@sunrisefabtex.com" className="hover:text-marigold transition-colors">
+                    manish@sunrisefabtex.com
+                  </a>
+                </div>
+                <div className="flex items-center gap-2 pl-5.5 text-ash">
                   <a href="mailto:surat@sunrisefabtex.com" className="hover:text-marigold transition-colors">
                     surat@sunrisefabtex.com
                   </a>

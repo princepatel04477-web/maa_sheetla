@@ -61,7 +61,7 @@ export const ALL_REACH_NODES: ReachNode[] = [
   { id: "patna", name: "Patna", region: "Bihar", stateId: "bihar", coords: [85.1376, 25.5941], hub: "Hathwa Market & Machharhatta", isPrimary: true, since: 2015, anchor: "start", curve: 0.22, labelOffsetY: -6 },
   { id: "gorakhpur", name: "Gorakhpur", region: "Uttar Pradesh", stateId: "uttar-pradesh", coords: [83.3732, 26.7606], hub: "Golghar & Urdu Bazaar", isPrimary: true, since: 2013, anchor: "start", curve: 0.20, labelOffsetY: -14 },
   { id: "jaipur", name: "Jaipur", region: "Rajasthan", stateId: "rajasthan", coords: [75.7873, 26.9124], hub: "Johari & Purohit Ji Ka Katla", isPrimary: true, since: 2014, anchor: "end", curve: 0.09, labelOffsetY: 0 },
-  { id: "kolkata", name: "Kolkata", region: "West Bengal", stateId: "bihar", coords: [88.3639, 22.5726], hub: "Burrabazar & Howrah AC Market", isPrimary: true, since: 2016, anchor: "start", curve: 0.18, labelOffsetY: 4 },
+  { id: "kolkata", name: "Kolkata", region: "West Bengal", stateId: "west-bengal", coords: [88.3639, 22.5726], hub: "Burrabazar & Howrah AC Market", isPrimary: true, since: 2016, anchor: "start", curve: 0.18, labelOffsetY: 4 },
   { id: "ranchi", name: "Ranchi", region: "Jharkhand", stateId: "jharkhand", coords: [85.3096, 23.3441], hub: "Upper Bazaar & Main Road", isPrimary: true, since: 2016, anchor: "start", curve: 0.11, labelOffsetY: 10 },
   { id: "dhanbad", name: "Dhanbad", region: "Jharkhand", stateId: "jharkhand", coords: [86.4304, 23.7957], hub: "Purana Bazaar & Bank More", isPrimary: true, since: 2018, anchor: "start", curve: 0.16, labelOffsetY: -10 },
   { id: "ludhiana", name: "Ludhiana", region: "Punjab", stateId: "punjab", coords: [75.8573, 30.9010], hub: "Chaura Bazaar & Ghumar Mandi", isPrimary: true, since: 2016, anchor: "end", curve: 0.08, labelOffsetY: -4 },
@@ -74,7 +74,7 @@ export const ALL_REACH_NODES: ReachNode[] = [
   { id: "allahabad", name: "Allahabad", region: "Uttar Pradesh", stateId: "uttar-pradesh", coords: [81.8463, 25.4358], hub: "Civil Lines & Katra Bazaar", isPrimary: true, since: 2012, anchor: "end", curve: 0.16, labelOffsetY: 6 },
   { id: "muzaffarpur", name: "Muzaffarpur", region: "Bihar", stateId: "bihar", coords: [85.3910, 26.1209], hub: "Sutapatti & Saraiyaganj", isPrimary: true, since: 2016, anchor: "start", curve: 0.24, labelOffsetY: -8 },
   { id: "saharanpur", name: "Saharanpur", region: "Uttar Pradesh", stateId: "uttar-pradesh", coords: [77.5410, 29.9679], hub: "Nehru Market & Court Road", isPrimary: true, since: 2015, anchor: "end", curve: 0.16, labelOffsetY: -10 },
-  { id: "jammu", name: "Jammu", region: "Jammu & Kashmir", stateId: "punjab", coords: [74.8570, 32.7266], hub: "Raghunath Bazaar & City Chowk", isPrimary: true, since: 2017, anchor: "end", curve: 0.05, labelOffsetY: -6 },
+  { id: "jammu", name: "Jammu", region: "Jammu & Kashmir", stateId: "jammu-and-kashmir", coords: [74.8570, 32.7266], hub: "Raghunath Bazaar & City Chowk", isPrimary: true, since: 2017, anchor: "end", curve: 0.05, labelOffsetY: -6 },
 
   // --- UTTAR PRADESH TRADE CORRIDORS ---
   { id: "akbarpur", name: "Akbarpur", region: "Uttar Pradesh", stateId: "uttar-pradesh", coords: [82.5348, 26.4339], hub: "Ambedkar Nagar Textile Hub", since: 2015 },
@@ -135,13 +135,13 @@ export const ALL_REACH_NODES: ReachNode[] = [
   { id: "kirkend-bazar", name: "Kirkend Bazar", region: "Jharkhand", stateId: "jharkhand", coords: [86.3833, 23.7667], hub: "Kendua Dhanbad Corridor", since: 2018 },
 
   // --- HARYANA & NCR ---
-  { id: "gurgaon", name: "Gurgaon", region: "Haryana", stateId: "delhi", coords: [77.0266, 28.4595], hub: "DLF & Sector 14 Wholesale", since: 2015 },
-  { id: "panipat", name: "Panipat", region: "Haryana", stateId: "delhi", coords: [76.9635, 29.3909], hub: "GT Road Textile Market", since: 2014 },
-  { id: "ambala", name: "Ambala", region: "Haryana", stateId: "delhi", coords: [76.7767, 30.3782], hub: "Cloth Market Ambala City", since: 2015 },
+  { id: "gurgaon", name: "Gurgaon", region: "Haryana", stateId: "haryana", coords: [77.0266, 28.4595], hub: "DLF & Sector 14 Wholesale", since: 2015 },
+  { id: "panipat", name: "Panipat", region: "Haryana", stateId: "haryana", coords: [76.9635, 29.3909], hub: "GT Road Textile Market", since: 2014 },
+  { id: "ambala", name: "Ambala", region: "Haryana", stateId: "haryana", coords: [76.7767, 30.3782], hub: "Cloth Market Ambala City", since: 2015 },
 
   // --- UTTARAKHAND & SOUTH ---
-  { id: "jwalapur", name: "Jwalapur (Haridwar)", region: "Uttarakhand", stateId: "uttar-pradesh", coords: [78.1256, 29.9328], hub: "Railway Bazaar Jwalapur", since: 2017 },
-  { id: "vijaynagaram", name: "Vizianagaram", region: "Andhra Pradesh", stateId: "gujarat", coords: [83.4163, 18.1067], hub: "Main Road & Balaji Market", since: 2018 },
+  { id: "jwalapur", name: "Jwalapur (Haridwar)", region: "Uttarakhand", stateId: "uttarakhand", coords: [78.1256, 29.9328], hub: "Railway Bazaar Jwalapur", since: 2017 },
+  { id: "vijaynagaram", name: "Vizianagaram", region: "Andhra Pradesh", stateId: "andhra-pradesh", coords: [83.4163, 18.1067], hub: "Main Road & Balaji Market", since: 2018 },
 ];
 
 function threadPath(a: [number, number], b: [number, number], curve: number) {
@@ -163,6 +163,7 @@ export default function IndiaReachMap({
   className = "",
 }: IndiaReachMapProps) {
   const [internalActive, setInternalActive] = useState<string | null>(null);
+  const [hoveredState, setHoveredState] = useState<string | null>(null);
   const [visible, setVisible] = useState(false);
   const [reduced, setReduced] = useState(false);
 
@@ -192,9 +193,10 @@ export default function IndiaReachMap({
   );
 
   const litState =
-    active === origin.id
+    hoveredState ??
+    (active === origin.id
       ? origin.stateId
-      : activeRoute?.node.stateId ?? null;
+      : activeRoute?.node.stateId ?? null);
 
   useEffect(() => {
     setReduced(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
@@ -245,28 +247,40 @@ export default function IndiaReachMap({
           </filter>
         </defs>
 
-        {/* State Polygons */}
+        {/* State Polygons with Distinct High-Contrast Highlighting */}
         <g>
           {INDIA_STATES.map((s) => {
-            const lit = litState === s.id;
-            const supplied = ACTIVE_STATE_IDS.has(s.id);
+            const isLit = litState === s.id;
+            const isSupplied = ACTIVE_STATE_IDS.has(s.id);
             return (
               <path
                 key={s.id}
                 d={s.d}
-                fill={lit ? "#FCEAD2" : supplied ? "#EAE0D0" : "#F4EDE2"}
-                stroke={
-                  lit
-                    ? "#A67C26"
-                    : supplied
-                    ? "rgba(166,124,38,.45)"
-                    : "rgba(28,25,23,.12)"
+                fill={
+                  isLit
+                    ? "rgba(194,149,59,0.38)"
+                    : isSupplied
+                    ? "rgba(166,124,38,0.14)"
+                    : "rgba(28,25,23,0.03)"
                 }
-                strokeWidth={lit ? 1.2 : 0.6}
+                stroke={
+                  isLit
+                    ? "#8B2628"
+                    : isSupplied
+                    ? "rgba(166,124,38,0.65)"
+                    : "rgba(28,25,23,0.18)"
+                }
+                strokeWidth={isLit ? 1.8 : isSupplied ? 0.9 : 0.5}
+                strokeLinejoin="round"
                 vectorEffect="non-scaling-stroke"
-                style={{ transition: "fill .3s ease, stroke .3s ease" }}
+                onMouseEnter={() => isSupplied && setHoveredState(s.id)}
+                onMouseLeave={() => setHoveredState(null)}
+                style={{
+                  cursor: isSupplied ? "pointer" : "default",
+                  transition: "fill .25s ease, stroke .25s ease, stroke-width .25s ease",
+                }}
               >
-                <title>{s.name}</title>
+                <title>{s.name}{isSupplied ? " · Active Trade Corridor" : ""}</title>
               </path>
             );
           })}

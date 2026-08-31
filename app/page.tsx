@@ -37,7 +37,7 @@ const AGENCY_SERVICES = [
   },
   {
     icon: Truck,
-    title: "4. Consolidated 48hr Freight Dispatch",
+    title: "4. Consolidated 48hr Direct Dispatch",
     tagline: "13 Regional Hub Corridors",
     desc: "We consolidate assorted boutique lots into moisture-shielded cartons, scheduling direct 48-hour express rail and road cargo to all primary North and Central India hubs.",
   },
@@ -80,7 +80,7 @@ const TICKER_ITEMS = [
   "Piece-by-Piece Floor Inspection",
   "570+ Verified Boutique Counters",
   "Exclusive Territorial Protections",
-  "48-Hour Freight Dispatch",
+  "48-Hour Direct Dispatch",
   "Two Specialist Desks Under One Roof",
 ];
 

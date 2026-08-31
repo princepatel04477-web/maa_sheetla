@@ -431,7 +431,7 @@ export default function QueryPage() {
                 </li>
                 <li className="flex items-start gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-marigold shrink-0 mt-0.5" />
-                  <span className="text-khadi/90"><strong className="font-medium text-khadi">48-Hr Freight Dispatch:</strong> Consolidated rail and road cargo to 13 trade hubs.</span>
+                  <span className="text-khadi/90"><strong className="font-medium text-khadi">48-Hr Direct Dispatch:</strong> Consolidated rail and road cargo to 13 trade hubs.</span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-marigold shrink-0 mt-0.5" />

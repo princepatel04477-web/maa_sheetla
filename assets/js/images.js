@@ -21,7 +21,7 @@ export const IMAGES = {
 
   'HERO-HOME':  { group:'hero', file:'home-loom-hall',           alt:'Rows of jacquard powerlooms on a Surat weaving floor with warp threads running in parallel' },
   'HERO-CRAFT': { group:'hero', file:'craft-inspection-floor',   alt:'Backlit fabric inspection tables on a textile quality control floor' },
-  'HERO-REACH': { group:'hero', file:'reach-freight-dock',       alt:'Strapped textile cartons and bales stacked on a freight dispatch dock' },
+  'HERO-REACH': { group:'hero', file:'reach-freight-dock',       alt:'Strapped textile cartons and bales stacked on a dispatch dock' },
 
   'FIRM-MS': { group:'firms', file:'desk-maa-sheetla',     alt:'Single length of antique zari brocade silk draped on dark stone' },
   'FIRM-ST': { group:'firms', file:'desk-sunrise-fab-tex', alt:'Colour graded wall of folded saree bolts stacked for wholesale dispatch' },

@@ -70,7 +70,7 @@ export default function ContactPage() {
           </h1>
           <p className="text-xs sm:text-base text-ash font-light leading-relaxed">
             Maa Sheetla Agency &amp; Sunrise Fab Tex Pvt Ltd operate active wholesale trading desks in Surat,
-            Kanpur, and Ahmedabad for mill allocations, sample reviews, QC audits, and freight scheduling.
+            Kanpur, and Ahmedabad for mill allocations, sample reviews, QC audits, and dispatch scheduling.
           </p>
         </div>
 
@@ -112,7 +112,7 @@ export default function ContactPage() {
                     Surat Head Office
                   </h3>
                   <p className="text-xs text-ash font-light leading-relaxed">
-                    Central loom allocation desk, master fabric inspection floor, and regional carton freight dispatch dock.
+                    Central loom allocation desk, master fabric inspection floor, and regional carton dispatch dock.
                   </p>
                 </div>
 
@@ -335,11 +335,19 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              <div className="flex items-center gap-2.5 font-mono text-xs text-khadi pt-2 border-t border-hairline">
-                <Phone className="w-4 h-4 text-marigold shrink-0" />
-                <a href="tel:+919616415615" className="hover:text-marigold transition-colors font-medium">
-                  +91 96164 15615
-                </a>
+              <div className="flex flex-col gap-1.5 font-mono text-xs text-khadi pt-2 border-t border-hairline">
+                <div className="flex items-center gap-2.5">
+                  <Phone className="w-4 h-4 text-marigold shrink-0" />
+                  <a href="tel:+919616415615" className="hover:text-marigold transition-colors font-medium">
+                    +91 96164 15615
+                  </a>
+                </div>
+                <div className="flex items-center gap-2 text-[11px] text-ash">
+                  <Mail className="w-3.5 h-3.5 text-marigold shrink-0" />
+                  <a href="mailto:manish@sunrisefabtex.com" className="hover:text-marigold transition-colors">
+                    manish@sunrisefabtex.com
+                  </a>
+                </div>
               </div>
 
               <div className="pt-1 flex gap-2">

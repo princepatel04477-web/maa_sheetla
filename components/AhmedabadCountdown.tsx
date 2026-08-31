@@ -71,7 +71,7 @@ export default function AhmedabadCountdown() {
             Opening Our New <i className="italic text-haldi">Ahmedabad Office</i> &amp; Trade Floor
           </h3>
           <p className="text-xs text-ash font-light leading-relaxed">
-            Direct Surat mill rates, exclusive sample halls, and spot-freight dispatch closer
+            Direct Surat mill rates, exclusive sample halls, and express dispatch closer
             to Central &amp; North Gujarat retail showrooms.
           </p>
         </div>

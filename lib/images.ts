@@ -126,7 +126,7 @@ export const IMAGES: Record<string, ImageDefinition> = {
   'HERO-REACH': {
     group: 'hero',
     file: 'reach-freight-dock',
-    alt: 'Strapped textile cartons and bales stacked on a freight dispatch dock',
+    alt: 'Strapped textile cartons and bales stacked on a dispatch dock',
     aspect: '21 / 9',
     widths: [1280, 1920, 2560],
   },

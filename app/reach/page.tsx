@@ -18,7 +18,7 @@ const PRIMARY_REGIONS = [
   {
     state: "Uttar Pradesh",
     corridor: "Central, Eastern & Western UP (40+ Cities)",
-    transit: "24–48 hrs Direct Freight",
+    transit: "24–48 hrs Direct Dispatch",
     cities: "Kanpur, Lucknow, Varanasi, Gorakhpur, Bareilly, Meerut, Muzaffarnagar, Saharanpur, Allahabad, Akbarpur, Azamgarh, Babhnan, Bhadohi, Bahraich, Ballia, Balrampur, Barabanki, Barhalganj, Bashkhari, Basti, Belthara Road, Colonelganj, Dalmau, Faizabad, Gilaula, Gonda, Gosaiganj, Ikauna, Itiyathok, Jalalabad, Jalalpur, Jaunpur, Kaptanganj, Katra Bazar, Khalilabad, Lakhimpur Kheri, Meerganj, Mohammadabad, Nanpara, Nawabganj, Paraspur, Phoolpur, Rae Bareli, Rudauli, Sandila, Shahjahanpur, Sitapur, Sultanpur, Unnao, Utraula",
   },
   {
@@ -36,7 +36,7 @@ const PRIMARY_REGIONS = [
   {
     state: "Delhi NCR & Haryana",
     corridor: "Northern Capital Metro Corridor",
-    transit: "24–36 hrs Rail Freight",
+    transit: "24–36 hrs Rail Express",
     cities: "Delhi NCR (Chandni Chowk, Karol Bagh, Gandhi Nagar), Gurgaon, Panipat, Ambala",
   },
   {
@@ -48,7 +48,7 @@ const PRIMARY_REGIONS = [
 ];
 
 export default function ReachPage() {
-  const waUrl = createWhatsAppLink("freight timing and agency representation inquiry for our city");
+  const waUrl = createWhatsAppLink("dispatch timing and agency representation inquiry for our city");
 
   return (
     <div className="min-h-screen pt-28 sm:pt-36 pb-20 px-4 sm:px-8 lg:px-12 bg-warp relative">
@@ -78,7 +78,7 @@ export default function ReachPage() {
               <BlurText text="The 70+ City Wholesale Trade Network." />
             </h1>
             <p className="text-xs sm:text-base text-ash font-light leading-relaxed">
-              Consolidated 24-to-48 hour freight dispatches from our Surat looms and brokerage floors to over
+              Consolidated 24-to-48 hour dispatches from our Surat looms and brokerage floors to over
               570 verified boutique and showroom counters across North, Central, and Eastern India.
             </p>
           </div>
