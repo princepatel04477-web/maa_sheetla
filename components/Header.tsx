@@ -12,7 +12,7 @@ const NAV_LINKS = [
   { href: "/reach", label: "Trade Network" },
   { href: "/craft", label: "Mill & QC Floor" },
   { href: "/partner", label: "Query Form" },
-  { href: "/contact", label: "Surat Office" },
+  { href: "/contact", label: "Our Offices" },
 ];
 
 export default function Header() {

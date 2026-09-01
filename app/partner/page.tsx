@@ -442,7 +442,16 @@ export default function QueryPage() {
 
             <div className="p-5 bg-selvedge-light border border-hairline rounded-sm font-mono text-xs space-y-2 text-ash">
               <div className="text-marigold uppercase tracking-wider font-medium">Direct Desk Assistance:</div>
-              <div className="text-khadi/90">Phone: +91 91510 03198 / +91 96164 15615</div>
+              <div className="text-khadi/90">
+                Phone:{" "}
+                <a href="tel:+919151003198" className="hover:text-marigold underline">
+                  +91 91510 03198
+                </a>
+                {" / "}
+                <a href="tel:+919151060271" className="hover:text-marigold underline">
+                  +91 91510 60271
+                </a>
+              </div>
               <div>Surat HQ: H-32 India Market, Salabatpura, Ring Road, Surat</div>
               <div className="text-[11px] text-ash">Branches: Kanpur (Shiv Market) · Ahmedabad (New Cloth Market)</div>
             </div>

@@ -81,7 +81,7 @@ export default function ContactPage() {
         <div className="space-y-6">
           <div className="flex items-center justify-between border-b border-hairline pb-3">
             <h2 className="font-display text-xl sm:text-2xl text-khadi font-light">
-              Office Locations &amp; Trading Desks
+              Our Offices &amp; Trading Desks
             </h2>
             <span className="font-mono text-[10px] text-marigold uppercase tracking-wider font-medium">
               3 Active Centers
@@ -123,7 +123,7 @@ export default function ContactPage() {
                   </div>
                   <div className="flex items-center gap-2.5">
                     <Clock className="w-4 h-4 text-marigold shrink-0" />
-                    <span>Mon – Sat: 9:30 AM – 8:30 PM IST</span>
+                    <span>Mon – Sat: 10:00 AM – 10:00 PM IST</span>
                   </div>
                   <div className="flex items-center gap-2.5">
                     <Phone className="w-4 h-4 text-marigold shrink-0" />
@@ -131,8 +131,8 @@ export default function ContactPage() {
                       +91 91510 03198
                     </a>
                     <span className="text-ash">/</span>
-                    <a href="tel:+919616415615" className="hover:text-marigold underline">
-                      +91 96164 15615
+                    <a href="tel:+919151060271" className="hover:text-marigold underline">
+                      +91 91510 60271
                     </a>
                   </div>
                   <div className="flex items-center gap-2 text-[11px] text-ash">
@@ -196,18 +196,12 @@ export default function ContactPage() {
                   </div>
                   <div className="flex items-center gap-2.5">
                     <Clock className="w-4 h-4 text-marigold shrink-0" />
-                    <span>Mon – Sat: 10:00 AM – 8:00 PM IST</span>
+                    <span>Mon – Sat: 10:00 AM – 10:00 PM IST</span>
                   </div>
                   <div className="flex items-center gap-2.5">
                     <Phone className="w-4 h-4 text-marigold shrink-0" />
                     <a href="tel:+919151060273" className="hover:text-marigold underline">
                       +91 91510 60273
-                    </a>
-                  </div>
-                  <div className="flex items-center gap-2 text-[11px] text-ash">
-                    <Mail className="w-3.5 h-3.5 text-marigold shrink-0" />
-                    <a href="mailto:kanpur@sunrisefabtex.com" className="hover:text-marigold">
-                      kanpur@sunrisefabtex.com
                     </a>
                   </div>
                 </div>
@@ -265,7 +259,7 @@ export default function ContactPage() {
                   </div>
                   <div className="flex items-center gap-2.5">
                     <Clock className="w-4 h-4 text-marigold shrink-0" />
-                    <span>Mon – Sat: 10:00 AM – 8:00 PM IST</span>
+                    <span>Mon – Sat: 10:00 AM – 10:00 PM IST</span>
                   </div>
                   <div className="flex items-center gap-2.5">
                     <Phone className="w-4 h-4 text-marigold shrink-0" />

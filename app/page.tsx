@@ -147,7 +147,7 @@ export default function HomePage() {
             <div className="space-y-2.5 max-w-2xl">
               <p className="eyebrow text-kumkum">04 — TEXTILE SOURCING DISCIPLINES</p>
               <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl text-khadi font-light tracking-tight leading-[0.95]">
-                Surat categories managed by <i className="italic text-marigold">our trading floor.</i>
+                Categories managed by <i className="italic text-marigold">our trading floor.</i>
               </h2>
             </div>
             <Link

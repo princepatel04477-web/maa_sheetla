@@ -5,6 +5,7 @@
 
 export const OFFICE_NUMBERS = {
   surat: "919151003198",
+  surat_alt: "919151060271",
   kanpur: "919151060273",
   ahmedabad: "919559650752",
   founder: "919616415615", // Manish Kanodia
