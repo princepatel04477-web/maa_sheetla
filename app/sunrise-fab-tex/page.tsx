@@ -119,7 +119,7 @@ const SUNRISE_MILESTONES = [
 ];
 
 const SUNRISE_TICKER = [
-  "Sunrise Fab Tex Pvt Ltd · High-Velocity Wholesale",
+  "Sunrise Fab Tex Adat · High-Velocity Wholesale",
   "Dola Silk Festive Sarees",
   "Ahmedabad 60/60 Cotton Kurtis & Sets",
   "Blooming Georgette Floral Prints",
@@ -136,7 +136,7 @@ export default function SunriseFabTexPage() {
     ? products
     : products.filter((p) => p.type === activeTab);
 
-  const waUrl = createWhatsAppLink("enquiring about Sunrise Fab Tex commercial volume rate cards and carton lots", {
+  const waUrl = createWhatsAppLink("enquiring about Sunrise Fab Tex Adat commercial volume rate cards and carton lots", {
     firm: "Sunrise Fab Tex",
     targetNumber: OFFICE_NUMBERS.surat,
   });
@@ -150,7 +150,7 @@ export default function SunriseFabTexPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 py-2.5 flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] font-mono">
           <div className="flex items-center gap-2 text-ash">
             <span className="w-2 h-2 rounded-full bg-marigold shrink-0" />
-            <span className="text-khadi font-medium">Sunrise Fab Tex</span>
+            <span className="text-khadi font-medium">Sunrise Fab Tex (Adat)</span>
             <span>— Commercial Volume &amp; Fast-Turnover Desk</span>
           </div>
           <Link
@@ -169,14 +169,14 @@ export default function SunriseFabTexPage() {
           <div className="lg:col-span-8 space-y-6">
             <div className="inline-flex items-center gap-2 font-mono text-[9.5px] sm:text-[10px] tracking-[0.24em] text-marigold uppercase bg-selvedge/90 px-3 py-1.5 border border-marigold/40 rounded-xs">
               <TrendingUp className="w-3.5 h-3.5 text-marigold shrink-0" />
-              <span>SUNRISE FAB TEX PVT LTD · VOLUME DESK · SURAT</span>
+              <span>SUNRISE FAB TEX (ADAT) · VOLUME DESK · SURAT</span>
             </div>
 
             <div className="h-16 sm:h-22 w-auto flex items-center">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/logos/sunrise_fab_tex_colored.png"
-                alt="Sunrise Fab Tex Official Logo"
+                alt="Sunrise Fab Tex (Adat) Official Logo"
                 className="h-full w-auto object-contain filter drop-shadow-xs"
               />
             </div>
@@ -186,7 +186,7 @@ export default function SunriseFabTexPage() {
             </h1>
 
             <p className="text-sm sm:text-base text-ash font-light leading-relaxed max-w-2xl">
-              Sunrise Fab Tex is the commercial wholesale brokerage engine engineered for high-footfall retail counters,
+              Sunrise Fab Tex (Adat) is the commercial wholesale brokerage engine engineered for high-footfall retail counters,
               regional wholesalers, and multi-state retail chains. We deliver rapid counter turnaround, unbeatable powerloom
               cost efficiencies, and consistent repeat batch delivery.
             </p>
@@ -219,7 +219,7 @@ export default function SunriseFabTexPage() {
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 bg-kumkum hover:bg-kumkum-deep text-white font-mono text-xs tracking-wider uppercase rounded-xs transition-all shadow-xs font-medium min-h-[44px]"
               >
                 <MessageCircle className="w-4 h-4" />
-                <span>WhatsApp Sunrise Fab Tex Desk</span>
+                <span>WhatsApp Sunrise Fab Tex Adat Desk</span>
               </a>
               <Link
                 href="/partner"
@@ -261,7 +261,7 @@ export default function SunriseFabTexPage() {
         <div className="max-w-7xl mx-auto space-y-12">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div className="space-y-2.5 max-w-2xl">
-              <p className="eyebrow text-marigold">SUNRISE FAB TEX · VOLUME LINES</p>
+              <p className="eyebrow text-marigold">SUNRISE FAB TEX ADAT · VOLUME LINES</p>
               <h2 className="font-display text-3xl sm:text-5xl text-khadi font-light tracking-tight">
                 Priced and packed for <i className="italic text-marigold">high-turnover retail.</i>
               </h2>
@@ -314,7 +314,7 @@ export default function SunriseFabTexPage() {
             <div className="space-y-2">
               <p className="eyebrow text-marigold">COMMERCIAL INVENTORY</p>
               <h2 className="font-display text-3xl sm:text-5xl text-khadi font-light tracking-tight">
-                Sunrise Fab Tex <i className="italic text-haldi">Collection</i>
+                Sunrise Fab Tex Adat <i className="italic text-haldi">Collection</i>
               </h2>
               <p className="text-xs sm:text-sm text-ash font-light">
                 Proven fast-turnover designs with guaranteed repeat dye lots and box packaging.
@@ -356,7 +356,7 @@ export default function SunriseFabTexPage() {
               Direct mill lines built for <i className="italic text-marigold">scale &amp; velocity.</i>
             </h2>
             <p className="text-xs sm:text-base text-ash font-light leading-relaxed">
-              How Sunrise Fab Tex ensures high weekly volume, flawless batch packaging, and the fastest freight turnaround in Surat.
+              How Sunrise Fab Tex Adat ensures high weekly volume, flawless batch packaging, and the fastest freight turnaround in Surat.
             </p>
           </div>
 
@@ -385,7 +385,7 @@ export default function SunriseFabTexPage() {
         <div className="max-w-7xl mx-auto space-y-10">
           <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-ash pb-3 border-b border-hairline">
             <History className="w-4 h-4 text-marigold" />
-            <span>Sunrise Fab Tex Growth &amp; Logistics Milestones (2008 – 2026)</span>
+            <span>Sunrise Fab Tex Adat Growth &amp; Logistics Milestones (2008 – 2026)</span>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
@@ -416,7 +416,7 @@ export default function SunriseFabTexPage() {
           <div className="text-center max-w-2xl mx-auto space-y-3">
             <p className="eyebrow text-marigold">OFFICES &amp; LOGISTICS DESKS</p>
             <h2 className="font-display text-3xl sm:text-5xl text-khadi font-light tracking-tight">
-              Connect with <i className="italic text-haldi">Sunrise Fab Tex</i>
+              Connect with <i className="italic text-haldi">Sunrise Fab Tex Adat</i>
             </h2>
             <p className="text-xs sm:text-sm text-ash font-light">
               Visit our trading floor in Surat or coordinate dispatches with our Kanpur hub and Ahmedabad manufacturing floor.
@@ -492,7 +492,7 @@ export default function SunriseFabTexPage() {
         <div className="max-w-4xl mx-auto text-center space-y-6">
           <p className="eyebrow text-marigold">ONBOARD YOUR RETAIL COUNTERS</p>
           <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl text-khadi font-light tracking-tight leading-[0.94]">
-            Secure volume rate cards with <i className="italic text-marigold">Sunrise Fab Tex.</i>
+            Secure volume rate cards with <i className="italic text-marigold">Sunrise Fab Tex Adat.</i>
           </h2>
           <p className="text-xs sm:text-base text-ash font-light max-w-2xl mx-auto leading-relaxed">
             Gain immediate direct-loom pricing on carton lots, fast seasonal dispatch priority,

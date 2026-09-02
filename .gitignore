@@ -5,3 +5,12 @@ out/
 tsconfig.tsbuildinfo
 
 .vercel
+*.tar.gz
+*.tgz
+
+# temporary build bundles (safe to delete)
+*.tgz
+audit_bundle.tar.gz
+src_bundle.tar.gz
+ANTIGRAVITY_BUILD_ORDER*.md
+MAA-SHEETLA-SITE-AUDIT*.md

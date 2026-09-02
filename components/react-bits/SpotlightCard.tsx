@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 
 interface SpotlightCardProps extends React.HTMLAttributes<HTMLDivElement> {
   spotlightColor?: string;
@@ -14,12 +14,23 @@ export default function SpotlightCard({
   children,
   ...props
 }: SpotlightCardProps) {
+  const [canHover, setCanHover] = useState(false);
   const divRef = useRef<HTMLDivElement>(null);
   const spotlightRef = useRef<HTMLDivElement>(null);
   const rafId = useRef<number | null>(null);
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const mq = window.matchMedia("(hover: hover)");
+      setCanHover(mq.matches);
+      const handler = (e: MediaQueryListEvent) => setCanHover(e.matches);
+      mq.addEventListener("change", handler);
+      return () => mq.removeEventListener("change", handler);
+    }
+  }, []);
+
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!divRef.current || !spotlightRef.current) return;
+    if (!canHover || !divRef.current || !spotlightRef.current) return;
     const clientX = e.clientX;
     const clientY = e.clientY;
 
@@ -37,7 +48,7 @@ export default function SpotlightCard({
   };
 
   const handleMouseEnter = () => {
-    if (spotlightRef.current) {
+    if (canHover && spotlightRef.current) {
       spotlightRef.current.style.opacity = "1";
     }
   };
@@ -63,20 +74,22 @@ export default function SpotlightCard({
   return (
     <div
       ref={divRef}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      onMouseMove={canHover ? handleMouseMove : undefined}
+      onMouseEnter={canHover ? handleMouseEnter : undefined}
+      onMouseLeave={canHover ? handleMouseLeave : undefined}
       className={`relative overflow-hidden rounded-sm border border-hairline bg-selvedge transition-all duration-300 ${className}`}
       style={{ contain: "paint", ...props.style }}
       {...props}
     >
-      <div
-        ref={spotlightRef}
-        className="pointer-events-none absolute -inset-px transition-opacity duration-300 opacity-0"
-        style={{
-          background: `radial-gradient(450px circle at 0px 0px, ${spotlightColor}, transparent 80%)`,
-        }}
-      />
+      {canHover && (
+        <div
+          ref={spotlightRef}
+          className="pointer-events-none absolute -inset-px transition-opacity duration-300 opacity-0"
+          style={{
+            background: `radial-gradient(450px circle at 0px 0px, ${spotlightColor}, transparent 80%)`,
+          }}
+        />
+      )}
       <div className="relative z-10">{children}</div>
     </div>
   );

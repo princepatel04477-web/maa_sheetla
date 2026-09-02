@@ -166,7 +166,7 @@ export default function SplitHero() {
 
           <div>
             <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-light text-khadi tracking-tight leading-[0.94] drop-shadow-2xs">
-              Sunrise Fab Tex Adat
+              Sunrise Fab Tex (Adat)
             </h2>
             <p className="font-display text-lg sm:text-2xl text-marigold font-light italic mt-1">
               Priced and packed for the retail floor.

@@ -1,5 +1,5 @@
 /**
- * WhatsApp lead routing helper for Maa Sheetla Agency & Sunrise Fab Tex.
+ * WhatsApp lead routing helper for Maa Sheetla Agency & Sunrise Fab Tex Adat.
  * Formats clean, contextual enquiry messages direct to the sales desks.
  */
 
@@ -9,7 +9,8 @@ export const OFFICE_NUMBERS = {
   kanpur: "919151060273",
   ahmedabad: "919559650752",
   founder: "919616415615", // Manish Kanodia
-  sales: "919559650752",   // Amit Agarwal
+  saurabh: "919151060276", // Saurabh Chawla
+  vatsal: "919151060277",  // Vatsal Jain
 };
 
 const DEFAULT_WHATSAPP_NUMBER = OFFICE_NUMBERS.surat;
@@ -18,13 +19,13 @@ export interface WhatsAppContextOptions {
   shopName?: string;
   city?: string;
   category?: string;
-  firm?: "Maa Sheetla" | "Sunrise Fab Tex" | "Both";
+  firm?: "Maa Sheetla" | "Sunrise Fab Tex" | "Sunrise Fab Tex Adat" | "Both";
   designCode?: string;
   targetNumber?: string;
 }
 
 export function createWhatsAppLink(context: string, options?: WhatsAppContextOptions): string {
-  let message = `Hello Maa Sheetla Agency / Sunrise Fab Tex — I'm enquiring about ${context}.`;
+  let message = `Hello Maa Sheetla Agency / Sunrise Fab Tex Adat — I'm enquiring about ${context}.`;
 
   if (options?.designCode) {
     message += ` (Design: ${options.designCode})`;

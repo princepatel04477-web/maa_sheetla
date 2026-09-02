@@ -22,14 +22,14 @@ export default function WhatsAppFloatingButton() {
   return (
     <aside
       aria-label="Direct Wholesale Agency Contact"
-      className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex items-center gap-2 gpu-layer"
+      className="fixed right-4 sm:right-6 z-40 flex items-center gap-2 gpu-layer bottom-[calc(1rem+env(safe-area-inset-bottom))] sm:bottom-[calc(1.5rem+env(safe-area-inset-bottom))]"
     >
       <a
         href={waUrl}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Connect with Maa Sheetla Surat Agency Desk on WhatsApp"
-        className="group relative flex items-center gap-2.5 sm:gap-3 px-3.5 py-2.5 sm:px-4 sm:py-3 bg-warp/95 backdrop-blur-md border border-kumkum hover:border-marigold text-khadi hover:text-haldi shadow-agency-card rounded-xs transition-all duration-300 hover:scale-[1.02]"
+        className="group relative flex items-center gap-2.5 sm:gap-3 px-3.5 py-2.5 sm:px-4 sm:py-3 min-h-[48px] bg-warp/95 backdrop-blur-md border border-kumkum hover:border-marigold text-khadi hover:text-haldi shadow-agency-card rounded-xs transition-all duration-300 hover:scale-[1.02]"
       >
         <span className="relative flex h-2.5 w-2.5 sm:h-3 sm:w-3 shrink-0">
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-marigold opacity-75" />

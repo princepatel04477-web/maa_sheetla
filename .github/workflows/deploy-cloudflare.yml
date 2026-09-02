@@ -1,9 +1,10 @@
-﻿name: Deploy to Cloudflare Pages
+name: Deploy to Cloudflare Pages
 
 on:
   push:
     branches:
       - main
+      - arena/01a05226-maa-sheetla
 
 jobs:
   deploy:

@@ -46,6 +46,35 @@ export default function Header() {
     setMobileOpen(false);
   }, [pathname]);
 
+  // Post-hydration re-scroll for anchor links (BUG-05)
+  // On iOS Safari, the initial jump fires before the full page fonts and images settle.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const hash = window.location.hash;
+    if (hash) {
+      const timer = setTimeout(() => {
+        const target = document.querySelector(hash);
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 300);
+      return () => clearTimeout(timer);
+    }
+  }, [pathname]);
+
+  const handleNavClick = (href: string) => {
+    setMobileOpen(false);
+    if (href.startsWith("/#") && pathname === "/") {
+      const id = href.replace("/#", "");
+      const el = document.getElementById(id);
+      if (el) {
+        setTimeout(() => {
+          el.scrollIntoView({ behavior: "smooth" });
+        }, 80);
+      }
+    }
+  };
+
   const waEnquiryUrl = createWhatsAppLink("general wholesale agency trade query");
 
   return (
@@ -100,6 +129,7 @@ export default function Header() {
                 <Link
                   key={link.href}
                   href={link.href}
+                  onClick={() => handleNavClick(link.href)}
                   className={`font-mono text-[11.5px] tracking-[0.18em] uppercase transition-colors relative py-1 ${
                     isActive ? "text-marigold font-medium" : "text-ash hover:text-khadi"
                   }`}
@@ -187,10 +217,10 @@ export default function Header() {
                   Firm 02
                 </div>
                 <div className="font-display text-sm text-[#F7EFE9] group-hover:text-marigold transition-colors font-light">
-                  Sunrise Fab Tex
+                  Sunrise Fab Tex Adat
                 </div>
-                <div className="text-[10px] text-[#D8C6A5] font-mono tracking-wider uppercase mt-0.5 line-clamp-1">
-                  Adat
+                <div className="text-[10px] text-[#D8C6A5] font-light mt-0.5 line-clamp-1">
+                  Prints &amp; Festive Suits
                 </div>
               </Link>
             </div>
@@ -203,7 +233,7 @@ export default function Header() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    onClick={() => setMobileOpen(false)}
+                    onClick={() => handleNavClick(link.href)}
                     className={`p-3 rounded-xs border transition-all flex items-center justify-between ${
                       isActive
                         ? "bg-[#281A16] border-marigold text-marigold shadow-xs"

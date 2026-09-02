@@ -55,7 +55,7 @@ export const DEFAULT_ORIGIN: ReachNode = {
 export const ALL_REACH_NODES: ReachNode[] = [
   // --- PRIMARY HUBS ---
   { id: "delhi", name: "Delhi NCR", region: "Delhi NCR", stateId: "delhi", coords: [77.2090, 28.6139], hub: "Chandni Chowk & Karol Bagh", isPrimary: true, since: 2013, anchor: "end", curve: 0.14, labelOffsetY: -6 },
-  { id: "kanpur", name: "Kanpur", region: "Uttar Pradesh", stateId: "uttar-pradesh", coords: [80.3319, 26.4499], hub: "General Ganj & Naughara Market", isPrimary: true, since: 2010, anchor: "start", curve: 0.12, labelOffsetY: -8 },
+  { id: "kanpur", name: "Kanpur", region: "Uttar Pradesh", stateId: "uttar-pradesh", coords: [80.3319, 26.4499], hub: "General Ganj & Naughara Market", isPrimary: true, since: 2009, anchor: "start", curve: 0.12, labelOffsetY: -8 },
   { id: "lucknow", name: "Lucknow", region: "Uttar Pradesh", stateId: "uttar-pradesh", coords: [80.9462, 26.8467], hub: "Aminabad & Chowk Bazaar", isPrimary: true, since: 2011, anchor: "start", curve: 0.14, labelOffsetY: -12 },
   { id: "varanasi", name: "Varanasi", region: "Uttar Pradesh", stateId: "uttar-pradesh", coords: [82.9739, 25.3176], hub: "Kunj Gali & Chowk Silk Market", isPrimary: true, since: 2012, anchor: "start", curve: 0.18, labelOffsetY: 2 },
   { id: "patna", name: "Patna", region: "Bihar", stateId: "bihar", coords: [85.1376, 25.5941], hub: "Hathwa Market & Machharhatta", isPrimary: true, since: 2015, anchor: "start", curve: 0.22, labelOffsetY: -6 },
@@ -283,7 +283,7 @@ export default function IndiaReachMap({
                   transition: "fill .25s ease, stroke .25s ease, stroke-width .25s ease",
                 }}
               >
-                <title>{s.name}{isSupplied ? " · Active Trade Corridor" : ""}</title>
+                <title>{`${s.name}${isSupplied ? " · Active Trade Corridor" : ""}`}</title>
               </path>
             );
           })}
@@ -370,7 +370,7 @@ export default function IndiaReachMap({
                   onClick={() => setActive(r.node.id)}
                   style={{ cursor: "pointer" }}
                 >
-                  <circle cx={x} cy={y} r={10} fill="transparent" />
+                  <circle cx={x} cy={y} r={26} fill="transparent" />
                   <circle
                     cx={x}
                     cy={y}
@@ -481,7 +481,7 @@ function NodeMark({
         />
       )}
 
-      <circle cx={x} cy={y} r={18} fill="transparent" />
+      <circle cx={x} cy={y} r={30} fill="transparent" />
       <circle
         cx={x}
         cy={y}

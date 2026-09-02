@@ -10,10 +10,10 @@ export default function LedgerBand() {
         {/* Stat 1 */}
         <div className="space-y-1.5 border-r md:border-r-0 md:pr-4">
           <div className="font-display text-3xl sm:text-5xl lg:text-6xl text-marigold font-light tracking-tight leading-none">
-            <CountUp to={2010} duration={1.2} separator="" />
+            <CountUp to={2008} duration={1.2} separator="" />
           </div>
           <p className="font-mono text-[9.5px] sm:text-[10.5px] tracking-[0.2em] sm:tracking-[0.24em] text-ash uppercase">
-            Established In Surat
+            Agency Inception (2008)
           </p>
         </div>
 

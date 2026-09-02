@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 
 interface TiltedCardProps {
   children: React.ReactNode;
@@ -13,11 +13,23 @@ export default function TiltedCard({
   className = "",
   maxAngle = 8,
 }: TiltedCardProps) {
+  const [canHover, setCanHover] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
   const glareRef = useRef<HTMLDivElement>(null);
   const rafId = useRef<number | null>(null);
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const mq = window.matchMedia("(hover: hover)");
+      setCanHover(mq.matches);
+      const handler = (e: MediaQueryListEvent) => setCanHover(e.matches);
+      mq.addEventListener("change", handler);
+      return () => mq.removeEventListener("change", handler);
+    }
+  }, []);
+
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!canHover || !cardRef.current) return;
     if (!cardRef.current) return;
     const clientX = e.clientX;
     const clientY = e.clientY;
@@ -80,28 +92,34 @@ export default function TiltedCard({
   }, []);
 
   return (
-    <div style={{ perspective: "1000px" }} className="inline-block w-full h-full">
+    <div style={canHover ? { perspective: "1000px" } : undefined} className="inline-block w-full h-full">
       <div
         ref={cardRef}
-        onMouseMove={handleMouseMove}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        style={{
-          transform: "rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)",
-          transition: "transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
-          transformStyle: "preserve-3d",
-          willChange: "transform",
-        }}
+        onMouseMove={canHover ? handleMouseMove : undefined}
+        onMouseEnter={canHover ? handleMouseEnter : undefined}
+        onMouseLeave={canHover ? handleMouseLeave : undefined}
+        style={
+          canHover
+            ? {
+                transform: "rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)",
+                transition: "transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
+                transformStyle: "preserve-3d",
+                willChange: "transform",
+              }
+            : undefined
+        }
         className={`relative overflow-hidden ${className}`}
       >
         {children}
-        <div
-          ref={glareRef}
-          className="pointer-events-none absolute inset-0 mix-blend-overlay transition-opacity duration-300 opacity-0"
-          style={{
-            background: "radial-gradient(circle at 50% 50%, rgba(255,217,160,0.45) 0%, transparent 65%)",
-          }}
-        />
+        {canHover && (
+          <div
+            ref={glareRef}
+            className="pointer-events-none absolute inset-0 mix-blend-overlay transition-opacity duration-300 opacity-0"
+            style={{
+              background: "radial-gradient(circle at 50% 50%, rgba(255,217,160,0.45) 0%, transparent 65%)",
+            }}
+          />
+        )}
       </div>
     </div>
   );

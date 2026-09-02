@@ -24,8 +24,11 @@ export default function ContactPage() {
   const founderWa = createWhatsAppLink("direct inquiry with Founder & CEO Manish Kanodia", {
     targetNumber: OFFICE_NUMBERS.founder,
   });
-  const salesWa = createWhatsAppLink("direct trade inquiry with Amit Agarwal", {
-    targetNumber: OFFICE_NUMBERS.sales,
+  const saurabhWa = createWhatsAppLink("direct trade inquiry with Saurabh Chawla (Executive Trade & Sales Desk)", {
+    targetNumber: OFFICE_NUMBERS.saurabh,
+  });
+  const vatsalWa = createWhatsAppLink("direct trade inquiry with Vatsal Jain (Executive Trade & Sales Desk)", {
+    targetNumber: OFFICE_NUMBERS.vatsal,
   });
 
   return (
@@ -43,7 +46,12 @@ export default function ContactPage() {
             <div className="h-10 sm:h-14 w-auto border border-marigold/30 bg-selvedge p-1.5 rounded-xs flex items-center shadow-2xs">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/logos/maa_sheetla_maroon.png"
+                src="/logos/maa_sheetla_maroon-640.png"
+                srcSet="/logos/maa_sheetla_maroon-320.png 320w, /logos/maa_sheetla_maroon-640.png 640w"
+                sizes="(max-width: 640px) 220px, 360px"
+                width={640}
+                height={494}
+                decoding="async"
                 alt="Maa Sheetla Agency"
                 className="h-full w-auto object-contain"
               />
@@ -52,8 +60,13 @@ export default function ContactPage() {
             <div className="h-10 sm:h-14 w-auto border border-marigold/30 bg-selvedge p-1.5 rounded-xs flex items-center shadow-2xs">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/logos/sunrise_fab_tex_colored.png"
-                alt="Sunrise Fab Tex Pvt Ltd"
+                src="/logos/sunrise_fab_tex_colored-640.png"
+                srcSet="/logos/sunrise_fab_tex_colored-320.png 320w, /logos/sunrise_fab_tex_colored-640.png 640w"
+                sizes="(max-width: 640px) 220px, 360px"
+                width={640}
+                height={342}
+                decoding="async"
+                alt="Sunrise Fab Tex Adat"
                 className="h-full w-auto object-contain"
               />
             </div>
@@ -69,7 +82,7 @@ export default function ContactPage() {
             <BlurText text="Connect with our office floors &amp; desks." />
           </h1>
           <p className="text-xs sm:text-base text-ash font-light leading-relaxed">
-            Maa Sheetla Agency &amp; Sunrise Fab Tex Pvt Ltd operate active wholesale trading desks in Surat,
+            Maa Sheetla Agency &amp; Sunrise Fab Tex Adat operate active wholesale trading desks in Surat,
             Kanpur, and Ahmedabad for mill allocations, sample reviews, QC audits, and dispatch scheduling.
           </p>
         </div>
@@ -127,17 +140,17 @@ export default function ContactPage() {
                   </div>
                   <div className="flex items-center gap-2.5">
                     <Phone className="w-4 h-4 text-marigold shrink-0" />
-                    <a href="tel:+919151003198" className="hover:text-marigold underline">
+                    <a href="tel:+919151003198" className="hover:text-marigold underline inline-flex items-center min-h-[44px]">
                       +91 91510 03198
                     </a>
                     <span className="text-ash">/</span>
-                    <a href="tel:+919151060271" className="hover:text-marigold underline">
+                    <a href="tel:+919151060271" className="hover:text-marigold underline inline-flex items-center min-h-[44px]">
                       +91 91510 60271
                     </a>
                   </div>
                   <div className="flex items-center gap-2 text-[11px] text-ash">
                     <Mail className="w-3.5 h-3.5 text-marigold shrink-0" />
-                    <a href="mailto:surat@sunrisefabtex.com" className="hover:text-marigold">
+                    <a href="mailto:surat@sunrisefabtex.com" className="hover:text-marigold inline-flex items-center min-h-[44px]">
                       surat@sunrisefabtex.com
                     </a>
                   </div>
@@ -200,7 +213,7 @@ export default function ContactPage() {
                   </div>
                   <div className="flex items-center gap-2.5">
                     <Phone className="w-4 h-4 text-marigold shrink-0" />
-                    <a href="tel:+919151060273" className="hover:text-marigold underline">
+                    <a href="tel:+919151060273" className="hover:text-marigold underline inline-flex items-center min-h-[44px]">
                       +91 91510 60273
                     </a>
                   </div>
@@ -263,13 +276,13 @@ export default function ContactPage() {
                   </div>
                   <div className="flex items-center gap-2.5">
                     <Phone className="w-4 h-4 text-marigold shrink-0" />
-                    <a href="tel:+919559650752" className="hover:text-marigold underline">
+                    <a href="tel:+919559650752" className="hover:text-marigold underline inline-flex items-center min-h-[44px]">
                       +91 95596 50752
                     </a>
                   </div>
                   <div className="flex items-center gap-2 text-[11px] text-ash">
                     <Mail className="w-3.5 h-3.5 text-marigold shrink-0" />
-                    <a href="mailto:ahmedabad@sunrisefabtex.com" className="hover:text-marigold">
+                    <a href="mailto:ahmedabad@sunrisefabtex.com" className="hover:text-marigold inline-flex items-center min-h-[44px]">
                       ahmedabad@sunrisefabtex.com
                     </a>
                   </div>
@@ -312,7 +325,7 @@ export default function ContactPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Manish Kanodia */}
             <div className="p-5 bg-selvedge-light border border-hairline rounded-xs space-y-4 shadow-2xs">
               <div className="flex items-center justify-between">
@@ -332,13 +345,13 @@ export default function ContactPage() {
               <div className="flex flex-col gap-1.5 font-mono text-xs text-khadi pt-2 border-t border-hairline">
                 <div className="flex items-center gap-2.5">
                   <Phone className="w-4 h-4 text-marigold shrink-0" />
-                  <a href="tel:+919616415615" className="hover:text-marigold transition-colors font-medium">
+                  <a href="tel:+919616415615" className="hover:text-marigold transition-colors font-medium inline-flex items-center min-h-[44px]">
                     +91 96164 15615
                   </a>
                 </div>
                 <div className="flex items-center gap-2 text-[11px] text-ash">
                   <Mail className="w-3.5 h-3.5 text-marigold shrink-0" />
-                  <a href="mailto:manish@sunrisefabtex.com" className="hover:text-marigold transition-colors">
+                  <a href="mailto:manish@sunrisefabtex.com" className="hover:text-marigold transition-colors inline-flex items-center min-h-[44px]">
                     manish@sunrisefabtex.com
                   </a>
                 </div>
@@ -362,12 +375,12 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* Amit Agarwal */}
+            {/* Saurabh Chawla */}
             <div className="p-5 bg-selvedge-light border border-hairline rounded-xs space-y-4 shadow-2xs">
               <div className="flex items-center justify-between">
                 <div>
                   <h3 className="font-display text-xl sm:text-2xl text-khadi font-light">
-                    Amit Agarwal
+                    Saurabh Chawla
                   </h3>
                   <div className="font-mono text-[11px] text-marigold uppercase tracking-wider font-medium">
                     Executive Trade &amp; Sales Desk
@@ -380,14 +393,14 @@ export default function ContactPage() {
 
               <div className="flex items-center gap-2.5 font-mono text-xs text-khadi pt-2 border-t border-hairline">
                 <Phone className="w-4 h-4 text-marigold shrink-0" />
-                <a href="tel:+919559650752" className="hover:text-marigold transition-colors font-medium">
-                  +91 95596 50752
+                <a href="tel:+919151060276" className="hover:text-marigold transition-colors font-medium inline-flex items-center min-h-[44px]">
+                  +91 91510 60276
                 </a>
               </div>
 
               <div className="pt-1 flex gap-2">
                 <a
-                  href={salesWa}
+                  href={saurabhWa}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex-1 inline-flex items-center justify-center gap-2 px-3 py-2.5 bg-selvedge border border-marigold/40 hover:border-marigold text-marigold font-mono text-[10.5px] uppercase tracking-wider rounded-xs transition-colors font-medium shadow-2xs"
@@ -395,7 +408,48 @@ export default function ContactPage() {
                   <MessageCircle className="w-3.5 h-3.5 text-marigold" /> Connect on WhatsApp
                 </a>
                 <a
-                  href="tel:+919559650752"
+                  href="tel:+919151060276"
+                  className="px-3.5 py-2.5 bg-selvedge border border-hairline text-khadi font-mono text-[10.5px] uppercase tracking-wider rounded-xs hover:border-marigold font-medium shadow-2xs"
+                >
+                  Call
+                </a>
+              </div>
+            </div>
+
+            {/* Vatsal Jain */}
+            <div className="p-5 bg-selvedge-light border border-hairline rounded-xs space-y-4 shadow-2xs">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="font-display text-xl sm:text-2xl text-khadi font-light">
+                    Vatsal Jain
+                  </h3>
+                  <div className="font-mono text-[11px] text-marigold uppercase tracking-wider font-medium">
+                    Executive Trade &amp; Sales Desk
+                  </div>
+                </div>
+                <div className="w-10 h-10 border border-marigold/30 bg-selvedge flex items-center justify-center rounded-xs text-marigold shadow-2xs">
+                  <UserCheck className="w-5 h-5" />
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2.5 font-mono text-xs text-khadi pt-2 border-t border-hairline">
+                <Phone className="w-4 h-4 text-marigold shrink-0" />
+                <a href="tel:+919151060277" className="hover:text-marigold transition-colors font-medium inline-flex items-center min-h-[44px]">
+                  +91 91510 60277
+                </a>
+              </div>
+
+              <div className="pt-1 flex gap-2">
+                <a
+                  href={vatsalWa}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 inline-flex items-center justify-center gap-2 px-3 py-2.5 bg-selvedge border border-marigold/40 hover:border-marigold text-marigold font-mono text-[10.5px] uppercase tracking-wider rounded-xs transition-colors font-medium shadow-2xs"
+                >
+                  <MessageCircle className="w-3.5 h-3.5 text-marigold" /> Connect on WhatsApp
+                </a>
+                <a
+                  href="tel:+919151060277"
                   className="px-3.5 py-2.5 bg-selvedge border border-hairline text-khadi font-mono text-[10.5px] uppercase tracking-wider rounded-xs hover:border-marigold font-medium shadow-2xs"
                 >
                   Call

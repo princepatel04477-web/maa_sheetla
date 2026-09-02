@@ -72,7 +72,7 @@ export default function ReachSection() {
         {/* Interactive Layout: Map on left (60%), Ledger on right (40%) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start bg-selvedge border border-hairline p-6 sm:p-10 rounded-sm shadow-sm">
           {/* Map Container */}
-          <div className="lg:col-span-7 flex flex-col justify-center items-center py-2 sticky top-28">
+          <div className="lg:col-span-7 flex flex-col justify-center items-center py-2 lg:sticky lg:top-28">
             <IndiaReachMap
               activeId={activeCityId}
               onActiveChange={setActiveCityId}
@@ -80,7 +80,7 @@ export default function ReachSection() {
             />
             <div className="mt-3 text-center">
               <span className="font-mono text-[10.5px] text-ash tracking-widest uppercase">
-                Hover or click any node point to inspect dispatch corridor
+                Tap any node to inspect its dispatch corridor
               </span>
             </div>
           </div>
@@ -101,12 +101,14 @@ export default function ReachSection() {
                   placeholder="Search city (e.g. Gonda, Bhadohi, Daltonganj)..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-8 pr-8 py-2 bg-selvedge-light border border-hairline rounded-xs text-xs font-mono text-khadi placeholder:text-ash/60 focus:outline-none focus:border-marigold transition-colors"
+                  className="w-full pl-8 pr-9 py-3 min-h-[44px] bg-selvedge-light border border-hairline rounded-xs text-base sm:text-xs font-mono text-khadi placeholder:text-ash/60 focus:outline-none focus:border-marigold focus-visible:ring-2 focus-visible:ring-marigold/60 transition-colors"
                 />
                 {searchQuery && (
                   <button
+                    type="button"
+                    aria-label="Clear search"
                     onClick={() => setSearchQuery("")}
-                    className="absolute right-2.5 top-1/2 -translate-y-1/2 text-ash hover:text-khadi"
+                    className="absolute right-1 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center text-ash hover:text-khadi"
                   >
                     <X className="w-3.5 h-3.5" />
                   </button>
@@ -119,7 +121,7 @@ export default function ReachSection() {
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
-                    className={`px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider rounded-xs border transition-all ${
+                    className={`px-3 py-2 min-h-[44px] text-[10px] font-mono uppercase tracking-wider rounded-xs border transition-all ${
                       activeTab === tab.id
                         ? "bg-marigold text-white border-marigold font-medium shadow-2xs"
                         : "bg-selvedge-light text-ash border-hairline hover:border-marigold/40 hover:text-khadi"
@@ -132,7 +134,7 @@ export default function ReachSection() {
             </div>
 
             {/* Scrollable City Ledger List */}
-            <div className="space-y-1.5 max-h-[440px] overflow-y-auto pr-1">
+            <div className="space-y-1.5 lg:max-h-[440px] lg:overflow-y-auto overscroll-contain pr-1">
               {filteredCities.map((city, idx) => {
                 const isActive = activeCityId === city.id;
                 return (
@@ -160,7 +162,7 @@ export default function ReachSection() {
                           {city.name}
                         </span>
                         {city.isPrimary && (
-                          <span className="text-[8.5px] font-mono px-1.5 py-0.2 bg-marigold/10 text-marigold border border-marigold/30 rounded-2xs uppercase">
+                          <span className="text-[8.5px] font-mono px-1.5 py-0.5 bg-marigold/10 text-marigold border border-marigold/30 rounded-2xs uppercase">
                             Hub
                           </span>
                         )}
@@ -209,7 +211,7 @@ export default function ReachSection() {
             <div className="pt-1">
               <Link
                 href="/reach"
-                className="inline-flex items-center gap-2 text-[11px] font-mono tracking-[0.2em] uppercase text-marigold hover:text-kumkum transition-colors font-medium"
+                className="inline-flex items-center gap-2 py-3 min-h-[44px] text-[11px] font-mono tracking-[0.2em] uppercase text-marigold hover:text-kumkum transition-colors font-medium"
               >
                 <span>Full Transit Logistics &amp; Timelines</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />

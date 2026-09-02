@@ -22,9 +22,14 @@ export default function BlurText({
   threshold = 0.15,
   rootMargin = "0px",
 }: BlurTextProps) {
+  const [mounted, setMounted] = useState(false);
   const elements = animateBy === "words" ? text.split(" ") : text.split("");
   const [inView, setInView] = useState(false);
   const ref = useRef<HTMLParagraphElement>(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const el = ref.current;
@@ -53,6 +58,10 @@ export default function BlurText({
     opacity: 1,
     y: 0,
   };
+
+  if (!mounted) {
+    return <span className={className}>{text}</span>;
+  }
 
   return (
     <span ref={ref} className={`inline-flex flex-wrap ${className}`}>

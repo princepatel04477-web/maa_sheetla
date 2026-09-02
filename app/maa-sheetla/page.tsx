@@ -156,7 +156,7 @@ export default function MaaSheetlaPage() {
             href="/sunrise-fab-tex"
             className="inline-flex items-center gap-1.5 text-marigold hover:text-haldi transition-colors font-medium"
           >
-            <span>Looking for Commercial Volume &amp; Prints? Visit Sunrise Fab Tex</span>
+            <span>Looking for Commercial Volume &amp; Prints? Visit Sunrise Fab Tex Adat</span>
             <ArrowUpRight className="w-3.5 h-3.5" />
           </Link>
         </div>

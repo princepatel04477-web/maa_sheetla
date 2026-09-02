@@ -1,8 +1,8 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
-import { ArrowUpRight, Factory, ShieldCheck, Truck, Scale, History, Handshake, CheckCircle2, Award } from "lucide-react";
+import { ArrowUpRight, Factory, ShieldCheck, Truck, Scale, History, Handshake, CheckCircle2, Award, MapPin, ChevronRight, ChevronLeft, Sparkles, Building2 } from "lucide-react";
 import SplitHero from "../components/SplitHero";
 import AhmedabadCountdown from "../components/AhmedabadCountdown";
 import LedgerBand from "../components/LedgerBand";
@@ -55,7 +55,7 @@ const SOURCING_SPECIALTIES = [
     imageKey: "CAT-02",
     title: "High-Volume Festive Sarees",
     focus: "Dola Silk · Blooming Georgette · Organza Prints",
-    desk: "Sunrise Fab Tex (Volume Desk)",
+    desk: "Sunrise Fab Tex Adat (Volume Desk)",
     desc: "Carton-packed wholesale assortments structured for fast weekend inventory turns and aggressive commercial retail markups.",
   },
   {
@@ -90,7 +90,7 @@ const SOURCING_SPECIALTIES = [
     imageKey: "ST-4420",
     title: "Daily & Workwear Printed Sarees",
     focus: "Bandhani · Leheriya · Digital Georgette · Weightless Silk",
-    desk: "Sunrise Fab Tex (Volume Desk)",
+    desk: "Sunrise Fab Tex Adat (Volume Desk)",
     desc: "High-frequency retail turnover prints and daily-wear collections with guaranteed mill lots and rapid weekly restocking.",
   },
   {
@@ -105,33 +105,58 @@ const SOURCING_SPECIALTIES = [
 const JOURNEY_MILESTONES = [
   {
     year: "2008",
-    stage: "Agency Ka Kaam Chalu Kiya",
+    hindiStage: "Agency Shuru Ki",
+    era: "The Inception",
+    tagline: "First Brokerage Ledger Opened",
+    location: "Brokerage Desk · Regional Markets",
     title: "Agency Foundation & Trade Inception",
     desc: "Founded by Manish Kanodia with a dedicated mission: transparent commission brokerage, ethical mill mediation, and dependable zero-bad-debt guarantees for wholesale cloth merchants.",
+    impact: "Established direct transparent agency representation with zero hidden markups.",
+    focus: "Saree Brokerage & Wholesale Mediation",
   },
   {
     year: "2009",
-    stage: "Kanpur Wala Office Liya",
-    title: "Acquired Kanpur Regional Office",
+    hindiStage: "Kanpur Office Liya",
+    era: "The Regional Anchor",
+    tagline: "Brick-and-Mortar Office Acquired",
+    location: "50/274 Shiv Market, Naughara, Kanpur",
+    title: "Acquiring Kanpur Regional Office",
     desc: "Acquired our permanent regional foothold at 50/274 Shiv Market, Naughara in Kanpur — establishing a dedicated physical liaison desk in Uttar Pradesh's historic textile bazaar.",
+    impact: "Physical trade liaison offering daily sample inspections and counter mediation.",
+    focus: "North India Wholesale Network & Sample Approvals",
   },
   {
     year: "2010",
-    stage: "Surat Aaye",
-    title: "Arrival in the Textile Capital, Surat",
+    hindiStage: "Surat Aaye",
+    era: "The Textile Epicenter",
+    tagline: "Boots on Surat Weaving Floors",
+    location: "Textile Market Belt, Ring Road, Surat",
+    title: "Entering India's Textile Capital, Surat",
     desc: "Stepped onto the powerhouse trading floor of Surat, Gujarat — connecting regional buyers directly to master weavers, powerloom complexes, and specialized dyehouses.",
+    impact: "Direct access to 300+ primary weaving looms with immediate mill dispatch access.",
+    focus: "On-Loom Sourcing & Powerloom Rate Cards",
   },
   {
     year: "2016",
-    stage: "Surat Office Liya",
-    title: "Permanent Surat Head Office Acquired",
+    hindiStage: "Surat Office Liya",
+    era: "The Citadel",
+    tagline: "H-32 India Market Flagship Acquired",
+    location: "H-32 India Market, Salabatpura, Surat",
+    title: "Permanent Surat Headquarters Acquired",
     desc: "Acquired our permanent flagship headquarters at H-32 India Market, Salabatpura, Ring Road — establishing our centralized trading floor, illuminated QC inspection desks, and direct dispatch facility.",
+    impact: "Full in-house piece-by-piece QC inspection floor with 48-hour freight dispatch.",
+    focus: "Centralized Quality Audits & Volume Carton Warehousing",
   },
   {
     year: "2026",
-    stage: "Ahmedabad Expansion",
-    title: "Ahmedabad Trade Floor Launch",
+    hindiStage: "Ahmedabad Hub",
+    era: "The Tri-City Expansion",
+    tagline: "New Cloth Market Floor Launch",
+    location: "New Cloth Market, Sarangpur, Ahmedabad",
+    title: "Expanding to India's Garment Capital",
     desc: "Inaugurating our 3rd major trading center at New Cloth Market, Sarangpur, Ahmedabad — bringing direct mill pricing in readymade garments, pure cotton fabrics, and designer kurti sets.",
+    impact: "Seamless unified sourcing linking Surat weaves with Ahmedabad readymade garments.",
+    focus: "Pure 60/60 Cotton Kurtis & Stitched Festive Apparel",
   },
 ];
 
@@ -170,6 +195,7 @@ const TICKER_ITEMS = [
 ];
 
 export default function HomePage() {
+  const [activeMilestone, setActiveMilestone] = useState(0);
   const partnerWaUrl = createWhatsAppLink("opening a wholesale retail counter agency account");
 
   return (
@@ -273,6 +299,7 @@ export default function HomePage() {
       <section id="about" className="scroll-mt-20 w-full py-16 sm:py-24 lg:py-32 px-4 sm:px-8 lg:px-12 bg-selvedge-light border-t border-hairline relative content-auto">
         <div id="journey" className="relative -top-24" />
         <div className="max-w-7xl mx-auto space-y-12 sm:space-y-16">
+          {/* Header */}
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6">
             <div className="space-y-2.5 max-w-2xl">
               <p className="eyebrow text-kumkum">05 — ABOUT OUR STORY &amp; HERITAGE</p>
@@ -280,7 +307,7 @@ export default function HomePage() {
                 Eighteen years of <i className="italic text-marigold">textile trust.</i>
               </h2>
               <p className="text-xs sm:text-base text-ash font-light leading-relaxed">
-                From starting our agency operations in 2008 to establishing physical offices in Kanpur, Surat, and Ahmedabad — here is the authentic story of how our wholesale textile brokerage was built.
+                From starting our agency operations in 2008 to physical trading floors across Kanpur, Surat, and Ahmedabad — here is how 18 years of wholesale integrity built India&apos;s most trusted trade proxy.
               </p>
             </div>
             <div className="flex flex-wrap items-center gap-3">
@@ -288,17 +315,193 @@ export default function HomePage() {
                 href="/about"
                 className="inline-flex items-center gap-1.5 font-mono text-xs tracking-widest uppercase text-marigold hover:text-kumkum transition-colors py-1 font-medium border-b border-marigold/30 hover:border-kumkum"
               >
-                Read Full Story Page <ArrowUpRight className="w-4 h-4" />
+                <span>Read Full Story Page (2008–2026)</span>
+                <ArrowUpRight className="w-4 h-4" />
               </Link>
             </div>
           </div>
 
-          {/* Narrative Story Feature Box */}
+          {/* INNOVATIVE FEATURE: Interactive Chronological Loom Nav */}
+          <div className="space-y-4">
+            <div className="flex items-center justify-between font-mono text-[10.5px] uppercase tracking-widest text-ash pb-2 border-b border-hairline">
+              <div className="flex items-center gap-2">
+                <Sparkles className="w-3.5 h-3.5 text-marigold" />
+                <span>Interactive Timeline Loom · Select an Era</span>
+              </div>
+              <span className="text-marigold font-medium">
+                Chapter 0{activeMilestone + 1} of 05
+              </span>
+            </div>
+
+            {/* Stepper Rail with Golden Connecting Thread */}
+            <div className="relative">
+              {/* Background Connecting Line */}
+              <div className="hidden lg:block absolute top-1/2 left-6 right-6 h-[1px] bg-gradient-to-r from-marigold/20 via-marigold/60 to-kumkum/40 -translate-y-1/2 z-0" />
+
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5 relative z-10">
+                {JOURNEY_MILESTONES.map((m, idx) => {
+                  const isActive = activeMilestone === idx;
+                  return (
+                    <button
+                      type="button"
+                      key={m.year}
+                      onClick={() => setActiveMilestone(idx)}
+                      className={`text-left p-3.5 sm:p-4 rounded-xs border transition-all duration-300 relative group min-h-[72px] flex flex-col justify-between ${
+                        isActive
+                          ? "bg-selvedge border-marigold shadow-md scale-[1.02] ring-1 ring-marigold/50"
+                          : "bg-warp/70 border-hairline/80 hover:border-marigold/40 hover:bg-selvedge/50 text-ash"
+                      }`}
+                    >
+                      <div className="flex items-center justify-between w-full">
+                        <span
+                          className={`font-mono text-xs font-bold tracking-wider px-2 py-0.5 rounded-2xs border ${
+                            isActive
+                              ? "text-marigold border-marigold/40 bg-warp"
+                              : "text-ash border-hairline/60 bg-warp/50"
+                          }`}
+                        >
+                          {m.year}
+                        </span>
+                        <span
+                          className={`w-2 h-2 rounded-full transition-all ${
+                            isActive
+                              ? "bg-kumkum ring-4 ring-kumkum/20 scale-125 animate-pulse"
+                              : "bg-hairline group-hover:bg-marigold/50"
+                          }`}
+                        />
+                      </div>
+                      <div className="mt-2 space-y-0.5">
+                        <span
+                          className={`font-display text-sm sm:text-[15px] block leading-tight transition-colors ${
+                            isActive ? "text-khadi font-medium" : "text-ash group-hover:text-khadi"
+                          }`}
+                        >
+                          {m.hindiStage}
+                        </span>
+                        <span className="text-[10px] font-mono text-ash/80 block line-clamp-1">
+                          {m.era}
+                        </span>
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+
+          {/* ACTIVE STAGE SPOTLIGHT CONSOLE */}
+          {(() => {
+            const cur = JOURNEY_MILESTONES[activeMilestone];
+            return (
+              <div className="p-6 sm:p-10 lg:p-12 bg-gradient-to-br from-selvedge via-selvedge/95 to-warp border border-marigold/40 rounded-sm shadow-agency-card relative overflow-hidden transition-all duration-500">
+                <div className="absolute top-0 right-0 w-96 h-96 bg-marigold/10 rounded-full blur-3xl pointer-events-none" />
+                <div className="absolute -bottom-10 -left-10 w-72 h-72 bg-kumkum/10 rounded-full blur-3xl pointer-events-none" />
+
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 relative z-10 items-center">
+                  {/* Left: Big Year & Story Details */}
+                  <div className="lg:col-span-8 space-y-5">
+                    <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                      <span className="font-display text-4xl sm:text-6xl lg:text-7xl font-light text-marigold tracking-tight leading-none drop-shadow-2xs">
+                        {cur.year}
+                      </span>
+                      <div className="h-8 sm:h-12 w-[1px] bg-hairline/80 mx-1 hidden sm:block" />
+                      <div className="space-y-1">
+                        <div className="flex items-center gap-2">
+                          <span className="font-mono text-[9.5px] uppercase tracking-widest text-kumkum bg-kumkum/10 px-2 py-0.5 border border-kumkum/20 rounded-2xs font-semibold">
+                            {cur.hindiStage}
+                          </span>
+                          <span className="text-[10px] font-mono text-ash">· {cur.era}</span>
+                        </div>
+                        <div className="flex items-center gap-1.5 font-mono text-[11px] text-khadi/80">
+                          <MapPin className="w-3.5 h-3.5 text-marigold shrink-0" />
+                          <span>{cur.location}</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="space-y-2">
+                      <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl text-khadi font-light leading-tight">
+                        {cur.title}
+                      </h3>
+                      <p className="text-sm sm:text-base text-ash font-light leading-relaxed max-w-3xl">
+                        {cur.desc}
+                      </p>
+                    </div>
+
+                    {/* Trade Breakthrough & Focus Specs */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 font-mono text-xs">
+                      <div className="p-3 bg-warp/80 border border-hairline rounded-xs space-y-1">
+                        <span className="text-[10px] text-marigold uppercase tracking-wider block font-semibold">
+                          ✦ Wholesale Breakthrough
+                        </span>
+                        <p className="text-khadi text-[11.5px] leading-relaxed">
+                          {cur.impact}
+                        </p>
+                      </div>
+                      <div className="p-3 bg-warp/80 border border-hairline rounded-xs space-y-1">
+                        <span className="text-[10px] text-kumkum uppercase tracking-wider block font-semibold">
+                          ✦ Counter Focus
+                        </span>
+                        <p className="text-khadi text-[11.5px] leading-relaxed">
+                          {cur.focus}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Right: Stage Controls & Navigation */}
+                  <div className="lg:col-span-4 flex flex-col justify-between h-full space-y-6 p-5 sm:p-6 bg-warp/90 border border-hairline rounded-xs">
+                    <div className="space-y-3">
+                      <span className="font-mono text-[10px] tracking-widest uppercase text-ash block">
+                        Milestone Navigation
+                      </span>
+                      <p className="font-display text-lg text-khadi font-light italic">
+                        &ldquo;{cur.tagline}&rdquo;
+                      </p>
+                      <p className="text-xs text-ash/90 leading-relaxed font-light">
+                        Every chapter since 2008 has been built on honoring commitments between regional retail buyers and primary weaving mills.
+                      </p>
+                    </div>
+
+                    <div className="space-y-3 pt-2 border-t border-hairline">
+                      <div className="flex items-center justify-between gap-2">
+                        <button
+                          type="button"
+                          onClick={() => setActiveMilestone((prev) => (prev > 0 ? prev - 1 : JOURNEY_MILESTONES.length - 1))}
+                          className="flex-1 inline-flex items-center justify-center gap-1.5 py-2.5 px-3 bg-selvedge hover:bg-selvedge-light border border-hairline text-khadi hover:text-marigold font-mono text-xs tracking-wider uppercase rounded-xs transition-colors min-h-[40px]"
+                        >
+                          <ChevronLeft className="w-3.5 h-3.5" />
+                          <span>Previous Era</span>
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setActiveMilestone((prev) => (prev < JOURNEY_MILESTONES.length - 1 ? prev + 1 : 0))}
+                          className="flex-1 inline-flex items-center justify-center gap-1.5 py-2.5 px-3 bg-kumkum hover:bg-kumkum-deep text-white font-mono text-xs tracking-wider uppercase rounded-xs transition-colors min-h-[40px]"
+                        >
+                          <span>Next Era</span>
+                          <ChevronRight className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
+
+                      <Link
+                        href="/about"
+                        className="w-full inline-flex items-center justify-center gap-2 py-2 text-center text-xs font-mono text-marigold hover:underline tracking-wider uppercase"
+                      >
+                        <span>Explore Full Timeline Story →</span>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          })()}
+
+          {/* THE FOUNDER'S CHAPTER CARD (2008–2026 Tri-City Network) */}
           <div className="p-6 sm:p-8 lg:p-10 bg-selvedge border border-hairline rounded-sm space-y-6 shadow-2xs relative overflow-hidden">
             <div className="absolute top-0 right-0 w-80 h-80 bg-marigold/5 rounded-full blur-3xl pointer-events-none" />
-            
+
             <div className="space-y-3 relative z-10">
-              <div className="flex items-center gap-2 font-mono text-[9px] sm:text-[10px] text-marigold uppercase tracking-widest font-medium">
+              <div className="flex items-center gap-2 font-mono text-[9px] sm:text-[10px] text-marigold uppercase tracking-widest font-semibold">
                 <History className="w-3.5 h-3.5" />
                 <span>The Founder&apos;s Chapter · 2008 to 2026</span>
               </div>
@@ -312,31 +515,71 @@ export default function HomePage() {
 
             {/* Quick Flow Badges */}
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5 pt-2 border-t border-hairline/80 relative z-10">
-              <div className="p-3 bg-warp/80 border border-hairline/60 rounded-2xs space-y-1">
+              <button
+                type="button"
+                onClick={() => setActiveMilestone(0)}
+                className={`p-3 text-left border rounded-2xs space-y-1 transition-all ${
+                  activeMilestone === 0
+                    ? "bg-selvedge border-marigold shadow-xs"
+                    : "bg-warp/80 border-hairline/60 hover:border-marigold/40"
+                }`}
+              >
                 <span className="font-mono text-[10px] text-marigold font-semibold block">2008</span>
                 <span className="font-display text-sm text-khadi block leading-snug">Agency Shuru Ki</span>
                 <span className="text-[10px] text-ash block">Brokerage Inception</span>
-              </div>
-              <div className="p-3 bg-warp/80 border border-hairline/60 rounded-2xs space-y-1">
+              </button>
+              <button
+                type="button"
+                onClick={() => setActiveMilestone(1)}
+                className={`p-3 text-left border rounded-2xs space-y-1 transition-all ${
+                  activeMilestone === 1
+                    ? "bg-selvedge border-marigold shadow-xs"
+                    : "bg-warp/80 border-hairline/60 hover:border-marigold/40"
+                }`}
+              >
                 <span className="font-mono text-[10px] text-marigold font-semibold block">2009</span>
                 <span className="font-display text-sm text-khadi block leading-snug">Kanpur Office</span>
                 <span className="text-[10px] text-ash block">Shiv Market Acquired</span>
-              </div>
-              <div className="p-3 bg-warp/80 border border-hairline/60 rounded-2xs space-y-1">
+              </button>
+              <button
+                type="button"
+                onClick={() => setActiveMilestone(2)}
+                className={`p-3 text-left border rounded-2xs space-y-1 transition-all ${
+                  activeMilestone === 2
+                    ? "bg-selvedge border-marigold shadow-xs"
+                    : "bg-warp/80 border-hairline/60 hover:border-marigold/40"
+                }`}
+              >
                 <span className="font-mono text-[10px] text-marigold font-semibold block">2010</span>
                 <span className="font-display text-sm text-khadi block leading-snug">Surat Aaye</span>
                 <span className="text-[10px] text-ash block">Entered Textile Capital</span>
-              </div>
-              <div className="p-3 bg-warp/80 border border-hairline/60 rounded-2xs space-y-1">
+              </button>
+              <button
+                type="button"
+                onClick={() => setActiveMilestone(3)}
+                className={`p-3 text-left border rounded-2xs space-y-1 transition-all ${
+                  activeMilestone === 3
+                    ? "bg-selvedge border-marigold shadow-xs"
+                    : "bg-warp/80 border-hairline/60 hover:border-marigold/40"
+                }`}
+              >
                 <span className="font-mono text-[10px] text-marigold font-semibold block">2016</span>
                 <span className="font-display text-sm text-khadi block leading-snug">Surat Office</span>
                 <span className="text-[10px] text-ash block">H-32 India Market HQ</span>
-              </div>
-              <div className="p-3 bg-warp/80 border border-hairline/60 rounded-2xs space-y-1 col-span-2 sm:col-span-1">
+              </button>
+              <button
+                type="button"
+                onClick={() => setActiveMilestone(4)}
+                className={`p-3 text-left border rounded-2xs space-y-1 col-span-2 sm:col-span-1 transition-all ${
+                  activeMilestone === 4
+                    ? "bg-selvedge border-kumkum shadow-xs"
+                    : "bg-warp/80 border-hairline/60 hover:border-kumkum/40"
+                }`}
+              >
                 <span className="font-mono text-[10px] text-kumkum font-semibold block">2026</span>
                 <span className="font-display text-sm text-khadi block leading-snug">Ahmedabad Hub</span>
                 <span className="text-[10px] text-ash block">New Cloth Market Floor</span>
-              </div>
+              </button>
             </div>
           </div>
 
@@ -360,45 +603,65 @@ export default function HomePage() {
             ))}
           </div>
 
-          {/* Timeline Milestones */}
+          {/* Detailed Five Milestones Grid */}
           <div className="space-y-4 pt-4">
             <div className="flex items-center justify-between pb-2 border-b border-hairline">
               <div className="flex items-center gap-2 font-mono text-[10.5px] uppercase tracking-widest text-ash">
                 <History className="w-4 h-4 text-marigold" />
                 <span>Five Historic Milestones (2008 – 2026)</span>
               </div>
-              <span className="font-mono text-[10px] text-marigold uppercase tracking-wider hidden sm:inline-block">
-                18-Year Legacy
+              <span className="font-mono text-[10px] text-marigold uppercase tracking-wider hidden sm:inline-block font-medium">
+                18-Year Legacy · Kanpur · Surat · Ahmedabad
               </span>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-              {JOURNEY_MILESTONES.map((m, idx) => (
-                <div
-                  key={m.year}
-                  className="p-5 bg-selvedge/80 border border-hairline hover:border-marigold/40 rounded-xs space-y-3 flex flex-col justify-between relative group shadow-2xs hover:shadow-xs transition-all"
-                >
-                  <div className="space-y-2.5">
-                    <div className="flex items-center justify-between">
-                      <span className="font-mono text-xs text-marigold font-semibold tracking-wider bg-warp px-2.5 py-0.5 border border-marigold/30 rounded-2xs">
-                        {m.year}
+              {JOURNEY_MILESTONES.map((m, idx) => {
+                const isSelected = activeMilestone === idx;
+                return (
+                  <button
+                    type="button"
+                    key={m.year}
+                    onClick={() => setActiveMilestone(idx)}
+                    className={`p-5 text-left border rounded-xs space-y-3 flex flex-col justify-between relative group transition-all duration-300 ${
+                      isSelected
+                        ? "bg-selvedge border-marigold shadow-agency-card ring-1 ring-marigold/40 scale-[1.01]"
+                        : "bg-selvedge/80 border-hairline hover:border-marigold/40 hover:bg-selvedge shadow-2xs"
+                    }`}
+                  >
+                    <div className="space-y-2.5 w-full">
+                      <div className="flex items-center justify-between">
+                        <span
+                          className={`font-mono text-xs font-semibold tracking-wider px-2.5 py-0.5 border rounded-2xs ${
+                            isSelected
+                              ? "text-marigold bg-warp border-marigold/50"
+                              : "text-ash bg-warp border-hairline/60 group-hover:text-marigold"
+                          }`}
+                        >
+                          {m.year}
+                        </span>
+                        <span className="text-[10px] font-mono text-ash/60">0{idx + 1}</span>
+                      </div>
+                      <span className="inline-block text-[10px] font-mono text-kumkum font-semibold tracking-wide uppercase">
+                        {m.hindiStage}
                       </span>
-                      <span className="text-[10px] font-mono text-ash/60">0{idx + 1}</span>
+                      <h4 className="font-display text-base sm:text-lg text-khadi font-light leading-snug">
+                        {m.title}
+                      </h4>
+                      <p className="text-xs text-ash font-light leading-relaxed line-clamp-3">
+                        {m.desc}
+                      </p>
                     </div>
-                    {m.stage && (
-                      <span className="inline-block text-[10px] font-mono text-kumkum font-medium tracking-wide uppercase">
-                        {m.stage}
+
+                    <div className="pt-2 border-t border-hairline/60 w-full flex items-center justify-between font-mono text-[9.5px]">
+                      <span className="text-ash/70">{m.era}</span>
+                      <span className={`font-medium ${isSelected ? "text-marigold" : "text-ash/50 group-hover:text-marigold"}`}>
+                        {isSelected ? "Active View" : "Click to View →"}
                       </span>
-                    )}
-                    <h4 className="font-display text-base sm:text-lg text-khadi font-light leading-snug">
-                      {m.title}
-                    </h4>
-                    <p className="text-xs text-ash font-light leading-relaxed">
-                      {m.desc}
-                    </p>
-                  </div>
-                </div>
-              ))}
+                    </div>
+                  </button>
+                );
+              })}
             </div>
           </div>
         </div>
