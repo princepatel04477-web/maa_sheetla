@@ -9,10 +9,10 @@ export default function SplitHero() {
   const [hoveredPanel, setHoveredPanel] = useState<"maa" | "sunrise" | null>(null);
 
   const maaWaUrl = createWhatsAppLink("connecting with the Maa Sheetla counter in Surat");
-  const sunriseWaUrl = createWhatsAppLink("connecting with the Sunrise Fab Tex counter in Surat");
+  const sunriseWaUrl = createWhatsAppLink("connecting with the Sunrise Fab Tex Adat counter in Surat");
 
   return (
-    <section id="firms" className="relative w-full min-h-[calc(100vh-5rem)] sm:min-h-[calc(100vh-6rem)] mt-20 sm:mt-24 flex flex-col md:flex-row border-b border-hairline overflow-hidden">
+    <section id="firms" className="relative w-full min-h-[calc(100svh-5rem)] sm:min-h-[calc(100svh-6rem)] mt-20 sm:mt-24 flex flex-col md:flex-row border-b border-hairline overflow-hidden">
       {/* LEFT PANEL: Maa Sheetla (The Named Counter) */}
       <div
         onMouseEnter={() => setHoveredPanel("maa")}
@@ -33,7 +33,6 @@ export default function SplitHero() {
             backgroundImage:
               'url("/img/firms/desk-maa-sheetla-1400.jpg")',
             transform: "translateZ(0)",
-            willChange: "transform",
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-warp/95 via-warp/65 to-warp/20 pointer-events-none" />
@@ -43,7 +42,7 @@ export default function SplitHero() {
         <div className="relative z-10 space-y-1.5 pt-1">
           <div className="flex items-center gap-2">
             <span className="font-mono text-[9px] sm:text-[9.5px] tracking-[0.24em] text-kumkum uppercase bg-selvedge/95 px-2.5 py-1 border border-kumkum/30 rounded-xs shadow-2xs font-medium backdrop-blur-xs">
-              THE NAMED COUNTER · EST. 2010
+              THE NAMED COUNTER · EST. 2008
             </span>
           </div>
           <div className="font-mono text-[10px] sm:text-[10.5px] text-khadi tracking-widest uppercase pl-0.5 font-medium">
@@ -56,16 +55,26 @@ export default function SplitHero() {
           <div className="h-18 sm:h-24 md:h-28 w-auto flex items-center">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/logos/maa_sheetla_maroon.png"
+              src="/logos/maa_sheetla_maroon-640.png"
+              srcSet="/logos/maa_sheetla_maroon-320.png 320w, /logos/maa_sheetla_maroon-640.png 640w"
+              sizes="(max-width: 640px) 240px, 380px"
+              width={640}
+              height={494}
+              fetchPriority="high"
+              decoding="async"
               alt="Maa Sheetla Agency Official Logo"
               className="h-full w-auto object-contain filter drop-shadow-xs"
             />
           </div>
 
           <div>
-            <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-light text-khadi tracking-tight leading-[0.94] drop-shadow-2xs">
+            <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-light text-khadi tracking-tight leading-[0.94] drop-shadow-2xs">
               Maa Sheetla
-            </h2>
+            </h1>
+            <span className="sr-only">
+              Maa Sheetla Agency and Sunrise Fab Tex Adat — wholesale textile agency and commission
+              brokerage in Surat since 2008.
+            </span>
             <p className="font-display text-lg sm:text-2xl text-marigold font-light italic mt-1">
               For showrooms and buyers that sell by label.
             </p>
@@ -76,7 +85,6 @@ export default function SplitHero() {
           </p>
 
           <div className="pt-1 flex flex-wrap gap-1.5 sm:gap-2 text-[9.5px] sm:text-[10.5px] font-mono text-khadi">
-            <span className="bg-selvedge/95 px-2.5 py-1 border border-hairline rounded-xs shadow-2xs font-medium backdrop-blur-xs">MOQ: 2–6 pcs/set</span>
             <span className="bg-selvedge/95 px-2.5 py-1 border border-hairline rounded-xs shadow-2xs font-medium backdrop-blur-xs">Territorial Lock</span>
             <span className="bg-selvedge/95 px-2.5 py-1 border border-hairline rounded-xs shadow-2xs font-medium backdrop-blur-xs">Pure Silk Jacquards</span>
           </div>
@@ -86,7 +94,7 @@ export default function SplitHero() {
         <div className="relative z-10 pt-5 border-t border-hairline flex flex-col sm:flex-row sm:items-center justify-between gap-3.5 bg-selvedge/80 backdrop-blur-xs -mx-2 px-2 py-2 rounded-xs">
           <Link
             href="/firms/maa-sheetla"
-            className="inline-flex items-center gap-2 font-mono text-xs tracking-[0.18em] uppercase text-khadi group-hover:text-marigold transition-colors py-1 font-medium"
+            className="inline-flex items-center gap-2 min-h-[44px] font-mono text-xs tracking-[0.18em] uppercase text-khadi group-hover:text-marigold transition-colors py-2 font-medium"
           >
             <span>Explore Maa Sheetla Desk</span>
             <ArrowUpRight className="w-4 h-4 text-marigold group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -95,7 +103,7 @@ export default function SplitHero() {
             href={maaWaUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 font-mono text-xs text-kumkum hover:text-kumkum-deep tracking-wider uppercase transition-colors py-1 font-medium"
+            className="inline-flex items-center gap-1.5 min-h-[44px] font-mono text-xs text-kumkum hover:text-kumkum-deep tracking-wider uppercase transition-colors py-2 font-medium"
           >
             <MessageCircle className="w-3.5 h-3.5" />
             <span>Direct WhatsApp Desk →</span>
@@ -123,7 +131,6 @@ export default function SplitHero() {
             backgroundImage:
               'url("/img/firms/desk-sunrise-fab-tex-1400.jpg")',
             transform: "translateZ(0)",
-            willChange: "transform",
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-warp/95 via-warp/65 to-warp/20 pointer-events-none" />
@@ -133,7 +140,7 @@ export default function SplitHero() {
         <div className="relative z-10 space-y-1.5 pt-1">
           <div className="flex items-center gap-2">
             <span className="font-mono text-[9px] sm:text-[9.5px] tracking-[0.24em] text-marigold uppercase bg-selvedge/95 px-2.5 py-1 border border-marigold/30 rounded-xs shadow-2xs font-medium backdrop-blur-xs">
-              THE VOLUME COUNTER · EST. 2010
+              THE VOLUME COUNTER · EST. 2008
             </span>
           </div>
           <div className="font-mono text-[10px] sm:text-[10.5px] text-khadi tracking-widest uppercase pl-0.5 font-medium">
@@ -146,15 +153,20 @@ export default function SplitHero() {
           <div className="h-18 sm:h-24 md:h-28 w-auto flex items-center">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/logos/sunrise_fab_tex_colored.png"
-              alt="Sunrise Fab Tex Pvt Ltd Official Logo"
+              src="/logos/sunrise_fab_tex_colored-640.png"
+              srcSet="/logos/sunrise_fab_tex_colored-320.png 320w, /logos/sunrise_fab_tex_colored-640.png 640w"
+              sizes="(max-width: 640px) 240px, 380px"
+              width={640}
+              height={342}
+              decoding="async"
+              alt="Sunrise Fab Tex Adat Official Logo"
               className="h-full w-auto object-contain filter drop-shadow-xs"
             />
           </div>
 
           <div>
             <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-light text-khadi tracking-tight leading-[0.94] drop-shadow-2xs">
-              Sunrise Fab Tex
+              Sunrise Fab Tex Adat
             </h2>
             <p className="font-display text-lg sm:text-2xl text-marigold font-light italic mt-1">
               Priced and packed for the retail floor.
@@ -166,9 +178,8 @@ export default function SplitHero() {
           </p>
 
           <div className="pt-1 flex flex-wrap gap-1.5 sm:gap-2 text-[9.5px] sm:text-[10.5px] font-mono text-khadi">
-            <span className="bg-selvedge/95 px-2.5 py-1 border border-hairline rounded-xs shadow-2xs font-medium backdrop-blur-xs">MOQ: 8–12 pcs carton</span>
-            <span className="bg-selvedge/95 px-2.5 py-1 border border-hairline rounded-xs shadow-2xs font-medium backdrop-blur-xs">Immediate Mill Dispatch</span>
-            <span className="bg-selvedge/95 px-2.5 py-1 border border-hairline rounded-xs shadow-2xs font-medium backdrop-blur-xs">Commercial Margins</span>
+            <span className="bg-selvedge/95 px-2.5 py-1 border border-hairline rounded-xs shadow-2xs font-medium backdrop-blur-xs">Direct Loom Rate</span>
+            <span className="bg-selvedge/95 px-2.5 py-1 border border-hairline rounded-xs shadow-2xs font-medium backdrop-blur-xs">Weekly Restock</span>
           </div>
         </div>
 
@@ -176,16 +187,16 @@ export default function SplitHero() {
         <div className="relative z-10 pt-5 border-t border-hairline flex flex-col sm:flex-row sm:items-center justify-between gap-3.5 bg-selvedge/80 backdrop-blur-xs -mx-2 px-2 py-2 rounded-xs">
           <Link
             href="/firms/sunrise-tex-fab"
-            className="inline-flex items-center gap-2 font-mono text-xs tracking-[0.18em] uppercase text-khadi group-hover:text-marigold transition-colors py-1 font-medium"
+            className="inline-flex items-center gap-2 min-h-[44px] font-mono text-xs tracking-[0.18em] uppercase text-khadi group-hover:text-marigold transition-colors py-2 font-medium"
           >
-            <span>Explore Sunrise Desk</span>
+            <span>Explore Sunrise Adat Desk</span>
             <ArrowUpRight className="w-4 h-4 text-marigold group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
           </Link>
           <a
             href={sunriseWaUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 font-mono text-xs text-marigold hover:text-haldi tracking-wider uppercase transition-colors py-1 font-medium"
+            className="inline-flex items-center gap-1.5 min-h-[44px] font-mono text-xs text-marigold hover:text-haldi tracking-wider uppercase transition-colors py-2 font-medium"
           >
             <MessageCircle className="w-3.5 h-3.5" />
             <span>Direct WhatsApp Desk →</span>

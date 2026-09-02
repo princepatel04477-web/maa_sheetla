@@ -64,7 +64,7 @@ export default function QueryPage() {
     contact: "",
     email: "",
     categoryInterest: "Sarees (Tissue, Dola, Organza)",
-    preferredFirm: "Both Desks" as "Maa Sheetla" | "Sunrise Fab Tex" | "Both Desks",
+    preferredFirm: "Both Desks" as "Maa Sheetla" | "Sunrise Fab Tex Adat" | "Both Desks",
     message: "",
   });
 
@@ -389,7 +389,7 @@ export default function QueryPage() {
                     Agency Desk Focus
                   </label>
                   <div className="grid grid-cols-1 xs:grid-cols-3 gap-2 font-mono text-xs">
-                    {(["Both Desks", "Maa Sheetla", "Sunrise Fab Tex"] as const).map((firm) => (
+                    {(["Both Desks", "Maa Sheetla", "Sunrise Fab Tex Adat"] as const).map((firm) => (
                       <button
                         type="button"
                         key={firm}
@@ -417,7 +417,7 @@ export default function QueryPage() {
                     id="message"
                     name="message"
                     maxLength={1500}
-                    placeholder="e.g. Looking for festive season bridal sets, MOQ inquiry, rate cards, etc."
+                    placeholder="e.g. Looking for festive season bridal sets, rate cards, sample assortments, etc."
                     className="w-full px-4 py-3 bg-warp border border-hairline rounded-xs text-base sm:text-sm text-khadi placeholder-ash/50 focus:outline-none focus:border-marigold resize-none"
                   />
                 </div>
@@ -515,11 +515,11 @@ export default function QueryPage() {
               <div className="text-marigold uppercase tracking-wider font-medium">Direct Desk Assistance:</div>
               <div className="text-khadi/90">
                 Phone:{" "}
-                <a href="tel:+919151003198" className="hover:text-marigold underline">
+                <a href="tel:+919151003198" className="hover:text-marigold underline inline-flex items-center min-h-[44px]">
                   +91 91510 03198
                 </a>
                 {" / "}
-                <a href="tel:+919151060271" className="hover:text-marigold underline">
+                <a href="tel:+919151060271" className="hover:text-marigold underline inline-flex items-center min-h-[44px]">
                   +91 91510 60271
                 </a>
               </div>

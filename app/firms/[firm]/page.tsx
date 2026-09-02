@@ -10,33 +10,36 @@ import { ArrowUpRight } from "lucide-react";
 import { createWhatsAppLink } from "../../../lib/whatsapp";
 
 const FIRM_CONFIGS: Record<string, {
-  name: "Maa Sheetla" | "Sunrise Fab Tex";
+  name: string;
+  firmKey: "Maa Sheetla" | "Sunrise Fab Tex";
   logoUrl: string;
   eyebrow: string;
   tagline: string;
   description: string;
   roleDescription: string;
-  moqRule: string;
+  packingRule: string;
   targetProfile: string;
 }> = {
   "maa-sheetla": {
     name: "Maa Sheetla",
-    logoUrl: "/logos/maa_sheetla_maroon.png",
+    firmKey: "Maa Sheetla",
+    logoUrl: "/logos/maa_sheetla_maroon-640.png",
     eyebrow: "AGENCY DESK 01 · CURATED DESIGNER COLLECTIONS",
     tagline: "For showroom counters that sell by craft & exclusivity.",
     description: "Curated wholesale brokerage of high-craft bridal lehengas, tissue silk sarees, and hand-embroidered suits for premium multi-designer counters.",
     roleDescription: "Maa Sheetla operates as the dedicated agency desk for discerning showroom owners and buyers who demand distinctive silhouettes, intricate hand needlework, and strict territorial exclusivity.",
-    moqRule: "Flexible order minimums (2 to 6 pcs per design) with complete colorway sets.",
+    packingRule: "Flexible lot assortments (2 to 6 pcs per design) with complete colorway sets.",
     targetProfile: "Designer bridal showrooms & luxury counters in Hazratganj, South Delhi, Johari Bazaar & Civil Lines.",
   },
   "sunrise-tex-fab": {
-    name: "Sunrise Fab Tex",
-    logoUrl: "/logos/sunrise_fab_tex_colored.png",
+    name: "Sunrise Fab Tex Adat",
+    firmKey: "Sunrise Fab Tex",
+    logoUrl: "/logos/sunrise_fab_tex_colored-640.png",
     eyebrow: "AGENCY DESK 02 · HIGH-VELOCITY COMMERCIAL WHOLESALE",
     tagline: "Priced and packed for daily retail turnover.",
     description: "High-velocity wholesale brokerage of the identical four catalogues, streamlined for rapid inventory turns and competitive commercial retail margins.",
-    roleDescription: "Sunrise Fab Tex is designed for volume retail counters and wholesale buyers that require dependable weekly supply, mill-consistent dye lots, and attractive retail markup margins.",
-    moqRule: "Volume carton packaging (8 to 12 pcs per box) with immediate mill dispatch guarantees.",
+    roleDescription: "Sunrise Fab Tex Adat is designed for volume retail counters and wholesale buyers that require dependable weekly supply, mill-consistent dye lots, and attractive retail markup margins.",
+    packingRule: "Volume carton packaging (8 to 12 pcs per box) with immediate mill dispatch guarantees.",
     targetProfile: "High-footfall textile counters & commercial retail showrooms across UP, MP, Bihar, Punjab & NCR.",
   }
 };
@@ -58,7 +61,7 @@ export default function FirmProfilePage({ params }: { params: { firm: string } }
   const config = FIRM_CONFIGS[params.firm];
   if (!config) notFound();
 
-  const products = getProductsByFirm(config.name);
+  const products = getProductsByFirm(config.firmKey);
   const waUrl = createWhatsAppLink(`visiting the ${config.name} agency desk in Surat`);
 
   return (
@@ -114,8 +117,8 @@ export default function FirmProfilePage({ params }: { params: { firm: string } }
         {/* Operating Terms Spec Box */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 p-6 bg-selvedge border border-hairline rounded-sm text-xs font-mono shadow-2xs">
           <div className="space-y-1.5">
-            <span className="text-marigold tracking-widest uppercase text-[10px] font-medium">MOQ &amp; Packing Structure:</span>
-            <p className="text-khadi font-normal">{config.moqRule}</p>
+            <span className="text-marigold tracking-widest uppercase text-[10px] font-medium">Packing &amp; Dispatch Structure:</span>
+            <p className="text-khadi font-normal">{config.packingRule}</p>
           </div>
           <div className="space-y-1.5">
             <span className="text-marigold tracking-widest uppercase text-[10px] font-medium">Ideal Showroom Profile:</span>

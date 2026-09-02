@@ -83,7 +83,7 @@ export default function ProductCard({ product, priority = false }: ProductCardPr
 
         <div className="pt-2 border-t border-hairline flex items-center justify-between text-[11px] font-mono">
           <span className="text-ash">
-            Agency MOQ: <strong className="text-khadi font-medium">{product.moq}</strong>
+            Assortment: <strong className="text-khadi font-medium">{product.moq}</strong>
           </span>
           <span className="text-marigold uppercase tracking-wider text-[10px] font-medium">
             {product.type}
