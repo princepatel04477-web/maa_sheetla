@@ -91,24 +91,24 @@ const MAA_OPERATIONS = [
 
 const MAA_MILESTONES = [
   {
+    year: "2008",
+    title: "Agency Brokerage Inception",
+    desc: "Founded by Manish Kanodia as an independent textile commission agency rooted in transparent pricing and buyer trust.",
+  },
+  {
+    year: "2009",
+    title: "Kanpur Office Acquired",
+    desc: "Acquired regional office at 50/274 Shiv Market, Naughara, Kanpur for direct North Indian showroom liaison and sampling.",
+  },
+  {
     year: "2010",
-    title: "Salabatpura Foundation",
-    desc: "Founded at H-32 India Market, Surat by Manish Kanodia as a dedicated boutique wholesale agency desk.",
+    title: "Surat Loom Floor Arrival",
+    desc: "Moved directly to Surat, Gujarat — connecting regional buyers with 100+ verified jacquard powerlooms and master dyehouses.",
   },
   {
     year: "2016",
-    title: "Exclusive Designer Guild",
-    desc: "Partnered with 80+ master jacquard and hand-embroidery units for limited-run showroom collections.",
-  },
-  {
-    year: "2020",
-    title: "Territorial Lock Network",
-    desc: "Introduced strict city-exclusive design locking across 500+ luxury retail counters in North & Central India.",
-  },
-  {
-    year: "2023",
-    title: "Kanpur Liaison Desk",
-    desc: "Opened Shiv Market desk in Kanpur for direct regional buyer sampling and priority North Indian dispatches.",
+    title: "Surat Head Office Acquired",
+    desc: "Acquired permanent flagship floor at H-32 India Market, Salabatpura with illuminated QC inspection and express dispatch.",
   },
   {
     year: "2026",
@@ -118,7 +118,7 @@ const MAA_MILESTONES = [
 ];
 
 const MAA_TICKER = [
-  "Maa Sheetla Agency · Established 2010",
+  "Maa Sheetla Agency · Established 2008",
   "Pure Mulberry Tissue Silk",
   "Micro 9000 Velvet Bridal Lehengas",
   "Banarasi Khaddi Georgette",
@@ -168,7 +168,7 @@ export default function MaaSheetlaPage() {
           <div className="lg:col-span-8 space-y-6">
             <div className="inline-flex items-center gap-2 font-mono text-[9.5px] sm:text-[10px] tracking-[0.24em] text-kumkum uppercase bg-selvedge/90 px-3 py-1.5 border border-kumkum/40 rounded-xs">
               <Sparkles className="w-3.5 h-3.5 text-kumkum shrink-0" />
-              <span>MAA SHEETLA AGENCY · ESTABLISHED 2010 · SURAT</span>
+              <span>MAA SHEETLA AGENCY · ESTABLISHED 2008 · SURAT</span>
             </div>
 
             <div className="h-16 sm:h-22 w-auto flex items-center">
@@ -291,11 +291,8 @@ export default function MaaSheetlaPage() {
                       imgClassName="hover:scale-105 transition-transform duration-700 ease-out"
                     />
                   </div>
-                  <div className="flex items-center justify-between font-mono text-xs">
+                  <div className="flex items-center font-mono text-xs">
                     <span className="text-marigold font-display text-2xl font-light">0{idx + 1}</span>
-                    <span className="text-[10px] text-kumkum border border-kumkum/30 px-2.5 py-0.5 bg-warp uppercase font-medium">
-                      Label Desk
-                    </span>
                   </div>
                   <div>
                     <h3 className="font-display text-xl text-khadi font-light">{cat.title}</h3>
@@ -382,12 +379,12 @@ export default function MaaSheetlaPage() {
         </div>
       </section>
 
-      {/* 16-Year Heritage Milestones */}
+      {/* 18-Year Heritage Milestones */}
       <section className="w-full py-16 sm:py-24 px-4 sm:px-8 lg:px-12 bg-warp border-b border-hairline relative">
         <div className="max-w-7xl mx-auto space-y-10">
           <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-ash pb-3 border-b border-hairline">
             <History className="w-4 h-4 text-marigold" />
-            <span>Maa Sheetla Journey &amp; Milestones (2010 – 2026)</span>
+            <span>Maa Sheetla Journey &amp; Milestones (2008 – 2026)</span>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
@@ -501,21 +498,21 @@ export default function MaaSheetlaPage() {
             and priority wedding season dispatches.
           </p>
           <div className="pt-3 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link
+              href="/partner"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-kumkum hover:bg-kumkum-deep text-white font-mono text-xs tracking-widest uppercase rounded-xs transition-all shadow-xs font-medium min-h-[44px]"
+            >
+              <span>Submit Trade Query Form →</span>
+            </Link>
             <a
               href={waUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-kumkum hover:bg-kumkum-deep text-white font-mono text-xs tracking-widest uppercase rounded-xs transition-all shadow-xs font-medium min-h-[44px]"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-selvedge hover:bg-selvedge-light border border-hairline text-khadi hover:text-marigold font-mono text-xs tracking-widest uppercase rounded-xs transition-all min-h-[44px] shadow-2xs font-medium"
             >
               <MessageCircle className="w-4 h-4" />
               <span>WhatsApp Agency Desk</span>
             </a>
-            <Link
-              href="/partner"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-selvedge hover:bg-selvedge-light border border-hairline text-khadi hover:text-marigold font-mono text-xs tracking-widest uppercase rounded-xs transition-all min-h-[44px] shadow-2xs font-medium"
-            >
-              <span>Submit Trade Query Form →</span>
-            </Link>
           </div>
         </div>
       </section>

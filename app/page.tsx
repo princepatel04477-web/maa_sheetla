@@ -104,29 +104,34 @@ const SOURCING_SPECIALTIES = [
 
 const JOURNEY_MILESTONES = [
   {
+    year: "2008",
+    stage: "Agency Ka Kaam Chalu Kiya",
+    title: "Agency Foundation & Trade Inception",
+    desc: "Founded by Manish Kanodia with a dedicated mission: transparent commission brokerage, ethical mill mediation, and dependable zero-bad-debt guarantees for wholesale cloth merchants.",
+  },
+  {
+    year: "2009",
+    stage: "Kanpur Wala Office Liya",
+    title: "Acquired Kanpur Regional Office",
+    desc: "Acquired our permanent regional foothold at 50/274 Shiv Market, Naughara in Kanpur — establishing a dedicated physical liaison desk in Uttar Pradesh's historic textile bazaar.",
+  },
+  {
     year: "2010",
-    title: "Founding in Salabatpura, Surat",
-    desc: "Founded by Manish Kanodia at H-32 India Market as an on-ground brokerage floor connecting Surat powerlooms directly to North Indian showroom counters.",
+    stage: "Surat Aaye",
+    title: "Arrival in the Textile Capital, Surat",
+    desc: "Stepped onto the powerhouse trading floor of Surat, Gujarat — connecting regional buyers directly to master weavers, powerloom complexes, and specialized dyehouses.",
   },
   {
-    year: "2015",
-    title: "Sunrise Fab Tex Volume Desk",
-    desc: "Launched Sunrise Fab Tex as our dedicated high-velocity commercial volume desk, servicing carton-lot orders across UP, Bihar, MP, and NCR.",
-  },
-  {
-    year: "2019",
-    title: "500+ Showrooms & 70+ Cities",
-    desc: "Scaled our network to 500+ active retail buyers and 70+ city logistics routes with consolidated 48-hour freight dispatches and zero-bad-debt guarantees.",
-  },
-  {
-    year: "2023",
-    title: "Kanpur Liaison Desk",
-    desc: "Opened our Shiv Market desk in Kanpur, giving North Indian retailers direct local sample viewing, rapid order repeats, and faster regional coordination.",
+    year: "2016",
+    stage: "Surat Office Liya",
+    title: "Permanent Surat Head Office Acquired",
+    desc: "Acquired our permanent flagship headquarters at H-32 India Market, Salabatpura, Ring Road — establishing our centralized trading floor, illuminated QC inspection desks, and direct dispatch facility.",
   },
   {
     year: "2026",
-    title: "Ahmedabad Trade Floor",
-    desc: "Inaugurating our New Cloth Market desk in Ahmedabad, specifically focused on Ahmedabad readymade garments, designer kurtis, and cotton wholesale collections.",
+    stage: "Ahmedabad Expansion",
+    title: "Ahmedabad Trade Floor Launch",
+    desc: "Inaugurating our 3rd major trading center at New Cloth Market, Sarangpur, Ahmedabad — bringing direct mill pricing in readymade garments, pure cotton fabrics, and designer kurti sets.",
   },
 ];
 
@@ -142,9 +147,9 @@ const PARTNER_PILLARS = [
     subtext: "Tier-1 & Tier-2 Multi-Designer Counters",
   },
   {
-    number: "16+",
+    number: "18+",
     label: "Years of Continuous Wholesale Standing",
-    subtext: "Established 2010 with Transparent Brokerage",
+    subtext: "Established 2008 with Transparent Brokerage",
   },
   {
     number: "70+",
@@ -249,11 +254,8 @@ export default function HomePage() {
                       imgClassName="hover:scale-105 transition-transform duration-700 ease-out"
                     />
                   </div>
-                  <div className="flex items-center justify-between font-mono text-xs">
+                  <div className="flex items-center font-mono text-xs">
                     <span className="text-marigold font-display text-2xl font-light">0{idx + 1}</span>
-                    <span className="text-marigold text-[9.5px] sm:text-[10px] border border-hairline px-2.5 py-0.5 bg-selvedge-light uppercase font-medium">
-                      {spec.desk}
-                    </span>
                   </div>
                   <div>
                     <h3 className="font-display text-xl sm:text-2xl text-khadi font-light">{spec.title}</h3>
@@ -267,26 +269,75 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 5. Our Journey & Wholesale Partner Network */}
-      <section id="journey" className="w-full py-16 sm:py-24 lg:py-32 px-4 sm:px-8 lg:px-12 bg-selvedge-light border-t border-hairline relative content-auto">
+      {/* 5. Our Story & Wholesale Partner Network (About Section) */}
+      <section id="about" className="scroll-mt-20 w-full py-16 sm:py-24 lg:py-32 px-4 sm:px-8 lg:px-12 bg-selvedge-light border-t border-hairline relative content-auto">
+        <div id="journey" className="relative -top-24" />
         <div className="max-w-7xl mx-auto space-y-12 sm:space-y-16">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6">
             <div className="space-y-2.5 max-w-2xl">
-              <p className="eyebrow text-kumkum">05 — OUR JOURNEY &amp; WHOLESALE PARTNERS</p>
+              <p className="eyebrow text-kumkum">05 — ABOUT OUR STORY &amp; HERITAGE</p>
               <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl text-khadi font-light tracking-tight leading-[0.95]">
-                Sixteen years of <i className="italic text-marigold">textile trust.</i>
+                Eighteen years of <i className="italic text-marigold">textile trust.</i>
               </h2>
               <p className="text-xs sm:text-base text-ash font-light leading-relaxed">
-                From our foundational looms at Salabatpura in 2010 to multi-state regional trade floors in Surat, Kanpur, and Ahmedabad,
-                here is how our wholesale network and partner ecosystem evolved.
+                From starting our agency operations in 2008 to establishing physical offices in Kanpur, Surat, and Ahmedabad — here is the authentic story of how our wholesale textile brokerage was built.
               </p>
             </div>
-            <Link
-              href="/partner"
-              className="inline-flex items-center gap-1.5 font-mono text-xs tracking-widest uppercase text-marigold hover:text-kumkum transition-colors py-1 font-medium"
-            >
-              Partner With Our Desks <ArrowUpRight className="w-4 h-4" />
-            </Link>
+            <div className="flex flex-wrap items-center gap-3">
+              <Link
+                href="/about"
+                className="inline-flex items-center gap-1.5 font-mono text-xs tracking-widest uppercase text-marigold hover:text-kumkum transition-colors py-1 font-medium border-b border-marigold/30 hover:border-kumkum"
+              >
+                Read Full Story Page <ArrowUpRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Narrative Story Feature Box */}
+          <div className="p-6 sm:p-8 lg:p-10 bg-selvedge border border-hairline rounded-sm space-y-6 shadow-2xs relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-80 h-80 bg-marigold/5 rounded-full blur-3xl pointer-events-none" />
+            
+            <div className="space-y-3 relative z-10">
+              <div className="flex items-center gap-2 font-mono text-[9px] sm:text-[10px] text-marigold uppercase tracking-widest font-medium">
+                <History className="w-3.5 h-3.5" />
+                <span>The Founder&apos;s Chapter · 2008 to 2026</span>
+              </div>
+              <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl text-khadi font-light leading-tight">
+                From Agency Inception in 2008 to a Tri-City Textile Network
+              </h3>
+              <p className="text-xs sm:text-sm text-ash font-light leading-relaxed max-w-4xl">
+                Founded by <strong className="text-khadi font-medium">Manish Kanodia</strong>, our agency was born from a fundamental principle: transparent commission brokerage that protects both the weaving loom and the showroom merchant. In <strong className="text-khadi font-medium">2008</strong>, we took our first steps in agency brokerage. By <strong className="text-khadi font-medium">2009</strong>, we acquired our first dedicated regional office in Kanpur&apos;s historic Shiv Market. In <strong className="text-khadi font-medium">2010</strong>, we moved our boots onto Surat&apos;s weaving floors, and by <strong className="text-khadi font-medium">2016</strong>, established our permanent headquarters at H-32 India Market. Now in <strong className="text-khadi font-medium">2026</strong>, we open our third trade floor at New Cloth Market, Ahmedabad.
+              </p>
+            </div>
+
+            {/* Quick Flow Badges */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5 pt-2 border-t border-hairline/80 relative z-10">
+              <div className="p-3 bg-warp/80 border border-hairline/60 rounded-2xs space-y-1">
+                <span className="font-mono text-[10px] text-marigold font-semibold block">2008</span>
+                <span className="font-display text-sm text-khadi block leading-snug">Agency Shuru Ki</span>
+                <span className="text-[10px] text-ash block">Brokerage Inception</span>
+              </div>
+              <div className="p-3 bg-warp/80 border border-hairline/60 rounded-2xs space-y-1">
+                <span className="font-mono text-[10px] text-marigold font-semibold block">2009</span>
+                <span className="font-display text-sm text-khadi block leading-snug">Kanpur Office</span>
+                <span className="text-[10px] text-ash block">Shiv Market Acquired</span>
+              </div>
+              <div className="p-3 bg-warp/80 border border-hairline/60 rounded-2xs space-y-1">
+                <span className="font-mono text-[10px] text-marigold font-semibold block">2010</span>
+                <span className="font-display text-sm text-khadi block leading-snug">Surat Aaye</span>
+                <span className="text-[10px] text-ash block">Entered Textile Capital</span>
+              </div>
+              <div className="p-3 bg-warp/80 border border-hairline/60 rounded-2xs space-y-1">
+                <span className="font-mono text-[10px] text-marigold font-semibold block">2016</span>
+                <span className="font-display text-sm text-khadi block leading-snug">Surat Office</span>
+                <span className="text-[10px] text-ash block">H-32 India Market HQ</span>
+              </div>
+              <div className="p-3 bg-warp/80 border border-hairline/60 rounded-2xs space-y-1 col-span-2 sm:col-span-1">
+                <span className="font-mono text-[10px] text-kumkum font-semibold block">2026</span>
+                <span className="font-display text-sm text-khadi block leading-snug">Ahmedabad Hub</span>
+                <span className="text-[10px] text-ash block">New Cloth Market Floor</span>
+              </div>
+            </div>
           </div>
 
           {/* 4 Partner Stat Cards */}
@@ -311,24 +362,34 @@ export default function HomePage() {
 
           {/* Timeline Milestones */}
           <div className="space-y-4 pt-4">
-            <div className="flex items-center gap-2 font-mono text-[10.5px] uppercase tracking-widest text-ash pb-2 border-b border-hairline">
-              <History className="w-4 h-4 text-marigold" />
-              <span>Key Milestones (2010 – 2026)</span>
+            <div className="flex items-center justify-between pb-2 border-b border-hairline">
+              <div className="flex items-center gap-2 font-mono text-[10.5px] uppercase tracking-widest text-ash">
+                <History className="w-4 h-4 text-marigold" />
+                <span>Five Historic Milestones (2008 – 2026)</span>
+              </div>
+              <span className="font-mono text-[10px] text-marigold uppercase tracking-wider hidden sm:inline-block">
+                18-Year Legacy
+              </span>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
               {JOURNEY_MILESTONES.map((m, idx) => (
                 <div
                   key={m.year}
-                  className="p-5 bg-selvedge/80 border border-hairline hover:border-marigold/40 rounded-xs space-y-2.5 flex flex-col justify-between relative group"
+                  className="p-5 bg-selvedge/80 border border-hairline hover:border-marigold/40 rounded-xs space-y-3 flex flex-col justify-between relative group shadow-2xs hover:shadow-xs transition-all"
                 >
-                  <div className="space-y-2">
+                  <div className="space-y-2.5">
                     <div className="flex items-center justify-between">
-                      <span className="font-mono text-xs text-marigold font-semibold tracking-wider bg-warp px-2 py-0.5 border border-marigold/30 rounded-2xs">
+                      <span className="font-mono text-xs text-marigold font-semibold tracking-wider bg-warp px-2.5 py-0.5 border border-marigold/30 rounded-2xs">
                         {m.year}
                       </span>
                       <span className="text-[10px] font-mono text-ash/60">0{idx + 1}</span>
                     </div>
+                    {m.stage && (
+                      <span className="inline-block text-[10px] font-mono text-kumkum font-medium tracking-wide uppercase">
+                        {m.stage}
+                      </span>
+                    )}
                     <h4 className="font-display text-base sm:text-lg text-khadi font-light leading-snug">
                       {m.title}
                     </h4>
@@ -356,20 +417,20 @@ export default function HomePage() {
           </p>
 
           <div className="pt-3 flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-5">
+            <Link
+              href="/partner"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 bg-kumkum hover:bg-kumkum-deep text-white font-mono text-xs tracking-[0.18em] uppercase rounded-xs transition-all shadow-xs min-h-[44px]"
+            >
+              Trade Query Form →
+            </Link>
             <a
               href={partnerWaUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 bg-kumkum hover:bg-kumkum-deep text-white font-mono text-xs tracking-[0.18em] uppercase rounded-xs transition-all shadow-xs min-h-[44px]"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 bg-selvedge hover:bg-selvedge-light border border-hairline text-khadi hover:text-marigold font-mono text-xs tracking-[0.18em] uppercase rounded-xs transition-all min-h-[44px] shadow-2xs"
             >
               WhatsApp Agency Desk <ArrowUpRight className="w-4 h-4" />
             </a>
-            <Link
-              href="/partner"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 bg-selvedge hover:bg-selvedge-light border border-hairline text-khadi hover:text-marigold font-mono text-xs tracking-[0.18em] uppercase rounded-xs transition-all min-h-[44px] shadow-2xs"
-            >
-              Trade Query Form →
-            </Link>
           </div>
         </div>
       </section>

@@ -92,24 +92,24 @@ const SUNRISE_OPERATIONS = [
 
 const SUNRISE_MILESTONES = [
   {
-    year: "2010",
-    title: "Surat Trading Floor Inception",
-    desc: "Established as the dedicated commercial volume brokerage arm under the guidance of Mr. Manish Kanodia.",
+    year: "2008",
+    title: "Agency Brokerage Inception",
+    desc: "Established by Manish Kanodia as an independent textile commission agency founded on transparent pricing and mill integrity.",
   },
   {
-    year: "2015",
-    title: "High-Volume Carton Desk",
-    desc: "Pioneered standardized 8–12 pc carton packing with guaranteed repeat batch color-matching for multi-counter retailers.",
-  },
-  {
-    year: "2019",
-    title: "70+ City Express Freight Lines",
-    desc: "Built direct daily dispatch corridors linking Surat weaving mills to major wholesale bazaars across North & Central India.",
-  },
-  {
-    year: "2023",
+    year: "2009",
     title: "Kanpur Distribution Desk",
-    desc: "Stationed liaison team at Shiv Market, Kanpur to expedite regional transit and direct sample review.",
+    desc: "Acquired regional office at 50/274 Shiv Market, Naughara, Kanpur to expedite regional buyer transit and direct sample review.",
+  },
+  {
+    year: "2010",
+    title: "Surat Trading Floor Arrival",
+    desc: "Stepped directly onto Surat's rotary print and weaving floors to secure bulk manufacturer volume discounts.",
+  },
+  {
+    year: "2016",
+    title: "Surat Head Office Acquired",
+    desc: "Acquired permanent flagship floor at H-32 India Market, Salabatpura with high-speed carton packing and 48-hr cargo.",
   },
   {
     year: "2026",
@@ -292,11 +292,8 @@ export default function SunriseFabTexPage() {
                       imgClassName="hover:scale-105 transition-transform duration-700 ease-out"
                     />
                   </div>
-                  <div className="flex items-center justify-between font-mono text-xs">
+                  <div className="flex items-center font-mono text-xs">
                     <span className="text-marigold font-display text-2xl font-light">0{idx + 1}</span>
-                    <span className="text-[10px] text-marigold border border-marigold/30 px-2.5 py-0.5 bg-warp uppercase font-medium">
-                      Volume Desk
-                    </span>
                   </div>
                   <div>
                     <h3 className="font-display text-xl text-khadi font-light">{cat.title}</h3>
@@ -383,12 +380,12 @@ export default function SunriseFabTexPage() {
         </div>
       </section>
 
-      {/* 16-Year Heritage Milestones */}
+      {/* 18-Year Heritage Milestones */}
       <section className="w-full py-16 sm:py-24 px-4 sm:px-8 lg:px-12 bg-warp border-b border-hairline relative">
         <div className="max-w-7xl mx-auto space-y-10">
           <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-ash pb-3 border-b border-hairline">
             <History className="w-4 h-4 text-marigold" />
-            <span>Sunrise Fab Tex Growth &amp; Logistics Milestones (2010 – 2026)</span>
+            <span>Sunrise Fab Tex Growth &amp; Logistics Milestones (2008 – 2026)</span>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
@@ -502,21 +499,21 @@ export default function SunriseFabTexPage() {
             and dedicated regional account management across North &amp; Central India.
           </p>
           <div className="pt-3 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link
+              href="/partner"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-kumkum hover:bg-kumkum-deep text-white font-mono text-xs tracking-widest uppercase rounded-xs transition-all shadow-xs font-medium min-h-[44px]"
+            >
+              <span>Submit Volume Inquiry →</span>
+            </Link>
             <a
               href={waUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-kumkum hover:bg-kumkum-deep text-white font-mono text-xs tracking-widest uppercase rounded-xs transition-all shadow-xs font-medium min-h-[44px]"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-selvedge hover:bg-selvedge-light border border-hairline text-khadi hover:text-marigold font-mono text-xs tracking-widest uppercase rounded-xs transition-all min-h-[44px] shadow-2xs font-medium"
             >
               <MessageCircle className="w-4 h-4" />
               <span>WhatsApp Commercial Desk</span>
             </a>
-            <Link
-              href="/partner"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-selvedge hover:bg-selvedge-light border border-hairline text-khadi hover:text-marigold font-mono text-xs tracking-widest uppercase rounded-xs transition-all min-h-[44px] shadow-2xs font-medium"
-            >
-              <span>Submit Volume Inquiry →</span>
-            </Link>
           </div>
         </div>
       </section>
