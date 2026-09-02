@@ -18,7 +18,7 @@ export interface WhatsAppContextOptions {
   shopName?: string;
   city?: string;
   category?: string;
-  firm?: "Maa Sheetla" | "Sunrise Tex Fab" | "Sunrise Fab Tex" | "Both";
+  firm?: "Maa Sheetla" | "Sunrise Fab Tex" | "Both";
   designCode?: string;
   targetNumber?: string;
 }

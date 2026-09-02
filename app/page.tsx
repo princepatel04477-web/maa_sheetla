@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { ArrowUpRight, Factory, ShieldCheck, Truck, Scale } from "lucide-react";
+import { ArrowUpRight, Factory, ShieldCheck, Truck, Scale, History, Handshake, CheckCircle2, Award } from "lucide-react";
 import SplitHero from "../components/SplitHero";
 import AhmedabadCountdown from "../components/AhmedabadCountdown";
 import LedgerBand from "../components/LedgerBand";
@@ -55,22 +55,101 @@ const SOURCING_SPECIALTIES = [
     imageKey: "CAT-02",
     title: "High-Volume Festive Sarees",
     focus: "Dola Silk · Blooming Georgette · Organza Prints",
-    desk: "Sunrise Tex Fab (Volume Desk)",
+    desk: "Sunrise Fab Tex (Volume Desk)",
     desc: "Carton-packed wholesale assortments structured for fast weekend inventory turns and aggressive commercial retail markups.",
   },
   {
     imageKey: "CAT-03",
-    title: "Embroidered Suits & Kurtis",
+    title: "Embroidered Suits & Dress Materials",
     focus: "Pure Chanderi · 60/60 Cambric · Kashmiri Tilla",
     desk: "Both Agency Desks",
     desc: "Daily-wear and festive unstitched & semi-stitched sets with mill-guaranteed colorfastness and batch repeat consistency.",
   },
   {
+    imageKey: "ST-3305",
+    title: "Ahmedabad Readymade Garments & Kurtis",
+    focus: "Pure Cotton 60/60 · Designer Kurti Sets · 2-pc & 3-pc Co-ords",
+    desk: "Ahmedabad Trade Floor",
+    desc: "Direct-from-manufacturing Ahmedabad readymade garments, designer cotton kurtis, daily tunics, and coordinated festive sets.",
+  },
+  {
+    imageKey: "MS-9904",
+    title: "Bridal & Sangeet Lehengas",
+    focus: "Micro 9000 Velvet · Raw Silk · Dabka & Mirror Work",
+    desk: "Maa Sheetla (Label Desk)",
+    desc: "Showroom-defining bridal couture, heavy cancan 16-kali flares, and bridesmaid collections for multi-designer counters.",
+  },
+  {
     imageKey: "CAT-04",
-    title: "Ready-to-Wear Indo-Western",
-    focus: "Sharara Sets · Designer Co-ords · Festive Gowns",
+    title: "Ready-to-Wear Indo-Western & Fusion",
+    focus: "Sharara Sets · Designer Capes · Festive Gowns",
     desk: "Both Agency Desks",
-    desc: "Ready garment assortments with designer finishing, graded sizing, and direct showroom-ready packaging.",
+    desc: "Contemporary silhouettes with artisanal hand-needlework and showroom-ready hanger packaging for cocktail & sangeet racks.",
+  },
+  {
+    imageKey: "ST-4420",
+    title: "Daily & Workwear Printed Sarees",
+    focus: "Bandhani · Leheriya · Digital Georgette · Weightless Silk",
+    desk: "Sunrise Fab Tex (Volume Desk)",
+    desc: "High-frequency retail turnover prints and daily-wear collections with guaranteed mill lots and rapid weekly restocking.",
+  },
+  {
+    imageKey: "MS-8815",
+    title: "Handcrafted Dupattas & Stoles",
+    focus: "Banarasi Katan · Tissue Organza · Handloom Phulkari",
+    desk: "Both Agency Desks",
+    desc: "Value-add heritage dupattas and statement stoles in artisan weaves designed to elevate boutique counter margins.",
+  },
+];
+
+const JOURNEY_MILESTONES = [
+  {
+    year: "2010",
+    title: "Founding in Salabatpura, Surat",
+    desc: "Founded by Manish Kanodia at H-32 India Market as an on-ground brokerage floor connecting Surat powerlooms directly to North Indian showroom counters.",
+  },
+  {
+    year: "2015",
+    title: "Sunrise Fab Tex Volume Desk",
+    desc: "Launched Sunrise Fab Tex as our dedicated high-velocity commercial volume desk, servicing carton-lot orders across UP, Bihar, MP, and NCR.",
+  },
+  {
+    year: "2019",
+    title: "500+ Showrooms & 70+ Cities",
+    desc: "Scaled our network to 500+ active retail buyers and 70+ city logistics routes with consolidated 48-hour freight dispatches and zero-bad-debt guarantees.",
+  },
+  {
+    year: "2023",
+    title: "Kanpur Liaison Desk",
+    desc: "Opened our Shiv Market desk in Kanpur, giving North Indian retailers direct local sample viewing, rapid order repeats, and faster regional coordination.",
+  },
+  {
+    year: "2026",
+    title: "Ahmedabad Trade Floor",
+    desc: "Inaugurating our New Cloth Market desk in Ahmedabad, specifically focused on Ahmedabad readymade garments, designer kurtis, and cotton wholesale collections.",
+  },
+];
+
+const PARTNER_PILLARS = [
+  {
+    number: "700+",
+    label: "Partner Weaving Mills & Processing Units",
+    subtext: "Surat · Ahmedabad · Varanasi · Jaipur · Delhi",
+  },
+  {
+    number: "500+",
+    label: "Verified Retail Showrooms & Boutiques",
+    subtext: "Tier-1 & Tier-2 Multi-Designer Counters",
+  },
+  {
+    number: "16+",
+    label: "Years of Continuous Wholesale Standing",
+    subtext: "Established 2010 with Transparent Brokerage",
+  },
+  {
+    number: "70+",
+    label: "Connected Rail & Road Freight Hubs",
+    subtext: "Express 48-Hr Consolidated Dispatches",
   },
 ];
 
@@ -188,10 +267,86 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* 5. Our Journey & Wholesale Partner Network */}
+      <section id="journey" className="w-full py-16 sm:py-24 lg:py-32 px-4 sm:px-8 lg:px-12 bg-selvedge-light border-t border-hairline relative content-auto">
+        <div className="max-w-7xl mx-auto space-y-12 sm:space-y-16">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6">
+            <div className="space-y-2.5 max-w-2xl">
+              <p className="eyebrow text-kumkum">05 — OUR JOURNEY &amp; WHOLESALE PARTNERS</p>
+              <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl text-khadi font-light tracking-tight leading-[0.95]">
+                Sixteen years of <i className="italic text-marigold">textile trust.</i>
+              </h2>
+              <p className="text-xs sm:text-base text-ash font-light leading-relaxed">
+                From our foundational looms at Salabatpura in 2010 to multi-state regional trade floors in Surat, Kanpur, and Ahmedabad,
+                here is how our wholesale network and partner ecosystem evolved.
+              </p>
+            </div>
+            <Link
+              href="/partner"
+              className="inline-flex items-center gap-1.5 font-mono text-xs tracking-widest uppercase text-marigold hover:text-kumkum transition-colors py-1 font-medium"
+            >
+              Partner With Our Desks <ArrowUpRight className="w-4 h-4" />
+            </Link>
+          </div>
+
+          {/* 4 Partner Stat Cards */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-6">
+            {PARTNER_PILLARS.map((p) => (
+              <div
+                key={p.label}
+                className="p-5 sm:p-6 bg-selvedge border border-hairline hover:border-marigold/50 rounded-sm space-y-2 transition-all shadow-2xs"
+              >
+                <span className="font-display text-3xl sm:text-4xl lg:text-5xl text-haldi font-light block">
+                  {p.number}
+                </span>
+                <h4 className="font-mono text-xs sm:text-[13px] text-khadi font-medium leading-snug">
+                  {p.label}
+                </h4>
+                <p className="font-mono text-[10px] sm:text-[11px] text-ash">
+                  {p.subtext}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          {/* Timeline Milestones */}
+          <div className="space-y-4 pt-4">
+            <div className="flex items-center gap-2 font-mono text-[10.5px] uppercase tracking-widest text-ash pb-2 border-b border-hairline">
+              <History className="w-4 h-4 text-marigold" />
+              <span>Key Milestones (2010 – 2026)</span>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+              {JOURNEY_MILESTONES.map((m, idx) => (
+                <div
+                  key={m.year}
+                  className="p-5 bg-selvedge/80 border border-hairline hover:border-marigold/40 rounded-xs space-y-2.5 flex flex-col justify-between relative group"
+                >
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="font-mono text-xs text-marigold font-semibold tracking-wider bg-warp px-2 py-0.5 border border-marigold/30 rounded-2xs">
+                        {m.year}
+                      </span>
+                      <span className="text-[10px] font-mono text-ash/60">0{idx + 1}</span>
+                    </div>
+                    <h4 className="font-display text-base sm:text-lg text-khadi font-light leading-snug">
+                      {m.title}
+                    </h4>
+                    <p className="text-xs text-ash font-light leading-relaxed">
+                      {m.desc}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* 6. Partner Conversion Banner */}
       <section className="w-full py-16 sm:py-24 lg:py-32 px-4 sm:px-8 lg:px-12 bg-gradient-to-b from-selvedge to-selvedge-light border-t border-hairline relative content-auto">
         <div className="max-w-5xl mx-auto text-center space-y-6 sm:space-y-8">
-          <p className="eyebrow text-kumkum">05 — WHOLESALE TRADE QUERY</p>
+          <p className="eyebrow text-kumkum">06 — WHOLESALE TRADE QUERY</p>
           <h2 className="font-display text-3xl sm:text-5xl lg:text-7xl text-khadi font-light tracking-tight leading-[0.94]">
             <BlurText text="Open a direct agency account with our Surat floor." />
           </h2>

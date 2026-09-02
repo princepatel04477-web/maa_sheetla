@@ -2,7 +2,7 @@ export interface Product {
   id: string;
   designCode: string;
   title: string;
-  firm: "Maa Sheetla" | "Sunrise Tex Fab";
+  firm: "Maa Sheetla" | "Sunrise Fab Tex";
   type: "sarees" | "lehengas" | "suits" | "garments";
   fabric: string;
   work: string;
@@ -31,7 +31,7 @@ export const PRODUCTS: Product[] = [
     id: "st-sar-02",
     designCode: "ST-4420",
     title: "Banarasi Georgette Khaddi Saree",
-    firm: "Sunrise Tex Fab",
+    firm: "Sunrise Fab Tex",
     type: "sarees",
     fabric: "Viscose Khaddi Georgette",
     work: "Kadwa Cutwork Floral Jaal with Contrast Border",
@@ -56,7 +56,7 @@ export const PRODUCTS: Product[] = [
     id: "st-sar-04",
     designCode: "ST-4455",
     title: "Surat Dola Silk Foil Printed Saree",
-    firm: "Sunrise Tex Fab",
+    firm: "Sunrise Fab Tex",
     type: "sarees",
     fabric: "Heavy Dola Silk",
     work: "Metallic Foil Discharge Print with Zari Border",
@@ -83,7 +83,7 @@ export const PRODUCTS: Product[] = [
     id: "st-leh-02",
     designCode: "ST-5510",
     title: "Floral Printed Organza Sangeet Lehenga",
-    firm: "Sunrise Tex Fab",
+    firm: "Sunrise Fab Tex",
     type: "lehengas",
     fabric: "Digital Print Organza Silk",
     work: "Sequins Belt with Cancan-Infused 4.5m Flare",
@@ -122,7 +122,7 @@ export const PRODUCTS: Product[] = [
     id: "st-sut-02",
     designCode: "ST-3305",
     title: "Heavy Cambric Cotton Straight Kurta Set",
-    firm: "Sunrise Tex Fab",
+    firm: "Sunrise Fab Tex",
     type: "suits",
     fabric: "60/60 Pure Cambric Cotton",
     work: "Machine Chikankari Embroidery with Malmal Dupatta",
@@ -161,7 +161,7 @@ export const PRODUCTS: Product[] = [
     id: "st-grm-02",
     designCode: "ST-2208",
     title: "Flared Ready-to-Wear Co-ord Set",
-    firm: "Sunrise Tex Fab",
+    firm: "Sunrise Fab Tex",
     type: "garments",
     fabric: "Viscose Silk Blend",
     work: "Minimalist Button Detailing with Foil Accents",
@@ -175,6 +175,6 @@ export function getProductsByType(type: string): Product[] {
   return PRODUCTS.filter((p) => p.type === type.toLowerCase());
 }
 
-export function getProductsByFirm(firm: "Maa Sheetla" | "Sunrise Tex Fab"): Product[] {
+export function getProductsByFirm(firm: "Maa Sheetla" | "Sunrise Fab Tex"): Product[] {
   return PRODUCTS.filter((p) => p.firm === firm);
 }

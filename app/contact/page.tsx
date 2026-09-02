@@ -248,7 +248,7 @@ export default function ContactPage() {
                     Ahmedabad Office
                   </h3>
                   <p className="text-xs text-ash font-light leading-relaxed">
-                    Regional commercial showroom, bridal &amp; fancy collection gallery, and North/Central Gujarat trade desk.
+                    Regional showroom for Ahmedabad readymade garments, designer kurtis, cotton sets, and wholesale trade desk.
                   </p>
                 </div>
 

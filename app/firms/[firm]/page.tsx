@@ -10,7 +10,7 @@ import { ArrowUpRight } from "lucide-react";
 import { createWhatsAppLink } from "../../../lib/whatsapp";
 
 const FIRM_CONFIGS: Record<string, {
-  name: "Maa Sheetla" | "Sunrise Tex Fab";
+  name: "Maa Sheetla" | "Sunrise Fab Tex";
   logoUrl: string;
   eyebrow: string;
   tagline: string;
@@ -30,12 +30,12 @@ const FIRM_CONFIGS: Record<string, {
     targetProfile: "Designer bridal showrooms & luxury counters in Hazratganj, South Delhi, Johari Bazaar & Civil Lines.",
   },
   "sunrise-tex-fab": {
-    name: "Sunrise Tex Fab",
+    name: "Sunrise Fab Tex",
     logoUrl: "/logos/sunrise_fab_tex_colored.png",
     eyebrow: "AGENCY DESK 02 · HIGH-VELOCITY COMMERCIAL WHOLESALE",
     tagline: "Priced and packed for daily retail turnover.",
     description: "High-velocity wholesale brokerage of the identical four catalogues, streamlined for rapid inventory turns and competitive commercial retail margins.",
-    roleDescription: "Sunrise Tex Fab is designed for volume retail counters and wholesale buyers that require dependable weekly supply, mill-consistent dye lots, and attractive retail markup margins.",
+    roleDescription: "Sunrise Fab Tex is designed for volume retail counters and wholesale buyers that require dependable weekly supply, mill-consistent dye lots, and attractive retail markup margins.",
     moqRule: "Volume carton packaging (8 to 12 pcs per box) with immediate mill dispatch guarantees.",
     targetProfile: "High-footfall textile counters & commercial retail showrooms across UP, MP, Bihar, Punjab & NCR.",
   }

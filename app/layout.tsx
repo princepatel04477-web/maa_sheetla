@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     default: 'Maa Sheetla Agency · Wholesale Textile Agency Surat',
     template: '%s | Maa Sheetla Agency',
   },
-  description: 'Maa Sheetla Agency & Sunrise Tex Fab. B2B Wholesale Textile Brokerage & Commission Agency connecting 700+ suppliers around India with 500+ buyers.',
+  description: 'Maa Sheetla Agency & Sunrise Fab Tex. B2B Wholesale Textile Brokerage & Commission Agency connecting 700+ suppliers around India with 500+ buyers.',
   metadataBase: new URL('https://maasheetla.com'),
   keywords: [
     'wholesale textile agency Surat',
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     'wholesale textile agency Bhopal',
     'wholesale suits Delhi NCR',
     'Maa Sheetla Agency',
-    'Sunrise Tex Fab Surat'
+    'Sunrise Fab Tex Surat'
   ],
   authors: [{ name: 'Maa Sheetla Agency' }],
   openGraph: {
@@ -66,7 +66,7 @@ export default function RootLayout({
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'Maa Sheetla Agency',
-    alternateName: ['Sunrise Fab Tex Pvt Ltd', 'Sunrise Tex Fab'],
+    alternateName: ['Sunrise Fab Tex Pvt Ltd', 'Sunrise Fab Tex'],
     url: 'https://maasheetla.com',
     foundingDate: '2010',
     founder: {

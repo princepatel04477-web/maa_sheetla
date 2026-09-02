@@ -9,7 +9,7 @@ export default function SplitHero() {
   const [hoveredPanel, setHoveredPanel] = useState<"maa" | "sunrise" | null>(null);
 
   const maaWaUrl = createWhatsAppLink("connecting with the Maa Sheetla counter in Surat");
-  const sunriseWaUrl = createWhatsAppLink("connecting with the Sunrise Tex Fab counter in Surat");
+  const sunriseWaUrl = createWhatsAppLink("connecting with the Sunrise Fab Tex counter in Surat");
 
   return (
     <section id="firms" className="relative w-full min-h-[calc(100vh-5rem)] sm:min-h-[calc(100vh-6rem)] mt-20 sm:mt-24 flex flex-col md:flex-row border-b border-hairline overflow-hidden">

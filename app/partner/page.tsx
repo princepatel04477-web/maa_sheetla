@@ -63,7 +63,7 @@ export default function QueryPage() {
     contact: "",
     email: "",
     categoryInterest: "Sarees (Tissue, Dola, Organza)",
-    preferredFirm: "Both Desks" as "Maa Sheetla" | "Sunrise Tex Fab" | "Both Desks",
+    preferredFirm: "Both Desks" as "Maa Sheetla" | "Sunrise Fab Tex" | "Both Desks",
     message: "",
   });
 
@@ -352,7 +352,7 @@ export default function QueryPage() {
                     Agency Desk Focus
                   </label>
                   <div className="grid grid-cols-3 gap-2 font-mono text-xs">
-                    {(["Both Desks", "Maa Sheetla", "Sunrise Tex Fab"] as const).map((firm) => (
+                    {(["Both Desks", "Maa Sheetla", "Sunrise Fab Tex"] as const).map((firm) => (
                       <button
                         type="button"
                         key={firm}

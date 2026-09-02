@@ -64,7 +64,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/firms/sunrise-tex-fab" className="hover:text-marigold transition-colors inline-flex items-center gap-1.5 text-ash">
-                  <span>Sunrise Tex Fab (Fancy &amp; Prints)</span>
+                  <span>Sunrise Fab Tex (Fancy &amp; Prints)</span>
                   <ArrowUpRight className="w-3 h-3 text-ash" />
                 </Link>
               </li>
@@ -157,7 +157,7 @@ export default function Footer() {
         {/* Bottom Strip */}
         <div className="pt-8 border-t border-hairline flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-[10.5px] text-ash">
           <div>
-            &copy; 2010&ndash;{new Date().getFullYear()} Maa Sheetla Agency &amp; Sunrise Tex Fab. All rights reserved.
+            &copy; 2010&ndash;{new Date().getFullYear()} Maa Sheetla Agency &amp; Sunrise Fab Tex. All rights reserved.
           </div>
           <div className="flex items-center gap-4">
             <Link href="/admin/leads" className="text-marigold hover:underline flex items-center gap-1">

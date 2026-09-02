@@ -32,19 +32,22 @@ export default function AhmedabadCountdown() {
             Opening Our New <i className="italic text-haldi">Ahmedabad Office</i> &amp; Trade Floor
           </h3>
           <p className="text-xs sm:text-sm text-ash font-light leading-relaxed">
-            Direct Surat mill rates, exclusive sample preview halls, and express 24-hr dispatch closer
-            to Central &amp; North Gujarat retail showrooms.
+            Ahmedabad readymade garment manufacturing, designer kurti collections, cotton suits,
+            exclusive sample preview halls, and direct regional wholesale trade.
           </p>
 
           <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-1 text-[11px] font-mono text-khadi/80">
             <span className="inline-flex items-center gap-1">
-              <CheckCircle2 className="w-3.5 h-3.5 text-marigold" /> Mill-Direct Pricing
+              <CheckCircle2 className="w-3.5 h-3.5 text-marigold" /> Readymade Garment Hub
             </span>
             <span className="inline-flex items-center gap-1">
-              <CheckCircle2 className="w-3.5 h-3.5 text-marigold" /> Sample Inspection Room
+              <CheckCircle2 className="w-3.5 h-3.5 text-marigold" /> Designer Kurtis &amp; Sets
             </span>
             <span className="inline-flex items-center gap-1">
-              <CheckCircle2 className="w-3.5 h-3.5 text-marigold" /> Express Regional Logistics
+              <CheckCircle2 className="w-3.5 h-3.5 text-marigold" /> Cotton Manufacturing
+            </span>
+            <span className="inline-flex items-center gap-1">
+              <CheckCircle2 className="w-3.5 h-3.5 text-marigold" /> Sample Inspection Floor
             </span>
           </div>
         </div>
