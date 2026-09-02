@@ -57,14 +57,14 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2 text-xs font-light">
               <li>
-                <Link href="/firms/maa-sheetla" className="hover:text-marigold transition-colors inline-flex items-center gap-1.5 text-ash">
-                  <span>Maa Sheetla Desk (Traditional Fabrics)</span>
+                <Link href="/maa-sheetla" className="hover:text-marigold transition-colors inline-flex items-center gap-1.5 text-ash">
+                  <span>Maa Sheetla Desk (Bridal &amp; Silks)</span>
                   <ArrowUpRight className="w-3 h-3 text-ash" />
                 </Link>
               </li>
               <li>
-                <Link href="/firms/sunrise-tex-fab" className="hover:text-marigold transition-colors inline-flex items-center gap-1.5 text-ash">
-                  <span>Sunrise Fab Tex (Fancy &amp; Prints)</span>
+                <Link href="/sunrise-fab-tex" className="hover:text-marigold transition-colors inline-flex items-center gap-1.5 text-ash">
+                  <span>Sunrise Fab Tex (Volume &amp; Prints)</span>
                   <ArrowUpRight className="w-3 h-3 text-ash" />
                 </Link>
               </li>

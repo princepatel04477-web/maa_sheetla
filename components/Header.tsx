@@ -130,7 +130,7 @@ export default function Header() {
             {/* Dual Firm Quick Cards */}
             <div className="grid grid-cols-2 gap-2.5">
               <Link
-                href="/firms/maa-sheetla"
+                href="/maa-sheetla"
                 onClick={() => setMobileOpen(false)}
                 className="p-3 rounded-xs bg-gradient-to-br from-[#2D1214] to-[#1D0C0D] border border-[#8B2628]/60 hover:border-marigold transition-all group shadow-sm"
               >
@@ -146,7 +146,7 @@ export default function Header() {
               </Link>
 
               <Link
-                href="/firms/sunrise-tex-fab"
+                href="/sunrise-fab-tex"
                 onClick={() => setMobileOpen(false)}
                 className="p-3 rounded-xs bg-gradient-to-br from-[#2A1D0E] to-[#1C140A] border border-[#A67C26]/60 hover:border-marigold transition-all group shadow-sm"
               >

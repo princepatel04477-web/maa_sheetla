@@ -92,6 +92,13 @@ export default function FirmProfilePage({ params }: { params: { firm: string } }
           </div>
 
           <div className="lg:col-span-4 flex flex-col justify-end space-y-3">
+            <Link
+              href={params.firm === "maa-sheetla" ? "/maa-sheetla" : "/sunrise-fab-tex"}
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-selvedge-light hover:bg-selvedge border border-hairline text-khadi hover:text-marigold font-mono text-xs tracking-[0.18em] uppercase rounded-xs transition-all shadow-2xs font-medium min-h-[44px]"
+            >
+              <span>Explore Dedicated {config.name} Floor</span>
+              <ArrowUpRight className="w-4 h-4 text-marigold" />
+            </Link>
             <a
               href={waUrl}
               target="_blank"
