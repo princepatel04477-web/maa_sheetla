@@ -105,7 +105,7 @@ const SOURCING_SPECIALTIES = [
 const JOURNEY_MILESTONES = [
   {
     year: "2008",
-    hindiStage: "Agency Shuru Ki",
+    hindiStage: "Agency Founded",
     era: "The Inception",
     tagline: "First Brokerage Ledger Opened",
     location: "Brokerage Desk · Regional Markets",
@@ -116,7 +116,7 @@ const JOURNEY_MILESTONES = [
   },
   {
     year: "2009",
-    hindiStage: "Kanpur Office Liya",
+    hindiStage: "Kanpur Office",
     era: "The Regional Anchor",
     tagline: "Brick-and-Mortar Office Acquired",
     location: "50/274 Shiv Market, Naughara, Kanpur",
@@ -127,7 +127,7 @@ const JOURNEY_MILESTONES = [
   },
   {
     year: "2010",
-    hindiStage: "Surat Aaye",
+    hindiStage: "Surat Expansion",
     era: "The Textile Epicenter",
     tagline: "Boots on Surat Weaving Floors",
     location: "Textile Market Belt, Ring Road, Surat",
@@ -138,7 +138,7 @@ const JOURNEY_MILESTONES = [
   },
   {
     year: "2016",
-    hindiStage: "Surat Office Liya",
+    hindiStage: "Surat Headquarters",
     era: "The Citadel",
     tagline: "H-32 India Market Flagship Acquired",
     location: "H-32 India Market, Salabatpura, Surat",
@@ -525,7 +525,7 @@ export default function HomePage() {
                 }`}
               >
                 <span className="font-mono text-[10px] text-marigold font-semibold block">2008</span>
-                <span className="font-display text-sm text-khadi block leading-snug">Agency Shuru Ki</span>
+                <span className="font-display text-sm text-khadi block leading-snug">Agency Founded</span>
                 <span className="text-[10px] text-ash block">Brokerage Inception</span>
               </button>
               <button
@@ -551,7 +551,7 @@ export default function HomePage() {
                 }`}
               >
                 <span className="font-mono text-[10px] text-marigold font-semibold block">2010</span>
-                <span className="font-display text-sm text-khadi block leading-snug">Surat Aaye</span>
+                <span className="font-display text-sm text-khadi block leading-snug">Surat Expansion</span>
                 <span className="text-[10px] text-ash block">Entered Textile Capital</span>
               </button>
               <button
@@ -564,7 +564,7 @@ export default function HomePage() {
                 }`}
               >
                 <span className="font-mono text-[10px] text-marigold font-semibold block">2016</span>
-                <span className="font-display text-sm text-khadi block leading-snug">Surat Office</span>
+                <span className="font-display text-sm text-khadi block leading-snug">Surat Headquarters</span>
                 <span className="text-[10px] text-ash block">H-32 India Market HQ</span>
               </button>
               <button

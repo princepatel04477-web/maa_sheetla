@@ -1,54 +1,153 @@
-"use client";
+﻿"use client";
 
-import React from "react";
+import React, { createContext, useContext, useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import { MOTION, useReducedMotion } from "../../lib/motion";
 
-interface AnimatedContentProps {
+interface RevealGroupContextValue {
+  inGroup: boolean;
+  baseDelay: number;
+}
+
+const RevealGroupContext = createContext<RevealGroupContextValue>({
+  inGroup: false,
+  baseDelay: 0,
+});
+
+export interface RevealProps {
   children: React.ReactNode;
   delay?: number;
-  direction?: "up" | "down" | "left" | "right" | "none";
-  distance?: number;
-  duration?: number;
+  direction?: "up" | "none";
+  once?: boolean;
+  as?: keyof JSX.IntrinsicElements | React.ComponentType<any>;
   className?: string;
+  style?: React.CSSProperties;
 }
 
-export default function AnimatedContent({
+export function Reveal({
   children,
-  delay = 0,
+  delay,
   direction = "up",
-  distance = 24,
-  duration = 0.6,
+  once = true,
+  as: Component = "div",
   className = "",
-}: AnimatedContentProps) {
-  const getInitial = () => {
-    switch (direction) {
-      case "up":
-        return { opacity: 0, y: distance, filter: "blur(4px)" };
-      case "down":
-        return { opacity: 0, y: -distance, filter: "blur(4px)" };
-      case "left":
-        return { opacity: 0, x: distance, filter: "blur(4px)" };
-      case "right":
-        return { opacity: 0, x: -distance, filter: "blur(4px)" };
-      case "none":
-      default:
-        return { opacity: 0, filter: "blur(4px)" };
+  style,
+}: RevealProps) {
+  const reduced = useReducedMotion();
+  const [mounted, setMounted] = useState(false);
+  const [isInView, setIsInView] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  const groupCtx = useContext(RevealGroupContext);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const computedDelay = delay !== undefined ? delay : groupCtx.baseDelay;
+
+  useEffect(() => {
+    if (!mounted || reduced) return;
+
+    const el = ref.current;
+    if (!el || typeof IntersectionObserver === "undefined") {
+      setIsInView(true);
+      return;
     }
-  };
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+          if (once) {
+            observer.disconnect();
+          }
+        } else if (!once) {
+          setIsInView(false);
+        }
+      },
+      {
+        threshold: 0.12,
+        rootMargin: "0px 0px -80px 0px",
+      }
+    );
+
+    observer.observe(el);
+
+    return () => observer.disconnect();
+  }, [mounted, reduced, once]);
+
+  // CRITICAL: Visible at rest in server HTML and before client JS mounts.
+  // With JavaScript disabled or during SSR, render the final resting element
+  // completely visible without any opacity: 0 or transform styles.
+  if (!mounted || reduced) {
+    const Tag = Component as any;
+    return (
+      <Tag className={className} style={style}>
+        {children}
+      </Tag>
+    );
+  }
+
+  const MotionComponent = motion(Component as any);
+
+  const initialY = direction === "up" ? MOTION.rise : 0;
 
   return (
-    <motion.div
-      initial={getInitial()}
-      whileInView={{ opacity: 1, x: 0, y: 0, filter: "blur(0px)" }}
-      viewport={{ once: true, amount: 0.15 }}
+    <MotionComponent
+      ref={ref}
+      initial={{ opacity: 0.001, y: initialY }}
+      animate={
+        isInView
+          ? { opacity: 1, y: 0 }
+          : { opacity: 0.001, y: initialY }
+      }
       transition={{
-        duration,
-        delay,
-        ease: [0.22, 1, 0.36, 1],
+        duration: MOTION.dur.slow,
+        ease: MOTION.ease.outExpo,
+        delay: computedDelay,
       }}
       className={className}
+      style={style}
     >
       {children}
-    </motion.div>
+    </MotionComponent>
   );
 }
+
+export interface RevealGroupProps {
+  children: React.ReactNode;
+  as?: keyof JSX.IntrinsicElements | React.ComponentType<any>;
+  className?: string;
+  stagger?: number;
+  maxStagger?: number;
+}
+
+export function RevealGroup({
+  children,
+  as: Component = "div",
+  className = "",
+  stagger = MOTION.stagger,
+  maxStagger = MOTION.staggerCap,
+}: RevealGroupProps) {
+  const Tag = Component as any;
+  const childArray = React.Children.toArray(children);
+
+  return (
+    <Tag className={className}>
+      {childArray.map((child, idx) => {
+        const childDelay = Math.min(idx * stagger, maxStagger);
+        return (
+          <RevealGroupContext.Provider
+            key={idx}
+            value={{ inGroup: true, baseDelay: childDelay }}
+          >
+            {child}
+          </RevealGroupContext.Provider>
+        );
+      })}
+    </Tag>
+  );
+}
+
+// Backward-compatible alias for existing imports
+export default Reveal;
