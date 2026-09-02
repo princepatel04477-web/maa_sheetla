@@ -17,13 +17,14 @@ interface Lead {
   category: string;
   preferred_desk: string;
   notes: string;
+  page?: string;
+  referrer?: string;
   status: string;
   sheet_synced?: number;
   sheet_sync_timestamp?: string;
   created_at: string;
 }
 
-const DEFAULT_ADMIN_KEY = "maa-sheetla-surat-admin-2026";
 const GOOGLE_SHEET_URL = "https://docs.google.com/spreadsheets/d/1BPM_maAdBj6vfdhq1LrPNaQL5YA5YS4YRTUjUQPcCdY/edit";
 
 export default function AdminLeadsPage() {
@@ -41,7 +42,10 @@ export default function AdminLeadsPage() {
     setLoading(true);
     setError("");
     try {
-      const res = await fetch(`/api/leads?key=${encodeURIComponent(keyToUse)}`);
+      const res = await fetch("/api/leads", {
+        headers: { "x-admin-key": keyToUse },
+        cache: "no-store",
+      });
       const data = await res.json();
       if (res.ok && data.success) {
         setLeads(data.leads || []);
@@ -63,16 +67,38 @@ export default function AdminLeadsPage() {
     fetchLeads(adminKey);
   };
 
-  const handleDownloadCSV = () => {
-    const url = `/api/leads?key=${encodeURIComponent(adminKey)}&format=csv`;
-    window.open(url, "_blank");
+  const handleDownloadCSV = async () => {
+    try {
+      const res = await fetch("/api/leads?format=csv", {
+        headers: { "x-admin-key": adminKey },
+        cache: "no-store",
+      });
+      if (!res.ok) {
+        setError("CSV export failed. Please re-enter your admin key.");
+        return;
+      }
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `maa_sheetla_leads_${new Date().toISOString().slice(0, 10)}.csv`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    } catch (e: any) {
+      setError("CSV export failed: " + e.message);
+    }
   };
 
   const handleSyncToGoogleSheet = async () => {
     setSyncingSheet(true);
     setSyncMessage("");
     try {
-      const res = await fetch(`/api/sync-sheet?key=${encodeURIComponent(adminKey)}`);
+      const res = await fetch("/api/sync-sheet", {
+        method: "POST",
+        headers: { "x-admin-key": adminKey },
+      });
       const data = await res.json();
       if (data.success) {
         setSyncMessage(`✓ ${data.syncedToGoogleSheet} records verified and synced to Google Sheet.`);
@@ -126,11 +152,10 @@ export default function AdminLeadsPage() {
                 value={adminKey}
                 onChange={(e) => setAdminKey(e.target.value)}
                 placeholder="Enter admin passcode"
-                className="w-full px-4 py-3.5 bg-warp border border-hairline rounded-xs text-sm text-khadi placeholder-ash/50 focus:outline-none focus:border-marigold"
+                autoComplete="current-password"
+                name="admin-key"
+                className="w-full px-4 py-3.5 bg-warp border border-hairline rounded-xs text-base text-khadi placeholder-ash/50 focus:outline-none focus:border-marigold focus-visible:ring-2 focus-visible:ring-marigold/60"
               />
-              <div className="text-[11px] text-ash/80 pt-1 font-mono">
-                Default: <button type="button" onClick={() => setAdminKey(DEFAULT_ADMIN_KEY)} className="text-marigold hover:underline">{DEFAULT_ADMIN_KEY}</button>
-              </div>
             </div>
 
             {error && (
@@ -252,7 +277,8 @@ export default function AdminLeadsPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search by firm, name, city, phone..."
-              className="w-full pl-9 pr-4 py-2 bg-warp border border-hairline rounded-xs text-xs text-khadi placeholder-ash/50 focus:outline-none focus:border-marigold"
+              inputMode="search"
+              className="w-full pl-9 pr-4 py-3 bg-warp border border-hairline rounded-xs text-base sm:text-xs text-khadi placeholder-ash/50 focus:outline-none focus:border-marigold min-h-[44px]"
             />
           </div>
 
@@ -261,7 +287,7 @@ export default function AdminLeadsPage() {
             <select
               value={filterState}
               onChange={(e) => setFilterState(e.target.value)}
-              className="px-3 py-2 bg-warp border border-hairline rounded-xs text-xs text-khadi focus:outline-none focus:border-marigold"
+              className="px-3 py-2 bg-warp border border-hairline rounded-xs text-base sm:text-xs text-khadi focus:outline-none focus:border-marigold min-h-[44px]"
             >
               {uniqueStates.map((st) => (
                 <option key={st} value={st} className="bg-warp text-khadi">
@@ -330,14 +356,33 @@ export default function AdminLeadsPage() {
                       <td className="py-3.5 px-4 font-mono text-ash uppercase whitespace-nowrap">
                         {lead.gst_no || "—"}
                       </td>
-                      <td className="py-3.5 px-4 text-ash">{lead.category || "General Trade"}</td>
+                      <td className="py-3.5 px-4 text-ash">
+                        <div>{lead.category || "General Trade"}</div>
+                        {lead.page && (
+                          <div className="text-[10px] font-mono mt-0.5">
+                            <span className={`px-1.5 py-0.2 rounded text-[9.5px] border ${
+                              lead.page.includes("sunrisefabtex")
+                                ? "bg-amber-950/20 text-marigold border-marigold/30"
+                                : "bg-rose-950/20 text-kumkum border-kumkum/30"
+                            }`}>
+                              {lead.page.includes("sunrisefabtex") ? "sunrisefabtex.in" : "maasheetla.com"}
+                            </span>
+                          </div>
+                        )}
+                      </td>
                       <td className="py-3.5 px-4 font-mono text-[11px] text-haldi whitespace-nowrap">
                         {lead.preferred_desk || "Both"}
                       </td>
                       <td className="py-3.5 px-4 whitespace-nowrap font-mono text-[11px]">
-                        <span className="inline-flex items-center gap-1 text-green-400 bg-green-950/40 border border-green-800/50 px-2 py-0.5 rounded">
-                          <CheckCircle2 className="w-3 h-3" /> Synced
-                        </span>
+                        {lead.sheet_synced ? (
+                          <span className="inline-flex items-center gap-1 text-green-700 bg-green-50 border border-green-600/40 px-2 py-0.5 rounded">
+                            <CheckCircle2 className="w-3 h-3" /> Synced
+                          </span>
+                        ) : (
+                          <span className="inline-flex items-center gap-1 text-ash bg-selvedge-light border border-hairline px-2 py-0.5 rounded">
+                            Pending
+                          </span>
+                        )}
                       </td>
                       <td className="py-3.5 px-4 whitespace-nowrap">
                         <a

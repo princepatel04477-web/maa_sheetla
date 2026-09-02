@@ -46,12 +46,13 @@ const INDIAN_STATES = [
   "Lakshadweep",
 ];
 
-const GAS_FALLBACK_URL = "https://script.google.com/macros/s/AKfycbw_HwwZzXqwTIog1s1ez9X6CmnHw9iG1HrkH4w2C5ab_H0pzOASw7zgkpBjsQUK9-S9rw/exec";
-
 export default function QueryPage() {
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState("");
   const [recordId, setRecordId] = useState<string | number | null>(null);
+  // Honeypot: hidden from real buyers, irresistible to naive spam bots.
+  const [companyWebsite, setCompanyWebsite] = useState("");
 
   const [formData, setFormData] = useState({
     firm: "",
@@ -70,8 +71,13 @@ export default function QueryPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    setSubmitError("");
 
     const fullFirmName = `${formData.firm.trim()} (${formData.city.trim() ? formData.city.trim() + ", " : ""}${formData.state})`;
+
+    const fullPageUrl = typeof window !== "undefined" ? window.location.href : "https://maasheetla.com/partner";
+    const currentDomain = typeof window !== "undefined" ? window.location.hostname : "maasheetla.com";
+    const redirectUrl = typeof window !== "undefined" ? `${window.location.origin}/partner?submitted=true` : "https://maasheetla.com/partner?submitted=true";
 
     const payload = {
       firstName: formData.firstName.trim(),
@@ -85,48 +91,40 @@ export default function QueryPage() {
       category: formData.categoryInterest,
       preferredDesk: formData.preferredFirm,
       notes: formData.message.trim(),
-      page: typeof window !== "undefined" ? window.location.href : "/partner",
+      page: fullPageUrl,
+      domain: currentDomain,
+      redirect_url: redirectUrl,
       referrer: typeof document !== "undefined" ? document.referrer : "",
+      company_website: companyWebsite,
     };
 
-    let assignedId = null;
-
-    // 1. Primary Write: Cloudflare D1 Serverless Database (/api/submit-enquiry)
+    // The API writes to D1 and mirrors to the Google Sheet server-side, so the
+    // browser makes exactly one request and we report the real outcome. The form
+    // used to show "Enquiry Secured in Database" even when the save had failed.
     try {
-      const d1Res = await fetch("/api/submit-enquiry", {
+      const res = await fetch("/api/submit-enquiry", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-      if (d1Res.ok) {
-        const d1Data = await d1Res.json();
-        if (d1Data && d1Data.recordId) {
-          assignedId = d1Data.recordId;
-          setRecordId(d1Data.recordId);
-        }
+      const data = await res.json().catch(() => null);
+
+      if (res.ok && data?.success) {
+        setRecordId(data.recordId ?? null);
+        setSubmitted(true);
+      } else {
+        setSubmitError(
+          data?.error ||
+            "We couldn't save your enquiry just now. Please WhatsApp the Surat desk and we'll pick it up straight away."
+        );
       }
-    } catch (d1Err) {
-      console.warn("D1 direct endpoint notice:", d1Err);
+    } catch {
+      setSubmitError(
+        "Network error — your enquiry didn't reach us. Please check your connection or WhatsApp the Surat desk."
+      );
+    } finally {
+      setLoading(false);
     }
-
-    // 2. Redundant Direct Google Apps Script Dispatch
-    try {
-      fetch(GAS_FALLBACK_URL, {
-        method: "POST",
-        headers: { "Content-Type": "text/plain;charset=utf-8" },
-        body: JSON.stringify({
-          token: "maa-sheetla-2010",
-          ...payload,
-        }),
-        mode: "no-cors",
-        keepalive: true,
-      }).catch(() => {});
-    } catch (gasErr) {
-      console.warn("Google Sheet sync notice:", gasErr);
-    }
-
-    setLoading(false);
-    setSubmitted(true);
   };
 
   const handleOpenWhatsApp = () => {
@@ -200,6 +198,8 @@ export default function QueryPage() {
                         preferredFirm: "Both Desks",
                         message: "",
                       });
+                      setCompanyWebsite("");
+                      setSubmitError("");
                     }}
                     className="w-full sm:w-auto px-6 py-3.5 bg-warp border border-hairline text-ash hover:text-khadi font-mono text-xs tracking-widest uppercase rounded-xs min-h-[44px]"
                   >
@@ -211,7 +211,7 @@ export default function QueryPage() {
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                   <div className="space-y-1.5">
-                    <label className="block text-[10.5px] font-mono text-ash tracking-widest uppercase">
+                    <label htmlFor="firm" className="block text-[10.5px] font-mono text-ash tracking-widest uppercase">
                       Firm / Business Name *
                     </label>
                     <input
@@ -219,28 +219,36 @@ export default function QueryPage() {
                       required
                       value={formData.firm}
                       onChange={(e) => setFormData({ ...formData, firm: e.target.value })}
+                      id="firm"
+                      name="firm"
+                      autoComplete="organization"
+                      maxLength={120}
                       placeholder="e.g. Shringar Saree Mandir"
-                      className="w-full px-4 py-3.5 bg-warp border border-hairline rounded-xs text-base sm:text-sm text-khadi placeholder-ash/50 focus:outline-none focus:border-marigold"
+                      className="w-full px-4 py-3.5 min-h-[48px] bg-warp border border-hairline rounded-xs text-base sm:text-sm text-khadi placeholder-ash/50 focus:outline-none focus:border-marigold focus-visible:ring-2 focus-visible:ring-marigold/60"
                     />
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="block text-[10.5px] font-mono text-ash tracking-widest uppercase">
+                    <label htmlFor="gst" className="block text-[10.5px] font-mono text-ash tracking-widest uppercase">
                       GST Number (Optional)
                     </label>
                     <input
                       type="text"
                       value={formData.gst}
                       onChange={(e) => setFormData({ ...formData, gst: e.target.value })}
+                      id="gst"
+                      name="gst"
+                      autoComplete="off"
+                      maxLength={20}
                       placeholder="e.g. 24AACCS1234F1Z5"
-                      className="w-full px-4 py-3.5 bg-warp border border-hairline rounded-xs text-base sm:text-sm text-khadi placeholder-ash/50 focus:outline-none focus:border-marigold uppercase"
+                      className="w-full px-4 py-3.5 min-h-[48px] bg-warp border border-hairline rounded-xs text-base sm:text-sm text-khadi placeholder-ash/50 focus:outline-none focus:border-marigold focus-visible:ring-2 focus-visible:ring-marigold/60 uppercase"
                     />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                   <div className="space-y-1.5">
-                    <label className="block text-[10.5px] font-mono text-ash tracking-widest uppercase">
+                    <label htmlFor="firstName" className="block text-[10.5px] font-mono text-ash tracking-widest uppercase">
                       First Name *
                     </label>
                     <input
@@ -248,21 +256,29 @@ export default function QueryPage() {
                       required
                       value={formData.firstName}
                       onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                      id="firstName"
+                      name="firstName"
+                      autoComplete="given-name"
+                      maxLength={60}
                       placeholder="e.g. Ramesh"
-                      className="w-full px-4 py-3.5 bg-warp border border-hairline rounded-xs text-base sm:text-sm text-khadi placeholder-ash/50 focus:outline-none focus:border-marigold"
+                      className="w-full px-4 py-3.5 min-h-[48px] bg-warp border border-hairline rounded-xs text-base sm:text-sm text-khadi placeholder-ash/50 focus:outline-none focus:border-marigold focus-visible:ring-2 focus-visible:ring-marigold/60"
                     />
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="block text-[10.5px] font-mono text-ash tracking-widest uppercase">
+                    <label htmlFor="lastName" className="block text-[10.5px] font-mono text-ash tracking-widest uppercase">
                       Last Name
                     </label>
                     <input
                       type="text"
                       value={formData.lastName}
                       onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                      id="lastName"
+                      name="lastName"
+                      autoComplete="family-name"
+                      maxLength={60}
                       placeholder="e.g. Patel"
-                      className="w-full px-4 py-3.5 bg-warp border border-hairline rounded-xs text-base sm:text-sm text-khadi placeholder-ash/50 focus:outline-none focus:border-marigold"
+                      className="w-full px-4 py-3.5 min-h-[48px] bg-warp border border-hairline rounded-xs text-base sm:text-sm text-khadi placeholder-ash/50 focus:outline-none focus:border-marigold focus-visible:ring-2 focus-visible:ring-marigold/60"
                     />
                   </div>
                 </div>
@@ -270,13 +286,16 @@ export default function QueryPage() {
                 {/* State & City (Manual Entry) */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                   <div className="space-y-1.5">
-                    <label className="block text-[10.5px] font-mono text-ash tracking-widest uppercase">
+                    <label htmlFor="state" className="block text-[10.5px] font-mono text-ash tracking-widest uppercase">
                       State / UT (All 29 States) *
                     </label>
                     <select
+                      id="state"
+                      name="state"
+                      autoComplete="address-level1"
                       value={formData.state}
                       onChange={(e) => setFormData({ ...formData, state: e.target.value })}
-                      className="w-full px-4 py-3.5 bg-warp border border-hairline rounded-xs text-base sm:text-sm text-khadi focus:outline-none focus:border-marigold"
+                      className="w-full px-4 py-3.5 min-h-[48px] bg-warp border border-hairline rounded-xs text-base sm:text-sm text-khadi focus:outline-none focus:border-marigold focus-visible:ring-2 focus-visible:ring-marigold/60"
                     >
                       {INDIAN_STATES.map((st) => (
                         <option key={st} value={st} className="bg-warp text-khadi">
@@ -287,7 +306,7 @@ export default function QueryPage() {
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="block text-[10.5px] font-mono text-ash tracking-widest uppercase">
+                    <label htmlFor="city" className="block text-[10.5px] font-mono text-ash tracking-widest uppercase">
                       City (Enter Manually) *
                     </label>
                     <input
@@ -295,15 +314,19 @@ export default function QueryPage() {
                       required
                       value={formData.city}
                       onChange={(e) => setFormData({ ...formData, city: e.target.value })}
+                      id="city"
+                      name="city"
+                      autoComplete="address-level2"
+                      maxLength={80}
                       placeholder="e.g. Surat, Varanasi, Meerut, Raipur"
-                      className="w-full px-4 py-3.5 bg-warp border border-hairline rounded-xs text-base sm:text-sm text-khadi placeholder-ash/50 focus:outline-none focus:border-marigold"
+                      className="w-full px-4 py-3.5 min-h-[48px] bg-warp border border-hairline rounded-xs text-base sm:text-sm text-khadi placeholder-ash/50 focus:outline-none focus:border-marigold focus-visible:ring-2 focus-visible:ring-marigold/60"
                     />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                   <div className="space-y-1.5">
-                    <label className="block text-[10.5px] font-mono text-ash tracking-widest uppercase">
+                    <label htmlFor="contact" className="block text-[10.5px] font-mono text-ash tracking-widest uppercase">
                       Contact / WhatsApp Mobile *
                     </label>
                     <input
@@ -311,33 +334,47 @@ export default function QueryPage() {
                       required
                       value={formData.contact}
                       onChange={(e) => setFormData({ ...formData, contact: e.target.value })}
+                      id="contact"
+                      name="contact"
+                      autoComplete="tel"
+                      inputMode="numeric"
+                      pattern="[0-9+\\-\\s]{8,20}"
+                      maxLength={20}
+                      title="Enter a valid phone number (8-15 digits)"
                       placeholder="e.g. 9825100000"
-                      className="w-full px-4 py-3.5 bg-warp border border-hairline rounded-xs text-base sm:text-sm text-khadi placeholder-ash/50 focus:outline-none focus:border-marigold"
+                      className="w-full px-4 py-3.5 min-h-[48px] bg-warp border border-hairline rounded-xs text-base sm:text-sm text-khadi placeholder-ash/50 focus:outline-none focus:border-marigold focus-visible:ring-2 focus-visible:ring-marigold/60"
                     />
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="block text-[10.5px] font-mono text-ash tracking-widest uppercase">
+                    <label htmlFor="email" className="block text-[10.5px] font-mono text-ash tracking-widest uppercase">
                       Email Address (Optional)
                     </label>
                     <input
                       type="email"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      id="email"
+                      name="email"
+                      autoComplete="email"
+                      inputMode="email"
+                      maxLength={160}
                       placeholder="e.g. buyer@example.com"
-                      className="w-full px-4 py-3.5 bg-warp border border-hairline rounded-xs text-base sm:text-sm text-khadi placeholder-ash/50 focus:outline-none focus:border-marigold"
+                      className="w-full px-4 py-3.5 min-h-[48px] bg-warp border border-hairline rounded-xs text-base sm:text-sm text-khadi placeholder-ash/50 focus:outline-none focus:border-marigold focus-visible:ring-2 focus-visible:ring-marigold/60"
                     />
                   </div>
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="block text-[10.5px] font-mono text-ash tracking-widest uppercase">
+                  <label htmlFor="categoryInterest" className="block text-[10.5px] font-mono text-ash tracking-widest uppercase">
                     Primary Sourcing Interest
                   </label>
                   <select
+                    id="categoryInterest"
+                    name="categoryInterest"
                     value={formData.categoryInterest}
                     onChange={(e) => setFormData({ ...formData, categoryInterest: e.target.value })}
-                    className="w-full px-4 py-3.5 bg-warp border border-hairline rounded-xs text-base sm:text-sm text-khadi focus:outline-none focus:border-marigold"
+                    className="w-full px-4 py-3.5 min-h-[48px] bg-warp border border-hairline rounded-xs text-base sm:text-sm text-khadi focus:outline-none focus:border-marigold focus-visible:ring-2 focus-visible:ring-marigold/60"
                   >
                     <option value="Sarees (Tissue, Dola, Organza)">Sarees (Tissue, Dola, Organza)</option>
                     <option value="Bridal & Lehengas">Bridal &amp; Lehengas</option>
@@ -348,16 +385,16 @@ export default function QueryPage() {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="block text-[10.5px] font-mono text-ash tracking-widest uppercase">
+                  <label htmlFor="preferredFirm" className="block text-[10.5px] font-mono text-ash tracking-widest uppercase">
                     Agency Desk Focus
                   </label>
-                  <div className="grid grid-cols-3 gap-2 font-mono text-xs">
+                  <div className="grid grid-cols-1 xs:grid-cols-3 gap-2 font-mono text-xs">
                     {(["Both Desks", "Maa Sheetla", "Sunrise Fab Tex"] as const).map((firm) => (
                       <button
                         type="button"
                         key={firm}
                         onClick={() => setFormData({ ...formData, preferredFirm: firm as any })}
-                        className={`py-2.5 px-2 text-center border rounded-xs transition-colors text-[11px] sm:text-xs ${
+                        className={`py-3 px-2 min-h-[44px] text-center border rounded-xs transition-colors text-[11px] sm:text-xs ${
                           formData.preferredFirm === firm
                             ? "bg-warp text-haldi border-marigold font-medium"
                             : "bg-warp/50 border-hairline text-ash hover:text-khadi"
@@ -370,17 +407,51 @@ export default function QueryPage() {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="block text-[10.5px] font-mono text-ash tracking-widest uppercase">
+                  <label htmlFor="message" className="block text-[10.5px] font-mono text-ash tracking-widest uppercase">
                     Specific Query / Requirements (Optional)
                   </label>
                   <textarea
                     rows={3}
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    id="message"
+                    name="message"
+                    maxLength={1500}
                     placeholder="e.g. Looking for festive season bridal sets, MOQ inquiry, rate cards, etc."
                     className="w-full px-4 py-3 bg-warp border border-hairline rounded-xs text-base sm:text-sm text-khadi placeholder-ash/50 focus:outline-none focus:border-marigold resize-none"
                   />
                 </div>
+
+                {/* Honeypot — visually hidden, never focusable, ignored by real users */}
+                <div aria-hidden="true" className="absolute w-px h-px -left-[9999px] overflow-hidden">
+                  <label htmlFor="company_website">Company website (leave blank)</label>
+                  <input
+                    id="company_website"
+                    name="company_website"
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={companyWebsite}
+                    onChange={(e) => setCompanyWebsite(e.target.value)}
+                  />
+                </div>
+
+                {submitError && (
+                  <div
+                    role="alert"
+                    aria-live="assertive"
+                    className="p-3.5 bg-kumkum/5 border border-kumkum/40 rounded-xs text-kumkum text-xs leading-relaxed space-y-2"
+                  >
+                    <p>{submitError}</p>
+                    <button
+                      type="button"
+                      onClick={handleOpenWhatsApp}
+                      className="inline-flex items-center gap-1.5 font-mono uppercase tracking-wider underline min-h-[44px]"
+                    >
+                      <MessageCircle className="w-3.5 h-3.5" /> Send it on WhatsApp instead
+                    </button>
+                  </div>
+                )}
 
                 <div className="pt-2 flex flex-col sm:flex-row gap-3 sm:gap-4">
                   <button

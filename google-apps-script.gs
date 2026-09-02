@@ -1,7 +1,8 @@
 /**
  * ═══════════════════════════════════════════════════════════════════════════
- * MAA SHEETLA AGENCY — 100% RELIABLE ZERO-REJECTION ENQUIRY BACKEND
- * Never rejects any valid lead. Accepts all phone, GST, and email formats.
+ * MAA SHEETLA AGENCY & SUNRISE FAB TEX — MULTI-DOMAIN ENQUIRY BACKEND
+ * Captures leads from maasheetla.com, sunrisefabtex.in, and sunrisefabtex.com.
+ * Logs exact source domain, redirect URL, category, and preferred desk.
  * ═══════════════════════════════════════════════════════════════════════════
  */
 
@@ -13,7 +14,7 @@ var CONFIG = {
 
 var HEADERS = [
   "Timestamp", "First name", "Last name", "Firm name", "GST no",
-  "Contact no", "Email", "Page", "Referrer", "Status"
+  "Contact no", "Email", "Category", "Preferred Desk", "Domain / Source URL", "Referrer", "Status"
 ];
 
 function doPost(e) {
@@ -24,14 +25,28 @@ function doPost(e) {
     var data = parseBody(e);
 
     // Extract all fields safely with fallbacks
-    var firstName = String(data.firstName || data.name || "").trim();
-    var lastName  = String(data.lastName || "").trim();
-    var firm      = String(data.firm || data.firmName || data.shopName || "Wholesale Buyer").trim();
-    var gst       = String(data.gst || "").trim();
-    var contact   = String(data.contact || data.phone || data.mobile || "").trim();
-    var email     = String(data.email || "").trim();
-    var page      = String(data.page || "/partner").slice(0, 300);
-    var referrer  = String(data.referrer || "").slice(0, 300);
+    var firstName     = String(data.firstName || data.name || "").trim();
+    var lastName      = String(data.lastName || "").trim();
+    var firm          = String(data.firm || data.firmName || data.shopName || "Wholesale Buyer").trim();
+    var gst           = String(data.gst || "").trim();
+    var contact       = String(data.contact || data.phone || data.mobile || "").trim();
+    var email         = String(data.email || "").trim();
+    var category      = String(data.category || data.categoryInterest || "Sarees & Lehengas").trim();
+    var preferredDesk = String(data.preferredDesk || data.preferredFirm || "Both Desks").trim();
+    var notes         = String(data.notes || data.message || "").trim();
+    var page          = String(data.page || data.url || "/partner").slice(0, 400);
+    var referrer      = String(data.referrer || "").slice(0, 400);
+    var redirectUrl   = String(data.redirect_url || data.redirectUrl || (e.parameter ? e.parameter.redirect_url : "") || "").trim();
+
+    // Auto-detect domain
+    var domain = String(data.domain || data.sourceDomain || "").trim();
+    if (!domain) {
+      if (page.indexOf("sunrisefabtex") !== -1) {
+        domain = "sunrisefabtex.in";
+      } else {
+        domain = "maasheetla.com";
+      }
+    }
 
     // Fallback if name is empty
     if (!firstName && !lastName) {
@@ -49,7 +64,9 @@ function doPost(e) {
       gst,
       contact,
       email,
-      page,
+      category,
+      preferredDesk,
+      page || ("https://" + domain + "/partner"),
       referrer,
       "New"
     ]);
@@ -60,10 +77,27 @@ function doPost(e) {
       firm: firm,
       gst: gst,
       contact: contact,
-      email: email
+      email: email,
+      category: category,
+      preferredDesk: preferredDesk,
+      notes: notes,
+      domain: domain,
+      page: page
     });
 
-    return reply(true, "Enquiry successfully logged in sheet: " + sheet.getName());
+    // If client form requested an explicit browser redirect
+    if (redirectUrl) {
+      return HtmlService.createHtmlOutput(
+        "<!DOCTYPE html><html><head><meta http-equiv='refresh' content='0;url=" +
+        redirectUrl + "'><script>window.location.href='" + redirectUrl + "';</script></head><body>Redirecting to " + redirectUrl + "...</body></html>"
+      );
+    }
+
+    return reply(true, "Enquiry successfully logged in sheet: " + sheet.getName(), {
+      domain: domain,
+      page: page,
+      redirectUrl: redirectUrl || page
+    });
 
   } catch (err) {
     console.error("doPost error: " + err.toString());
@@ -123,9 +157,13 @@ function parseBody(e) {
   return (e && e.parameter) ? e.parameter : {};
 }
 
-function reply(ok, message) {
+function reply(ok, message, extra) {
+  var payload = { ok: ok, message: message };
+  if (extra) {
+    for (var k in extra) { payload[k] = extra[k]; }
+  }
   return ContentService
-    .createTextOutput(JSON.stringify({ ok: ok, message: message }))
+    .createTextOutput(JSON.stringify(payload))
     .setMimeType(ContentService.MimeType.JSON);
 }
 
@@ -134,35 +172,22 @@ function notify(c) {
   try {
     MailApp.sendEmail({
       to: CONFIG.NOTIFY_EMAIL,
-      subject: "New Lead — " + c.firm + " (" + c.firstName + " " + c.lastName + ")",
+      subject: "New Wholesale Lead [" + (c.domain || "Multi-Domain") + "] — " + c.firm + " (" + c.firstName + " " + c.lastName + ")",
       body:
-        "NEW WHOLESALE ENQUIRY RECEIVED:\n\n" +
-        "Name    : " + c.firstName + " " + c.lastName + "\n" +
-        "Firm    : " + c.firm + "\n" +
-        "Contact : " + c.contact + "\n" +
-        "Email   : " + (c.email || "—") + "\n" +
-        "GST     : " + (c.gst || "—") + "\n\n" +
-        "WhatsApp: https://wa.me/" + String(c.contact).replace(/[^0-9]/g, "") + "\n"
+        "NEW WHOLESALE TRADE ENQUIRY RECEIVED:\n\n" +
+        "Source Domain: " + (c.domain || "sunrisefabtex.in / maasheetla.com") + "\n" +
+        "Page URL     : " + (c.page || "—") + "\n" +
+        "Target Desk  : " + (c.preferredDesk || "—") + "\n" +
+        "Category     : " + (c.category || "—") + "\n\n" +
+        "Name         : " + c.firstName + " " + c.lastName + "\n" +
+        "Firm         : " + c.firm + "\n" +
+        "Contact      : " + c.contact + "\n" +
+        "Email        : " + (c.email || "—") + "\n" +
+        "GST          : " + (c.gst || "—") + "\n" +
+        "Notes        : " + (c.notes || "—") + "\n\n" +
+        "WhatsApp Direct Link: https://wa.me/" + String(c.contact).replace(/[^0-9]/g, "") + "\n"
     });
   } catch (err) {
     console.error("Notify failed: " + err);
   }
-}
-
-function runTest() {
-  var sheet = getSheet();
-  Logger.log("Target Sheet: " + sheet.getParent().getUrl() + " [" + sheet.getName() + "]");
-  var res = doPost({
-    postData: {
-      contents: JSON.stringify({
-        firstName: "Self",
-        lastName: "Test",
-        firm: "Maa Sheetla Counter Test",
-        gst: "24AACCS1234F1Z5",
-        contact: "9825100000",
-        email: "test@example.com"
-      })
-    }
-  });
-  Logger.log(res.getContent());
 }
