@@ -3,9 +3,8 @@ import Link from "next/link";
 import ThreadsBackground from "../../components/react-bits/ThreadsBackground";
 import BlurText from "../../components/react-bits/BlurText";
 import ShinyText from "../../components/react-bits/ShinyText";
-import SpotlightCard from "../../components/react-bits/SpotlightCard";
-import IndiaReachMap, { ALL_REACH_NODES } from "../../components/IndiaReachMap";
-import { ArrowUpRight, MessageCircle, MapPin, Clock, Truck, ShieldCheck, Building2 } from "lucide-react";
+import IndiaReachMap from "../../components/IndiaReachMap";
+import { ArrowUpRight, MessageCircle, MapPin } from "lucide-react";
 import { createWhatsAppLink } from "../../lib/whatsapp";
 import { Picture } from "../../components/Picture";
 
@@ -13,39 +12,6 @@ export const metadata = {
   title: "70+ City Wholesale Trade Network · Maa Sheetla Agency",
   description: "Direct powerloom dispatch network connecting 700+ suppliers around India with 500+ buyers across 70+ trade cities.",
 };
-
-const PRIMARY_REGIONS = [
-  {
-    state: "Uttar Pradesh",
-    corridor: "Central, Eastern & Western UP (40+ Cities)",
-    transit: "24–48 hrs Direct Dispatch",
-    cities: "Kanpur, Lucknow, Varanasi, Gorakhpur, Bareilly, Meerut, Muzaffarnagar, Saharanpur, Allahabad, Akbarpur, Azamgarh, Babhnan, Bhadohi, Bahraich, Ballia, Balrampur, Barabanki, Barhalganj, Bashkhari, Basti, Belthara Road, Colonelganj, Dalmau, Faizabad, Gilaula, Gonda, Gosaiganj, Ikauna, Itiyathok, Jalalabad, Jalalpur, Jaunpur, Kaptanganj, Katra Bazar, Khalilabad, Lakhimpur Kheri, Meerganj, Mohammadabad, Nanpara, Nawabganj, Paraspur, Phoolpur, Rae Bareli, Rudauli, Sandila, Shahjahanpur, Sitapur, Sultanpur, Unnao, Utraula",
-  },
-  {
-    state: "Bihar",
-    corridor: "Eastern Trade Corridor (8 Key Cities)",
-    transit: "36–48 hrs Parcel Express",
-    cities: "Patna, Muzaffarpur, Arrah, Aurangabad, Bagaha, Bihar Sharif, Kishanganj, Lakhisarai",
-  },
-  {
-    state: "Jharkhand",
-    corridor: "Chhota Nagpur & Coalfield Belt (5 Cities)",
-    transit: "48 hrs Consolidated Cargo",
-    cities: "Ranchi, Dhanbad, Daltonganj, Garhwa, Deoghar, Kirkend Bazar",
-  },
-  {
-    state: "Delhi NCR & Haryana",
-    corridor: "Northern Capital Metro Corridor",
-    transit: "24–36 hrs Rail Express",
-    cities: "Delhi NCR (Chandni Chowk, Karol Bagh, Gandhi Nagar), Gurgaon, Panipat, Ambala",
-  },
-  {
-    state: "Rajasthan, MP & Others",
-    corridor: "Western & Central Powerhouse",
-    transit: "24–36 hrs Fast Transit",
-    cities: "Jaipur (Johari Bazaar), Indore (MT Cloth Market), Bhopal, Raipur, Ludhiana, Kolkata (Burrabazar), Jammu, Jwalapur (Haridwar), Vizianagaram",
-  },
-];
 
 export default function ReachPage() {
   const waUrl = createWhatsAppLink("dispatch timing and agency representation inquiry for our city");
@@ -94,54 +60,6 @@ export default function ReachPage() {
           </div>
           <div className="w-full max-w-3xl mx-auto py-2">
             <IndiaReachMap />
-          </div>
-        </div>
-
-        {/* State-Wise Regional Breakdown */}
-        <div className="space-y-6">
-          <div className="flex items-center justify-between border-b border-hairline pb-4">
-            <div>
-              <h2 className="font-display text-2xl sm:text-3xl text-khadi font-light">
-                Regional Trade Corridors &amp; Coverage
-              </h2>
-              <p className="text-xs text-ash font-light mt-1">
-                Verified wholesale supply lines connected directly to our Surat Head Office &amp; Loom Floor.
-              </p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {PRIMARY_REGIONS.map((reg, idx) => (
-              <SpotlightCard
-                key={reg.state}
-                className="p-5 sm:p-6 bg-selvedge border-hairline rounded-sm space-y-4 shadow-2xs hover:shadow-xs flex flex-col justify-between"
-              >
-                <div className="space-y-2.5">
-                  <div className="flex items-center justify-between font-mono text-xs">
-                    <span className="text-marigold font-display text-xl font-light">0{idx + 1}</span>
-                    <span className="text-marigold text-[9.5px] border border-hairline px-2 py-0.5 bg-selvedge-light uppercase font-medium">
-                      {reg.state}
-                    </span>
-                  </div>
-                  <div>
-                    <h3 className="font-display text-lg sm:text-xl text-khadi font-light">{reg.corridor}</h3>
-                    <div className="flex items-center gap-1.5 font-mono text-[10.5px] text-kumkum font-medium mt-1">
-                      <Clock className="w-3.5 h-3.5" />
-                      <span>{reg.transit}</span>
-                    </div>
-                  </div>
-                  <p className="text-xs text-ash font-light leading-relaxed pt-2 border-t border-hairline">
-                    <strong className="font-medium text-khadi">Connected Centers: </strong>
-                    {reg.cities}
-                  </p>
-                </div>
-
-                <div className="pt-3 border-t border-hairline flex items-center justify-between text-[10px] font-mono text-marigold uppercase">
-                  <span>Territorial Lock Active</span>
-                  <ShieldCheck className="w-3.5 h-3.5" />
-                </div>
-              </SpotlightCard>
-            ))}
           </div>
         </div>
 
