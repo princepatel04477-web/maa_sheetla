@@ -448,11 +448,10 @@ export default function QueryPage() {
                           <motion.span
                             layoutId={DESK_INDICATOR_ID}
                             className="absolute inset-0 bg-warp"
-                            style={{ zIndex: -1 }}
                             transition={{ duration: MOTION.dur.base, ease: MOTION.ease.outExpo }}
                           />
                         )}
-                        {firm}
+                        <span className="relative z-10">{firm}</span>
                       </button>
                     ))}
                   </div>

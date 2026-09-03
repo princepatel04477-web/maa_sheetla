@@ -151,6 +151,7 @@ export default function ReachSection() {
                 {REGION_TABS.map((tab) => (
                   <button
                     key={tab.id}
+                    type="button"
                     onClick={() => setActiveTab(tab.id)}
                     className={`relative px-3 py-2 min-h-[44px] text-[10px] font-mono uppercase tracking-wider rounded-xs border transition-colors ${
                       activeTab === tab.id
@@ -162,11 +163,10 @@ export default function ReachSection() {
                       <motion.span
                         layoutId={TAB_INDICATOR_ID}
                         className="absolute inset-0 bg-marigold rounded-xs"
-                        style={{ zIndex: -1 }}
                         transition={{ duration: MOTION.dur.base, ease: MOTION.ease.outExpo }}
                       />
                     )}
-                    {tab.label}
+                    <span className="relative z-10">{tab.label}</span>
                   </button>
                 ))}
               </div>
