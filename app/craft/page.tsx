@@ -47,11 +47,14 @@ function QCStepCard({ step, index }: { step: (typeof QC_STEPS)[0]; index: number
   const isInView = useInView(ref, { once: true, amount: 0.2 });
   const prefersReduced = useReducedMotion();
 
+  // Always visible at rest (SSR / JS disabled). Motion only layers on top.
+  const shouldAnimate = !prefersReduced && isInView;
+
   return (
     <motion.div
       ref={ref}
-      initial={prefersReduced ? { opacity: 1, y: 0 } : { opacity: 0, y: MOTION.rise }}
-      animate={isInView ? { opacity: 1, y: 0 } : undefined}
+      initial={prefersReduced ? false : { opacity: 0.001, y: MOTION.rise }}
+      animate={shouldAnimate ? { opacity: 1, y: 0 } : undefined}
       transition={{
         duration: MOTION.dur.slow,
         ease: MOTION.ease.outExpo,
@@ -72,8 +75,8 @@ function QCStepCard({ step, index }: { step: (typeof QC_STEPS)[0]; index: number
           {/* Step badge — scales in */}
           <motion.span
             className="text-marigold font-display text-3xl font-light"
-            initial={prefersReduced ? { scale: 1 } : { scale: 0.9, opacity: 0 }}
-            animate={isInView ? { scale: 1, opacity: 1 } : undefined}
+            initial={prefersReduced ? false : { scale: 0.9, opacity: 0.001 }}
+            animate={shouldAnimate ? { scale: 1, opacity: 1 } : undefined}
             transition={{
               duration: MOTION.dur.base,
               ease: MOTION.ease.outExpo,

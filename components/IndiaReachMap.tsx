@@ -165,7 +165,8 @@ export default function IndiaReachMap({
 }: IndiaReachMapProps) {
   const [internalActive, setInternalActive] = useState<string | null>(null);
   const [hoveredState, setHoveredState] = useState<string | null>(null);
-  const [visible, setVisible] = useState(false);
+  // SSR-safe: dots visible by default; animation fires on scroll entry.
+  const [visible, setVisible] = useState(true);
   const [reduced, setReduced] = useState(false);
 
   const rootRef = useRef<SVGSVGElement | null>(null);
@@ -201,6 +202,9 @@ export default function IndiaReachMap({
 
   useEffect(() => {
     setReduced(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+    // Reset so the scroll-entry stagger animation can fire.
+    // SSR rendered visible=true for no-JS; client corrects immediately.
+    setVisible(false);
   }, []);
 
   useEffect(() => {
