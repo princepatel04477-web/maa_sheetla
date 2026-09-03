@@ -56,14 +56,23 @@ export default function ReachSection() {
     return list;
   }, [activeTab, searchQuery]);
 
-  // Scroll active city into view within ledger list
+  const isFirstRender = useRef(true);
+
+  // Scroll active city into view ONLY within ledger list container (zero window scroll)
   useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
     if (!activeCityId || !listRef.current) return;
     const activeBtn = listRef.current.querySelector(
       `[data-city-id="${activeCityId}"]`
     ) as HTMLElement | null;
-    if (activeBtn) {
-      activeBtn.scrollIntoView({ block: "nearest", behavior: "smooth" });
+    if (activeBtn && listRef.current) {
+      const containerTop = listRef.current.getBoundingClientRect().top;
+      const btnTop = activeBtn.getBoundingClientRect().top;
+      const relativeTop = btnTop - containerTop + listRef.current.scrollTop;
+      listRef.current.scrollTo({ top: Math.max(0, relativeTop - 20), behavior: "smooth" });
     }
   }, [activeCityId]);
 

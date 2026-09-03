@@ -89,28 +89,31 @@ export default function Header() {
   }, [mobileOpen]);
 
   useEffect(() => {
-    if (!mobileOpen) return;
-
-    const scrollY = window.scrollY;
-    document.body.style.top = `-${scrollY}px`;
-    document.body.classList.add("nav-locked");
-    setHidden(false); // Always show header when drawer open
+    if (mobileOpen) {
+      document.body.style.overflow = "hidden";
+      setHidden(false); // Always show header when drawer open
+    } else {
+      document.body.style.overflow = "";
+    }
 
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") setMobileOpen(false);
     };
-    window.addEventListener("keydown", onKeyDown);
+    if (mobileOpen) {
+      window.addEventListener("keydown", onKeyDown);
+    }
 
     return () => {
-      document.body.classList.remove("nav-locked");
-      document.body.style.top = "";
-      window.scrollTo(0, scrollY);
+      document.body.style.overflow = "";
       window.removeEventListener("keydown", onKeyDown);
     };
   }, [mobileOpen]);
 
   useEffect(() => {
     setMobileOpen(false);
+    document.body.style.overflow = "";
+    document.body.classList.remove("nav-locked");
+    document.body.style.top = "";
   }, [pathname]);
 
   // Post-hydration re-scroll for anchor links (BUG-05)
@@ -130,6 +133,9 @@ export default function Header() {
 
   const handleNavClick = (href: string) => {
     setMobileOpen(false);
+    document.body.style.overflow = "";
+    document.body.classList.remove("nav-locked");
+    document.body.style.top = "";
     if (href.startsWith("/#") && pathname === "/") {
       const id = href.replace("/#", "");
       const el = document.getElementById(id);
