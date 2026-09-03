@@ -196,7 +196,7 @@ export default function Header() {
           </Link>
 
           {/* Desktop Navigation — active underline with layoutId */}
-          <nav className="hidden lg:flex items-center gap-3.5 xl:gap-6 2xl:gap-7 shrink-0">
+          <nav className="hidden lg:flex items-center gap-4 xl:gap-7 2xl:gap-8 shrink-0">
             {DESKTOP_NAV_LINKS.map((link) => {
               const isActive = pathname === link.href;
               return (
@@ -204,15 +204,17 @@ export default function Header() {
                   key={link.href}
                   href={link.href}
                   onClick={() => handleNavClick(link.href)}
-                  className={`whitespace-nowrap font-body text-[13px] xl:text-sm font-medium tracking-wide transition-colors relative py-1 px-1 ${
-                    isActive ? "text-marigold font-semibold" : "text-ash hover:text-khadi"
+                  className={`whitespace-nowrap font-body text-[13.5px] xl:text-[14px] tracking-wide transition-colors relative py-1 px-1 ${
+                    isActive
+                      ? "text-kumkum font-semibold"
+                      : "text-kumkum/75 hover:text-kumkum-deep font-medium"
                   }`}
                 >
                   {link.label}
                   {isActive && (
                     <motion.span
                       layoutId={NAV_UNDERLINE_ID}
-                      className="absolute bottom-0 left-0 right-0 h-[2px] bg-marigold rounded-full"
+                      className="absolute bottom-0 left-0 right-0 h-[2px] bg-kumkum rounded-full"
                       transition={{ duration: MOTION.dur.base, ease: MOTION.ease.outExpo }}
                     />
                   )}
@@ -237,7 +239,7 @@ export default function Header() {
             {/* Mobile Hamburger Toggle */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="lg:hidden inline-flex items-center justify-center w-11 h-11 shrink-0 rounded-xs bg-selvedge-light border border-marigold/40 text-khadi hover:text-marigold hover:border-marigold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-marigold shadow-2xs"
+              className="lg:hidden inline-flex items-center justify-center w-11 h-11 shrink-0 rounded-xs bg-selvedge-light border border-kumkum/40 text-kumkum hover:text-kumkum-deep hover:border-kumkum transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-kumkum shadow-2xs"
               aria-label={mobileOpen ? "Close menu" : "Open menu"}
               aria-expanded={mobileOpen}
               aria-controls="mobile-nav"
@@ -261,7 +263,7 @@ export default function Header() {
                     exit={{ rotate: -45, opacity: 0 }}
                     transition={{ duration: MOTION.dur.fast }}
                   >
-                    <Menu className="w-5 h-5 text-marigold" />
+                    <Menu className="w-5 h-5 text-kumkum" />
                   </motion.span>
                 )}
               </AnimatePresence>
