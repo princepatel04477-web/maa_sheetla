@@ -20,7 +20,7 @@ const MESSAGES = [
 
 export default function WebsiteLoader({
   forceShow = false,
-  minDuration = 1800,
+  minDuration = 500,
 }: WebsiteLoaderProps) {
   const [isVisible, setIsVisible] = useState<boolean>(true);
   const [progress, setProgress] = useState<number>(0);

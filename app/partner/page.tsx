@@ -1,11 +1,13 @@
 "use client";
 
 import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import ThreadsBackground from "../../components/react-bits/ThreadsBackground";
 import BlurText from "../../components/react-bits/BlurText";
 import ShinyText from "../../components/react-bits/ShinyText";
 import { CheckCircle2, MessageCircle, Send, Loader2, ShieldCheck } from "lucide-react";
 import { createWhatsAppLink } from "../../lib/whatsapp";
+import { MOTION, useReducedMotion } from "../../lib/motion";
 
 const INDIAN_STATES = [
   "Andhra Pradesh",
@@ -46,13 +48,17 @@ const INDIAN_STATES = [
   "Lakshadweep",
 ];
 
+const DESK_INDICATOR_ID = "desk-chip-indicator";
+
 export default function QueryPage() {
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState("");
   const [recordId, setRecordId] = useState<string | number | null>(null);
+  const [shakeField, setShakeField] = useState<string | null>(null);
   // Honeypot: hidden from real buyers, irresistible to naive spam bots.
   const [companyWebsite, setCompanyWebsite] = useState("");
+  const prefersReduced = useReducedMotion();
 
   const [formData, setFormData] = useState({
     firm: "",
@@ -136,6 +142,13 @@ export default function QueryPage() {
       firm: formData.preferredFirm === "Both Desks" ? "Both" : formData.preferredFirm,
     });
     window.open(url, "_blank");
+  };
+
+  // Shake a field id once (240ms, 3px, twice) — skipped under reduced motion
+  const triggerShake = (fieldId: string) => {
+    if (prefersReduced) return;
+    setShakeField(fieldId);
+    setTimeout(() => setShakeField(null), 400);
   };
 
   return (

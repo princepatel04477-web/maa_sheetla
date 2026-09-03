@@ -1,10 +1,12 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { MessageCircle, Menu, X, ArrowUpRight, PhoneCall, Sparkles, MapPin, Building2 } from "lucide-react";
+import { MessageCircle, Menu, X, ArrowUpRight, PhoneCall, Sparkles } from "lucide-react";
 import { createWhatsAppLink } from "../lib/whatsapp";
+import { motion, AnimatePresence } from "framer-motion";
+import { MOTION } from "../lib/motion";
 
 const NAV_LINKS = [
   { href: "/#firms", label: "Two Desks", sub: "Maa Sheetla & Sunrise Fab Tex Adat", num: "01" },
@@ -16,9 +18,66 @@ const NAV_LINKS = [
   { href: "/contact", label: "Our Offices", sub: "Surat HQ · Kanpur · Ahmedabad", num: "07" },
 ];
 
+const NAV_UNDERLINE_ID = "header-nav-underline";
+
+const DRAWER_VARIANTS = {
+  hidden: { opacity: 0, y: -12 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: MOTION.dur.base,
+      ease: MOTION.ease.outExpo,
+      when: "beforeChildren",
+      staggerChildren: 0.05,
+      delayChildren: 0.04,
+    },
+  },
+  exit: {
+    opacity: 0,
+    y: -8,
+    transition: {
+      duration: MOTION.dur.base * 0.7,
+      ease: MOTION.ease.outQuart,
+      when: "afterChildren",
+      staggerChildren: 0.025,
+      staggerDirection: -1,
+    },
+  },
+};
+
+const DRAWER_ITEM_VARIANTS = {
+  hidden: { opacity: 0, y: -6 },
+  visible: { opacity: 1, y: 0, transition: { duration: MOTION.dur.base, ease: MOTION.ease.outExpo } },
+  exit: { opacity: 0, y: -4, transition: { duration: MOTION.dur.fast } },
+};
+
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
+  const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const lastScrollY = useRef(0);
+
+  // Scroll-awareness: blur + hide on scroll down past 400px
+  useEffect(() => {
+    const handleScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > 24);
+      if (mobileOpen) {
+        // Always show header when drawer is open
+        setHidden(false);
+      } else if (y > 400 && y > lastScrollY.current + 8) {
+        setHidden(true);
+      } else if (y < lastScrollY.current - 4) {
+        setHidden(false);
+      }
+      lastScrollY.current = y;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [mobileOpen]);
 
   useEffect(() => {
     if (!mobileOpen) return;
@@ -26,6 +85,7 @@ export default function Header() {
     const scrollY = window.scrollY;
     document.body.style.top = `-${scrollY}px`;
     document.body.classList.add("nav-locked");
+    setHidden(false); // Always show header when drawer open
 
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") setMobileOpen(false);
@@ -40,14 +100,11 @@ export default function Header() {
     };
   }, [mobileOpen]);
 
-  // A hash link such as /#firms does not change `pathname`, so the drawer used
-  // to stay open on top of the section the user just chose.
   useEffect(() => {
     setMobileOpen(false);
   }, [pathname]);
 
   // Post-hydration re-scroll for anchor links (BUG-05)
-  // On iOS Safari, the initial jump fires before the full page fonts and images settle.
   useEffect(() => {
     if (typeof window === "undefined") return;
     const hash = window.location.hash;
@@ -79,7 +136,15 @@ export default function Header() {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 h-20 sm:h-24 bg-[#FCFBF7] border-b border-hairline shadow-xs transition-colors gpu-layer">
+      <motion.header
+        className={`fixed top-0 left-0 right-0 z-50 h-20 sm:h-24 border-b gpu-layer transition-[background-color,border-color,box-shadow] duration-320 ${
+          scrolled
+            ? "bg-[#FCFBF7]/95 backdrop-blur-sm border-hairline shadow-sm"
+            : "bg-[#FCFBF7] border-hairline shadow-xs"
+        }`}
+        animate={{ y: hidden ? "-100%" : "0%" }}
+        transition={{ duration: MOTION.dur.base, ease: MOTION.ease.outQuart }}
+      >
         <div className="max-w-7xl mx-auto h-full px-3 sm:px-8 lg:px-12 flex items-center justify-between gap-2">
           {/* Dual Brand Logos (Maa Sheetla & Sunrise Fab Tex Adat) */}
           <Link
@@ -121,7 +186,7 @@ export default function Header() {
             </div>
           </Link>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Navigation — active underline with layoutId */}
           <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
             {NAV_LINKS.map((link) => {
               const isActive = pathname === link.href;
@@ -136,7 +201,11 @@ export default function Header() {
                 >
                   {link.label}
                   {isActive && (
-                    <span className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-marigold" />
+                    <motion.span
+                      layoutId={NAV_UNDERLINE_ID}
+                      className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-marigold"
+                      transition={{ duration: MOTION.dur.base, ease: MOTION.ease.outExpo }}
+                    />
                   )}
                 </Link>
               );
@@ -156,7 +225,7 @@ export default function Header() {
               <span className="xs:hidden">Enquire</span>
             </a>
 
-            {/* Mobile Hamburger Toggle with high contrast */}
+            {/* Mobile Hamburger Toggle */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
               className="lg:hidden inline-flex items-center justify-center w-11 h-11 shrink-0 rounded-xs bg-selvedge-light border border-marigold/40 text-khadi hover:text-marigold hover:border-marigold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-marigold shadow-2xs"
@@ -164,130 +233,162 @@ export default function Header() {
               aria-expanded={mobileOpen}
               aria-controls="mobile-nav"
             >
-              {mobileOpen ? (
-                <X className="w-5 h-5 text-kumkum" />
-              ) : (
-                <Menu className="w-5 h-5 text-marigold" />
-              )}
+              <AnimatePresence mode="wait" initial={false}>
+                {mobileOpen ? (
+                  <motion.span
+                    key="close"
+                    initial={{ rotate: -45, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: 45, opacity: 0 }}
+                    transition={{ duration: MOTION.dur.fast }}
+                  >
+                    <X className="w-5 h-5 text-kumkum" />
+                  </motion.span>
+                ) : (
+                  <motion.span
+                    key="open"
+                    initial={{ rotate: 45, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: -45, opacity: 0 }}
+                    transition={{ duration: MOTION.dur.fast }}
+                  >
+                    <Menu className="w-5 h-5 text-marigold" />
+                  </motion.span>
+                )}
+              </AnimatePresence>
             </button>
           </div>
         </div>
-      </header>
+      </motion.header>
 
       {/* Mobile Full-Screen Solid Drawer Menu */}
-      {mobileOpen && (
-        <div
-          id="mobile-nav"
-          className="lg:hidden fixed inset-x-0 top-20 sm:top-24 z-50 h-[calc(100dvh-5rem)] sm:h-[calc(100dvh-6rem)] bg-[#151110] text-[#FAF8F5] border-t border-marigold/30 shadow-2xl flex flex-col justify-between gap-4 overflow-y-auto overscroll-contain p-4 pb-[calc(1rem+env(safe-area-inset-bottom))] sm:p-6 duration-200"
-        >
-          <div className="space-y-4">
-            {/* Top Invocation & Brand Badge Strip */}
-            <div className="flex items-center justify-between px-3 py-2 bg-[#201815] border border-marigold/30 rounded-xs font-mono text-[10px] text-marigold tracking-widest uppercase shadow-2xs">
-              <span className="flex items-center gap-1.5">
-                <Sparkles className="w-3 h-3 text-marigold animate-pulse" />
-                <span>SURAT HQ · KANPUR · AHMEDABAD</span>
-              </span>
-              <span className="text-[9px] text-[#A67C26]/80">EST. 2008</span>
-            </div>
-
-            {/* Dual Firm Quick Cards */}
-            <div className="grid grid-cols-2 gap-2.5">
-              <Link
-                href="/maa-sheetla"
-                onClick={() => setMobileOpen(false)}
-                className="p-3 rounded-xs bg-gradient-to-br from-[#2D1214] to-[#1D0C0D] border border-[#8B2628]/60 hover:border-marigold transition-all group shadow-sm"
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            id="mobile-nav"
+            key="mobile-nav"
+            variants={DRAWER_VARIANTS}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            className="lg:hidden fixed inset-x-0 top-20 sm:top-24 z-50 h-[calc(100dvh-5rem)] sm:h-[calc(100dvh-6rem)] bg-[#151110] text-[#FAF8F5] border-t border-marigold/30 shadow-2xl flex flex-col justify-between gap-4 overflow-y-auto overscroll-contain p-4 pb-[calc(1rem+env(safe-area-inset-bottom))] sm:p-6"
+          >
+            <div className="space-y-4">
+              {/* Top Invocation & Brand Badge Strip */}
+              <motion.div
+                variants={DRAWER_ITEM_VARIANTS}
+                className="flex items-center justify-between px-3 py-2 bg-[#201815] border border-marigold/30 rounded-xs font-mono text-[10px] text-marigold tracking-widest uppercase shadow-2xs"
               >
-                <div className="font-mono text-[9px] text-[#E0A899] uppercase tracking-wider block font-medium">
-                  Firm 01
-                </div>
-                <div className="font-display text-sm text-[#F7EFE9] group-hover:text-marigold transition-colors font-light">
-                  Maa Sheetla
-                </div>
-                <div className="text-[10px] text-[#D0B8B0] font-mono tracking-wider uppercase mt-0.5 line-clamp-1">
-                  Agency
-                </div>
-              </Link>
+                <span className="flex items-center gap-1.5">
+                  <Sparkles className="w-3 h-3 text-marigold animate-pulse" />
+                  <span>SURAT HQ · KANPUR · AHMEDABAD</span>
+                </span>
+                <span className="text-[9px] text-[#A67C26]/80">EST. 2008</span>
+              </motion.div>
 
-              <Link
-                href="/sunrise-fab-tex"
-                onClick={() => setMobileOpen(false)}
-                className="p-3 rounded-xs bg-gradient-to-br from-[#2A1D0E] to-[#1C140A] border border-[#A67C26]/60 hover:border-marigold transition-all group shadow-sm"
-              >
-                <div className="font-mono text-[9px] text-[#E5C383] uppercase tracking-wider block font-medium">
-                  Firm 02
-                </div>
-                <div className="font-display text-sm text-[#F7EFE9] group-hover:text-marigold transition-colors font-light">
-                  Sunrise Fab Tex Adat
-                </div>
-                <div className="text-[10px] text-[#D8C6A5] font-light mt-0.5 line-clamp-1">
-                  Prints &amp; Festive Suits
-                </div>
-              </Link>
-            </div>
+              {/* Dual Firm Quick Cards */}
+              <motion.div variants={DRAWER_ITEM_VARIANTS} className="grid grid-cols-2 gap-2.5">
+                <Link
+                  href="/maa-sheetla"
+                  onClick={() => setMobileOpen(false)}
+                  className="p-3 rounded-xs bg-gradient-to-br from-[#2D1214] to-[#1D0C0D] border border-[#8B2628]/60 hover:border-marigold transition-all group shadow-sm"
+                >
+                  <div className="font-mono text-[9px] text-[#E0A899] uppercase tracking-wider block font-medium">
+                    Firm 01
+                  </div>
+                  <div className="font-display text-sm text-[#F7EFE9] group-hover:text-marigold transition-colors font-light">
+                    Maa Sheetla
+                  </div>
+                  <div className="text-[10px] text-[#D0B8B0] font-mono tracking-wider uppercase mt-0.5 line-clamp-1">
+                    Agency
+                  </div>
+                </Link>
 
-            {/* Navigation Links with Numbering and Subtext */}
-            <nav className="flex flex-col space-y-1.5 pt-1">
-              {NAV_LINKS.map((link) => {
-                const isActive = pathname === link.href;
-                return (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    onClick={() => handleNavClick(link.href)}
-                    className={`p-3 rounded-xs border transition-all flex items-center justify-between ${
-                      isActive
-                        ? "bg-[#281A16] border-marigold text-marigold shadow-xs"
-                        : "bg-[#1E1715]/90 border-[#382B26] hover:border-marigold/60 hover:bg-[#251D1A] text-[#EDE6DF]"
-                    }`}
-                  >
-                    <div className="flex items-center gap-3">
-                      <span className="font-mono text-[11px] text-marigold/80 font-medium">
-                        {link.num}
-                      </span>
-                      <div>
-                        <div className="font-mono text-xs tracking-wider uppercase font-medium">
-                          {link.label}
+                <Link
+                  href="/sunrise-fab-tex"
+                  onClick={() => setMobileOpen(false)}
+                  className="p-3 rounded-xs bg-gradient-to-br from-[#2A1D0E] to-[#1C140A] border border-[#A67C26]/60 hover:border-marigold transition-all group shadow-sm"
+                >
+                  <div className="font-mono text-[9px] text-[#E5C383] uppercase tracking-wider block font-medium">
+                    Firm 02
+                  </div>
+                  <div className="font-display text-sm text-[#F7EFE9] group-hover:text-marigold transition-colors font-light">
+                    Sunrise Fab Tex Adat
+                  </div>
+                  <div className="text-[10px] text-[#D8C6A5] font-light mt-0.5 line-clamp-1">
+                    Prints &amp; Festive Suits
+                  </div>
+                </Link>
+              </motion.div>
+
+              {/* Navigation Links */}
+              <nav className="flex flex-col space-y-1.5 pt-1">
+                {NAV_LINKS.map((link) => {
+                  const isActive = pathname === link.href;
+                  return (
+                    <motion.div key={link.href} variants={DRAWER_ITEM_VARIANTS}>
+                      <Link
+                        href={link.href}
+                        onClick={() => handleNavClick(link.href)}
+                        className={`p-3 rounded-xs border transition-all flex items-center justify-between ${
+                          isActive
+                            ? "bg-[#281A16] border-marigold text-marigold shadow-xs"
+                            : "bg-[#1E1715]/90 border-[#382B26] hover:border-marigold/60 hover:bg-[#251D1A] text-[#EDE6DF]"
+                        }`}
+                      >
+                        <div className="flex items-center gap-3">
+                          <span className="font-mono text-[11px] text-marigold/80 font-medium">
+                            {link.num}
+                          </span>
+                          <div>
+                            <div className="font-mono text-xs tracking-wider uppercase font-medium">
+                              {link.label}
+                            </div>
+                            <div className="text-[10px] text-[#A69E96] font-light">
+                              {link.sub}
+                            </div>
+                          </div>
                         </div>
-                        <div className="text-[10px] text-[#A69E96] font-light">
-                          {link.sub}
-                        </div>
-                      </div>
-                    </div>
-                    <ArrowUpRight className="w-4 h-4 text-marigold" />
-                  </Link>
-                );
-              })}
-            </nav>
-          </div>
-
-          {/* Bottom Direct Contact CTAs */}
-          <div className="pt-4 mt-4 border-t border-[#382B26] space-y-2.5">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-              <a
-                href={waEnquiryUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 px-4 py-3.5 bg-gradient-to-r from-kumkum to-kumkum-deep hover:brightness-110 text-white font-mono text-xs tracking-widest uppercase rounded-xs transition-all shadow-md min-h-[44px] font-medium border border-marigold/40"
-              >
-                <MessageCircle className="w-4 h-4 text-white" />
-                <span>WhatsApp Surat Desk</span>
-              </a>
-
-              <a
-                href="tel:+919151003198"
-                className="flex items-center justify-center gap-2 px-4 py-3.5 bg-[#231A17] hover:bg-[#2C211D] border border-marigold/40 hover:border-marigold text-[#F7EFE9] font-mono text-xs tracking-widest uppercase rounded-xs transition-all min-h-[44px] font-medium shadow-sm"
-              >
-                <PhoneCall className="w-4 h-4 text-marigold" />
-                <span className="text-center leading-tight">Call Surat HQ<span className="hidden xs:inline"> · +91 91510 03198</span></span>
-              </a>
+                        <ArrowUpRight className="w-4 h-4 text-marigold" />
+                      </Link>
+                    </motion.div>
+                  );
+                })}
+              </nav>
             </div>
 
-            <div className="text-center font-mono text-[9.5px] text-[#8C837B] pt-1">
-              Commission brokerage &amp; QC operating on Surat floor since 2008
-            </div>
-          </div>
-        </div>
-      )}
+            {/* Bottom Direct Contact CTAs */}
+            <motion.div
+              variants={DRAWER_ITEM_VARIANTS}
+              className="pt-4 mt-4 border-t border-[#382B26] space-y-2.5"
+            >
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                <a
+                  href={waEnquiryUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2 px-4 py-3.5 bg-gradient-to-r from-kumkum to-kumkum-deep hover:brightness-110 text-white font-mono text-xs tracking-widest uppercase rounded-xs transition-all shadow-md min-h-[44px] font-medium border border-marigold/40"
+                >
+                  <MessageCircle className="w-4 h-4 text-white" />
+                  <span>WhatsApp Surat Desk</span>
+                </a>
+
+                <a
+                  href="tel:+919151003198"
+                  className="flex items-center justify-center gap-2 px-4 py-3.5 bg-[#231A17] hover:bg-[#2C211D] border border-marigold/40 hover:border-marigold text-[#F7EFE9] font-mono text-xs tracking-widest uppercase rounded-xs transition-all min-h-[44px] font-medium shadow-sm"
+                >
+                  <PhoneCall className="w-4 h-4 text-marigold" />
+                  <span className="text-center leading-tight">Call Surat HQ<span className="hidden xs:inline"> · +91 91510 03198</span></span>
+                </a>
+              </div>
+
+              <div className="text-center font-mono text-[9.5px] text-[#8C837B] pt-1">
+                Commission brokerage &amp; QC operating on Surat floor since 2008
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }

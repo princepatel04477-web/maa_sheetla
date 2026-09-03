@@ -3,9 +3,11 @@
 import React, { useState } from "react";
 import { Product } from "../lib/products";
 import { createWhatsAppLink } from "../lib/whatsapp";
-import { ArrowUpRight, Check, Eye } from "lucide-react";
+import { ArrowUpRight, Check } from "lucide-react";
 import DecryptedText from "./react-bits/DecryptedText";
 import { Picture } from "./Picture";
+import { motion } from "framer-motion";
+import { useHoverCapable, MOTION } from "../lib/motion";
 
 interface ProductCardProps {
   product: Product;
@@ -14,6 +16,7 @@ interface ProductCardProps {
 
 export default function ProductCard({ product, priority = false }: ProductCardProps) {
   const [copied, setCopied] = useState(false);
+  const isHoverCapable = useHoverCapable();
 
   const waUrl = createWhatsAppLink(`booking wholesale rate card & batch samples for design code ${product.designCode}`, {
     designCode: product.designCode,
@@ -28,7 +31,15 @@ export default function ProductCard({ product, priority = false }: ProductCardPr
   };
 
   return (
-    <div className="group bg-selvedge border border-hairline hover:border-marigold/70 hover:shadow-md transition-all duration-300 rounded-sm overflow-hidden flex flex-col justify-between">
+    <motion.div
+      className="group bg-selvedge border border-hairline rounded-sm overflow-hidden flex flex-col justify-between"
+      // Touch press state — scale slightly on touchstart, release on touchend
+      whileTap={!isHoverCapable ? { scale: 0.985 } : undefined}
+      // Desktop hover lift and border to marigold — CSS handles border, motion for lift
+      whileHover={isHoverCapable ? { y: -4 } : undefined}
+      transition={{ duration: MOTION.dur.fast, ease: MOTION.ease.outQuart }}
+      style={{ willChange: "transform" }}
+    >
       {/* Image Frame */}
       <div className="card-media card-media--catalogue relative overflow-hidden bg-warp">
         <Picture
@@ -36,7 +47,9 @@ export default function ProductCard({ product, priority = false }: ProductCardPr
           priority={priority}
           sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 30vw"
           className="w-full h-full"
-          imgClassName="group-hover:scale-105 transition-transform duration-700 ease-out"
+          imgClassName={`transition-all duration-700 ease-out scale-[1.06] group-hover:scale-100 ${
+            isHoverCapable ? "group-hover:scale-105" : ""
+          }`}
           customAlt={product.title}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-85 pointer-events-none" />
@@ -90,7 +103,7 @@ export default function ProductCard({ product, priority = false }: ProductCardPr
           </span>
         </div>
 
-        {/* Action Link */}
+        {/* Action Link — always visible at rest */}
         <div className="pt-2">
           <a
             href={waUrl}
@@ -103,6 +116,6 @@ export default function ProductCard({ product, priority = false }: ProductCardPr
           </a>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

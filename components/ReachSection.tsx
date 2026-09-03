@@ -1,9 +1,11 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useEffect, useRef, useState, useMemo } from "react";
 import Link from "next/link";
 import { ArrowUpRight, ChevronRight, Search, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import IndiaReachMap, { ALL_REACH_NODES } from "./IndiaReachMap";
+import { MOTION } from "../lib/motion";
 
 const REGION_TABS = [
   { id: "all", label: "All Hubs" },
@@ -13,10 +15,13 @@ const REGION_TABS = [
   { id: "central-south", label: "Central & Others" },
 ];
 
+const TAB_INDICATOR_ID = "reach-tab-indicator";
+
 export default function ReachSection() {
   const [activeCityId, setActiveCityId] = useState<string | null>("delhi");
   const [searchQuery, setSearchQuery] = useState("");
   const [activeTab, setActiveTab] = useState("all");
+  const listRef = useRef<HTMLDivElement>(null);
 
   const filteredCities = useMemo(() => {
     let list = ALL_REACH_NODES;
@@ -49,6 +54,31 @@ export default function ReachSection() {
 
     return list;
   }, [activeTab, searchQuery]);
+
+  // Scroll active city into view within ledger list
+  useEffect(() => {
+    if (!activeCityId || !listRef.current) return;
+    const activeBtn = listRef.current.querySelector(
+      `[data-city-id="${activeCityId}"]`
+    ) as HTMLElement | null;
+    if (activeBtn) {
+      activeBtn.scrollIntoView({ block: "nearest", behavior: "smooth" });
+    }
+  }, [activeCityId]);
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 6 },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: MOTION.dur.base,
+        ease: MOTION.ease.outExpo,
+        delay: Math.min(i * 0.04, 0.32),
+      },
+    }),
+    exit: { opacity: 0, transition: { duration: 0.12 } },
+  };
 
   return (
     <section id="reach" className="w-full py-24 sm:py-32 px-6 sm:px-12 bg-warp relative content-auto">
@@ -115,81 +145,101 @@ export default function ReachSection() {
                 )}
               </div>
 
-              {/* Region Filter Chips */}
-              <div className="flex flex-wrap gap-1.5 pt-1">
+              {/* Region Filter Chips — layoutId sliding indicator */}
+              <div className="flex flex-wrap gap-1.5 pt-1 relative">
                 {REGION_TABS.map((tab) => (
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
-                    className={`px-3 py-2 min-h-[44px] text-[10px] font-mono uppercase tracking-wider rounded-xs border transition-all ${
+                    className={`relative px-3 py-2 min-h-[44px] text-[10px] font-mono uppercase tracking-wider rounded-xs border transition-colors ${
                       activeTab === tab.id
-                        ? "bg-marigold text-white border-marigold font-medium shadow-2xs"
+                        ? "text-white border-marigold font-medium shadow-2xs"
                         : "bg-selvedge-light text-ash border-hairline hover:border-marigold/40 hover:text-khadi"
                     }`}
                   >
+                    {activeTab === tab.id && (
+                      <motion.span
+                        layoutId={TAB_INDICATOR_ID}
+                        className="absolute inset-0 bg-marigold rounded-xs"
+                        style={{ zIndex: -1 }}
+                        transition={{ duration: MOTION.dur.base, ease: MOTION.ease.outExpo }}
+                      />
+                    )}
                     {tab.label}
                   </button>
                 ))}
               </div>
             </div>
 
-            {/* Scrollable City Ledger List */}
-            <div className="space-y-1.5 lg:max-h-[440px] lg:overflow-y-auto overscroll-contain pr-1">
-              {filteredCities.map((city, idx) => {
-                const isActive = activeCityId === city.id;
-                return (
-                  <button
-                    key={city.id}
-                    onClick={() => setActiveCityId(city.id)}
-                    onMouseEnter={() => setActiveCityId(city.id)}
-                    onFocus={() => setActiveCityId(city.id)}
-                    className={`w-full text-left p-2.5 sm:p-3 border transition-all duration-200 flex items-center justify-between group rounded-sm ${
-                      isActive
-                        ? "bg-selvedge-light border-marigold shadow-xs"
-                        : "bg-transparent border-hairline/40 hover:border-hairline hover:bg-selvedge-light/60"
-                    }`}
-                  >
-                    <div className="space-y-0.5 pr-2">
-                      <div className="flex items-center gap-2">
-                        <span className="font-mono text-[9px] text-ash">
-                          {idx < 9 ? `0${idx + 1}` : idx + 1}
-                        </span>
-                        <span
-                          className={`font-display text-base sm:text-lg transition-colors ${
-                            isActive ? "text-kumkum font-normal" : "text-khadi group-hover:text-marigold font-light"
-                          }`}
-                        >
-                          {city.name}
-                        </span>
-                        {city.isPrimary && (
-                          <span className="text-[8.5px] font-mono px-1.5 py-0.5 bg-marigold/10 text-marigold border border-marigold/30 rounded-2xs uppercase">
-                            Hub
+            {/* Scrollable City Ledger List with AnimatePresence stagger */}
+            <div
+              ref={listRef}
+              className="space-y-1.5 lg:max-h-[440px] lg:overflow-y-auto overscroll-contain pr-1"
+            >
+              <AnimatePresence mode="popLayout">
+                {filteredCities.map((city, idx) => {
+                  const isActive = activeCityId === city.id;
+                  return (
+                    <motion.button
+                      key={city.id}
+                      data-city-id={city.id}
+                      layout
+                      custom={idx}
+                      variants={itemVariants}
+                      initial="hidden"
+                      animate="visible"
+                      exit="exit"
+                      onClick={() => setActiveCityId(city.id)}
+                      onMouseEnter={() => setActiveCityId(city.id)}
+                      onFocus={() => setActiveCityId(city.id)}
+                      className={`w-full text-left p-2.5 sm:p-3 border transition-all duration-200 flex items-center justify-between group rounded-sm ${
+                        isActive
+                          ? "bg-selvedge-light border-marigold shadow-xs"
+                          : "bg-transparent border-hairline/40 hover:border-hairline hover:bg-selvedge-light/60"
+                      }`}
+                    >
+                      <div className="space-y-0.5 pr-2">
+                        <div className="flex items-center gap-2">
+                          <span className="font-mono text-[9px] text-ash">
+                            {idx < 9 ? `0${idx + 1}` : idx + 1}
                           </span>
-                        )}
+                          <span
+                            className={`font-display text-base sm:text-lg transition-colors ${
+                              isActive ? "text-kumkum font-normal" : "text-khadi group-hover:text-marigold font-light"
+                            }`}
+                          >
+                            {city.name}
+                          </span>
+                          {city.isPrimary && (
+                            <span className="text-[8.5px] font-mono px-1.5 py-0.5 bg-marigold/10 text-marigold border border-marigold/30 rounded-2xs uppercase">
+                              Hub
+                            </span>
+                          )}
+                        </div>
+                        <p className="text-[10px] sm:text-[10.5px] text-ash font-light line-clamp-1">
+                          {city.region} · {city.hub}
+                        </p>
                       </div>
-                      <p className="text-[10px] sm:text-[10.5px] text-ash font-light line-clamp-1">
-                        {city.region} · {city.hub}
-                      </p>
-                    </div>
 
-                    <div className="text-right flex items-center gap-2 shrink-0">
-                      <div>
-                        <div className="font-mono text-[11px] text-marigold font-medium">
-                          {city.since ? `Since ${city.since}` : "Direct Dispatch"}
+                      <div className="text-right flex items-center gap-2 shrink-0">
+                        <div>
+                          <div className="font-mono text-[11px] text-marigold font-medium">
+                            {city.since ? `Since ${city.since}` : "Direct Dispatch"}
+                          </div>
+                          <div className="font-mono text-[8.5px] text-ash tracking-widest uppercase">
+                            Verified
+                          </div>
                         </div>
-                        <div className="font-mono text-[8.5px] text-ash tracking-widest uppercase">
-                          Verified
-                        </div>
+                        <ChevronRight
+                          className={`w-3.5 h-3.5 transition-transform ${
+                            isActive ? "text-marigold translate-x-0.5" : "text-ash/50 group-hover:text-ash"
+                          }`}
+                        />
                       </div>
-                      <ChevronRight
-                        className={`w-3.5 h-3.5 transition-transform ${
-                          isActive ? "text-marigold translate-x-0.5" : "text-ash/50 group-hover:text-ash"
-                        }`}
-                      />
-                    </div>
-                  </button>
-                );
-              })}
+                    </motion.button>
+                  );
+                })}
+              </AnimatePresence>
 
               {filteredCities.length === 0 && (
                 <div className="py-8 text-center text-ash font-mono text-xs">

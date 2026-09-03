@@ -9,6 +9,7 @@
  */
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   VIEW_BOX,
   NATION_PATH,
@@ -307,11 +308,12 @@ export default function IndiaReachMap({
           vectorEffect="non-scaling-stroke"
         />
 
-        {/* Background Subtle Route Lines */}
+        {/* Background Route Lines — draw from Surat on first scroll-in */}
         <g>
-          {routes.map((r) => {
+          {routes.map((r, idx) => {
             const on = active === r.node.id;
             if (on) return null;
+            const delay = reduced ? 0 : Math.min(idx * 40, 900);
             return (
               <path
                 key={`bg-mesh-${r.node.id}`}
@@ -320,6 +322,12 @@ export default function IndiaReachMap({
                 stroke="rgba(166,124,38,.14)"
                 strokeWidth={r.node.isPrimary ? 0.75 : 0.4}
                 strokeDasharray="2 4"
+                style={{
+                  opacity: visible ? 1 : 0,
+                  transition: reduced
+                    ? "none"
+                    : `opacity 0.4s ease ${delay}ms`,
+                }}
               />
             );
           })}
@@ -352,13 +360,14 @@ export default function IndiaReachMap({
           </g>
         )}
 
-        {/* Secondary Trade Node Dots */}
+        {/* Secondary Trade Node Dots — scale-in with stagger */}
         <g>
           {routes
             .filter((r) => !r.node.isPrimary)
-            .map((r) => {
+            .map((r, idx) => {
               const on = active === r.node.id;
               const [x, y] = r.pt;
+              const delay = reduced ? 0 : Math.min(idx * 40, 900);
               return (
                 <g
                   key={r.node.id}
@@ -376,10 +385,14 @@ export default function IndiaReachMap({
                     cy={y}
                     r={on ? 5.5 : 2.5}
                     fill={on ? "#8B2628" : "#A67C26"}
-                    opacity={on ? 1 : 0.75}
+                    opacity={on ? 1 : visible ? 0.75 : 0}
                     stroke={on ? "#FFFFFF" : "none"}
                     strokeWidth={on ? 1.5 : 0}
-                    style={{ transition: "all .2s ease" }}
+                    style={{
+                      transition: reduced
+                        ? "all .2s ease"
+                        : `r .2s ease, fill .2s ease, opacity 0.3s ease ${delay}ms, stroke .2s ease, stroke-width .2s ease`,
+                    }}
                   />
                 </g>
               );
@@ -414,14 +427,25 @@ export default function IndiaReachMap({
           onLeave={() => setActive(null)}
         />
 
-        {/* Floating Callout Badge for Selected Secondary City */}
-        {activeRoute && !activeRoute.node.isPrimary && (
-          <ActiveNodeCallout
-            pt={activeRoute.pt}
-            node={activeRoute.node}
-            uid={uid}
-          />
-        )}
+        {/* Floating Callout Badge for Selected Secondary City — cross-fades */}
+        <AnimatePresence mode="wait">
+          {activeRoute && !activeRoute.node.isPrimary && (
+            <motion.g
+              key={activeRoute.node.id}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <ActiveNodeCallout
+                pt={activeRoute.pt}
+                node={activeRoute.node}
+                uid={uid}
+              />
+            </motion.g>
+          )}
+        </AnimatePresence>
+
       </svg>
     </div>
   );

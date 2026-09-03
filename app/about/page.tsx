@@ -33,7 +33,7 @@ export const metadata = {
 const CHAPTERS = [
   {
     year: "2008",
-    tagline: "Agency Ka Kaam Chalu Kiya",
+    tagline: "Agency Founded",
     title: "1. The Inception of Agency Brokerage",
     subtitle: "A Founding Promise of Pure Transparency",
     desc: "Founded by Manish Kanodia, our operations began as an independent textile commission agency. In an era where fragmented middlemen inflated margins and obscured mill sources, we introduced a transparent trading brokerage: negotiating genuine loom rates directly for wholesale cloth merchants with zero-bad-debt guarantees and absolute trade integrity.",
@@ -46,7 +46,7 @@ const CHAPTERS = [
   },
   {
     year: "2009",
-    tagline: "Kanpur Wala Office Liya",
+    tagline: "Kanpur Office",
     title: "2. Kanpur Regional Office Acquired",
     subtitle: "Anchoring the North Indian B2B Corridor",
     desc: "Within twelve months of launching agency operations, we solidified our physical commitment to our North Indian merchant partners by acquiring our dedicated regional office at 50/274 Shiv Market, Naughara, Kanpur. Situated in the historic heart of Uttar Pradesh's premier textile bazaar, this office became a vital hub for physical fabric sampling, swift repeat orders, and personalized showroom consultations.",
@@ -59,7 +59,7 @@ const CHAPTERS = [
   },
   {
     year: "2010",
-    tagline: "Surat Aaye",
+    tagline: "Surat Expansion",
     title: "3. Arrival in the Textile Capital, Surat",
     subtitle: "Stepping Directly onto the Nation's Weaving Epicentre",
     desc: "To provide our wholesale buyers with unbeatable mill-floor cost structures, we moved our boots directly to Surat, Gujarat — the epicenter of Indian synthetic, bridal silk, and jacquard manufacturing. Being on-ground in Surat enabled us to forge direct partnerships with over a hundred master powerloom owners, twisting mills, and specialized dyehouses across Salabatpura and Ring Road.",
@@ -72,7 +72,7 @@ const CHAPTERS = [
   },
   {
     year: "2016",
-    tagline: "Surat Office Liya",
+    tagline: "Surat Headquarters",
     title: "4. Permanent Surat Head Office Acquired",
     subtitle: "H-32 India Market Flagship Trading Floor & QC Facility",
     desc: "After years of continuous volume growth and expanding buyer accounts, we acquired our permanent flagship headquarters at H-32 India Market, Salabatpura, Ring Road in Surat. We transformed this property into an advanced trading floor equipped with backlit quality control tables, strict piece-by-piece flaw screening, and a heavy-duty moisture-barrier packaging station for 48-hour consolidated express dispatches.",

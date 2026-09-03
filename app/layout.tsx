@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import WhatsAppFloatingButton from '../components/WhatsAppFloatingButton';
 import WebsiteLoader from '../components/WebsiteLoader';
+import PageTransition from '../components/PageTransition';
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -161,7 +162,9 @@ export default function RootLayout({
       <body className="min-h-[100svh] flex flex-col bg-warp text-khadi selection:bg-kumkum selection:text-white antialiased safe-x">
         <WebsiteLoader />
         <Header />
-        <main className="flex-1 w-full">{children}</main>
+        <main className="flex-1 w-full">
+          <PageTransition>{children}</PageTransition>
+        </main>
         <Footer />
         <WhatsAppFloatingButton />
       </body>
