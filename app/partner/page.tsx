@@ -175,53 +175,69 @@ export default function QueryPage() {
         {/* Form & Info Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           {/* Query Form */}
-          <div className="lg:col-span-7 bg-selvedge border border-hairline p-5 sm:p-8 lg:p-10 rounded-sm">
-            {submitted ? (
-              <div className="space-y-6 py-6 text-center animate-in fade-in zoom-in-95 duration-200">
-                <div className="w-14 h-14 sm:w-16 sm:h-16 bg-kumkum/10 border border-marigold/40 rounded-full flex items-center justify-center mx-auto text-marigold">
-                  <CheckCircle2 className="w-7 h-7 sm:w-8 sm:h-8 text-marigold" />
-                </div>
-                <div className="space-y-2">
-                  <h3 className="font-display text-2xl sm:text-3xl text-khadi">Enquiry Secured in Database</h3>
-                  <p className="text-xs sm:text-sm text-ash max-w-md mx-auto leading-relaxed">
-                    Your enquiry has been assigned Reference <b>#{recordId || "LIVE"}</b> and saved to the Cloudflare D1 database and Google Sheet. Our Surat floor team will call you on <b>{formData.contact}</b>.
-                  </p>
-                </div>
-                <div className="pt-3 flex flex-col sm:flex-row items-center justify-center gap-3">
-                  <button
-                    onClick={handleOpenWhatsApp}
-                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-kumkum hover:bg-kumkum-deep text-white font-mono text-xs tracking-widest uppercase rounded-xs transition-all shadow-agency-card min-h-[44px]"
-                  >
-                    <MessageCircle className="w-4 h-4" /> Message Desk on WhatsApp
-                  </button>
-                  <button
-                    onClick={() => {
-                      setSubmitted(false);
-                      setRecordId(null);
-                      setFormData({
-                        firm: "",
-                        firstName: "",
-                        lastName: "",
-                        gst: "",
-                        city: "",
-                        state: "Uttar Pradesh",
-                        contact: "",
-                        email: "",
-                        categoryInterest: "Sarees (Tissue, Dola, Organza)",
-                        preferredFirm: "Both Desks",
-                        message: "",
-                      });
-                      setCompanyWebsite("");
-                      setSubmitError("");
-                    }}
-                    className="w-full sm:w-auto px-6 py-3.5 bg-warp border border-hairline text-ash hover:text-khadi font-mono text-xs tracking-widest uppercase rounded-xs min-h-[44px]"
-                  >
-                    Submit Another Enquiry
-                  </button>
-                </div>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-5">
+          <div className="lg:col-span-7 bg-selvedge border border-hairline p-5 sm:p-8 lg:p-10 rounded-sm overflow-hidden">
+            <AnimatePresence mode="wait" initial={false}>
+              {submitted ? (
+                <motion.div
+                  key="success"
+                  initial={{ opacity: 0, scale: 0.98 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: MOTION.dur.slow, ease: MOTION.ease.outExpo }}
+                  className="space-y-6 py-6 text-center"
+                >
+                  <div className="w-14 h-14 sm:w-16 sm:h-16 bg-kumkum/10 border border-marigold/40 rounded-full flex items-center justify-center mx-auto text-marigold">
+                    <CheckCircle2 className="w-7 h-7 sm:w-8 sm:h-8 text-marigold" />
+                  </div>
+                  <div className="space-y-2">
+                    <h3 className="font-display text-2xl sm:text-3xl text-khadi">Enquiry Secured in Database</h3>
+                    <p className="text-xs sm:text-sm text-ash max-w-md mx-auto leading-relaxed">
+                      Your enquiry has been assigned Reference <b>#{recordId || "LIVE"}</b> and saved to the Cloudflare D1 database and Google Sheet. Our Surat floor team will call you on <b>{formData.contact}</b>.
+                    </p>
+                  </div>
+                  <div className="pt-3 flex flex-col sm:flex-row items-center justify-center gap-3">
+                    <button
+                      onClick={handleOpenWhatsApp}
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-kumkum hover:bg-kumkum-deep text-white font-mono text-xs tracking-widest uppercase rounded-xs transition-all shadow-agency-card min-h-[44px]"
+                    >
+                      <MessageCircle className="w-4 h-4" /> Message Desk on WhatsApp
+                    </button>
+                    <button
+                      onClick={() => {
+                        setSubmitted(false);
+                        setRecordId(null);
+                        setFormData({
+                          firm: "",
+                          firstName: "",
+                          lastName: "",
+                          gst: "",
+                          city: "",
+                          state: "Uttar Pradesh",
+                          contact: "",
+                          email: "",
+                          categoryInterest: "Sarees (Tissue, Dola, Organza)",
+                          preferredFirm: "Both Desks",
+                          message: "",
+                        });
+                        setCompanyWebsite("");
+                        setSubmitError("");
+                      }}
+                      className="w-full sm:w-auto px-6 py-3.5 bg-warp border border-hairline text-ash hover:text-khadi font-mono text-xs tracking-widest uppercase rounded-xs min-h-[44px]"
+                    >
+                      Submit Another Enquiry
+                    </button>
+                  </div>
+                </motion.div>
+              ) : (
+                <motion.form
+                  key="form"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: MOTION.dur.base, ease: MOTION.ease.outExpo }}
+                  onSubmit={handleSubmit}
+                  className="space-y-5"
+                >
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                   <div className="space-y-1.5">
                     <label htmlFor="firm" className="block text-[10.5px] font-mono text-ash tracking-widest uppercase">
@@ -407,12 +423,20 @@ export default function QueryPage() {
                         type="button"
                         key={firm}
                         onClick={() => setFormData({ ...formData, preferredFirm: firm as any })}
-                        className={`py-3 px-2 min-h-[44px] text-center border rounded-xs transition-colors text-[11px] sm:text-xs ${
+                        className={`relative py-3 px-2 min-h-[44px] text-center border rounded-xs transition-colors text-[11px] sm:text-xs overflow-hidden ${
                           formData.preferredFirm === firm
-                            ? "bg-warp text-haldi border-marigold font-medium"
+                            ? "text-haldi border-marigold font-medium"
                             : "bg-warp/50 border-hairline text-ash hover:text-khadi"
                         }`}
                       >
+                        {formData.preferredFirm === firm && (
+                          <motion.span
+                            layoutId={DESK_INDICATOR_ID}
+                            className="absolute inset-0 bg-warp"
+                            style={{ zIndex: -1 }}
+                            transition={{ duration: MOTION.dur.base, ease: MOTION.ease.outExpo }}
+                          />
+                        )}
                         {firm}
                       </button>
                     ))}
@@ -449,22 +473,33 @@ export default function QueryPage() {
                   />
                 </div>
 
-                {submitError && (
-                  <div
-                    role="alert"
-                    aria-live="assertive"
-                    className="p-3.5 bg-kumkum/5 border border-kumkum/40 rounded-xs text-kumkum text-xs leading-relaxed space-y-2"
-                  >
-                    <p>{submitError}</p>
-                    <button
-                      type="button"
-                      onClick={handleOpenWhatsApp}
-                      className="inline-flex items-center gap-1.5 font-mono uppercase tracking-wider underline min-h-[44px]"
+                {/* Error panel — slides down, WhatsApp button pulses once */}
+                <AnimatePresence>
+                  {submitError && (
+                    <motion.div
+                      key="error"
+                      initial={{ opacity: 0, y: -8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -4 }}
+                      transition={{ duration: MOTION.dur.base, ease: MOTION.ease.outExpo }}
+                      role="alert"
+                      aria-live="assertive"
+                      className="p-3.5 bg-kumkum/5 border border-kumkum/40 rounded-xs text-kumkum text-xs leading-relaxed space-y-2"
                     >
-                      <MessageCircle className="w-3.5 h-3.5" /> Send it on WhatsApp instead
-                    </button>
-                  </div>
-                )}
+                      <p>{submitError}</p>
+                      <motion.button
+                        type="button"
+                        onClick={handleOpenWhatsApp}
+                        initial={{ scale: 1 }}
+                        animate={prefersReduced ? {} : { scale: [1, 1.04, 1] }}
+                        transition={{ duration: 0.5, delay: 0.3, ease: MOTION.ease.outExpo }}
+                        className="inline-flex items-center gap-1.5 font-mono uppercase tracking-wider underline min-h-[44px]"
+                      >
+                        <MessageCircle className="w-3.5 h-3.5" /> Send it on WhatsApp instead
+                      </motion.button>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
 
                 <div className="pt-2 flex flex-col sm:flex-row gap-3 sm:gap-4">
                   <button
@@ -472,15 +507,31 @@ export default function QueryPage() {
                     disabled={loading}
                     className="flex-1 py-4 bg-kumkum hover:bg-kumkum-deep text-white font-mono text-xs tracking-[0.18em] uppercase rounded-xs transition-all flex items-center justify-center gap-2 shadow-sm disabled:opacity-50 min-h-[48px]"
                   >
-                    {loading ? (
-                      <>
-                        <Loader2 className="w-4 h-4 animate-spin" /> Transmitting Trade Enquiry...
-                      </>
-                    ) : (
-                      <>
-                        <Send className="w-4 h-4" /> Submit Wholesale Trade Enquiry
-                      </>
-                    )}
+                    <AnimatePresence mode="wait" initial={false}>
+                      {loading ? (
+                        <motion.span
+                          key="loading"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          transition={{ duration: MOTION.dur.fast }}
+                          className="flex items-center gap-2"
+                        >
+                          <Loader2 className="w-4 h-4 animate-spin" /> Transmitting Trade Enquiry...
+                        </motion.span>
+                      ) : (
+                        <motion.span
+                          key="idle"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          transition={{ duration: MOTION.dur.fast }}
+                          className="flex items-center gap-2"
+                        >
+                          <Send className="w-4 h-4" /> Submit Wholesale Trade Enquiry
+                        </motion.span>
+                      )}
+                    </AnimatePresence>
                   </button>
                   <button
                     type="button"
@@ -490,8 +541,9 @@ export default function QueryPage() {
                     <MessageCircle className="w-4 h-4 text-marigold" /> WhatsApp Desk
                   </button>
                 </div>
-              </form>
+              </motion.form>
             )}
+            </AnimatePresence>
           </div>
 
           {/* Agency Benefits Side Column */}
