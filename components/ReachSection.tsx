@@ -2,10 +2,11 @@
 
 import React, { useEffect, useRef, useState, useMemo } from "react";
 import Link from "next/link";
-import { ArrowUpRight, ChevronRight, Search, X } from "lucide-react";
+import { ArrowUpRight, ChevronRight, Search, X, MapPin, MessageCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import IndiaReachMap, { ALL_REACH_NODES } from "./IndiaReachMap";
 import { MOTION } from "../lib/motion";
+import { createWhatsAppLink } from "../lib/whatsapp";
 
 const REGION_TABS = [
   { id: "all", label: "All Hubs" },
@@ -242,8 +243,39 @@ export default function ReachSection() {
               </AnimatePresence>
 
               {filteredCities.length === 0 && (
-                <div className="py-8 text-center text-ash font-mono text-xs">
-                  No cities found matching &quot;{searchQuery}&quot;
+                <div className="p-5 bg-selvedge/95 border border-marigold/30 rounded-xs text-center space-y-3.5 my-2 shadow-2xs">
+                  <div className="w-10 h-10 mx-auto rounded-full bg-marigold/10 border border-marigold/30 flex items-center justify-center text-marigold shadow-2xs">
+                    <MapPin className="w-5 h-5" />
+                  </div>
+                  <div className="space-y-1.5">
+                    <span className="font-mono text-[9.5px] text-marigold tracking-[0.2em] uppercase font-medium block">
+                      Active Expansion Corridor
+                    </span>
+                    <h4 className="font-display text-lg sm:text-xl text-khadi font-light leading-snug">
+                      We would like to join you in {searchQuery.trim() || "your city"}!
+                    </h4>
+                    <p className="text-xs text-ash font-light max-w-sm mx-auto leading-relaxed">
+                      Your city is part of our upcoming trade expansion. Register your showroom to become our verified stockist and secure direct Surat mill dispatches.
+                    </p>
+                  </div>
+                  <div className="pt-1 flex flex-col sm:flex-row items-center justify-center gap-2">
+                    <Link
+                      href={searchQuery.trim() ? `/partner?city=${encodeURIComponent(searchQuery.trim())}` : "/partner"}
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-kumkum hover:bg-kumkum-deep text-white font-mono text-xs uppercase tracking-wider rounded-xs transition-all font-medium shadow-xs min-h-[42px]"
+                    >
+                      <span>Trade Query Form</span>
+                      <ArrowUpRight className="w-3.5 h-3.5" />
+                    </Link>
+                    <a
+                      href={createWhatsAppLink(`inquiring about expanding wholesale trade desk to ${searchQuery.trim() || "our city"}`)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-3.5 py-2.5 bg-selvedge-light hover:bg-selvedge border border-hairline hover:border-marigold text-khadi hover:text-marigold font-mono text-xs uppercase tracking-wider rounded-xs transition-all font-medium min-h-[42px]"
+                    >
+                      <MessageCircle className="w-3.5 h-3.5 text-emerald-400" />
+                      <span>WhatsApp Desk</span>
+                    </a>
+                  </div>
                 </div>
               )}
             </div>

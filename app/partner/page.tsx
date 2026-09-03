@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import ThreadsBackground from "../../components/react-bits/ThreadsBackground";
 import BlurText from "../../components/react-bits/BlurText";
@@ -73,6 +73,21 @@ export default function QueryPage() {
     preferredFirm: "Both Desks" as "Maa Sheetla" | "Sunrise Fab Tex Adat" | "Both Desks",
     message: "",
   });
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const cityParam = params.get("city");
+      if (cityParam && cityParam.trim()) {
+        const cleanedCity = cityParam.trim();
+        setFormData((prev) => ({
+          ...prev,
+          city: cleanedCity,
+          message: prev.message || `We would like to partner with you to open an agency trade counter and direct mill dispatch for our showroom in ${cleanedCity}.`,
+        }));
+      }
+    }
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
