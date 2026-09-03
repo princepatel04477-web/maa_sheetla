@@ -9,13 +9,22 @@ import { motion, AnimatePresence } from "framer-motion";
 import { MOTION } from "../lib/motion";
 
 const NAV_LINKS = [
-  { href: "/#firms", label: "Two Desks", sub: "Maa Sheetla & Sunrise Fab Tex Adat", num: "01" },
+  { href: "/#firms", label: "Our Firms", sub: "Maa Sheetla & Sunrise Fab Tex Adat", num: "01" },
   { href: "/about", label: "Our Story", sub: "18-Yr History (2008–2026)", num: "02" },
   { href: "/#operations", label: "Operations", sub: "4-Step Brokerage & QC", num: "03" },
   { href: "/reach", label: "Trade Network", sub: "70+ Connected Trade Cities", num: "04" },
   { href: "/craft", label: "Mill & QC Floor", sub: "Piece-by-Piece Quality Check", num: "05" },
-  { href: "/partner", label: "Query Form", sub: "Verified Showroom Onboarding", num: "06" },
-  { href: "/contact", label: "Our Offices", sub: "Surat HQ · Kanpur · Ahmedabad", num: "07" },
+  { href: "/contact", label: "Our Offices", sub: "Surat HQ · Kanpur · Ahmedabad", num: "06" },
+  { href: "/partner", label: "Trade Query", sub: "Verified Showroom Onboarding", num: "07" },
+];
+
+const DESKTOP_NAV_LINKS = [
+  { href: "/#firms", label: "Our Firms" },
+  { href: "/about", label: "Our Story" },
+  { href: "/reach", label: "Trade Network" },
+  { href: "/craft", label: "Mill & QC" },
+  { href: "/contact", label: "Offices" },
+  { href: "/partner", label: "Trade Query" },
 ];
 
 const NAV_UNDERLINE_ID = "header-nav-underline";
@@ -150,10 +159,10 @@ export default function Header() {
           <Link
             href="/"
             onClick={() => setMobileOpen(false)}
-            className="flex items-center gap-1.5 xs:gap-2.5 sm:gap-4 group min-w-0 shrink py-1"
+            className="flex items-center gap-1.5 xs:gap-2.5 sm:gap-3.5 group shrink-0 py-1 mr-2 xl:mr-6"
             aria-label="Maa Sheetla Agency & Sunrise Fab Tex Adat"
           >
-            <div className="h-9 xs:h-11 sm:h-16 md:h-17 w-auto flex items-center justify-center shrink-0">
+            <div className="h-9 xs:h-11 sm:h-14 lg:h-16 w-auto flex items-center justify-center shrink-0">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/logos/maa_sheetla_maroon-320.png"
@@ -168,9 +177,9 @@ export default function Header() {
               />
             </div>
 
-            <div className="hidden xs:block h-6 sm:h-8 w-[1px] bg-hairline/80 mx-0.5 shrink-0" />
+            <div className="hidden xs:block h-6 sm:h-8 w-[1px] bg-hairline/80 mx-0.5 sm:mx-1 shrink-0" />
 
-            <div className="h-8 xs:h-9 sm:h-13 md:h-14 w-auto flex items-center justify-center shrink-0">
+            <div className="h-8 xs:h-9 sm:h-11 lg:h-13 w-auto flex items-center justify-center shrink-0">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/logos/sunrise_fab_tex_cropped-320.png"
@@ -187,23 +196,23 @@ export default function Header() {
           </Link>
 
           {/* Desktop Navigation — active underline with layoutId */}
-          <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
-            {NAV_LINKS.map((link) => {
+          <nav className="hidden lg:flex items-center gap-3.5 xl:gap-6 2xl:gap-7 shrink-0">
+            {DESKTOP_NAV_LINKS.map((link) => {
               const isActive = pathname === link.href;
               return (
                 <Link
                   key={link.href}
                   href={link.href}
                   onClick={() => handleNavClick(link.href)}
-                  className={`font-mono text-[11.5px] tracking-[0.18em] uppercase transition-colors relative py-1 ${
-                    isActive ? "text-marigold font-medium" : "text-ash hover:text-khadi"
+                  className={`whitespace-nowrap font-body text-[13px] xl:text-sm font-medium tracking-wide transition-colors relative py-1 px-1 ${
+                    isActive ? "text-marigold font-semibold" : "text-ash hover:text-khadi"
                   }`}
                 >
                   {link.label}
                   {isActive && (
                     <motion.span
                       layoutId={NAV_UNDERLINE_ID}
-                      className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-marigold"
+                      className="absolute bottom-0 left-0 right-0 h-[2px] bg-marigold rounded-full"
                       transition={{ duration: MOTION.dur.base, ease: MOTION.ease.outExpo }}
                     />
                   )}
@@ -213,12 +222,12 @@ export default function Header() {
           </nav>
 
           {/* Action Controls */}
-          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+          <div className="flex items-center gap-2 sm:gap-3 shrink-0 ml-2 xl:ml-4">
             <a
               href={waEnquiryUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-3 sm:px-4 py-2 min-h-[44px] border border-kumkum/40 bg-kumkum/10 hover:bg-kumkum text-kumkum hover:text-white font-mono text-[11px] tracking-wider uppercase rounded-xs transition-all duration-200 shadow-xs"
+              className="inline-flex items-center justify-center gap-2 px-3 sm:px-4 py-2 min-h-[44px] border border-kumkum/40 bg-kumkum/10 hover:bg-kumkum text-kumkum hover:text-white font-body text-xs sm:text-[13px] font-medium tracking-wide rounded-xs transition-all duration-200 shadow-xs whitespace-nowrap"
             >
               <MessageCircle className="w-3.5 h-3.5" />
               <span className="hidden xs:inline">Direct Desk</span>
