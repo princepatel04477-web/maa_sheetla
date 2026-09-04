@@ -602,68 +602,6 @@ export default function HomePage() {
               </div>
             ))}
           </div>
-
-          {/* Detailed Five Milestones Grid */}
-          <div className="space-y-4 pt-4">
-            <div className="flex items-center justify-between pb-2 border-b border-hairline">
-              <div className="flex items-center gap-2 font-mono text-[10.5px] uppercase tracking-widest text-ash">
-                <History className="w-4 h-4 text-marigold" />
-                <span>Five Historic Milestones (2008 – 2026)</span>
-              </div>
-              <span className="font-mono text-[10px] text-marigold uppercase tracking-wider hidden sm:inline-block font-medium">
-                18-Year Legacy · Kanpur · Surat · Ahmedabad
-              </span>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-              {JOURNEY_MILESTONES.map((m, idx) => {
-                const isSelected = activeMilestone === idx;
-                return (
-                  <button
-                    type="button"
-                    key={m.year}
-                    onClick={() => setActiveMilestone(idx)}
-                    className={`p-5 text-left border rounded-xs space-y-3 flex flex-col justify-between relative group transition-all duration-300 ${
-                      isSelected
-                        ? "bg-selvedge border-marigold shadow-agency-card ring-1 ring-marigold/40 scale-[1.01]"
-                        : "bg-selvedge/80 border-hairline hover:border-marigold/40 hover:bg-selvedge shadow-2xs"
-                    }`}
-                  >
-                    <div className="space-y-2.5 w-full">
-                      <div className="flex items-center justify-between">
-                        <span
-                          className={`font-mono text-xs font-semibold tracking-wider px-2.5 py-0.5 border rounded-2xs ${
-                            isSelected
-                              ? "text-marigold bg-warp border-marigold/50"
-                              : "text-ash bg-warp border-hairline/60 group-hover:text-marigold"
-                          }`}
-                        >
-                          {m.year}
-                        </span>
-                        <span className="text-[10px] font-mono text-ash/60">0{idx + 1}</span>
-                      </div>
-                      <span className="inline-block text-[10px] font-mono text-kumkum font-semibold tracking-wide uppercase">
-                        {m.hindiStage}
-                      </span>
-                      <h4 className="font-display text-base sm:text-lg text-khadi font-light leading-snug">
-                        {m.title}
-                      </h4>
-                      <p className="text-xs text-ash font-light leading-relaxed line-clamp-3">
-                        {m.desc}
-                      </p>
-                    </div>
-
-                    <div className="pt-2 border-t border-hairline/60 w-full flex items-center justify-between font-mono text-[9.5px]">
-                      <span className="text-ash/70">{m.era}</span>
-                      <span className={`font-medium ${isSelected ? "text-marigold" : "text-ash/50 group-hover:text-marigold"}`}>
-                        {isSelected ? "Active View" : "Click to View →"}
-                      </span>
-                    </div>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
         </div>
       </section>
 
