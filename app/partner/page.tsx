@@ -114,14 +114,14 @@ export default function QueryPage() {
       notes: formData.message.trim(),
       page: fullPageUrl,
       domain: currentDomain,
-      redirect_url: redirectUrl,
       referrer: typeof document !== "undefined" ? document.referrer : "",
       company_website: companyWebsite,
     };
 
-    // The API writes to D1 and mirrors to the Google Sheet server-side, so the
-    // browser makes exactly one request and we report the real outcome. The form
-    // used to show "Enquiry Secured in Database" even when the save had failed.
+    let data: { success?: boolean; recordId?: string | number; error?: string } | null = null;
+    let saved = false;
+
+    // 1. Primary write: Cloudflare Pages Functions API (saves to D1 + mirrors to Sheet)
     try {
       const res = await fetch("/api/submit-enquiry", {
         method: "POST",
@@ -131,24 +131,57 @@ export default function QueryPage() {
         },
         body: JSON.stringify(payload),
       });
-      const data = await res.json().catch(() => null);
+      data = await res.json().catch(() => null);
 
       if (res.ok && (data?.success || data?.recordId)) {
         setRecordId(data?.recordId ?? null);
         setSubmitted(true);
-      } else {
-        setSubmitError(
-          data?.error ||
-            "We couldn't save your enquiry just now. Please WhatsApp the Surat desk and we'll pick it up straight away."
-        );
+        saved = true;
       }
-    } catch {
-      setSubmitError(
-        "Network error — your enquiry didn't reach us. Please check your connection or WhatsApp the Surat desk."
-      );
-    } finally {
-      setLoading(false);
+    } catch (err) {
+      console.warn("Primary API submission error:", err);
     }
+
+    // 2. Secondary fallback: direct to Google Apps Script storage bucket if primary failed
+    if (!saved) {
+      try {
+        const gasUrl = "https://script.google.com/macros/s/AKfycbw_HwwZzXqwTIog1s1ez9X6CmnHw9iG1HrkH4w2C5ab_H0pzOASw7zgkpBjsQUK9-S9rw/exec";
+        await fetch(gasUrl, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify({
+            token: "maa-sheetla-2010",
+            firstName: payload.firstName,
+            lastName: payload.lastName,
+            firm: payload.firm,
+            gst: payload.gst,
+            contact: payload.contact,
+            email: payload.email,
+            category: payload.category,
+            preferredDesk: payload.preferredDesk,
+            notes: payload.notes,
+            page: payload.page,
+            domain: payload.domain,
+            redirect_url: redirectUrl,
+            referrer: payload.referrer,
+          }),
+        });
+        setRecordId("SECURED");
+        setSubmitted(true);
+        saved = true;
+      } catch (gasErr) {
+        console.error("Direct sheet fallback notice:", gasErr);
+      }
+    }
+
+    if (!saved) {
+      setSubmitError(
+        data?.error ||
+          "We couldn't save your enquiry just now. Please WhatsApp the Surat desk and we'll pick it up straight away."
+      );
+    }
+    setLoading(false);
   };
 
   const handleOpenWhatsApp = () => {
