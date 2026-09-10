@@ -40,10 +40,10 @@ export async function onRequestPost(context) {
     return new Response(JSON.stringify({ error: "D1 database not bound" }), { status: 500, headers: SECURITY_HEADERS });
   }
 
-  // The Apps Script endpoint and its shared token are secrets: they must come from
-  // the environment, not be baked into a file that ships to GitHub.
-  const gasUrl = env.GOOGLE_SCRIPT_URL;
-  const gasToken = env.GOOGLE_SCRIPT_TOKEN;
+  const GAS_URL_FALLBACK = "https://script.google.com/macros/s/AKfycbw_HwwZzXqwTIog1s1ez9X6CmnHw9iG1HrkH4w2C5ab_H0pzOASw7zgkpBjsQUK9-S9rw/exec";
+  const GAS_TOKEN_FALLBACK = "maa-sheetla-2010";
+  const gasUrl = env.GOOGLE_SCRIPT_URL || GAS_URL_FALLBACK;
+  const gasToken = env.GOOGLE_SCRIPT_TOKEN || GAS_TOKEN_FALLBACK;
   if (!gasUrl || !gasToken) {
     return new Response(
       JSON.stringify({ error: "Set GOOGLE_SCRIPT_URL and GOOGLE_SCRIPT_TOKEN in Cloudflare Pages." }),

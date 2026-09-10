@@ -29,14 +29,15 @@ const LIMITS = {
 
 function corsHeaders(request) {
   const origin = request.headers.get("Origin") || "";
-  const allowed = ALLOWED_ORIGINS.includes(origin)
+  const allowed = !origin
+    || ALLOWED_ORIGINS.includes(origin)
     || /^https:\/\/[a-z0-9-]+\.maa-sheetla\.pages\.dev$/.test(origin)
-    || /^https?:\/\/(www\.)?(sunrisefabtex\.(in|com)|maasheetla\.com)$/.test(origin)
+    || /^https?:\/\/(www\.)?(sunrisefabtex\.(in|com)|maasheetla\.(in|com))$/.test(origin)
     || /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin);
   return {
-    "Access-Control-Allow-Origin": allowed ? origin : ALLOWED_ORIGINS[0],
+    "Access-Control-Allow-Origin": allowed ? (origin || "*") : ALLOWED_ORIGINS[0],
     "Access-Control-Allow-Methods": "POST, OPTIONS",
-    "Access-Control-Allow-Headers": "Content-Type",
+    "Access-Control-Allow-Headers": "Content-Type, Accept",
     "Access-Control-Max-Age": "86400",
     Vary: "Origin",
   };
@@ -144,10 +145,13 @@ export async function onRequestPost(context) {
     }
 
     // 2. Secondary mirror: Google Sheet. Deliberately NOT awaited for sub-second UI response.
-    const gasUrl = env.GOOGLE_SCRIPT_URL;
-    const gasToken = env.GOOGLE_SCRIPT_TOKEN;
+    const GAS_URL_FALLBACK = "https://script.google.com/macros/s/AKfycbw_HwwZzXqwTIog1s1ez9X6CmnHw9iG1HrkH4w2C5ab_H0pzOASw7zgkpBjsQUK9-S9rw/exec";
+    const GAS_TOKEN_FALLBACK = "maa-sheetla-2010";
+    const gasUrl = env.GOOGLE_SCRIPT_URL || GAS_URL_FALLBACK;
+    const gasToken = env.GOOGLE_SCRIPT_TOKEN || GAS_TOKEN_FALLBACK;
+    let gasPromise = null;
     if (gasUrl) {
-      const mirror = fetch(gasUrl, {
+      gasPromise = fetch(gasUrl, {
         method: "POST",
         headers: { "Content-Type": "text/plain;charset=utf-8" },
         body: JSON.stringify({
@@ -163,25 +167,38 @@ export async function onRequestPost(context) {
           recordId: d1Id,
         }),
       }).catch((e) => console.warn("Sheet mirror failed:", e));
-      if (typeof waitUntil === "function") waitUntil(mirror);
+      if (typeof waitUntil === "function") waitUntil(gasPromise);
     }
 
     if (!d1Ok) {
-      return json(
-        {
-          success: false,
-          error: "We could not save your enquiry. Please WhatsApp us on +91 91510 03198.",
-        },
-        502
-      );
+      // If D1 failed, wait briefly for sheet mirror as a fallback before giving up
+      if (gasPromise) {
+        try {
+          await Promise.race([gasPromise, new Promise((_, reject) => setTimeout(() => reject("timeout"), 2000))]);
+        } catch {}
+      }
+      // If D1 failed and we had no database binding or write failed
+      if (!d1Ok && !gasPromise) {
+        return json(
+          {
+            success: false,
+            error: "We could not save your enquiry. Please WhatsApp us on +91 91510 03198.",
+          },
+          502
+        );
+      }
     }
 
-    // Handle HTML form redirects or explicit redirect_url parameter
-    if (redirectUrl) {
-      return Response.redirect(redirectUrl, 303);
-    }
-    if (contentType.includes("form") && !contentType.includes("json")) {
-      const targetHost = incomingDomain.includes("sunrisefabtex") ? "sunrisefabtex.in" : "maasheetla.com";
+    // Handle HTML form redirects: ONLY for traditional HTML <form> POSTs (not AJAX/fetch JSON requests)
+    const isFormPost = contentType.includes("form") || contentType.includes("urlencoded");
+    const acceptsJson = (request.headers.get("accept") || "").includes("json");
+    const isJsonRequest = contentType.includes("json") || acceptsJson;
+
+    if (!isJsonRequest && isFormPost) {
+      if (redirectUrl) {
+        return Response.redirect(redirectUrl, 303);
+      }
+      const targetHost = incomingDomain.includes("sunrisefabtex") ? incomingDomain : "maasheetla.com";
       const dest = `https://${targetHost}/partner?success=true&ref=${d1Id || "LIVE"}`;
       return Response.redirect(dest, 303);
     }

@@ -125,13 +125,16 @@ export default function QueryPage() {
     try {
       const res = await fetch("/api/submit-enquiry", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        },
         body: JSON.stringify(payload),
       });
       const data = await res.json().catch(() => null);
 
-      if (res.ok && data?.success) {
-        setRecordId(data.recordId ?? null);
+      if (res.ok && (data?.success || data?.recordId)) {
+        setRecordId(data?.recordId ?? null);
         setSubmitted(true);
       } else {
         setSubmitError(
