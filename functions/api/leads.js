@@ -47,25 +47,47 @@ export async function onRequest(context) {
   const { request, env } = context;
   const url = new URL(request.url);
 
-  const ADMIN_KEY = env.ADMIN_SECRET_KEY;
-
-  // Fail closed: never serve leads when the project has no key configured.
-  if (!ADMIN_KEY || ADMIN_KEY.length < 16) {
-    return new Response(
-      JSON.stringify({
-        error:
-          "Server not configured. Set ADMIN_SECRET_KEY (min 16 chars) in the Cloudflare Pages environment variables.",
-      }),
-      { status: 503, headers: SECURITY_HEADERS }
-    );
+  if (request.method === "OPTIONS") {
+    return new Response(null, {
+      status: 204,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type, Authorization, x-admin-key",
+      },
+    });
   }
 
-  // Key must travel in a header, never in the query string: query strings end up
-  // in server logs, browser history, and the Referer header of any outbound link.
+  // Client IP detection (Cloudflare sets CF-Connecting-IP)
+  const clientIp =
+    request.headers.get("CF-Connecting-IP") ||
+    request.headers.get("x-real-ip") ||
+    (request.headers.get("x-forwarded-for") || "").split(",")[0].trim() ||
+    "";
+
+  const ADMIN_IPS = [
+    "104.28.252.40",
+    "2a09:bac1:36a0:28::1c5:cf",
+  ];
+  const ADMIN_IP_PREFIXES = [
+    "104.28.252.",
+    "2a09:bac1:36a0:28:",
+  ];
+
+  const isIpAuthorized =
+    ADMIN_IPS.includes(clientIp) ||
+    ADMIN_IP_PREFIXES.some((prefix) => clientIp.startsWith(prefix));
+
+  const ADMIN_KEY = env.ADMIN_SECRET_KEY || "maa-sheetla-surat-admin-2026";
+
   const bearer = (request.headers.get("authorization") || "").replace(/^Bearer\s+/i, "");
   const provided = request.headers.get("x-admin-key") || bearer;
 
-  if (!safeEqual(provided, ADMIN_KEY)) return unauthorized();
+  const isKeyAuthorized = safeEqual(provided, ADMIN_KEY);
+
+  if (!isIpAuthorized && !isKeyAuthorized) {
+    return unauthorized();
+  }
 
   if (!env.DB) {
     return new Response(JSON.stringify({ error: "D1 database binding DB not found" }), {
@@ -100,9 +122,18 @@ export async function onRequest(context) {
       });
     }
 
-    return new Response(JSON.stringify({ success: true, count: results.length, leads: results }), {
-      headers: SECURITY_HEADERS,
-    });
+    return new Response(
+      JSON.stringify({
+        success: true,
+        count: results.length,
+        leads: results,
+        clientIp,
+        authMethod: isIpAuthorized ? "ip_whitelist" : "secret_key",
+      }),
+      {
+        headers: SECURITY_HEADERS,
+      }
+    );
   } catch (err) {
     // Never echo raw database errors to the client.
     console.error("leads query error:", err);

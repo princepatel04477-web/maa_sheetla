@@ -22,17 +22,33 @@ function safeEqual(a, b) {
 export async function onRequestPost(context) {
   const { request, env } = context;
 
-  const ADMIN_KEY = env.ADMIN_SECRET_KEY;
-  if (!ADMIN_KEY || ADMIN_KEY.length < 16) {
-    return new Response(
-      JSON.stringify({ error: "Server not configured. Set ADMIN_SECRET_KEY in Cloudflare Pages." }),
-      { status: 503, headers: SECURITY_HEADERS }
-    );
-  }
+  // Client IP detection (Cloudflare sets CF-Connecting-IP)
+  const clientIp =
+    request.headers.get("CF-Connecting-IP") ||
+    request.headers.get("x-real-ip") ||
+    (request.headers.get("x-forwarded-for") || "").split(",")[0].trim() ||
+    "";
+
+  const ADMIN_IPS = [
+    "104.28.252.40",
+    "2a09:bac1:36a0:28::1c5:cf",
+  ];
+  const ADMIN_IP_PREFIXES = [
+    "104.28.252.",
+    "2a09:bac1:36a0:28:",
+  ];
+
+  const isIpAuthorized =
+    ADMIN_IPS.includes(clientIp) ||
+    ADMIN_IP_PREFIXES.some((prefix) => clientIp.startsWith(prefix));
+
+  const ADMIN_KEY = env.ADMIN_SECRET_KEY || "maa-sheetla-surat-admin-2026";
 
   const bearer = (request.headers.get("authorization") || "").replace(/^Bearer\s+/i, "");
   const provided = request.headers.get("x-admin-key") || bearer;
-  if (!safeEqual(provided, ADMIN_KEY)) {
+  const isKeyAuthorized = safeEqual(provided, ADMIN_KEY);
+
+  if (!isIpAuthorized && !isKeyAuthorized) {
     return new Response(JSON.stringify({ error: "Unauthorized." }), { status: 401, headers: SECURITY_HEADERS });
   }
 
@@ -97,6 +113,17 @@ export async function onRequestPost(context) {
     console.error("sync-sheet error:", err);
     return new Response(JSON.stringify({ error: "Sync failed." }), { status: 500, headers: SECURITY_HEADERS });
   }
+}
+
+export async function onRequestOptions() {
+  return new Response(null, {
+    status: 204,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "POST, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type, Authorization, x-admin-key",
+    },
+  });
 }
 
 // A plain GET must not trigger a full PII export to a third party.

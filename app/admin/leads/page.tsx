@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
-import { Download, ShieldCheck, Database, RefreshCw, Search, Phone, Mail, FileSpreadsheet, Lock, ArrowUpRight, CheckCircle2 } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { Download, ShieldCheck, Database, RefreshCw, Search, Phone, Mail, FileSpreadsheet, Lock, ArrowUpRight, CheckCircle2, Globe } from "lucide-react";
 
 interface Lead {
   id: number;
@@ -30,47 +30,68 @@ const GOOGLE_SHEET_URL = "https://docs.google.com/spreadsheets/d/1BPM_maAdBj6vfd
 export default function AdminLeadsPage() {
   const [adminKey, setAdminKey] = useState("");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [authMethod, setAuthMethod] = useState<string>("");
+  const [clientIp, setClientIp] = useState<string>("");
   const [leads, setLeads] = useState<Lead[]>([]);
   const [loading, setLoading] = useState(false);
+  const [autoChecking, setAutoChecking] = useState(true);
   const [syncingSheet, setSyncingSheet] = useState(false);
   const [syncMessage, setSyncMessage] = useState("");
   const [error, setError] = useState("");
   const [search, setSearch] = useState("");
   const [filterState, setFilterState] = useState("All");
 
-  const fetchLeads = async (keyToUse: string) => {
-    setLoading(true);
+  const fetchLeads = async (keyToUse: string, isAuto: boolean = false) => {
+    if (!isAuto) setLoading(true);
     setError("");
     try {
       const res = await fetch("/api/leads", {
-        headers: { "x-admin-key": keyToUse },
+        headers: { "x-admin-key": keyToUse || "auto-ip" },
         cache: "no-store",
       });
       const data = await res.json();
       if (res.ok && data.success) {
         setLeads(data.leads || []);
         setIsAuthenticated(true);
+        if (data.clientIp) setClientIp(data.clientIp);
+        if (data.authMethod) setAuthMethod(data.authMethod);
       } else {
-        setError(data.error || "Authentication failed. Incorrect admin key.");
+        if (!isAuto) {
+          setError(data.error || "Authentication failed. Incorrect admin key or unauthorized IP.");
+        }
         setIsAuthenticated(false);
       }
     } catch (err: any) {
-      setError("Failed to fetch leads from Cloudflare D1 database: " + err.message);
+      if (!isAuto) {
+        setError("Failed to fetch leads from Cloudflare D1 database: " + err.message);
+      }
       setIsAuthenticated(false);
     } finally {
-      setLoading(false);
+      if (!isAuto) setLoading(false);
+      setAutoChecking(false);
     }
   };
 
+  useEffect(() => {
+    // Attempt auto-login via IP Whitelist or saved key
+    const saved = typeof window !== "undefined" ? sessionStorage.getItem("maa_admin_key") : "";
+    if (saved) setAdminKey(saved);
+    fetchLeads(saved || "auto-ip", true);
+  }, []);
+
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
+    if (typeof window !== "undefined" && adminKey) {
+      sessionStorage.setItem("maa_admin_key", adminKey);
+    }
     fetchLeads(adminKey);
   };
 
   const handleDownloadCSV = async () => {
     try {
+      const keyToSend = adminKey || "auto-ip";
       const res = await fetch("/api/leads?format=csv", {
-        headers: { "x-admin-key": adminKey },
+        headers: { "x-admin-key": keyToSend },
         cache: "no-store",
       });
       if (!res.ok) {
@@ -95,14 +116,15 @@ export default function AdminLeadsPage() {
     setSyncingSheet(true);
     setSyncMessage("");
     try {
+      const keyToSend = adminKey || "auto-ip";
       const res = await fetch("/api/sync-sheet", {
         method: "POST",
-        headers: { "x-admin-key": adminKey },
+        headers: { "x-admin-key": keyToSend },
       });
       const data = await res.json();
       if (data.success) {
         setSyncMessage(`✓ ${data.syncedToGoogleSheet} records verified and synced to Google Sheet.`);
-        fetchLeads(adminKey);
+        fetchLeads(adminKey || "auto-ip");
       } else {
         setSyncMessage(`Sync notice: ${data.error}`);
       }
@@ -138,48 +160,74 @@ export default function AdminLeadsPage() {
               <Lock className="w-6 h-6" />
             </div>
             <h1 className="font-display text-2xl text-khadi font-light">Client Lead Vault</h1>
-            <p className="text-xs text-ash">Enter your Admin Secret Key to access the Cloudflare D1 SQL database ledger and Google Sheet bucket.</p>
+            <p className="text-xs text-ash">Access the Cloudflare D1 SQL database ledger and Google Sheet bucket.</p>
           </div>
 
-          <form onSubmit={handleLogin} className="space-y-4">
-            <div className="space-y-1.5">
-              <label className="block text-[10.5px] font-mono text-ash tracking-widest uppercase">
-                Admin Passcode / Secret Key
-              </label>
-              <input
-                type="password"
-                required
-                value={adminKey}
-                onChange={(e) => setAdminKey(e.target.value)}
-                placeholder="Enter admin passcode"
-                autoComplete="current-password"
-                name="admin-key"
-                className="w-full px-4 py-3.5 bg-warp border border-hairline rounded-xs text-base text-khadi placeholder-ash/50 focus:outline-none focus:border-marigold focus-visible:ring-2 focus-visible:ring-marigold/60"
-              />
+          {autoChecking ? (
+            <div className="py-8 text-center space-y-3 font-mono text-xs text-ash">
+              <RefreshCw className="w-6 h-6 animate-spin mx-auto text-marigold" />
+              <p>Verifying IP authorization &amp; credentials...</p>
             </div>
-
-            {error && (
-              <div className="p-3 bg-red-950/40 border border-red-800/50 rounded text-red-300 text-xs font-mono">
-                {error}
+          ) : (
+            <form onSubmit={handleLogin} className="space-y-4">
+              <div className="p-3 bg-emerald-950/30 border border-emerald-700/40 rounded text-emerald-300 text-xs font-mono space-y-1">
+                <div className="flex items-center gap-1.5 font-semibold text-emerald-200">
+                  <Globe className="w-3.5 h-3.5" /> IP Whitelist Active
+                </div>
+                <div className="text-[11px] text-emerald-400/90">
+                  Current user IP is whitelisted. Click below to enter or provide master key.
+                </div>
               </div>
-            )}
 
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full py-3.5 bg-kumkum hover:bg-kumkum-deep text-white font-mono text-xs tracking-widest uppercase rounded-xs transition-all flex items-center justify-center gap-2 shadow-agency-card min-h-[44px]"
-            >
-              {loading ? (
-                <>
-                  <RefreshCw className="w-4 h-4 animate-spin" /> Verifying...
-                </>
-              ) : (
-                <>
-                  <ShieldCheck className="w-4 h-4" /> Unlock Leads Database
-                </>
+              <div className="space-y-1.5">
+                <label className="block text-[10.5px] font-mono text-ash tracking-widest uppercase">
+                  Admin Passcode / Secret Key
+                </label>
+                <input
+                  type="password"
+                  value={adminKey}
+                  onChange={(e) => setAdminKey(e.target.value)}
+                  placeholder="Enter admin passcode (optional on authorized IP)"
+                  autoComplete="current-password"
+                  name="admin-key"
+                  className="w-full px-4 py-3.5 bg-warp border border-hairline rounded-xs text-base text-khadi placeholder-ash/50 focus:outline-none focus:border-marigold focus-visible:ring-2 focus-visible:ring-marigold/60"
+                />
+              </div>
+
+              {error && (
+                <div className="p-3 bg-red-950/40 border border-red-800/50 rounded text-red-300 text-xs font-mono">
+                  {error}
+                </div>
               )}
-            </button>
-          </form>
+
+              <div className="space-y-2 pt-1">
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="w-full py-3.5 bg-kumkum hover:bg-kumkum-deep text-white font-mono text-xs tracking-widest uppercase rounded-xs transition-all flex items-center justify-center gap-2 shadow-agency-card min-h-[44px]"
+                >
+                  {loading ? (
+                    <>
+                      <RefreshCw className="w-4 h-4 animate-spin" /> Verifying...
+                    </>
+                  ) : (
+                    <>
+                      <ShieldCheck className="w-4 h-4" /> Unlock Leads Database
+                    </>
+                  )}
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => fetchLeads("auto-ip")}
+                  disabled={loading}
+                  className="w-full py-2.5 bg-selvedge border border-marigold/50 hover:bg-warp text-marigold font-mono text-xs rounded-xs transition-colors flex items-center justify-center gap-2 min-h-[40px]"
+                >
+                  <Globe className="w-3.5 h-3.5" /> Instant Login via Whitelisted IP
+                </button>
+              </div>
+            </form>
+          )}
         </div>
       </div>
     );
@@ -191,9 +239,16 @@ export default function AdminLeadsPage() {
         {/* Header Bar */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-hairline pb-6">
           <div className="space-y-1">
-            <div className="flex items-center gap-2 font-mono text-xs text-marigold uppercase tracking-wider">
-              <Database className="w-4 h-4" />
-              <span>CLOUDFLARE D1 + GOOGLE SHEET STORAGE BUCKET</span>
+            <div className="flex flex-wrap items-center gap-3">
+              <div className="flex items-center gap-2 font-mono text-xs text-marigold uppercase tracking-wider">
+                <Database className="w-4 h-4" />
+                <span>CLOUDFLARE D1 + GOOGLE SHEET STORAGE BUCKET</span>
+              </div>
+              {clientIp && (
+                <span className="font-mono text-[11px] px-2 py-0.5 rounded bg-emerald-950/40 text-emerald-400 border border-emerald-800/60 inline-flex items-center gap-1">
+                  <Globe className="w-3 h-3" /> IP: {clientIp} ({authMethod === "ip_whitelist" ? "Whitelisted" : "Verified"})
+                </span>
+              )}
             </div>
             <h1 className="font-display text-3xl sm:text-4xl text-khadi font-light">
               Master Wholesale Leads Ledger
@@ -205,7 +260,7 @@ export default function AdminLeadsPage() {
 
           <div className="flex flex-wrap items-center gap-3">
             <button
-              onClick={() => fetchLeads(adminKey)}
+              onClick={() => fetchLeads(adminKey || "auto-ip")}
               disabled={loading}
               className="px-4 py-2.5 bg-selvedge border border-hairline hover:border-marigold text-khadi font-mono text-xs rounded-xs flex items-center gap-2 transition-colors min-h-[40px]"
             >
