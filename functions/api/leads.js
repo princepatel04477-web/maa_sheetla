@@ -68,10 +68,15 @@ export async function onRequest(context) {
   const ADMIN_IPS = [
     "104.28.252.40",
     "2a09:bac1:36a0:28::1c5:cf",
+    "2409:40c1:10be:a80:740a:29a0:45a5:429f",
+    "152.59.37.192",
   ];
   const ADMIN_IP_PREFIXES = [
     "104.28.252.",
     "2a09:bac1:36a0:28:",
+    "2409:40c1:10be:a80:",
+    "2409:40c1:",
+    "152.59.",
   ];
 
   const isIpAuthorized =
