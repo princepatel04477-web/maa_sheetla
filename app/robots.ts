@@ -1,4 +1,5 @@
 import { MetadataRoute } from "next";
+import { SITE_URL } from "../lib/site";
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -8,7 +9,7 @@ export default function robots(): MetadataRoute.Robots {
       // The lead vault holds customer PII — keep it out of every search index.
       disallow: ["/admin/", "/api/"],
     },
-    sitemap: "https://maasheetla.com/sitemap.xml",
-    host: "https://maasheetla.com",
+    sitemap: `${SITE_URL}/sitemap.xml`,
+    host: SITE_URL,
   };
 }

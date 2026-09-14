@@ -21,13 +21,15 @@ export const viewport: Viewport = {
   ],
 };
 
+import { SITE_URL, SITE_NAME, DEFAULT_TITLE, DEFAULT_DESCRIPTION } from '../lib/site';
+
 export const metadata: Metadata = {
   title: {
-    default: 'Maa Sheetla Agency - Wholesale Textile Agency Surat',
-    template: '%s | Maa Sheetla Agency',
+    default: DEFAULT_TITLE,
+    template: `%s | ${SITE_NAME}`,
   },
-  description: 'Maa Sheetla Agency & Sunrise Fab Tex (Adat). B2B Wholesale Textile Brokerage & Commission Agency connecting 700+ suppliers around India with 500+ buyers.',
-  metadataBase: new URL('https://maasheetla.com'),
+  description: DEFAULT_DESCRIPTION,
+  metadataBase: new URL(SITE_URL),
   keywords: [
     'wholesale textile agency Surat',
     'saree wholesale broker Surat',
@@ -37,36 +39,36 @@ export const metadata: Metadata = {
     'saree supplier Kanpur',
     'wholesale textile agency Bhopal',
     'wholesale suits Delhi NCR',
-    'Maa Sheetla Agency',
     'Sunrise Fab Tex (Adat) Surat',
     'Sunrise Fab Tex Adat Surat',
-    'Sunrise Adat Surat'
+    'Sunrise Adat Surat',
+    'Maa Sheetla Agency',
   ],
-  authors: [{ name: 'Maa Sheetla Agency' }],
+  authors: [{ name: SITE_NAME }],
   openGraph: {
-    title: 'Maa Sheetla Agency - B2B Wholesale Textile Agency',
-    description: 'Wholesale textile commission agency established 2008 in Surat, connecting 700+ suppliers with 500+ buyers across India.',
-    url: 'https://maasheetla.com',
-    siteName: 'Maa Sheetla Agency',
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESCRIPTION,
+    url: SITE_URL,
+    siteName: SITE_NAME,
     locale: 'en_IN',
     type: 'website',
     images: [
       {
-        url: 'https://maasheetla.com/img/social/og-default.jpg',
+        url: `${SITE_URL}/img/social/og-default.jpg`,
         width: 1200,
         height: 630,
-        alt: 'Maa Sheetla Agency & Sunrise Fab Tex Adat — Two Desks, One Floor, Surat HQ',
+        alt: 'Sunrise Fab Tex Adat & Maa Sheetla Agency — Two Desks, One Floor, Surat HQ',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Maa Sheetla Agency - Surat Textile Agency',
-    description: 'B2B Wholesale textile brokerage in Surat connecting 700+ suppliers with 500+ buyers across India.',
-    images: ['https://maasheetla.com/img/social/og-default.jpg'],
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESCRIPTION,
+    images: [`${SITE_URL}/img/social/og-default.jpg`],
   },
   alternates: {
-    canonical: 'https://maasheetla.com',
+    canonical: SITE_URL,
   },
   icons: {
     icon: [
@@ -92,17 +94,22 @@ export default function RootLayout({
     '@graph': [
       {
         '@type': 'Organization',
-        '@id': 'https://maasheetla.com/#organization',
-        name: 'Maa Sheetla Agency',
+        '@id': `${SITE_URL}/#organization`,
+        name: SITE_NAME,
         alternateName: [
           'Sunrise Fab Tex (Adat)',
           'Sunrise Fab Tex Pvt Ltd Adat',
           'Sunrise Adat',
           'Sunrise Fab Tex',
+          'Maa Sheetla Agency',
           'Maa Sheetla Agency & Sunrise Fab Tex (Adat)'
         ],
-        url: 'https://maasheetla.com',
-        logo: 'https://maasheetla.com/logos/maa_sheetla_maroon-640.png',
+        sameAs: [
+          'https://sunrisefabtex.com',
+          'https://maasheetla.com'
+        ],
+        url: SITE_URL,
+        logo: `${SITE_URL}/logos/sunrise_fab_tex_colored-320.png`,
         foundingDate: '2008',
         founder: {
           '@type': 'Person',
@@ -115,22 +122,22 @@ export default function RootLayout({
         department: [
           {
             '@type': 'WholesaleStore',
-            name: 'Maa Sheetla Agency',
-            description: 'The designer label desk. Curated bridal lehengas, pure silk weaves, and hand-embroidered suits for retail showroom counters.'
+            name: 'Sunrise Fab Tex (Adat)',
+            description: 'The volume commercial desk. High-velocity wholesale cartons priced and packed for retail turnover.'
           },
           {
             '@type': 'WholesaleStore',
-            name: 'Sunrise Fab Tex (Adat)',
-            description: 'The volume commercial desk. High-velocity wholesale cartons priced and packed for retail turnover.'
+            name: 'Maa Sheetla Agency',
+            description: 'The designer label desk. Curated bridal lehengas, pure silk weaves, and hand-embroidered suits for retail showroom counters.'
           }
         ]
       },
       {
         '@type': 'WholesaleStore',
-        '@id': 'https://maasheetla.com/#surat-hq',
-        name: 'Maa Sheetla Agency & Sunrise Fab Tex (Adat) - Surat Flagship HQ',
-        parentOrganization: { '@id': 'https://maasheetla.com/#organization' },
-        image: 'https://maasheetla.com/logos/maa_sheetla_maroon-640.png',
+        '@id': `${SITE_URL}/#surat-hq`,
+        name: 'Sunrise Fab Tex (Adat) & Maa Sheetla Agency - Surat Flagship HQ',
+        parentOrganization: { '@id': `${SITE_URL}/#organization` },
+        image: `${SITE_URL}/logos/sunrise_fab_tex_colored-320.png`,
         telephone: '+91-91510-03198',
         priceRange: '₹₹',
         address: {
@@ -157,9 +164,9 @@ export default function RootLayout({
       },
       {
         '@type': 'WholesaleStore',
-        '@id': 'https://maasheetla.com/#kanpur-office',
-        name: 'Maa Sheetla Agency - Kanpur Regional Office',
-        parentOrganization: { '@id': 'https://maasheetla.com/#organization' },
+        '@id': `${SITE_URL}/#kanpur-office`,
+        name: 'Maa Sheetla Agency & Sunrise Fab Tex - Kanpur Regional Office',
+        parentOrganization: { '@id': `${SITE_URL}/#organization` },
         telephone: '+91-91510-60273',
         priceRange: '₹₹',
         address: {
@@ -186,9 +193,9 @@ export default function RootLayout({
       },
       {
         '@type': 'WholesaleStore',
-        '@id': 'https://maasheetla.com/#ahmedabad-floor',
-        name: 'Maa Sheetla Agency & Sunrise Fab Tex (Adat) - Ahmedabad Trade Desk',
-        parentOrganization: { '@id': 'https://maasheetla.com/#organization' },
+        '@id': `${SITE_URL}/#ahmedabad-floor`,
+        name: 'Sunrise Fab Tex (Adat) & Maa Sheetla Agency - Ahmedabad Trade Desk',
+        parentOrganization: { '@id': `${SITE_URL}/#organization` },
         telephone: '+91-95596-50752',
         priceRange: '₹₹',
         address: {
@@ -215,15 +222,15 @@ export default function RootLayout({
       },
       {
         '@type': 'WebSite',
-        '@id': 'https://maasheetla.com/#website',
-        url: 'https://maasheetla.com',
-        name: 'Maa Sheetla Agency & Sunrise Fab Tex (Adat)',
-        publisher: { '@id': 'https://maasheetla.com/#organization' },
+        '@id': `${SITE_URL}/#website`,
+        url: SITE_URL,
+        name: SITE_NAME,
+        publisher: { '@id': `${SITE_URL}/#organization` },
         inLanguage: 'en-IN'
       },
       {
         '@type': 'FAQPage',
-        '@id': 'https://maasheetla.com/#faq',
+        '@id': `${SITE_URL}/#faq`,
         mainEntity: [
           {
             '@type': 'Question',

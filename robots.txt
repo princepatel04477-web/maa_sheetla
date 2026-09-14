@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /admin/
 Disallow: /api/
-Sitemap: https://maasheetla.com/sitemap.xml
+Sitemap: https://sunrisefabtex.com/sitemap.xml

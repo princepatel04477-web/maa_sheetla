@@ -8,6 +8,7 @@ import ShinyText from "../../components/react-bits/ShinyText";
 import { CheckCircle2, MessageCircle, Send, Loader2, ShieldCheck } from "lucide-react";
 import { createWhatsAppLink } from "../../lib/whatsapp";
 import { MOTION, useReducedMotion } from "../../lib/motion";
+import { SITE_URL } from "../../lib/site";
 
 const INDIAN_STATES = [
   "Andhra Pradesh",
@@ -96,9 +97,9 @@ export default function QueryPage() {
 
     const fullFirmName = `${formData.firm.trim()} (${formData.city.trim() ? formData.city.trim() + ", " : ""}${formData.state})`;
 
-    const fullPageUrl = typeof window !== "undefined" ? window.location.href : "https://maasheetla.com/partner";
-    const currentDomain = typeof window !== "undefined" ? window.location.hostname : "maasheetla.com";
-    const redirectUrl = typeof window !== "undefined" ? `${window.location.origin}/partner?submitted=true` : "https://maasheetla.com/partner?submitted=true";
+    const fullPageUrl = typeof window !== "undefined" ? window.location.href : `${SITE_URL}/partner`;
+    const currentDomain = typeof window !== "undefined" ? window.location.hostname : "sunrisefabtex.com";
+    const redirectUrl = typeof window !== "undefined" ? `${window.location.origin}/partner?submitted=true` : `${SITE_URL}/partner?submitted=true`;
 
     const payload = {
       firstName: formData.firstName.trim(),

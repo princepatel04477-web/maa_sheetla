@@ -1,0 +1,222 @@
+{
+  "summary": {
+    "target_url": "https://sunrisefabtex.com",
+    "health_score": 78,
+    "grade": "B+",
+    "business_type": "B2B Wholesale Textile Brokerage & Commission Agency (Adat)",
+    "audit_timestamp": "2026-09-14T06:35:00Z",
+    "pages_crawled": 12,
+    "top_findings": [
+      {
+        "title": "Critical Canonical Domain Mismatch",
+        "severity": "Critical",
+        "impact": "Every page on sunrisefabtex.com specifies rel=\"canonical\" href=\"https://maasheetla.com/...\". Search engines (Google/Bing) treat sunrisefabtex.com as duplicate content and drop it from search results."
+      },
+      {
+        "title": "XML Sitemap Points to Sister Domain",
+        "severity": "Critical",
+        "impact": "https://sunrisefabtex.com/sitemap.xml contains 10 URLs all pointing to https://maasheetla.com. There are zero sunrisefabtex.com URLs in the sitemap."
+      },
+      {
+        "title": "Robots.txt Host & Sitemap Directive Mismatch",
+        "severity": "Critical",
+        "impact": "robots.txt explicitly declares Host: https://maasheetla.com and Sitemap: https://maasheetla.com/sitemap.xml."
+      },
+      {
+        "title": "AI Search Engine Bots Blocked by Cloudflare",
+        "severity": "High",
+        "impact": "Cloudflare Managed AI Scraper Protection blocks GPTBot, ClaudeBot, and Google-Extended, preventing AI search engines (ChatGPT Search, Claude) from referencing the site."
+      },
+      {
+        "title": "Title Tags Exceed Character Limits (SERP Truncation)",
+        "severity": "Medium",
+        "impact": "9 out of 10 pages have <title> tags exceeding 65 characters (e.g. /about is 107 characters), causing ellipsis truncation in Google search results."
+      }
+    ],
+    "quick_wins": [
+      "Dynamic canonical URL generator based on request hostname (or environment variable).",
+      "Dynamic sitemap.xml and robots.txt host declaration for sunrisefabtex.com.",
+      "Trim title tags to 55-60 characters with ' | Sunrise Fab Tex' branding.",
+      "Compress meta descriptions on /about and /contact to 140-155 characters.",
+      "Add llms.txt file to root for AI engine citation and discovery."
+    ]
+  },
+  "categories": [
+    {
+      "name": "Technical SEO",
+      "weight": 22,
+      "score": 65,
+      "what_works": [
+        "Flawless HTTP to HTTPS redirection.",
+        "Enterprise-grade security headers (HSTS preload 1-year, CSP, X-Content-Type-Options, Referrer-Policy).",
+        "Fast global edge delivery via Cloudflare Pages (sub-50ms TTFB).",
+        "Next.js static pre-rendering (SSG) with zero SSR lag.",
+        "PII protection: /admin/ and /api/ cleanly disallowed in robots.txt."
+      ],
+      "findings": [
+        {
+          "title": "Canonical Tag Points to External Domain",
+          "severity": "Critical",
+          "description": "On https://sunrisefabtex.com/, the canonical link tag is hardcoded in layout.tsx to https://maasheetla.com. This causes Google to attribute 100% of indexation signals to maasheetla.com, causing sunrisefabtex.com to be de-indexed as a duplicate.",
+          "recommendation": "Update metadataBase and alternates.canonical in layout.tsx and individual pages to support sunrisefabtex.com."
+        },
+        {
+          "title": "Sitemap.xml contains zero sunrisefabtex.com URLs",
+          "severity": "Critical",
+          "description": "sitemap.ts hardcodes const baseUrl = 'https://maasheetla.com', so visiting https://sunrisefabtex.com/sitemap.xml serves URLs for maasheetla.com.",
+          "recommendation": "Use environment variable or dynamic host detection in sitemap.ts."
+        },
+        {
+          "title": "Robots.txt Host directive mismatch",
+          "severity": "High",
+          "description": "robots.ts specifies Host: https://maasheetla.com and Sitemap: https://maasheetla.com/sitemap.xml.",
+          "recommendation": "Update robots.ts to reference sunrisefabtex.com."
+        }
+      ]
+    },
+    {
+      "name": "Content Quality & E-E-A-T",
+      "weight": 23,
+      "score": 95,
+      "what_works": [
+        "Exceptional word depth: 2,515 words on homepage, 1,245 on commercial desk, 1,420 on craft page.",
+        "Authentic industry vocabulary (Adat, Loom Rates, Dola Silk, Tissue Organza, Salabatpura).",
+        "Complete physical E-E-A-T credentials with 3 physical addresses (Surat, Kanpur, Ahmedabad).",
+        "Named founder (Manish Kanodia) with 18-year heritage timeline (2008–2026).",
+        "Zero thin content pages across the entire site."
+      ],
+      "findings": [
+        {
+          "title": "Meta description length exceeds 160 characters on 3 pages",
+          "severity": "Low",
+          "description": "/about is 196 characters; / and /contact are 161 characters.",
+          "recommendation": "Trim to 145-155 characters for optimal snippet presentation in mobile SERPs."
+        }
+      ]
+    },
+    {
+      "name": "On-Page SEO",
+      "weight": 20,
+      "score": 72,
+      "what_works": [
+        "100% of pages have exactly one <h1> tag.",
+        "Logical heading hierarchy (H1 -> H2 -> H3) with keyword relevance.",
+        "Rich internal cross-linking between trading desks, firm profiles, and onboarding."
+      ],
+      "findings": [
+        {
+          "title": "Page Titles Exceeding 60 Characters",
+          "severity": "Medium",
+          "description": "9 out of 10 pages exceed Google's 60-character desktop display threshold (e.g. /about is 107 characters: 'Our Story & Heritage (2008–2026) - Maa Sheetla Agency & Sunrise Fab Tex (Adat) | Maa Sheetla Agency').",
+          "recommendation": "Shorten titles to concise high-intent phrases: e.g. 'Our Story & Heritage (2008–2026) | Sunrise Fab Tex'."
+        },
+        {
+          "title": "Open Graph og:url and og:site_name mismatch",
+          "severity": "Medium",
+          "description": "og:url points to https://maasheetla.com on sunrisefabtex.com. Social cards shared from sunrisefabtex.com resolve to maasheetla.com.",
+          "recommendation": "Align og:url with current domain."
+        }
+      ]
+    },
+    {
+      "name": "Schema / Structured Data",
+      "weight": 10,
+      "score": 85,
+      "what_works": [
+        "Comprehensive JSON-LD graph with Organization, WholesaleStore (3 locations), WebSite, and FAQPage.",
+        "Valid GeoCoordinates (Surat: 21.1895, 72.8436; Kanpur: 26.4719, 80.3496; Ahmedabad: 23.0189, 72.5976).",
+        "Opening hours specifications and contact telephones included.",
+        "FAQPage schema targeting wholesale broker queries."
+      ],
+      "findings": [
+        {
+          "title": "Schema @id and url property mismatch",
+          "severity": "Medium",
+          "description": "All schema IDs use https://maasheetla.com/#organization. For sunrisefabtex.com, it should include sameAs or dynamic IDs.",
+          "recommendation": "Add sameAs: ['https://sunrisefabtex.com'] in Organization schema."
+        },
+        {
+          "title": "Missing BreadcrumbList Schema",
+          "severity": "Low",
+          "description": "Inner pages (/sunrise-fab-tex, /about, /partner) lack BreadcrumbList markup for enhanced rich snippets.",
+          "recommendation": "Implement BreadcrumbList JSON-LD on sub-pages."
+        }
+      ]
+    },
+    {
+      "name": "Performance (Core Web Vitals)",
+      "weight": 10,
+      "score": 94,
+      "what_works": [
+        "Preloaded critical LCP images (hero logos).",
+        "Preconnected Google Fonts CDN.",
+        "Zero server-side rendering delay (Cloudflare Edge SSG).",
+        "Clean CSS footprint with Tailwind utility classes."
+      ],
+      "findings": []
+    },
+    {
+      "name": "AI Search Readiness",
+      "weight": 10,
+      "score": 50,
+      "what_works": [
+        "Highly structured and tabular data perfect for LLM knowledge extraction."
+      ],
+      "findings": [
+        {
+          "title": "Robots.txt Blocks AI Search Crawlers",
+          "severity": "High",
+          "description": "Cloudflare default rules block GPTBot, ClaudeBot, Bytespider, and Google-Extended, preventing AI search engines from indexing the site for live responses.",
+          "recommendation": "Whitelist or allow GPTBot and ClaudeBot for citation access in Cloudflare security settings."
+        },
+        {
+          "title": "Missing llms.txt File",
+          "severity": "Medium",
+          "description": "No /llms.txt specification file is present.",
+          "recommendation": "Deploy a concise /public/llms.txt summarizing company services, desk phone numbers, and trade locations."
+        }
+      ]
+    },
+    {
+      "name": "Images",
+      "weight": 5,
+      "score": 96,
+      "what_works": [
+        "100% of images across all audited pages have meaningful alt tags (0 missing).",
+        "Logos are appropriately sized with width/height attributes preventing CLS."
+      ],
+      "findings": []
+    }
+  ],
+  "action_plan": {
+    "phases": [
+      {
+        "name": "Phase 1: Critical Indexation Unblocking (Day 1)",
+        "timeframe": "Immediate",
+        "items": [
+          "Fix Canonical Tags: Stop pointing sunrisefabtex.com to maasheetla.com.",
+          "Fix sitemap.xml: Generate sunrisefabtex.com URLs in the sitemap.",
+          "Fix robots.txt: Set Host: https://sunrisefabtex.com and Sitemap: https://sunrisefabtex.com/sitemap.xml."
+        ]
+      },
+      {
+        "name": "Phase 2: SERP Display & Click-Through Optimization (Week 1)",
+        "timeframe": "Week 1",
+        "items": [
+          "Optimize Title Tags: Shorten /about, /sunrise-fab-tex, /partner, /contact to <60 chars.",
+          "Adjust Meta Descriptions: Shorten descriptions on /about and /contact to <155 chars.",
+          "Fix Open Graph tags: Set og:url to sunrisefabtex.com."
+        ]
+      },
+      {
+        "name": "Phase 3: AI Search & Rich Snippet Expansion (Week 2)",
+        "timeframe": "Week 2",
+        "items": [
+          "Create and publish /llms.txt.",
+          "Adjust Cloudflare AI scraper settings to allow search crawlers (GPTBot/ClaudeBot).",
+          "Add BreadcrumbList structured data to inner pages."
+        ]
+      }
+    ]
+  }
+}

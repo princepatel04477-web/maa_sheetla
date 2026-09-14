@@ -8,6 +8,7 @@ import BlurText from "../../../components/react-bits/BlurText";
 import ShinyText from "../../../components/react-bits/ShinyText";
 import { ArrowUpRight } from "lucide-react";
 import { createWhatsAppLink } from "../../../lib/whatsapp";
+import { SITE_URL, SITE_NAME } from "../../../lib/site";
 
 const FIRM_CONFIGS: Record<string, {
   name: string;
@@ -52,7 +53,7 @@ export async function generateMetadata({ params }: { params: { firm: string } })
   const cfg = FIRM_CONFIGS[params.firm];
   if (!cfg) return { title: "Agency Desk Profile" };
   const title = `${cfg.name} Agency Desk - Surat Wholesale Textiles`;
-  const canonical = `https://maasheetla.com/firms/${params.firm}`;
+  const canonical = `${SITE_URL}/firms/${params.firm}`;
   return {
     title,
     description: cfg.description,
@@ -63,7 +64,7 @@ export async function generateMetadata({ params }: { params: { firm: string } })
       title,
       description: cfg.description,
       url: canonical,
-      siteName: "Maa Sheetla Agency",
+      siteName: SITE_NAME,
       locale: "en_IN",
       type: "website",
     },
