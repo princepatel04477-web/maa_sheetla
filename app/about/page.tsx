@@ -26,14 +26,14 @@ import { createWhatsAppLink, OFFICE_NUMBERS } from "../../lib/whatsapp";
 import { Picture } from "../../components/Picture";
 
 export const metadata = {
-  title: "Our Story & Heritage (2008–2026) · Maa Sheetla Agency & Sunrise Fab Tex (Adat)",
+  title: "Our Story & Heritage (2008–2026) - Maa Sheetla Agency & Sunrise Fab Tex (Adat)",
   description:
     "18 years of wholesale textile trust: founded in 2008 by Manish Kanodia, Kanpur regional office in 2009, Surat arrival in 2010, permanent Surat HQ in 2016, and Ahmedabad trade floor launch in 2026.",
   alternates: {
     canonical: "https://maasheetla.com/about",
   },
   openGraph: {
-    title: "Our Story & Heritage (2008–2026) · Maa Sheetla Agency & Sunrise Fab Tex (Adat)",
+    title: "Our Story & Heritage (2008–2026) - Maa Sheetla Agency & Sunrise Fab Tex (Adat)",
     description:
       "The 18-year journey connecting 700+ textile suppliers with 500+ verified showrooms across India.",
     url: "https://maasheetla.com/about",
@@ -105,7 +105,7 @@ const CHAPTERS = [
     highlights: [
       "Inaugurating desk at New Cloth Market, Sarangpur, Ahmedabad",
       "Dedicated sourcing of pure cotton garments, kurtis, and festive tunics",
-      "Comprehensive tri-city floor presence: Surat · Kanpur · Ahmedabad",
+      "Comprehensive tri-city floor presence: Surat - Kanpur - Ahmedabad",
     ],
     badge: "Active Launch 2026",
   },
@@ -147,7 +147,7 @@ export default function AboutPage() {
         {/* Sacred Invocation & Header */}
         <div className="space-y-5 max-w-4xl">
           <div className="inline-block p-2.5 bg-selvedge border border-marigold/30 rounded-xs font-mono text-[9px] sm:text-[11px] text-marigold tracking-widest leading-relaxed shadow-2xs">
-            ॐ Hare Krishna Hare Krishna Krishna Krishna Hare Hare · Hare Ram Hare Ram Ram Ram Hare Hare ॐ
+            ॐ Hare Krishna Hare Krishna Krishna Krishna Hare Hare - Hare Ram Hare Ram Ram Ram Hare Hare ॐ
           </div>
 
           <div className="flex items-center gap-4 sm:gap-6 pt-1">
@@ -182,7 +182,7 @@ export default function AboutPage() {
 
           <div className="flex items-center gap-2 font-mono text-[9px] sm:text-[10px] tracking-[0.22em] text-kumkum uppercase">
             <span>ABOUT OUR HERITAGE</span>
-            <span>·</span>
+            <span> - </span>
             <ShinyText text="18 YEARS OF TEXTILE TRUST (2008 – 2026)" />
           </div>
 
@@ -206,7 +206,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10">
             <div className="lg:col-span-8 space-y-4">
               <span className="font-mono text-xs text-marigold uppercase tracking-widest block font-medium">
-                Founder&apos;s Vision · Manish Kanodia
+                Founder&apos;s Vision - Manish Kanodia
               </span>
               <h2 className="font-display text-2xl sm:text-4xl text-khadi font-light leading-tight">
                 Built on Traditional B2B Trust, Powered by Modern Verification.

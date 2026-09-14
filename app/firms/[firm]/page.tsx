@@ -24,7 +24,7 @@ const FIRM_CONFIGS: Record<string, {
     name: "Maa Sheetla",
     firmKey: "Maa Sheetla",
     logoUrl: "/logos/maa_sheetla_maroon-640.png",
-    eyebrow: "AGENCY DESK 01 · CURATED DESIGNER COLLECTIONS",
+    eyebrow: "AGENCY DESK 01 - CURATED DESIGNER COLLECTIONS",
     tagline: "For showroom counters that sell by craft & exclusivity.",
     description: "Curated wholesale brokerage of high-craft bridal lehengas, tissue silk sarees, and hand-embroidered suits for premium multi-designer counters.",
     roleDescription: "Maa Sheetla operates as the dedicated agency desk for discerning showroom owners and buyers who demand distinctive silhouettes, intricate hand needlework, and strict territorial exclusivity.",
@@ -35,7 +35,7 @@ const FIRM_CONFIGS: Record<string, {
     name: "Sunrise Fab Tex Adat",
     firmKey: "Sunrise Fab Tex",
     logoUrl: "/logos/sunrise_fab_tex_colored-640.png",
-    eyebrow: "AGENCY DESK 02 · HIGH-VELOCITY COMMERCIAL WHOLESALE",
+    eyebrow: "AGENCY DESK 02 - HIGH-VELOCITY COMMERCIAL WHOLESALE",
     tagline: "Priced and packed for daily retail turnover.",
     description: "High-velocity wholesale brokerage of the identical four catalogues, streamlined for rapid inventory turns and competitive commercial retail margins.",
     roleDescription: "Sunrise Fab Tex Adat is designed for volume retail counters and wholesale buyers that require dependable weekly supply, mill-consistent dye lots, and attractive retail markup margins.",
@@ -51,7 +51,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: { firm: string } }) {
   const cfg = FIRM_CONFIGS[params.firm];
   if (!cfg) return { title: "Agency Desk Profile" };
-  const title = `${cfg.name} Agency Desk · Surat Wholesale Textiles`;
+  const title = `${cfg.name} Agency Desk - Surat Wholesale Textiles`;
   const canonical = `https://maasheetla.com/firms/${params.firm}`;
   return {
     title,
@@ -96,7 +96,7 @@ export default function FirmProfilePage({ params }: { params: { firm: string } }
 
             <div className="flex items-center gap-2 font-mono text-[10px] tracking-[0.24em] text-kumkum uppercase font-medium">
               <span>{config.eyebrow}</span>
-              <span>·</span>
+              <span> - </span>
               <ShinyText text="SURAT HQ" />
             </div>
             <h1 className="font-display text-4xl sm:text-6xl text-khadi font-light tracking-tight leading-[0.95]">
@@ -146,7 +146,7 @@ export default function FirmProfilePage({ params }: { params: { firm: string } }
               Current Agency Selection ({products.length} Designs)
             </h2>
             <span className="font-mono text-xs text-ash tracking-wider uppercase">
-              Sarees · Lehengas · Suits · Garments
+              Sarees - Lehengas - Suits - Garments
             </span>
           </div>
 

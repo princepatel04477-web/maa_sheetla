@@ -1,7 +1,7 @@
 ﻿import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Admin Portal · Internal Access Only",
+  title: "Admin Portal - Internal Access Only",
   robots: {
     index: false,
     follow: false,

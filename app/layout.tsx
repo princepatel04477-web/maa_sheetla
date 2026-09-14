@@ -23,7 +23,7 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: 'Maa Sheetla Agency · Wholesale Textile Agency Surat',
+    default: 'Maa Sheetla Agency - Wholesale Textile Agency Surat',
     template: '%s | Maa Sheetla Agency',
   },
   description: 'Maa Sheetla Agency & Sunrise Fab Tex (Adat). B2B Wholesale Textile Brokerage & Commission Agency connecting 700+ suppliers around India with 500+ buyers.',
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: 'Maa Sheetla Agency' }],
   openGraph: {
-    title: 'Maa Sheetla Agency · B2B Wholesale Textile Agency',
+    title: 'Maa Sheetla Agency - B2B Wholesale Textile Agency',
     description: 'Wholesale textile commission agency established 2008 in Surat, connecting 700+ suppliers with 500+ buyers across India.',
     url: 'https://maasheetla.com',
     siteName: 'Maa Sheetla Agency',
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Maa Sheetla Agency · Surat Textile Agency',
+    title: 'Maa Sheetla Agency - Surat Textile Agency',
     description: 'B2B Wholesale textile brokerage in Surat connecting 700+ suppliers with 500+ buyers across India.',
     images: ['https://maasheetla.com/img/social/og-default.jpg'],
   },
