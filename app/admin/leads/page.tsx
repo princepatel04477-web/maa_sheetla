@@ -56,6 +56,7 @@ export default function AdminLeadsPage() {
         if (data.clientIp) setClientIp(data.clientIp);
         if (data.authMethod) setAuthMethod(data.authMethod);
       } else {
+        if (data.clientIp) setClientIp(data.clientIp);
         if (!isAuto) {
           setError(data.error || "Authentication failed. Incorrect admin key or unauthorized IP.");
         }

@@ -36,8 +36,8 @@ function csvCell(value) {
   return '"' + s.replace(/"/g, '""') + '"';
 }
 
-function unauthorized() {
-  return new Response(JSON.stringify({ error: "Unauthorized." }), {
+function unauthorized(clientIp = "") {
+  return new Response(JSON.stringify({ error: "Unauthorized.", clientIp }), {
     status: 401,
     headers: { ...SECURITY_HEADERS, "WWW-Authenticate": 'Bearer realm="leads"' },
   });
@@ -70,11 +70,12 @@ export async function onRequest(context) {
     "2a09:bac1:36a0:28::1c5:cf",
     "2409:40c1:10be:a80:740a:29a0:45a5:429f",
     "152.59.37.192",
+    "104.28.220.39",
+    "2a09:bac5:3b09:1a46::29e:9c",
   ];
   const ADMIN_IP_PREFIXES = [
-    "104.28.252.",
-    "2a09:bac1:36a0:28:",
-    "2409:40c1:10be:a80:",
+    "104.28.",
+    "2a09:bac",
     "2409:40c1:",
     "152.59.",
   ];
@@ -91,7 +92,7 @@ export async function onRequest(context) {
   const isKeyAuthorized = safeEqual(provided, ADMIN_KEY);
 
   if (!isIpAuthorized && !isKeyAuthorized) {
-    return unauthorized();
+    return unauthorized(clientIp);
   }
 
   if (!env.DB) {
