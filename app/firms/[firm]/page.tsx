@@ -51,9 +51,22 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: { firm: string } }) {
   const cfg = FIRM_CONFIGS[params.firm];
   if (!cfg) return { title: "Agency Desk Profile" };
+  const title = `${cfg.name} Agency Desk · Surat Wholesale Textiles`;
+  const canonical = `https://maasheetla.com/firms/${params.firm}`;
   return {
-    title: `${cfg.name} Agency Desk · Surat Wholesale Textiles`,
+    title,
     description: cfg.description,
+    alternates: {
+      canonical,
+    },
+    openGraph: {
+      title,
+      description: cfg.description,
+      url: canonical,
+      siteName: "Maa Sheetla Agency",
+      locale: "en_IN",
+      type: "website",
+    },
   };
 }
 

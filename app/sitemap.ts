@@ -11,6 +11,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1.0,
     },
     {
+      url: `${baseUrl}/about`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/maa-sheetla`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.95,
+    },
+    {
+      url: `${baseUrl}/sunrise-fab-tex`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.95,
+    },
+    {
       url: `${baseUrl}/firms/maa-sheetla`,
       lastModified: new Date(),
       changeFrequency: "monthly",
@@ -37,14 +55,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: `${baseUrl}/partner`,
       lastModified: new Date(),
-      changeFrequency: "monthly",
+      changeFrequency: "weekly",
       priority: 0.95,
     },
     {
       url: `${baseUrl}/contact`,
       lastModified: new Date(),
       changeFrequency: "monthly",
-      priority: 0.75,
+      priority: 0.85,
     },
   ];
 }

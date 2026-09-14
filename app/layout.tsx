@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     default: 'Maa Sheetla Agency · Wholesale Textile Agency Surat',
     template: '%s | Maa Sheetla Agency',
   },
-  description: 'Maa Sheetla Agency & Sunrise Fab Tex Adat. B2B Wholesale Textile Brokerage & Commission Agency connecting 700+ suppliers around India with 500+ buyers.',
+  description: 'Maa Sheetla Agency & Sunrise Fab Tex (Adat). B2B Wholesale Textile Brokerage & Commission Agency connecting 700+ suppliers around India with 500+ buyers.',
   metadataBase: new URL('https://maasheetla.com'),
   keywords: [
     'wholesale textile agency Surat',
@@ -38,6 +38,7 @@ export const metadata: Metadata = {
     'wholesale textile agency Bhopal',
     'wholesale suits Delhi NCR',
     'Maa Sheetla Agency',
+    'Sunrise Fab Tex (Adat) Surat',
     'Sunrise Fab Tex Adat Surat',
     'Sunrise Adat Surat'
   ],
@@ -88,58 +89,167 @@ export default function RootLayout({
 }) {
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: 'Maa Sheetla Agency',
-    alternateName: ['Sunrise Fab Tex Adat', 'Sunrise Fab Tex Pvt Ltd Adat', 'Sunrise Adat', 'Sunrise Fab Tex'],
-    url: 'https://maasheetla.com',
-    foundingDate: '2008',
-    founder: {
-      '@type': 'Person',
-      name: 'Manish Kanodia',
-      jobTitle: 'Founder & CEO',
-      telephone: '+91-96164-15615'
-    },
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: 'H-32 India Market, Salabatpura, Ring Road',
-      addressLocality: 'Surat',
-      addressRegion: 'Gujarat',
-      postalCode: '395002',
-      addressCountry: 'IN',
-    },
-    contactPoint: [
-      {
-        '@type': 'ContactPoint',
-        telephone: '+91-91510-03198',
-        contactType: 'sales & trading floor',
-        areaServed: 'IN',
-        availableLanguage: ['en', 'hi', 'gu'],
-      },
-      {
-        '@type': 'ContactPoint',
-        telephone: '+91-91510-60273',
-        contactType: 'kanpur office',
-        areaServed: 'IN',
-        availableLanguage: ['en', 'hi'],
-      },
-      {
-        '@type': 'ContactPoint',
-        telephone: '+91-95596-50752',
-        contactType: 'ahmedabad office & sales',
-        areaServed: 'IN',
-        availableLanguage: ['en', 'hi', 'gu'],
-      }
-    ],
-    subOrganization: [
+    '@graph': [
       {
         '@type': 'Organization',
+        '@id': 'https://maasheetla.com/#organization',
         name: 'Maa Sheetla Agency',
-        description: 'The designer label desk. Curated bridal lehengas, pure silk weaves, and hand-embroidered suits for retail showroom counters.',
+        alternateName: [
+          'Sunrise Fab Tex (Adat)',
+          'Sunrise Fab Tex Pvt Ltd Adat',
+          'Sunrise Adat',
+          'Sunrise Fab Tex',
+          'Maa Sheetla Agency & Sunrise Fab Tex (Adat)'
+        ],
+        url: 'https://maasheetla.com',
+        logo: 'https://maasheetla.com/logos/maa_sheetla_maroon-640.png',
+        foundingDate: '2008',
+        founder: {
+          '@type': 'Person',
+          name: 'Manish Kanodia',
+          jobTitle: 'Founder & CEO',
+          telephone: '+91-96164-15615'
+        },
+        description:
+          'B2B Wholesale Textile Brokerage & Commission Agency connecting 700+ suppliers around India with 500+ buyers across 70+ trade cities.',
+        department: [
+          {
+            '@type': 'WholesaleStore',
+            name: 'Maa Sheetla Agency',
+            description: 'The designer label desk. Curated bridal lehengas, pure silk weaves, and hand-embroidered suits for retail showroom counters.'
+          },
+          {
+            '@type': 'WholesaleStore',
+            name: 'Sunrise Fab Tex (Adat)',
+            description: 'The volume commercial desk. High-velocity wholesale cartons priced and packed for retail turnover.'
+          }
+        ]
       },
       {
-        '@type': 'Organization',
-        name: 'Sunrise Fab Tex Adat',
-        description: 'The volume commercial desk. High-velocity wholesale cartons priced and packed for retail turnover.',
+        '@type': 'WholesaleStore',
+        '@id': 'https://maasheetla.com/#surat-hq',
+        name: 'Maa Sheetla Agency & Sunrise Fab Tex (Adat) - Surat Flagship HQ',
+        parentOrganization: { '@id': 'https://maasheetla.com/#organization' },
+        image: 'https://maasheetla.com/logos/maa_sheetla_maroon-640.png',
+        telephone: '+91-91510-03198',
+        priceRange: '₹₹',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: 'H-32 India Market, Salabatpura, Ring Road',
+          addressLocality: 'Surat',
+          addressRegion: 'Gujarat',
+          postalCode: '395002',
+          addressCountry: 'IN'
+        },
+        geo: {
+          '@type': 'GeoCoordinates',
+          latitude: 21.1895,
+          longitude: 72.8436
+        },
+        openingHoursSpecification: [
+          {
+            '@type': 'OpeningHoursSpecification',
+            dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+            opens: '10:00',
+            closes: '20:00'
+          }
+        ]
+      },
+      {
+        '@type': 'WholesaleStore',
+        '@id': 'https://maasheetla.com/#kanpur-office',
+        name: 'Maa Sheetla Agency - Kanpur Regional Office',
+        parentOrganization: { '@id': 'https://maasheetla.com/#organization' },
+        telephone: '+91-91510-60273',
+        priceRange: '₹₹',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: '50/274 Shiv Market, Naughara',
+          addressLocality: 'Kanpur',
+          addressRegion: 'Uttar Pradesh',
+          postalCode: '208001',
+          addressCountry: 'IN'
+        },
+        geo: {
+          '@type': 'GeoCoordinates',
+          latitude: 26.4719,
+          longitude: 80.3496
+        },
+        openingHoursSpecification: [
+          {
+            '@type': 'OpeningHoursSpecification',
+            dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+            opens: '10:00',
+            closes: '19:30'
+          }
+        ]
+      },
+      {
+        '@type': 'WholesaleStore',
+        '@id': 'https://maasheetla.com/#ahmedabad-floor',
+        name: 'Maa Sheetla Agency & Sunrise Fab Tex (Adat) - Ahmedabad Trade Desk',
+        parentOrganization: { '@id': 'https://maasheetla.com/#organization' },
+        telephone: '+91-95596-50752',
+        priceRange: '₹₹',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: '300, 1st Floor, New Cloth Market, Sarangpur',
+          addressLocality: 'Ahmedabad',
+          addressRegion: 'Gujarat',
+          postalCode: '380002',
+          addressCountry: 'IN'
+        },
+        geo: {
+          '@type': 'GeoCoordinates',
+          latitude: 23.0189,
+          longitude: 72.5976
+        },
+        openingHoursSpecification: [
+          {
+            '@type': 'OpeningHoursSpecification',
+            dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+            opens: '10:30',
+            closes: '20:00'
+          }
+        ]
+      },
+      {
+        '@type': 'WebSite',
+        '@id': 'https://maasheetla.com/#website',
+        url: 'https://maasheetla.com',
+        name: 'Maa Sheetla Agency & Sunrise Fab Tex (Adat)',
+        publisher: { '@id': 'https://maasheetla.com/#organization' },
+        inLanguage: 'en-IN'
+      },
+      {
+        '@type': 'FAQPage',
+        '@id': 'https://maasheetla.com/#faq',
+        mainEntity: [
+          {
+            '@type': 'Question',
+            name: 'How does the wholesale textile commission brokerage work?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'Maa Sheetla Agency and Sunrise Fab Tex (Adat) act as direct commission brokers connecting showroom owners with verified powerloom weavers in Surat and Ahmedabad at authentic loom rates with zero hidden markups and zero-bad-debt guarantees.'
+            }
+          },
+          {
+            '@type': 'Question',
+            name: 'What are the dispatch timelines to North and Central India?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'Consolidated rail and road cargo dispatches depart daily from our Surat floor, reaching 70+ wholesale destinations across Uttar Pradesh, Bihar, Jharkhand, NCR, and Madhya Pradesh within 24 to 48 hours.'
+            }
+          },
+          {
+            '@type': 'Question',
+            name: 'What is the quality control inspection process before dispatch?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'Every lot undergoes a 4-step physical inspection at our H-32 India Market trading floor, including raw warp density verification, illuminated flaw table screening, embroidery needlework audit, and heavy-duty moisture-barrier packaging.'
+            }
+          }
+        ]
       }
     ]
   };

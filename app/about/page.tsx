@@ -26,9 +26,21 @@ import { createWhatsAppLink, OFFICE_NUMBERS } from "../../lib/whatsapp";
 import { Picture } from "../../components/Picture";
 
 export const metadata = {
-  title: "Our Story & Heritage (2008–2026) · Maa Sheetla Agency & Sunrise Fab Tex Adat",
+  title: "Our Story & Heritage (2008–2026) · Maa Sheetla Agency & Sunrise Fab Tex (Adat)",
   description:
-    "The 18-year journey of Maa Sheetla Agency and Sunrise Fab Tex Adat: founded in 2008, Kanpur office acquired in 2009, Surat arrival in 2010, Surat HQ acquired in 2016, and Ahmedabad trade floor launch in 2026.",
+    "18 years of wholesale textile trust: founded in 2008 by Manish Kanodia, Kanpur regional office in 2009, Surat arrival in 2010, permanent Surat HQ in 2016, and Ahmedabad trade floor launch in 2026.",
+  alternates: {
+    canonical: "https://maasheetla.com/about",
+  },
+  openGraph: {
+    title: "Our Story & Heritage (2008–2026) · Maa Sheetla Agency & Sunrise Fab Tex (Adat)",
+    description:
+      "The 18-year journey connecting 700+ textile suppliers with 500+ verified showrooms across India.",
+    url: "https://maasheetla.com/about",
+    siteName: "Maa Sheetla Agency",
+    locale: "en_IN",
+    type: "website",
+  },
 };
 
 const CHAPTERS = [
