@@ -25,6 +25,7 @@ import {
 import { createWhatsAppLink, OFFICE_NUMBERS } from "../../lib/whatsapp";
 import { Picture } from "../../components/Picture";
 import { pageMetadata } from "../../lib/site";
+import Breadcrumbs from "../../components/Breadcrumbs";
 
 export const metadata = pageMetadata({
   title: "About Us - Surat Textile Agency Since 2008",
@@ -132,6 +133,7 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen pt-28 sm:pt-36 pb-20 px-4 sm:px-8 lg:px-12 bg-warp relative">
       <ThreadsBackground />
+      <Breadcrumbs trail={[{ name: "About Us", path: "/about" }]} />
 
       <div className="max-w-7xl mx-auto space-y-12 sm:space-y-16 relative z-10">
         {/* Sacred Invocation & Header */}

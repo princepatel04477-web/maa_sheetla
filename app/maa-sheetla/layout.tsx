@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { pageMetadata } from "../../lib/site";
+import Breadcrumbs from "../../components/Breadcrumbs";
 
 export const metadata: Metadata = pageMetadata({
   title: "Maa Sheetla Agency Surat - Bridal & Silk Saree Wholesale",
@@ -10,5 +11,10 @@ export const metadata: Metadata = pageMetadata({
 });
 
 export default function MaaSheetlaLayout({ children }: { children: React.ReactNode }) {
-  return children;
+  return (
+    <>
+      <Breadcrumbs trail={[{ name: "Maa Sheetla Agency", path: "/maa-sheetla" }]} />
+      {children}
+    </>
+  );
 }

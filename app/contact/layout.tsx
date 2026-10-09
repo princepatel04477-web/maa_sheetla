@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { pageMetadata } from "../../lib/site";
+import Breadcrumbs from "../../components/Breadcrumbs";
 
 export const metadata: Metadata = pageMetadata({
   title: "Contact: Surat, Kanpur & Ahmedabad Offices",
@@ -9,5 +10,10 @@ export const metadata: Metadata = pageMetadata({
 });
 
 export default function ContactLayout({ children }: { children: React.ReactNode }) {
-  return children;
+  return (
+    <>
+      <Breadcrumbs trail={[{ name: "Contact", path: "/contact" }]} />
+      {children}
+    </>
+  );
 }

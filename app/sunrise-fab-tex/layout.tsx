@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { pageMetadata } from "../../lib/site";
+import Breadcrumbs from "../../components/Breadcrumbs";
 
 export const metadata: Metadata = pageMetadata({
   title: "Sunrise Fab Tex (Adat) Surat - Wholesale Sarees & Suits",
@@ -10,5 +11,10 @@ export const metadata: Metadata = pageMetadata({
 });
 
 export default function SunriseFabTexLayout({ children }: { children: React.ReactNode }) {
-  return children;
+  return (
+    <>
+      <Breadcrumbs trail={[{ name: "Sunrise Fab Tex (Adat)", path: "/sunrise-fab-tex" }]} />
+      {children}
+    </>
+  );
 }

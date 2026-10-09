@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { pageMetadata } from "../../lib/site";
+import Breadcrumbs from "../../components/Breadcrumbs";
 
 export const metadata: Metadata = pageMetadata({
   title: "Textile Quality Inspection Floor, Surat",
@@ -9,5 +10,10 @@ export const metadata: Metadata = pageMetadata({
 });
 
 export default function CraftLayout({ children }: { children: React.ReactNode }) {
-  return children;
+  return (
+    <>
+      <Breadcrumbs trail={[{ name: "Quality Inspection", path: "/craft" }]} />
+      {children}
+    </>
+  );
 }

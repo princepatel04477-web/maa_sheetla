@@ -9,6 +9,7 @@ import ShinyText from "../../../components/react-bits/ShinyText";
 import { ArrowUpRight } from "lucide-react";
 import { createWhatsAppLink } from "../../../lib/whatsapp";
 import { pageMetadata } from "../../../lib/site";
+import Breadcrumbs from "../../../components/Breadcrumbs";
 
 const FIRM_CONFIGS: Record<string, {
   name: string;
@@ -73,6 +74,12 @@ export default function FirmProfilePage({ params }: { params: { firm: string } }
   return (
     <div className="min-h-screen pt-36 pb-28 px-6 sm:px-12 bg-warp relative">
       <ThreadsBackground />
+      <Breadcrumbs
+        trail={[
+          { name: config.firmKey === "Maa Sheetla" ? "Maa Sheetla Agency" : "Sunrise Fab Tex (Adat)", path: config.firmKey === "Maa Sheetla" ? "/maa-sheetla" : "/sunrise-fab-tex" },
+          { name: "Wholesale Catalogue", path: `/firms/${params.firm}` },
+        ]}
+      />
 
       <div className="max-w-7xl mx-auto space-y-16 relative z-10">
         {/* Header Hero */}
