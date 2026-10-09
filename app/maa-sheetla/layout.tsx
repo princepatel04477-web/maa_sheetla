@@ -1,23 +1,13 @@
 import type { Metadata } from "next";
-import { SITE_URL, SITE_NAME } from "../../lib/site";
+import { pageMetadata } from "../../lib/site";
 
-export const metadata: Metadata = {
-  title: "Maa Sheetla Agency - Curated Designer Label Desk Surat",
+export const metadata: Metadata = pageMetadata({
+  title: "Maa Sheetla Agency Surat - Bridal & Silk Saree Wholesale",
   description:
-    "Curated bridal lehengas, Banarasi tissue, pure silk weaves, and hand-embroidered suits for premium retail showroom counters.",
-  alternates: {
-    canonical: `${SITE_URL}/maa-sheetla`,
-  },
-  openGraph: {
-    title: "Maa Sheetla Agency - Curated Designer Label Desk Surat",
-    description:
-      "Bridal couture, pure silk sarees, and premium retail showroom sourcing directly from Surat weaving mills.",
-    url: `${SITE_URL}/maa-sheetla`,
-    siteName: SITE_NAME,
-    locale: "en_IN",
-    type: "website",
-  },
-};
+    "Maa Sheetla Agency, Surat: wholesale bridal lehengas, Banarasi tissue and pure silk sarees, and hand-embroidered suits for premium showroom counters.",
+  path: "/maa-sheetla",
+  absoluteTitle: true,
+});
 
 export default function MaaSheetlaLayout({ children }: { children: React.ReactNode }) {
   return children;

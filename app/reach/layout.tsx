@@ -1,23 +1,12 @@
 import type { Metadata } from "next";
-import { SITE_URL, SITE_NAME } from "../../lib/site";
+import { pageMetadata } from "../../lib/site";
 
-export const metadata: Metadata = {
-  title: "70+ City Wholesale Trade Network - Surat Direct Dispatches",
+export const metadata: Metadata = pageMetadata({
+  title: "Textile Dispatch to 70+ Indian Cities",
   description:
-    "Direct powerloom rail and road freight network connecting 700+ mills with 500+ verified showroom counters across 70+ Indian trade cities.",
-  alternates: {
-    canonical: `${SITE_URL}/reach`,
-  },
-  openGraph: {
-    title: "70+ City Wholesale Trade Network - Surat Direct Dispatches",
-    description:
-      "Consolidated 24-to-48 hour dispatches connecting 700+ suppliers with 500+ verified showrooms across 10 states.",
-    url: `${SITE_URL}/reach`,
-    siteName: SITE_NAME,
-    locale: "en_IN",
-    type: "website",
-  },
-};
+    "Daily rail and road textile dispatch from Surat to 500+ showrooms in 70+ cities across UP, Bihar, MP, Rajasthan, Delhi NCR, Punjab and more.",
+  path: "/reach",
+});
 
 export default function ReachLayout({ children }: { children: React.ReactNode }) {
   return children;

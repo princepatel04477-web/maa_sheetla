@@ -1,4 +1,4 @@
-﻿# Sunrise Fab Tex (Adat) & Maa Sheetla Agency
+# Sunrise Fab Tex (Adat) & Maa Sheetla Agency
 > B2B wholesale textile brokerage and manufacturer representation connecting 700+ Surat and Ahmedabad powerlooms with 500+ verified retail showroom counters across India.
 
 ## Organization Overview
@@ -26,15 +26,18 @@ Sunrise Fab Tex (Adat) and Maa Sheetla Agency operate joint wholesale textile tr
 ## Core Trading Floors & Addresses
 
 ### Surat Flagship HQ
-- Address: H-32, Lower Ground Floor, India Market, Ring Road, Surat, Gujarat 395002
+- Address: H-32 India Market, Salabatpura, Ring Road, Surat, Gujarat 395002
+- Phone: +91 91510 03198 / +91 91510 60271
 - Specialization: Mill floor liaison, piece audit tables, carton consolidation & primary transport booking.
 
 ### Kanpur Regional Office
-- Address: 2nd Floor, Shiv Market, General Ganj, Kanpur, Uttar Pradesh 208001
+- Address: 50/274, 1st Floor, Shiv Market, Naughara, Kanpur, Uttar Pradesh 208001
+- Phone: +91 91510 60273
 - Specialization: UP/Bihar regional retail showroom relations and payment reconciliation.
 
 ### Ahmedabad Trading Desk (Opening 2026)
-- Address: New Cloth Market, Raipur, Ahmedabad, Gujarat 380002
+- Address: 300, 1st Floor, New Cloth Market, Sarangpur, Ahmedabad, Gujarat 380002
+- Phone: +91 95596 50752
 - Specialization: Cotton printed suitings and direct Ahmedabad mill rate cards.
 
 ## Key Pages & Endpoints
@@ -43,5 +46,7 @@ Sunrise Fab Tex (Adat) and Maa Sheetla Agency operate joint wholesale textile tr
 - Quality Assurance: https://sunrisefabtex.com/craft
 - Dispatches & Rail Network: https://sunrisefabtex.com/reach
 - Showroom Registration & Loom Rate Inquiry: https://sunrisefabtex.com/partner
+- Maa Sheetla Catalogue: https://sunrisefabtex.com/firms/maa-sheetla
+- Sunrise Fab Tex Catalogue: https://sunrisefabtex.com/firms/sunrise-fab-tex
 - Contact & Floor Addresses: https://sunrisefabtex.com/contact
 - XML Sitemap: https://sunrisefabtex.com/sitemap.xml

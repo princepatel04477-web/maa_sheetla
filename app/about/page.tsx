@@ -24,25 +24,14 @@ import {
 } from "lucide-react";
 import { createWhatsAppLink, OFFICE_NUMBERS } from "../../lib/whatsapp";
 import { Picture } from "../../components/Picture";
-import { SITE_URL, SITE_NAME } from "../../lib/site";
+import { pageMetadata } from "../../lib/site";
 
-export const metadata = {
-  title: "Our Story & Heritage (2008–2026)",
+export const metadata = pageMetadata({
+  title: "About Us - Surat Textile Agency Since 2008",
   description:
-    "18 years of wholesale textile brokerage trust: founded in 2008 in Kanpur, Surat headquarters in 2010, and Ahmedabad trade floor launch in 2026.",
-  alternates: {
-    canonical: `${SITE_URL}/about`,
-  },
-  openGraph: {
-    title: "Our Story & Heritage (2008–2026) - Sunrise Fab Tex & Maa Sheetla Agency",
-    description:
-      "18 years of wholesale textile brokerage trust: founded in 2008 in Kanpur, Surat headquarters in 2010, and Ahmedabad trade floor launch in 2026.",
-    url: `${SITE_URL}/about`,
-    siteName: SITE_NAME,
-    locale: "en_IN",
-    type: "website",
-  },
-};
+    "Founded in Kanpur in 2008 by Manish Kanodia, headquartered at H-32 India Market, Surat since 2016, opening Ahmedabad in 2026: our wholesale textile story.",
+  path: "/about",
+});
 
 const CHAPTERS = [
   {

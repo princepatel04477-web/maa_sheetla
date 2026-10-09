@@ -8,7 +8,7 @@ import BlurText from "../../../components/react-bits/BlurText";
 import ShinyText from "../../../components/react-bits/ShinyText";
 import { ArrowUpRight } from "lucide-react";
 import { createWhatsAppLink } from "../../../lib/whatsapp";
-import { SITE_URL, SITE_NAME } from "../../../lib/site";
+import { pageMetadata } from "../../../lib/site";
 
 const FIRM_CONFIGS: Record<string, {
   name: string;
@@ -20,9 +20,11 @@ const FIRM_CONFIGS: Record<string, {
   roleDescription: string;
   packingRule: string;
   targetProfile: string;
+  seoTitle: string;
 }> = {
   "maa-sheetla": {
     name: "Maa Sheetla",
+    seoTitle: "Maa Sheetla Wholesale Catalogue - Lehengas & Silk Sarees",
     firmKey: "Maa Sheetla",
     logoUrl: "/logos/maa_sheetla_maroon-640.png",
     eyebrow: "AGENCY DESK 01 - CURATED DESIGNER COLLECTIONS",
@@ -32,8 +34,9 @@ const FIRM_CONFIGS: Record<string, {
     packingRule: "Flexible lot assortments (2 to 6 pcs per design) with complete colorway sets.",
     targetProfile: "Designer bridal showrooms & luxury counters in Hazratganj, South Delhi, Johari Bazaar & Civil Lines.",
   },
-  "sunrise-tex-fab": {
+  "sunrise-fab-tex": {
     name: "Sunrise Fab Tex Adat",
+    seoTitle: "Sunrise Fab Tex (Adat) Wholesale Catalogue - Surat",
     firmKey: "Sunrise Fab Tex",
     logoUrl: "/logos/sunrise_fab_tex_colored-640.png",
     eyebrow: "AGENCY DESK 02 - HIGH-VELOCITY COMMERCIAL WHOLESALE",
@@ -46,29 +49,18 @@ const FIRM_CONFIGS: Record<string, {
 };
 
 export async function generateStaticParams() {
-  return [{ firm: "maa-sheetla" }, { firm: "sunrise-tex-fab" }];
+  return [{ firm: "maa-sheetla" }, { firm: "sunrise-fab-tex" }];
 }
 
 export async function generateMetadata({ params }: { params: { firm: string } }) {
   const cfg = FIRM_CONFIGS[params.firm];
   if (!cfg) return { title: "Agency Desk Profile" };
-  const title = `${cfg.name} Agency Desk - Surat Wholesale Textiles`;
-  const canonical = `${SITE_URL}/firms/${params.firm}`;
-  return {
-    title,
+  return pageMetadata({
+    title: cfg.seoTitle,
     description: cfg.description,
-    alternates: {
-      canonical,
-    },
-    openGraph: {
-      title,
-      description: cfg.description,
-      url: canonical,
-      siteName: SITE_NAME,
-      locale: "en_IN",
-      type: "website",
-    },
-  };
+    path: `/firms/${params.firm}`,
+    absoluteTitle: true,
+  });
 }
 
 export default function FirmProfilePage({ params }: { params: { firm: string } }) {

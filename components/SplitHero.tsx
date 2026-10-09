@@ -68,13 +68,15 @@ export default function SplitHero() {
           </div>
 
           <div>
-            <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-light text-khadi tracking-tight leading-[0.94] drop-shadow-2xs">
-              Maa Sheetla
+            {/* The page H1 names both desks; the two visible brand names are
+                matching h2s so neither panel outranks the other. */}
+            <h1 className="sr-only">
+              Sunrise Fab Tex (Adat) &amp; Maa Sheetla Agency — wholesale saree, suit and lehenga
+              commission agency in Surat since 2008
             </h1>
-            <span className="sr-only">
-              Maa Sheetla Agency and Sunrise Fab Tex Adat — wholesale textile agency and commission
-              brokerage in Surat since 2008.
-            </span>
+            <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-light text-khadi tracking-tight leading-[0.94] drop-shadow-2xs">
+              Maa Sheetla
+            </h2>
             <p className="font-display text-lg sm:text-2xl text-marigold font-light italic mt-1">
               For showrooms and buyers that sell by label.
             </p>
@@ -186,7 +188,7 @@ export default function SplitHero() {
         {/* Panel Footer Actions */}
         <div className="relative z-10 pt-5 border-t border-hairline flex flex-col sm:flex-row sm:items-center justify-between gap-3.5 bg-selvedge/80 backdrop-blur-xs -mx-2 px-2 py-2 rounded-xs">
           <Link
-            href="/firms/sunrise-tex-fab"
+            href="/firms/sunrise-fab-tex"
             className="inline-flex items-center gap-2 min-h-[44px] font-mono text-xs tracking-[0.18em] uppercase text-khadi group-hover:text-marigold transition-colors py-2 font-medium"
           >
             <span>Explore Sunrise Adat Desk</span>

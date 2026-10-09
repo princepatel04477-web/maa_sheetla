@@ -450,7 +450,7 @@ export default function MaaSheetlaPage() {
               <div className="space-y-2 font-mono text-xs text-ash">
                 <div className="flex items-start gap-2">
                   <MapPin className="w-4 h-4 text-marigold shrink-0 mt-0.5" />
-                  <span>Shop No. 12, Shiv Market, General Ganj, Kanpur, UP</span>
+                  <span>50/274, 1st Floor, Shiv Market, Naughara, Kanpur - 208001</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Clock className="w-4 h-4 text-marigold shrink-0" />

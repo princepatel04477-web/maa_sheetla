@@ -1,23 +1,12 @@
 import type { Metadata } from "next";
-import { SITE_URL, SITE_NAME } from "../../lib/site";
+import { pageMetadata } from "../../lib/site";
 
-export const metadata: Metadata = {
-  title: "Wholesale Trade Query & Showroom Onboarding - Direct Loom Rates",
+export const metadata: Metadata = pageMetadata({
+  title: "Showroom Onboarding & Loom Rate Query",
   description:
-    "Register your showroom to access direct Surat powerloom rate cards, exclusive territorial designs, and priority wedding season dispatches.",
-  alternates: {
-    canonical: `${SITE_URL}/partner`,
-  },
-  openGraph: {
-    title: "Wholesale Trade Query & Showroom Onboarding - Direct Loom Rates",
-    description:
-      "Open an authorized trade counter account with Maa Sheetla Agency & Sunrise Fab Tex (Adat).",
-    url: `${SITE_URL}/partner`,
-    siteName: SITE_NAME,
-    locale: "en_IN",
-    type: "website",
-  },
-};
+    "Register your saree or suit showroom for direct Surat loom rate cards, territorial design exclusivity and priority wedding-season dispatch.",
+  path: "/partner",
+});
 
 export default function PartnerLayout({ children }: { children: React.ReactNode }) {
   return children;

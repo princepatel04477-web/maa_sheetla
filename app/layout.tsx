@@ -21,12 +21,12 @@ export const viewport: Viewport = {
   ],
 };
 
-import { SITE_URL, SITE_NAME, DEFAULT_TITLE, DEFAULT_DESCRIPTION } from '../lib/site';
+import { SITE_URL, SITE_NAME, TITLE_BRAND, DEFAULT_TITLE, DEFAULT_DESCRIPTION, OG_IMAGE } from '../lib/site';
 
 export const metadata: Metadata = {
   title: {
     default: DEFAULT_TITLE,
-    template: `%s | ${SITE_NAME}`,
+    template: `%s | ${TITLE_BRAND}`,
   },
   description: DEFAULT_DESCRIPTION,
   metadataBase: new URL(SITE_URL),
@@ -52,20 +52,13 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     locale: 'en_IN',
     type: 'website',
-    images: [
-      {
-        url: `${SITE_URL}/img/social/og-default.jpg`,
-        width: 1200,
-        height: 630,
-        alt: 'Sunrise Fab Tex Adat & Maa Sheetla Agency — Two Desks, One Floor, Surat HQ',
-      },
-    ],
+    images: [OG_IMAGE],
   },
   twitter: {
     card: 'summary_large_image',
     title: DEFAULT_TITLE,
     description: DEFAULT_DESCRIPTION,
-    images: [`${SITE_URL}/img/social/og-default.jpg`],
+    images: [OG_IMAGE.url],
   },
   alternates: {
     canonical: SITE_URL,
@@ -103,10 +96,6 @@ export default function RootLayout({
           'Sunrise Fab Tex',
           'Maa Sheetla Agency',
           'Maa Sheetla Agency & Sunrise Fab Tex (Adat)'
-        ],
-        sameAs: [
-          'https://sunrisefabtex.com',
-          'https://maasheetla.com'
         ],
         url: SITE_URL,
         logo: `${SITE_URL}/logos/sunrise_fab_tex_colored-320.png`,
