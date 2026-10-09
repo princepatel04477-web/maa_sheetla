@@ -14,3 +14,6 @@ audit_bundle.tar.gz
 src_bundle.tar.gz
 ANTIGRAVITY_BUILD_ORDER*.md
 MAA-SHEETLA-SITE-AUDIT*.md
+
+# Playwright MCP session artifacts (screenshots, snapshots)
+.playwright-mcp/
